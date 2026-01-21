@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Bold.ttf">
+            <string>Montserrat-Bold</string>
+        </array>
+        <array key="Montserrat-Italic.ttf">
+            <string>Montserrat-Italic</string>
+        </array>
+        <array key="Montserrat-VariableFont_wght.ttf">
+            <string>MontserratRoman-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MembershipDetailVC" customModule="Whosin" customModuleProvider="target">
+            <connections>
+                <outlet property="_tableView" destination="TPj-ko-lvP" id="sX5-od-jbn"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="TPj-ko-lvP" customClass="CustomTableView" customModule="Whosin" customModuleProvider="target">
+                    <rect key="frame" x="15" y="107.5" width="384" height="707.5"/>
+                    <color key="backgroundColor" name="clear"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q4i-rC-dzx">
+                    <rect key="frame" x="344" y="47.5" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="Tab-XH-tUI"/>
+                        <constraint firstAttribute="height" constant="50" id="XzS-Tb-S2U"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="MontserratRoman-Regular" family="Montserrat" pointSize="25"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="icon_close">
+                        <color key="titleColor" red="0.61568627450980395" green="0.61568627450980395" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="_handleCloseEvent:" destination="-1" eventType="touchUpInside" id="lir-3b-iMi"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Choose Your Plan" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpj-po-YKQ">
+                    <rect key="frame" x="106" y="59" width="202.5" height="27"/>
+                    <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="22"/>
+                    <color key="textColor" name="white"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uSj-5N-RXM">
+                    <rect key="frame" x="114" y="820" width="186" height="27"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7oL-mC-Ghu">
+                            <rect key="frame" x="0.0" y="0.0" width="164" height="27"/>
+                            <fontDescription key="fontDescription" name="Montserrat-Italic" family="Montserrat" pointSize="12"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Terms &amp; Conditions applies">
+                                <color key="titleColor" name="BrandLightGray"/>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wXe-Gf-6gp">
+                            <rect key="frame" x="174" y="7.5" width="12" height="12"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="12" id="1IP-4n-h9x"/>
+                                <constraint firstAttribute="height" constant="12" id="OQ4-96-uch"/>
+                            </constraints>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" image="icon_membershipInfo"/>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="brandAppBgColor"/>
+            <constraints>
+                <constraint firstItem="TPj-ko-lvP" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="7Sv-6Z-7Qf"/>
+                <constraint firstItem="Q4i-rC-dzx" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Mpj-po-YKQ" secondAttribute="trailing" constant="10" id="ETr-Av-snj"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="uSj-5N-RXM" secondAttribute="bottom" constant="15" id="EyZ-T7-c8z"/>
+                <constraint firstItem="Mpj-po-YKQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="HLh-nj-79M"/>
+                <constraint firstItem="Q4i-rC-dzx" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="OH7-KA-cQl"/>
+                <constraint firstItem="uSj-5N-RXM" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="TII-6U-86b"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TPj-ko-lvP" secondAttribute="trailing" constant="15" id="XYe-wo-CiK"/>
+                <constraint firstItem="TPj-ko-lvP" firstAttribute="top" secondItem="Q4i-rC-dzx" secondAttribute="bottom" constant="10" id="aob-Hz-R50"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Q4i-rC-dzx" secondAttribute="trailing" constant="20" id="fEM-Gm-t2L"/>
+                <constraint firstItem="Q4i-rC-dzx" firstAttribute="centerY" secondItem="Mpj-po-YKQ" secondAttribute="centerY" id="ftT-Uf-sGT"/>
+                <constraint firstItem="TPj-ko-lvP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="mG9-p2-rxr"/>
+                <constraint firstItem="uSj-5N-RXM" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" constant="20" id="nOl-tL-3eU"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="TPj-ko-lvP" secondAttribute="bottom" constant="100" id="rGB-lI-9ch"/>
+                <constraint firstItem="Mpj-po-YKQ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="rK4-X5-TI7"/>
+                <constraint firstItem="uSj-5N-RXM" firstAttribute="top" secondItem="TPj-ko-lvP" secondAttribute="bottom" constant="5" id="vZ3-2Y-4GI"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="rGB-lI-9ch"/>
+                    <exclude reference="7Sv-6Z-7Qf"/>
+                    <exclude reference="OH7-KA-cQl"/>
+                    <exclude reference="nOl-tL-3eU"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="131.8840579710145" y="91.741071428571431"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_close" width="30" height="30"/>
+        <image name="icon_membershipInfo" width="12" height="12"/>
+        <namedColor name="BrandLightGray">
+            <color red="0.57999998331069946" green="0.58799999952316284" blue="0.6470000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandAppBgColor">
+            <color red="0.059000000357627869" green="0.071000002324581146" blue="0.11400000005960464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

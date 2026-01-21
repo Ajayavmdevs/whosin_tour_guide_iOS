@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="StoryUserCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="120" height="120"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P29-8N-PLk">
+                        <rect key="frame" x="5" y="0.0" width="110" height="120"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ghc-v8-hVs">
+                                <rect key="frame" x="17" y="5" width="76" height="76"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UcO-VS-ekZ">
+                                        <rect key="frame" x="5" y="5" width="66" height="66"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="66" id="Set-u8-AMs"/>
+                                            <constraint firstAttribute="width" constant="66" id="TDF-yr-3dH"/>
+                                        </constraints>
+                                    </imageView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sdu-Z2-EiV">
+                                        <rect key="frame" x="51" y="0.0" width="25" height="25"/>
+                                        <color key="backgroundColor" name="clear"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="K6t-KU-RxX"/>
+                                            <constraint firstAttribute="width" constant="25" id="io1-dQ-G38"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="icon_remove"/>
+                                        <connections>
+                                            <action selector="_handleRemoveEvent:" destination="gTV-IL-0wX" eventType="touchUpInside" id="vA6-QX-ANH"/>
+                                        </connections>
+                                    </button>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_itemAdd" translatesAutoresizingMaskIntoConstraints="NO" id="MFS-0V-U2Y">
+                                        <rect key="frame" x="49" y="49" width="24" height="24"/>
+                                        <color key="tintColor" name="white"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="gMy-Q4-yN0"/>
+                                            <constraint firstAttribute="width" constant="24" id="lAL-oE-7ft"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" name="clear"/>
+                                <constraints>
+                                    <constraint firstItem="Sdu-Z2-EiV" firstAttribute="trailing" secondItem="UcO-VS-ekZ" secondAttribute="trailing" constant="5" id="2hS-On-8JU"/>
+                                    <constraint firstItem="Sdu-Z2-EiV" firstAttribute="top" secondItem="UcO-VS-ekZ" secondAttribute="top" constant="-5" id="Ax1-s3-SmU"/>
+                                    <constraint firstItem="UcO-VS-ekZ" firstAttribute="top" secondItem="Ghc-v8-hVs" secondAttribute="top" constant="5" id="Esf-Ee-4BD"/>
+                                    <constraint firstItem="MFS-0V-U2Y" firstAttribute="bottom" secondItem="UcO-VS-ekZ" secondAttribute="bottom" constant="2" id="N5B-68-cdT"/>
+                                    <constraint firstAttribute="bottom" secondItem="UcO-VS-ekZ" secondAttribute="bottom" constant="5" id="cPq-dQ-SO2"/>
+                                    <constraint firstAttribute="trailing" secondItem="UcO-VS-ekZ" secondAttribute="trailing" constant="5" id="e09-WB-xgU"/>
+                                    <constraint firstItem="MFS-0V-U2Y" firstAttribute="trailing" secondItem="UcO-VS-ekZ" secondAttribute="trailing" constant="2" id="oQe-xO-avp"/>
+                                    <constraint firstItem="UcO-VS-ekZ" firstAttribute="leading" secondItem="Ghc-v8-hVs" secondAttribute="leading" constant="5" id="qdM-6Y-TcN"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="clear"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="                          " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OPF-TT-wXb">
+                                <rect key="frame" x="0.0" y="85" width="110" height="14.5"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                <color key="textColor" name="white"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="clear"/>
+                        <constraints>
+                            <constraint firstItem="OPF-TT-wXb" firstAttribute="top" secondItem="Ghc-v8-hVs" secondAttribute="bottom" constant="4" id="ARO-NF-NIh"/>
+                            <constraint firstItem="Ghc-v8-hVs" firstAttribute="top" secondItem="P29-8N-PLk" secondAttribute="top" constant="5" id="MZ4-cY-kgM"/>
+                            <constraint firstItem="OPF-TT-wXb" firstAttribute="leading" secondItem="P29-8N-PLk" secondAttribute="leading" id="YwV-Gb-UT5"/>
+                            <constraint firstItem="Ghc-v8-hVs" firstAttribute="centerX" secondItem="P29-8N-PLk" secondAttribute="centerX" id="faY-Ph-e1S"/>
+                            <constraint firstAttribute="trailing" secondItem="OPF-TT-wXb" secondAttribute="trailing" id="ucN-7v-ReA"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="P29-8N-PLk" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="672-UH-Gtf"/>
+                <constraint firstItem="P29-8N-PLk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="YS9-YO-3zW"/>
+                <constraint firstAttribute="bottom" secondItem="P29-8N-PLk" secondAttribute="bottom" id="ayX-Cx-aWa"/>
+                <constraint firstItem="P29-8N-PLk" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="kee-xi-NXk"/>
+                <constraint firstAttribute="trailing" secondItem="P29-8N-PLk" secondAttribute="trailing" constant="5" id="vxS-ve-Hyt"/>
+            </constraints>
+            <size key="customSize" width="155" height="144"/>
+            <connections>
+                <outlet property="_addStoryImage" destination="MFS-0V-U2Y" id="8g0-dd-FQ3"/>
+                <outlet property="_imageView" destination="UcO-VS-ekZ" id="Lb1-KZ-v4s"/>
+                <outlet property="_nameLabel" destination="OPF-TT-wXb" id="wnh-Af-Eyk"/>
+                <outlet property="_removeIcon" destination="Sdu-Z2-EiV" id="jQz-gq-L53"/>
+                <outlet property="_viewImageBg" destination="Ghc-v8-hVs" id="Bk0-fD-gRc"/>
+            </connections>
+            <point key="canvasLocation" x="205.79710144927537" y="118.52678571428571"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="icon_itemAdd" width="38" height="38"/>
+        <image name="icon_remove" width="18" height="18"/>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

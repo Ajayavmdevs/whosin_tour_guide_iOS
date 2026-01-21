@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Bold.ttf">
+            <string>SFUIText-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReportBottomSheet" customModule="Whosin" customModuleProvider="target">
+            <connections>
+                <outlet property="_tableView" destination="lQD-dK-tNN" id="XgY-EM-9ym"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cLn-ct-ZZt">
+                    <rect key="frame" x="0.0" y="228" width="393" height="624"/>
+                    <subviews>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C3n-Xr-0Fg">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="80"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zN2-sG-j4I">
+                                    <rect key="frame" x="20" y="25.666666666666657" width="82" height="28.666666666666671"/>
+                                    <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="24"/>
+                                    <color key="textColor" name="white"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="report"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dg2-dv-OZE">
+                                    <rect key="frame" x="333" y="15" width="50" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="GMu-jX-2Vo"/>
+                                        <constraint firstAttribute="height" constant="50" id="m41-On-Oup"/>
+                                    </constraints>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" image="Close"/>
+                                    <connections>
+                                        <action selector="_handleCloseEvent:" destination="-1" eventType="touchUpInside" id="Wqs-me-Ekg"/>
+                                    </connections>
+                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdt-mQ-AZt">
+                                    <rect key="frame" x="0.0" y="79" width="393" height="1"/>
+                                    <color key="backgroundColor" systemColor="systemGray3Color"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="g4e-Q2-7Bk"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" name="paigerBgColor"/>
+                            <constraints>
+                                <constraint firstItem="hdt-mQ-AZt" firstAttribute="leading" secondItem="C3n-Xr-0Fg" secondAttribute="leading" id="0fQ-01-eQT"/>
+                                <constraint firstItem="zN2-sG-j4I" firstAttribute="leading" secondItem="C3n-Xr-0Fg" secondAttribute="leading" constant="20" id="As8-6N-Lzw"/>
+                                <constraint firstAttribute="trailing" secondItem="hdt-mQ-AZt" secondAttribute="trailing" id="C7I-lq-MUL"/>
+                                <constraint firstItem="dg2-dv-OZE" firstAttribute="centerY" secondItem="zN2-sG-j4I" secondAttribute="centerY" id="TW9-oN-63w"/>
+                                <constraint firstAttribute="height" constant="80" id="UkT-r2-ywR"/>
+                                <constraint firstAttribute="trailing" secondItem="dg2-dv-OZE" secondAttribute="trailing" constant="10" id="aSI-tw-BdP"/>
+                                <constraint firstAttribute="bottom" secondItem="hdt-mQ-AZt" secondAttribute="bottom" id="jZS-bW-n3b"/>
+                                <constraint firstItem="zN2-sG-j4I" firstAttribute="centerY" secondItem="C3n-Xr-0Fg" secondAttribute="centerY" id="mzJ-Ms-qhP"/>
+                            </constraints>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2E3-iW-CnP">
+                            <rect key="frame" x="20" y="95" width="353" height="68.333333333333314"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select a problem to report" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqL-sx-6Hr" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="21.666666666666668"/>
+                                    <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="18"/>
+                                    <color key="textColor" name="white"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                            <integer key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                            <integer key="value" value="18"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="select_a_problem_to_report"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7q1-mM-ez2" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="21.666666666666682" width="353" height="46.666666666666657"/>
+                                    <string key="text">You can report this chat to WHOSI'N if you think that it goes against our Community Standards. We won't notify the account that you submitted this report.</string>
+                                    <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="13"/>
+                                    <color key="textColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                            <integer key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                            <integer key="value" value="14"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="report_info_msg"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lqY-J9-DZR">
+                            <rect key="frame" x="20" y="558" width="353" height="36"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2rZ-K8-Z2v" customClass="CustomActivityButton" customModule="Whosin" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="353" height="36"/>
+                                    <color key="backgroundColor" name="clear"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="SUBMIT"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                            <integer key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                            <real key="value" value="19"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="submit"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="_handleSubmitEvent:" destination="-1" eventType="touchUpInside" id="C47-mF-hJ1"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" name="brandPink"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="2rZ-K8-Z2v" secondAttribute="trailing" id="80U-cn-2cK"/>
+                                <constraint firstItem="2rZ-K8-Z2v" firstAttribute="top" secondItem="lqY-J9-DZR" secondAttribute="top" id="9CK-DT-JVu"/>
+                                <constraint firstAttribute="height" constant="36" id="Mbc-It-LgE"/>
+                                <constraint firstAttribute="bottom" secondItem="2rZ-K8-Z2v" secondAttribute="bottom" id="WeL-Y3-P7K"/>
+                                <constraint firstItem="2rZ-K8-Z2v" firstAttribute="leading" secondItem="lqY-J9-DZR" secondAttribute="leading" id="wSx-tM-Ie1"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="12"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="lQD-dK-tNN" customClass="CustomNoKeyboardTableView" customModule="Whosin" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="173.33333333333329" width="393" height="374.66666666666674"/>
+                            <color key="backgroundColor" name="clear"/>
+                            <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" name="brandAppBgColor"/>
+                    <constraints>
+                        <constraint firstItem="2E3-iW-CnP" firstAttribute="top" secondItem="C3n-Xr-0Fg" secondAttribute="bottom" constant="15" id="4Uy-X7-dIa"/>
+                        <constraint firstAttribute="trailing" secondItem="C3n-Xr-0Fg" secondAttribute="trailing" id="5dv-O2-WRU"/>
+                        <constraint firstItem="lQD-dK-tNN" firstAttribute="leading" secondItem="cLn-ct-ZZt" secondAttribute="leading" id="8U9-Nm-OLY"/>
+                        <constraint firstItem="lqY-J9-DZR" firstAttribute="top" secondItem="lQD-dK-tNN" secondAttribute="bottom" constant="10" id="9wL-bH-wFt"/>
+                        <constraint firstItem="C3n-Xr-0Fg" firstAttribute="top" secondItem="cLn-ct-ZZt" secondAttribute="top" id="G4e-DO-E73"/>
+                        <constraint firstItem="2E3-iW-CnP" firstAttribute="leading" secondItem="cLn-ct-ZZt" secondAttribute="leading" constant="20" id="QUK-fO-f9e"/>
+                        <constraint firstAttribute="trailing" secondItem="lqY-J9-DZR" secondAttribute="trailing" constant="20" id="X9a-wX-USW"/>
+                        <constraint firstAttribute="bottom" secondItem="lqY-J9-DZR" secondAttribute="bottom" constant="30" id="e7m-Av-o3w"/>
+                        <constraint firstItem="lQD-dK-tNN" firstAttribute="top" secondItem="2E3-iW-CnP" secondAttribute="bottom" constant="10" id="eB0-0s-b13"/>
+                        <constraint firstAttribute="trailing" secondItem="2E3-iW-CnP" secondAttribute="trailing" constant="20" id="klg-kt-k3l"/>
+                        <constraint firstAttribute="trailing" secondItem="lQD-dK-tNN" secondAttribute="trailing" id="lU3-UI-OSq"/>
+                        <constraint firstItem="lqY-J9-DZR" firstAttribute="leading" secondItem="cLn-ct-ZZt" secondAttribute="leading" constant="20" id="r1u-lE-6j7"/>
+                        <constraint firstItem="C3n-Xr-0Fg" firstAttribute="leading" secondItem="cLn-ct-ZZt" secondAttribute="leading" id="zYq-QB-Ova"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="24"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="clear"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="cLn-ct-ZZt" secondAttribute="trailing" id="Ab6-FZ-2Dc"/>
+                <constraint firstItem="cLn-ct-ZZt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="YCD-YH-D4K"/>
+                <constraint firstItem="cLn-ct-ZZt" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="110" id="p8k-dA-Oto"/>
+                <constraint firstAttribute="bottom" secondItem="cLn-ct-ZZt" secondAttribute="bottom" id="uUc-yw-gsv"/>
+            </constraints>
+            <point key="canvasLocation" x="131" y="-11"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Close" width="22" height="22"/>
+        <namedColor name="brandAppBgColor">
+            <color red="0.059000000357627869" green="0.071000002324581146" blue="0.11400000005960464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandPink">
+            <color red="0.90200001001358032" green="0.0" blue="0.49399998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="paigerBgColor">
+            <color red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

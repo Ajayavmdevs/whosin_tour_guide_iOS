@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TicketListGallaryView" customModule="Whosin" customModuleProvider="target">
+            <connections>
+                <outlet property="_colleciton" destination="hIk-Jz-dVx" id="poN-Il-OeR"/>
+                <outlet property="_imageSliderView" destination="mDd-KU-scP" id="4qg-dS-g8y"/>
+                <outlet property="_inImagePageControll" destination="05k-Vd-W1v" id="Fcm-Nr-auJ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="440" height="300"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qqC-N5-sUX">
+                    <rect key="frame" x="0.0" y="0.0" width="440" height="300"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="hIk-Jz-dVx" customClass="CustomNoKeyboardCollectionView" customModule="Whosin" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="440" height="300"/>
+                            <color key="backgroundColor" name="clear"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GEy-SY-vlH">
+                                <size key="itemSize" width="128" height="128"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mDd-KU-scP">
+                            <rect key="frame" x="0.0" y="270" width="440" height="30"/>
+                            <subviews>
+                                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="05k-Vd-W1v" customClass="CustomPageControll" customModule="Whosin" customModuleProvider="target">
+                                    <rect key="frame" x="10" y="8" width="420" height="20"/>
+                                    <color key="pageIndicatorTintColor" name="clear"/>
+                                    <color key="currentPageIndicatorTintColor" name="clear"/>
+                                </pageControl>
+                            </subviews>
+                            <color key="backgroundColor" name="clear"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="05k-Vd-W1v" secondAttribute="bottom" constant="2" id="14i-9m-ufr"/>
+                                <constraint firstAttribute="height" constant="30" id="70d-MP-N6X"/>
+                                <constraint firstAttribute="trailing" secondItem="05k-Vd-W1v" secondAttribute="trailing" constant="10" id="BV8-Da-sks"/>
+                                <constraint firstItem="05k-Vd-W1v" firstAttribute="top" secondItem="mDd-KU-scP" secondAttribute="top" constant="8" id="YXH-ai-FtH"/>
+                                <constraint firstItem="05k-Vd-W1v" firstAttribute="leading" secondItem="mDd-KU-scP" secondAttribute="leading" constant="10" id="pqf-eZ-U7P"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="clear"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="mDd-KU-scP" secondAttribute="trailing" id="0Ku-C0-QFF"/>
+                        <constraint firstItem="hIk-Jz-dVx" firstAttribute="leading" secondItem="qqC-N5-sUX" secondAttribute="leading" id="Bti-cg-Xhb"/>
+                        <constraint firstAttribute="bottom" secondItem="hIk-Jz-dVx" secondAttribute="bottom" id="DbF-Fw-jbL"/>
+                        <constraint firstAttribute="trailing" secondItem="hIk-Jz-dVx" secondAttribute="trailing" id="UMW-to-bzc"/>
+                        <constraint firstAttribute="bottom" secondItem="mDd-KU-scP" secondAttribute="bottom" id="aU3-uq-U00"/>
+                        <constraint firstItem="hIk-Jz-dVx" firstAttribute="top" secondItem="qqC-N5-sUX" secondAttribute="top" id="rdb-Uw-Wxl"/>
+                        <constraint firstItem="mDd-KU-scP" firstAttribute="leading" secondItem="qqC-N5-sUX" secondAttribute="leading" id="twD-3i-el3"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" name="clear"/>
+            <constraints>
+                <constraint firstItem="qqC-N5-sUX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Tpc-JQ-GiK"/>
+                <constraint firstAttribute="trailing" secondItem="qqC-N5-sUX" secondAttribute="trailing" id="iIE-K0-jeL"/>
+                <constraint firstItem="qqC-N5-sUX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="vWZ-1R-GhO"/>
+                <constraint firstAttribute="bottom" secondItem="qqC-N5-sUX" secondAttribute="bottom" id="wns-Sp-Ziu"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="71.014492753623188" y="153.34821428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

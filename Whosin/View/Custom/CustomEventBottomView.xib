@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomEventBottomView">
+            <connections>
+                <outlet property="_collecitonView" destination="Tba-Dn-AsM" id="ffK-t6-hYo"/>
+                <outlet property="_pageControl" destination="xC7-7F-Fm6" id="7Fl-IA-AxG"/>
+                <outlet property="_sapratorView" destination="9FX-IJ-bw8" id="3uf-qx-hdZ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="469" height="72"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDI-7L-7ax">
+                    <rect key="frame" x="0.0" y="0.0" width="469" height="72"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Tba-Dn-AsM" customClass="CustomCollectionView" customModule="Whosin" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="469" height="72"/>
+                            <color key="backgroundColor" name="clear"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="72" id="9wM-ph-nSc"/>
+                            </constraints>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LC8-74-slj">
+                                <size key="itemSize" width="128" height="128"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9FX-IJ-bw8">
+                            <rect key="frame" x="0.0" y="0.0" width="469" height="0.5"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="0.29999999999999999" id="Igg-6D-AbE"/>
+                            </constraints>
+                        </view>
+                        <pageControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="xC7-7F-Fm6" customClass="CustomPageControll" customModule="Whosin" customModuleProvider="target">
+                            <rect key="frame" x="389" y="52" width="80" height="20"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="EMV-mW-VXZ"/>
+                                <constraint firstAttribute="height" constant="20" id="SBZ-O3-Ujm"/>
+                            </constraints>
+                            <color key="pageIndicatorTintColor" name="clear"/>
+                            <color key="currentPageIndicatorTintColor" name="clear"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="selectedDotColor">
+                                    <color key="value" name="brandPink"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </pageControl>
+                    </subviews>
+                    <color key="backgroundColor" name="clear"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Tba-Dn-AsM" secondAttribute="bottom" id="1Gg-6s-VSz"/>
+                        <constraint firstItem="Tba-Dn-AsM" firstAttribute="leading" secondItem="oDI-7L-7ax" secondAttribute="leading" id="Ewg-bR-TKb"/>
+                        <constraint firstAttribute="trailing" secondItem="9FX-IJ-bw8" secondAttribute="trailing" id="IH1-uM-sl3"/>
+                        <constraint firstAttribute="bottom" secondItem="xC7-7F-Fm6" secondAttribute="bottom" id="QFU-qt-CcC"/>
+                        <constraint firstItem="9FX-IJ-bw8" firstAttribute="leading" secondItem="oDI-7L-7ax" secondAttribute="leading" id="T1z-z5-Qz1"/>
+                        <constraint firstAttribute="trailing" secondItem="xC7-7F-Fm6" secondAttribute="trailing" id="T26-nK-Ype"/>
+                        <constraint firstItem="9FX-IJ-bw8" firstAttribute="top" secondItem="oDI-7L-7ax" secondAttribute="top" id="d3C-0v-JmP"/>
+                        <constraint firstAttribute="trailing" secondItem="Tba-Dn-AsM" secondAttribute="trailing" id="hP1-Ym-dIN"/>
+                        <constraint firstItem="Tba-Dn-AsM" firstAttribute="top" secondItem="oDI-7L-7ax" secondAttribute="top" id="jq2-Qo-Bdk"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" name="clear"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="oDI-7L-7ax" secondAttribute="trailing" id="0kR-r4-bAR"/>
+                <constraint firstItem="oDI-7L-7ax" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="5TB-FW-f2H"/>
+                <constraint firstItem="oDI-7L-7ax" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="W7q-RM-mfX"/>
+                <constraint firstAttribute="bottom" secondItem="oDI-7L-7ax" secondAttribute="bottom" id="ewg-Ko-wGb"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-13.768115942028986" y="-104.46428571428571"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="brandPink">
+            <color red="0.90200001001358032" green="0.0" blue="0.49399998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

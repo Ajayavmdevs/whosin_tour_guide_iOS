@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "img_round_border.pdf",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Bold.ttf">
+            <string>SFUIText-Bold</string>
+        </array>
+        <array key="SFUIText-Medium.ttf">
+            <string>SFUIText-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SeeAllTicketsVC" customModule="Whosin" customModuleProvider="target">
+            <connections>
+                <outlet property="_searchBar" destination="TeZ-9h-SZh" id="9vN-ub-Hll"/>
+                <outlet property="_tableView" destination="ysz-tj-9ip" id="y7N-ua-g4Q"/>
+                <outlet property="_titleText" destination="Clw-ll-wbX" id="qNw-zu-t2d"/>
+                <outlet property="_visualEffectView" destination="p29-m9-9bj" id="7qp-tC-oVd"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ysz-tj-9ip" customClass="CustomNoKeyboardTableView" customModule="Whosin" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="232" width="393" height="620"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="tintColor" name="clear"/>
+                </tableView>
+                <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o93-7f-Jz3">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="232"/>
+                    <subviews>
+                        <visualEffectView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p29-m9-9bj">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="232"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="kGC-Uh-CPu">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="232"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <blurEffect style="regular"/>
+                        </visualEffectView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ImY-ko-CP3">
+                            <rect key="frame" x="0.0" y="118" width="393" height="50"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yfZ-y1-xeV">
+                                    <rect key="frame" x="5" y="0.0" width="50" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="7od-ah-A2S"/>
+                                        <constraint firstAttribute="width" constant="50" id="YdT-Sf-Jmu"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI Text" pointSize="20"/>
+                                    <color key="tintColor" name="white"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" image="icon_backArrow">
+                                        <color key="titleColor" name="BrandLightGray"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="_handleBackEvent:" destination="-1" eventType="touchUpInside" id="C0G-LW-7Ti"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="    " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Clw-ll-wbX" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                    <rect key="frame" x="55" y="11.999999999999998" width="338" height="26.333333333333329"/>
+                                    <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="22"/>
+                                    <color key="textColor" name="white"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                            <integer key="value" value="4"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                            <real key="value" value="22"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                            </subviews>
+                            <viewLayoutGuide key="safeArea" id="IFz-Vu-V9C"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="Se8-YV-qs9"/>
+                                <constraint firstItem="yfZ-y1-xeV" firstAttribute="leading" secondItem="IFz-Vu-V9C" secondAttribute="leading" constant="5" id="c8X-Po-f91"/>
+                                <constraint firstItem="Clw-ll-wbX" firstAttribute="leading" secondItem="yfZ-y1-xeV" secondAttribute="trailing" id="edE-bj-ils"/>
+                                <constraint firstItem="Clw-ll-wbX" firstAttribute="centerY" secondItem="yfZ-y1-xeV" secondAttribute="centerY" id="hIr-21-tog"/>
+                                <constraint firstItem="IFz-Vu-V9C" firstAttribute="trailing" secondItem="Clw-ll-wbX" secondAttribute="trailing" id="p4U-DQ-Cc6"/>
+                                <constraint firstItem="yfZ-y1-xeV" firstAttribute="centerY" secondItem="ImY-ko-CP3" secondAttribute="centerY" id="zJi-d2-BJv"/>
+                            </constraints>
+                        </view>
+                        <searchBar contentMode="redraw" barStyle="black" searchBarStyle="minimal" placeholder="Search tickets" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TeZ-9h-SZh">
+                            <rect key="frame" x="0.0" y="168" width="393" height="64"/>
+                            <color key="backgroundColor" name="clear"/>
+                            <color key="barTintColor" name="white"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedPlaceholder" value="search_tickets"/>
+                            </userDefinedRuntimeAttributes>
+                        </searchBar>
+                    </subviews>
+                    <viewLayoutGuide key="safeArea" id="yEI-nG-ive"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="yEI-nG-ive" firstAttribute="top" secondItem="ImY-ko-CP3" secondAttribute="top" id="1ov-oD-a52"/>
+                        <constraint firstItem="TeZ-9h-SZh" firstAttribute="leading" secondItem="o93-7f-Jz3" secondAttribute="leading" id="495-sg-9U1"/>
+                        <constraint firstAttribute="bottom" secondItem="p29-m9-9bj" secondAttribute="bottom" id="Kmt-sG-Gvq"/>
+                        <constraint firstAttribute="trailing" secondItem="p29-m9-9bj" secondAttribute="trailing" id="P2G-ZD-G0o"/>
+                        <constraint firstAttribute="trailing" secondItem="ImY-ko-CP3" secondAttribute="trailing" id="Q3a-A9-GTq"/>
+                        <constraint firstAttribute="trailing" secondItem="TeZ-9h-SZh" secondAttribute="trailing" id="QUh-ke-kvp"/>
+                        <constraint firstItem="TeZ-9h-SZh" firstAttribute="top" secondItem="ImY-ko-CP3" secondAttribute="bottom" id="Y32-Bf-Yre"/>
+                        <constraint firstItem="p29-m9-9bj" firstAttribute="top" secondItem="o93-7f-Jz3" secondAttribute="top" id="cCd-JQ-fFc"/>
+                        <constraint firstItem="ImY-ko-CP3" firstAttribute="leading" secondItem="o93-7f-Jz3" secondAttribute="leading" id="ffh-3a-1oH"/>
+                        <constraint firstItem="yEI-nG-ive" firstAttribute="bottom" secondItem="TeZ-9h-SZh" secondAttribute="bottom" id="n8c-XN-buH"/>
+                        <constraint firstItem="p29-m9-9bj" firstAttribute="leading" secondItem="o93-7f-Jz3" secondAttribute="leading" id="ygP-6e-mhZ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="brandAppBgColor"/>
+            <constraints>
+                <constraint firstItem="o93-7f-Jz3" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="6Z8-Sl-RKg"/>
+                <constraint firstAttribute="bottom" secondItem="ysz-tj-9ip" secondAttribute="bottom" id="E6n-rO-bn1"/>
+                <constraint firstItem="ysz-tj-9ip" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="EDU-tl-QQw"/>
+                <constraint firstItem="o93-7f-Jz3" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="KJB-sz-Oel"/>
+                <constraint firstItem="o93-7f-Jz3" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Mlx-xO-uBT"/>
+                <constraint firstItem="ysz-tj-9ip" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="mCK-7J-kQt"/>
+                <constraint firstItem="ysz-tj-9ip" firstAttribute="top" secondItem="o93-7f-Jz3" secondAttribute="bottom" id="rA6-MA-ymD"/>
+            </constraints>
+            <point key="canvasLocation" x="130.53435114503816" y="-11.267605633802818"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_backArrow" width="19" height="15"/>
+        <namedColor name="BrandLightGray">
+            <color red="0.57999998331069946" green="0.58799999952316284" blue="0.6470000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandAppBgColor">
+            <color red="0.059000000357627869" green="0.071000002324581146" blue="0.11400000005960464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

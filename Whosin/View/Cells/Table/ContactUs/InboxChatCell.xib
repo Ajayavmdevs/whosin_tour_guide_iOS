@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Bold.ttf">
+            <string>SFUIText-Bold</string>
+        </array>
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="195" id="KGk-i7-Jjw" customClass="InboxChatCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="391" height="195"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="391" height="195"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8NC-o1-jQf">
+                        <rect key="frame" x="15" y="10" width="30" height="30"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="iQe-HR-Uh1"/>
+                            <constraint firstAttribute="height" constant="30" id="mHl-OC-xlc"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Test Whosin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9M-bA-bEf">
+                        <rect key="frame" x="55" y="14" width="251" height="22"/>
+                        <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="18"/>
+                        <color key="textColor" name="white"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Test Whosin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tkd-eC-J8b">
+                        <rect key="frame" x="15" y="50" width="361" height="135"/>
+                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                        <color key="textColor" name="white"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="04:42 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LBA-RL-tlc">
+                        <rect key="frame" x="316" y="17.5" width="60" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="60" id="sey-sc-fU8"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                        <color key="textColor" name="tabUnselect"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Tkd-eC-J8b" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="04o-P4-Jhm"/>
+                    <constraint firstAttribute="trailing" secondItem="Tkd-eC-J8b" secondAttribute="trailing" constant="15" id="1Fd-Mx-xkC"/>
+                    <constraint firstAttribute="trailing" secondItem="LBA-RL-tlc" secondAttribute="trailing" constant="15" id="8eF-C7-WaZ"/>
+                    <constraint firstItem="LBA-RL-tlc" firstAttribute="centerY" secondItem="w9M-bA-bEf" secondAttribute="centerY" id="ANW-6P-4f9"/>
+                    <constraint firstItem="LBA-RL-tlc" firstAttribute="leading" secondItem="w9M-bA-bEf" secondAttribute="trailing" constant="10" id="Ffu-Dl-lro"/>
+                    <constraint firstAttribute="bottom" secondItem="Tkd-eC-J8b" secondAttribute="bottom" constant="10" id="KAp-qO-ozn"/>
+                    <constraint firstItem="w9M-bA-bEf" firstAttribute="centerY" secondItem="8NC-o1-jQf" secondAttribute="centerY" id="Rnb-uD-PgZ"/>
+                    <constraint firstItem="8NC-o1-jQf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="aX0-da-K9j"/>
+                    <constraint firstItem="w9M-bA-bEf" firstAttribute="leading" secondItem="8NC-o1-jQf" secondAttribute="trailing" constant="10" id="seg-QD-QdN"/>
+                    <constraint firstItem="Tkd-eC-J8b" firstAttribute="top" secondItem="8NC-o1-jQf" secondAttribute="bottom" constant="10" id="sg0-xY-foW"/>
+                    <constraint firstItem="8NC-o1-jQf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="vNX-pX-ZU1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" name="clear"/>
+            <connections>
+                <outlet property="_descriptionLabel" destination="Tkd-eC-J8b" id="TaX-I6-FMB"/>
+                <outlet property="_imageView" destination="8NC-o1-jQf" id="Ejb-e1-K11"/>
+                <outlet property="_timeLabel" destination="LBA-RL-tlc" id="S2v-uz-vxM"/>
+                <outlet property="_titalLabel" destination="w9M-bA-bEf" id="Xv2-qe-xyE"/>
+            </connections>
+            <point key="canvasLocation" x="183.33333333333334" y="142.96875"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tabUnselect">
+            <color red="0.49799999594688416" green="0.49799999594688416" blue="0.49799999594688416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

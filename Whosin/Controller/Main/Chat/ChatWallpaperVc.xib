@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Bold.ttf">
+            <string>SFUIText-Bold</string>
+        </array>
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatWallpaperVc" customModule="Whosin" customModuleProvider="target">
+            <connections>
+                <outlet property="_collectionView" destination="dpk-C8-VC2" id="4CY-bR-CfC"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="dpk-C8-VC2" customClass="CustomCollectionView" customModule="Whosin" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="119" width="414" height="743"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="O7i-Xr-VrJ">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="29" translatesAutoresizingMaskIntoConstraints="NO" id="z47-Ul-FrP">
+                    <rect key="frame" x="42.5" y="792" width="329" height="40"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nmN-v8-8OS">
+                            <rect key="frame" x="0.0" y="0.0" width="150" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="150" id="KXy-bP-jQ2"/>
+                                <constraint firstAttribute="height" constant="40" id="kaI-N4-lOX"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Select Photos"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" name="white"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="select_photos"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="_handleImageSelectionEvent:" destination="-1" eventType="touchUpInside" id="qJj-Ig-3kP"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oBp-Fz-SIK">
+                            <rect key="frame" x="179" y="0.0" width="150" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="150" id="1NL-Z6-lBN"/>
+                                <constraint firstAttribute="height" constant="40" id="pNl-BO-aLL"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Select Color"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" name="white"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="select_color"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="_handleColorSelectionEvent:" destination="-1" eventType="touchUpInside" id="DeV-9o-yuj"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jul-SX-Zeb">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="109"/>
+                    <subviews>
+                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fxc-c2-I3O">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="109"/>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="uuU-Ac-zkJ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="109"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <blurEffect style="regular"/>
+                        </visualEffectView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="knf-rk-bDx">
+                            <rect key="frame" x="0.0" y="44" width="414" height="65"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallpaper" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaY-XW-wpk">
+                                    <rect key="frame" x="169" y="23.5" width="76" height="18"/>
+                                    <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="15"/>
+                                    <color key="textColor" name="white"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Wallpaper"/>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cRf-RA-tJp">
+                                    <rect key="frame" x="15" y="16" width="40" height="33"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="40" id="Oue-O1-Q9E"/>
+                                        <constraint firstAttribute="height" constant="33" id="UUH-0p-FRA"/>
+                                    </constraints>
+                                    <color key="tintColor" name="white"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" image="icon_backArrow"/>
+                                    <connections>
+                                        <action selector="_handleBackEvent:" destination="-1" eventType="touchUpInside" id="72R-Os-7nr"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="gaY-XW-wpk" firstAttribute="centerX" secondItem="knf-rk-bDx" secondAttribute="centerX" id="0Cv-hF-ggN"/>
+                                <constraint firstItem="cRf-RA-tJp" firstAttribute="leading" secondItem="knf-rk-bDx" secondAttribute="leading" constant="15" id="M4L-fx-2UY"/>
+                                <constraint firstItem="cRf-RA-tJp" firstAttribute="centerY" secondItem="knf-rk-bDx" secondAttribute="centerY" id="l3M-OR-WKi"/>
+                                <constraint firstItem="gaY-XW-wpk" firstAttribute="centerY" secondItem="knf-rk-bDx" secondAttribute="centerY" id="whv-w8-NSD"/>
+                                <constraint firstAttribute="height" constant="65" id="xlO-Mf-Sk9"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="fxc-c2-I3O" firstAttribute="top" secondItem="Jul-SX-Zeb" secondAttribute="top" id="1sL-hG-Y7j"/>
+                        <constraint firstItem="fxc-c2-I3O" firstAttribute="leading" secondItem="Jul-SX-Zeb" secondAttribute="leading" id="7Fu-Fh-Kcy"/>
+                        <constraint firstAttribute="trailing" secondItem="fxc-c2-I3O" secondAttribute="trailing" id="FzG-yB-3jt"/>
+                        <constraint firstAttribute="bottom" secondItem="knf-rk-bDx" secondAttribute="bottom" id="Q6r-io-fRa"/>
+                        <constraint firstItem="knf-rk-bDx" firstAttribute="leading" secondItem="Jul-SX-Zeb" secondAttribute="leading" id="YLr-FP-1un"/>
+                        <constraint firstAttribute="trailing" secondItem="knf-rk-bDx" secondAttribute="trailing" id="pQ4-6g-SnN"/>
+                        <constraint firstAttribute="height" constant="109" id="sNo-al-m7O"/>
+                        <constraint firstAttribute="bottom" secondItem="fxc-c2-I3O" secondAttribute="bottom" id="smS-bk-cv4"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="Jul-SX-Zeb" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="6li-Pn-APC"/>
+                <constraint firstItem="dpk-C8-VC2" firstAttribute="top" secondItem="Jul-SX-Zeb" secondAttribute="bottom" constant="10" id="70E-b1-mA3"/>
+                <constraint firstItem="z47-Ul-FrP" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="V75-IZ-RZx"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dpk-C8-VC2" secondAttribute="trailing" id="VPf-Yb-qSM"/>
+                <constraint firstAttribute="trailing" secondItem="Jul-SX-Zeb" secondAttribute="trailing" id="a0T-Fr-8z8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dpk-C8-VC2" secondAttribute="bottom" id="ayU-Wh-MV3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="z47-Ul-FrP" secondAttribute="bottom" constant="30" id="fvI-hR-QSO"/>
+                <constraint firstItem="Jul-SX-Zeb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kl6-C6-01S"/>
+                <constraint firstItem="dpk-C8-VC2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="paK-pE-6xi"/>
+            </constraints>
+            <point key="canvasLocation" x="125.95419847328243" y="-11.267605633802818"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_backArrow" width="19" height="15"/>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

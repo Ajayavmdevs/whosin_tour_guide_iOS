@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Bold.ttf">
+            <string>SFUIText-Bold</string>
+        </array>
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AppUpdatePopupVc" customModule="Whosin" customModuleProvider="target">
+            <connections>
+                <outlet property="cancelBtn" destination="Yo9-AB-sLb" id="XZr-qO-kuD"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="jNh-EX-Y05"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UpL-rr-Z4W">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="zJ3-C1-fXK">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="systemUltraThinMaterialDark"/>
+                </visualEffectView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XrN-ww-ed4">
+                    <rect key="frame" x="41.5" y="251" width="331" height="394"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Update Your App!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaS-YM-wRy">
+                            <rect key="frame" x="30" y="20" width="271" height="21.5"/>
+                            <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="18"/>
+                            <color key="textColor" name="white"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="update_your_app"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="aTy-hT-gjR">
+                            <rect key="frame" x="115.5" y="61.5" width="100" height="100"/>
+                            <color key="tintColor" name="white"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="100" id="GHR-zY-Psk"/>
+                                <constraint firstAttribute="width" constant="100" id="xMp-RF-tFW"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="It's time to Update!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhQ-Fn-DVm">
+                            <rect key="frame" x="30" y="181.5" width="271" height="29"/>
+                            <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="24"/>
+                            <color key="textColor" name="white"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="time_to_update"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="A new version of WHOS’IN is available. Please update for the best experience." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8tl-aC-TL9">
+                            <rect key="frame" x="30" y="220.5" width="271" height="33.5"/>
+                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="update_for_the_best_experience"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="igA-Rx-wEL">
+                            <rect key="frame" x="30" y="274" width="271" height="100"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ugL-By-cHy">
+                                    <rect key="frame" x="0.0" y="0.0" width="271" height="40"/>
+                                    <color key="backgroundColor" name="storyRingColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="SQs-5U-d60"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="18"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Update NOW">
+                                        <color key="titleColor" name="white"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="20"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="update_now"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="_handleUpdateNowEvent:" destination="-1" eventType="touchUpInside" id="Fe2-Hw-p6T"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yo9-AB-sLb">
+                                    <rect key="frame" x="0.0" y="60" width="271" height="40"/>
+                                    <color key="backgroundColor" name="clear"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="3gh-dY-PR5"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="18"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Cancel">
+                                        <color key="titleColor" name="white"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="20"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" name="white"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="cancel"/>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="_handleCloseEvent:" destination="-1" eventType="touchUpInside" id="b70-v5-AlF"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" name="brandAppBgColor"/>
+                    <constraints>
+                        <constraint firstItem="8tl-aC-TL9" firstAttribute="top" secondItem="rhQ-Fn-DVm" secondAttribute="bottom" constant="10" id="4vX-AC-xzd"/>
+                        <constraint firstItem="rhQ-Fn-DVm" firstAttribute="leading" secondItem="XrN-ww-ed4" secondAttribute="leading" constant="30" id="6RX-UG-EaX"/>
+                        <constraint firstAttribute="bottom" secondItem="igA-Rx-wEL" secondAttribute="bottom" constant="20" id="71G-Go-zFR"/>
+                        <constraint firstItem="vaS-YM-wRy" firstAttribute="leading" secondItem="XrN-ww-ed4" secondAttribute="leading" constant="30" id="9Ja-ld-ERr"/>
+                        <constraint firstItem="8tl-aC-TL9" firstAttribute="leading" secondItem="XrN-ww-ed4" secondAttribute="leading" constant="30" id="Bex-hJ-iyw"/>
+                        <constraint firstItem="aTy-hT-gjR" firstAttribute="top" secondItem="vaS-YM-wRy" secondAttribute="bottom" constant="20" id="BiI-ta-gSO"/>
+                        <constraint firstItem="igA-Rx-wEL" firstAttribute="leading" secondItem="XrN-ww-ed4" secondAttribute="leading" constant="30" id="Gtd-rY-CKd"/>
+                        <constraint firstItem="aTy-hT-gjR" firstAttribute="centerX" secondItem="XrN-ww-ed4" secondAttribute="centerX" id="LIb-vI-2qq"/>
+                        <constraint firstItem="rhQ-Fn-DVm" firstAttribute="top" secondItem="aTy-hT-gjR" secondAttribute="bottom" constant="20" id="NFK-Q4-1VJ"/>
+                        <constraint firstItem="vaS-YM-wRy" firstAttribute="top" secondItem="XrN-ww-ed4" secondAttribute="top" constant="20" id="PZv-MH-Lla"/>
+                        <constraint firstItem="igA-Rx-wEL" firstAttribute="top" secondItem="8tl-aC-TL9" secondAttribute="bottom" constant="20" id="S1V-cG-HWJ"/>
+                        <constraint firstAttribute="trailing" secondItem="vaS-YM-wRy" secondAttribute="trailing" constant="30" id="UuK-er-0Mj"/>
+                        <constraint firstAttribute="trailing" secondItem="8tl-aC-TL9" secondAttribute="trailing" constant="30" id="ahM-Uo-zgW"/>
+                        <constraint firstAttribute="trailing" secondItem="rhQ-Fn-DVm" secondAttribute="trailing" constant="30" id="tHY-Oz-MTr"/>
+                        <constraint firstAttribute="trailing" secondItem="igA-Rx-wEL" secondAttribute="trailing" constant="30" id="uGA-4f-FyS"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="clear"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="UpL-rr-Z4W" secondAttribute="trailing" id="0pj-fU-S7J"/>
+                <constraint firstAttribute="bottom" secondItem="UpL-rr-Z4W" secondAttribute="bottom" id="7dA-ix-3kq"/>
+                <constraint firstItem="XrN-ww-ed4" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="GJO-DS-bej"/>
+                <constraint firstItem="UpL-rr-Z4W" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="OnE-aX-1Ou"/>
+                <constraint firstItem="UpL-rr-Z4W" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="PhC-en-ibK"/>
+                <constraint firstItem="XrN-ww-ed4" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.8" id="oW2-Sl-ePa"/>
+                <constraint firstItem="XrN-ww-ed4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="seT-Gu-JZj"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="73.660714285714278"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_Logo" width="138" height="84"/>
+        <namedColor name="brandAppBgColor">
+            <color red="0.059000000357627869" green="0.071000002324581146" blue="0.11400000005960464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="storyRingColor">
+            <color red="0.9570000171661377" green="0.0080000003799796104" blue="0.57599997520446777" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ExploreBannerCollectionCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="403" height="290"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="403" height="290"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wmg-gX-2fT">
+                        <rect key="frame" x="5" y="5" width="393" height="280"/>
+                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xSX-HU-IUW" customClass="GradientView" customModule="Whosin" customModuleProvider="target">
+                        <rect key="frame" x="5" y="235" width="393" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zjt-c0-kGm" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                <rect key="frame" x="15" y="40" width="363" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="white"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpI-er-1XJ" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                <rect key="frame" x="15" y="42" width="368" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <integer key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="clear"/>
+                        <constraints>
+                            <constraint firstItem="IpI-er-1XJ" firstAttribute="leading" secondItem="xSX-HU-IUW" secondAttribute="leading" constant="15" id="0YD-Ak-hec"/>
+                            <constraint firstAttribute="bottom" secondItem="IpI-er-1XJ" secondAttribute="bottom" constant="8" id="9oO-tl-wXt"/>
+                            <constraint firstItem="Zjt-c0-kGm" firstAttribute="leading" secondItem="xSX-HU-IUW" secondAttribute="leading" constant="15" id="ILU-iy-135"/>
+                            <constraint firstItem="Zjt-c0-kGm" firstAttribute="top" secondItem="xSX-HU-IUW" secondAttribute="top" constant="40" id="McX-ML-9AA"/>
+                            <constraint firstAttribute="trailing" secondItem="IpI-er-1XJ" secondAttribute="trailing" constant="10" id="WnE-jz-8bW"/>
+                            <constraint firstAttribute="trailing" secondItem="Zjt-c0-kGm" secondAttribute="trailing" constant="15" id="tYZ-Qw-MuH"/>
+                            <constraint firstItem="IpI-er-1XJ" firstAttribute="top" secondItem="Zjt-c0-kGm" secondAttribute="bottom" constant="2" id="zHF-9Y-FBp"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                <color key="value" name="clear"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="wmg-gX-2fT" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="GoU-hg-hBX"/>
+                <constraint firstItem="xSX-HU-IUW" firstAttribute="leading" secondItem="wmg-gX-2fT" secondAttribute="leading" id="Hge-wi-qEx"/>
+                <constraint firstItem="xSX-HU-IUW" firstAttribute="trailing" secondItem="wmg-gX-2fT" secondAttribute="trailing" id="Otp-i8-71s"/>
+                <constraint firstItem="xSX-HU-IUW" firstAttribute="top" relation="greaterThanOrEqual" secondItem="wmg-gX-2fT" secondAttribute="top" id="PcS-kg-zkj"/>
+                <constraint firstAttribute="bottom" secondItem="wmg-gX-2fT" secondAttribute="bottom" constant="5" id="W3W-ea-L8S"/>
+                <constraint firstItem="xSX-HU-IUW" firstAttribute="bottom" secondItem="wmg-gX-2fT" secondAttribute="bottom" id="e7j-Le-ROY"/>
+                <constraint firstAttribute="trailing" secondItem="wmg-gX-2fT" secondAttribute="trailing" constant="5" id="fPB-hS-QXk"/>
+                <constraint firstItem="wmg-gX-2fT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="jxU-a7-dX6"/>
+            </constraints>
+            <size key="customSize" width="403" height="290"/>
+            <connections>
+                <outlet property="_imageView" destination="wmg-gX-2fT" id="Yb0-LX-9ec"/>
+                <outlet property="_subTitleText" destination="IpI-er-1XJ" id="9p1-CD-Gpv"/>
+                <outlet property="_titleString" destination="Zjt-c0-kGm" id="TpH-fY-Iuf"/>
+            </connections>
+            <point key="canvasLocation" x="399.23664122137404" y="9.1549295774647899"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

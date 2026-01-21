@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Bold.ttf">
+            <string>SFUIText-Bold</string>
+        </array>
+        <array key="SFUIText-Heavy.ttf">
+            <string>SFUIText-Heavy</string>
+        </array>
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInNameVC" customModule="Whosin" customModuleProvider="target">
+            <connections>
+                <outlet property="_backButton" destination="d7g-mK-9UZ" id="GBS-Rf-XTl"/>
+                <outlet property="_femaleButton" destination="1vr-cW-PLn" id="y3g-ua-16S"/>
+                <outlet property="_firstNameTextField" destination="y8w-hG-IG7" id="nvg-92-pWS"/>
+                <outlet property="_lastNameTextField" destination="5UA-QR-dKU" id="QwN-am-hlG"/>
+                <outlet property="_maleButton" destination="heY-38-Wid" id="lBg-QI-Ivh"/>
+                <outlet property="_nextButton" destination="BBe-Oy-Vuv" id="y6v-t5-GgM"/>
+                <outlet property="_preferNotSayButton" destination="nC3-G2-vma" id="Th6-wW-b42"/>
+                <outlet property="bottomConatraint" destination="bar-qU-frh" id="mWN-v5-M5P"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_gradientBg" translatesAutoresizingMaskIntoConstraints="NO" id="FTN-4t-5UK">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d7g-mK-9UZ" customClass="CustomGradientBorderButton" customModule="Whosin" customModuleProvider="target">
+                    <rect key="frame" x="26" y="47" width="36" height="36"/>
+                    <color key="backgroundColor" white="1" alpha="0.13" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="DGa-NR-GjN"/>
+                        <constraint firstAttribute="width" constant="36" id="YTS-8c-K9p"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="icon_backArrow"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="18"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="_handleBackEvent:" destination="-1" eventType="touchUpInside" id="4fr-0L-Wk5"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is your name?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9I-12-ncd">
+                    <rect key="frame" x="26" y="133" width="362" height="26.5"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Heavy" family="SF UI Text" pointSize="22"/>
+                    <color key="textColor" name="white"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="what_is_your_name"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="your name will displayed on your profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r41-uz-0os">
+                    <rect key="frame" x="76.5" y="164.5" width="261" height="17"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                    <color key="textColor" name="white"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="your_name_will_on_profile"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y8w-hG-IG7" customClass="CustomTextField" customModule="Whosin" customModuleProvider="target">
+                    <rect key="frame" x="26" y="221.5" width="362" height="49"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.13" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="49f-rN-4Mc"/>
+                    </constraints>
+                    <color key="textColor" name="white"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                            <color key="value" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="24.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="first_name"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedPlaceholderText" value="first_name"/>
+                    </userDefinedRuntimeAttributes>
+                </textField>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5UA-QR-dKU" customClass="CustomTextField" customModule="Whosin" customModuleProvider="target">
+                    <rect key="frame" x="26" y="290.5" width="362" height="49"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.13" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="6CG-UN-Pwn"/>
+                    </constraints>
+                    <color key="textColor" name="white"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
+                    <textInputTraits key="textInputTraits"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                            <color key="value" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="24.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="last_name"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedPlaceholderText" value="last_name"/>
+                    </userDefinedRuntimeAttributes>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBe-Oy-Vuv" customClass="CustomGradientBorderButton" customModule="Whosin" customModuleProvider="target">
+                    <rect key="frame" x="317" y="575" width="70" height="70"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.13" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="GKg-F0-Dpk"/>
+                        <constraint firstAttribute="height" constant="70" id="foj-KX-k0F"/>
+                    </constraints>
+                    <state key="normal" image="icon_disableNext"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="40"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="_handleNextButtonEvent:" destination="-1" eventType="touchUpInside" id="QjG-gh-FhO"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add your name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hqz-Ji-Brc">
+                    <rect key="frame" x="72" y="55.5" width="113.5" height="19.5"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="add_your_name"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please specify your gender" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r8x-lQ-Z0S">
+                    <rect key="frame" x="26" y="369.5" width="362" height="19.5"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="16"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="please_specify_your_gender"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EhH-vM-Rsk">
+                    <rect key="frame" x="26" y="405" width="362" height="110"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="im2-ER-BZB">
+                            <rect key="frame" x="0.0" y="0.0" width="362" height="49"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="heY-38-Wid" customClass="GradientBorderButton" customModule="Whosin" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="173" height="49"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.13" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Male">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="24.5"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="1.5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="_handleSelectGenderEvent:" destination="-1" eventType="touchUpInside" id="4lg-to-7F7"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1vr-cW-PLn" customClass="GradientBorderButton" customModule="Whosin" customModuleProvider="target">
+                                    <rect key="frame" x="189" y="0.0" width="173" height="49"/>
+                                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.13" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" title="Female">
+                                        <color key="titleColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="24.5"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="1.5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                    <connections>
+                                        <action selector="_handleSelectGenderEvent:" destination="-1" eventType="touchUpInside" id="4GM-Q8-Y2c"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="49" id="5kl-wR-hNq"/>
+                            </constraints>
+                        </stackView>
+                        <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nC3-G2-vma" customClass="GradientBorderButton" customModule="Whosin" customModuleProvider="target">
+                            <rect key="frame" x="60" y="61" width="242" height="49"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.13" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="49" id="sGS-lx-x3g"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Prefer not to Say">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="24.5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="1.5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="_handleSelectGenderEvent:" destination="-1" eventType="touchUpInside" id="avg-YH-Rfd"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" name="clear"/>
+                    <constraints>
+                        <constraint firstItem="im2-ER-BZB" firstAttribute="top" secondItem="EhH-vM-Rsk" secondAttribute="top" id="8rG-ob-ZeU"/>
+                        <constraint firstItem="nC3-G2-vma" firstAttribute="leading" secondItem="EhH-vM-Rsk" secondAttribute="leading" constant="60" id="Cvm-zN-4GI"/>
+                        <constraint firstAttribute="trailing" secondItem="nC3-G2-vma" secondAttribute="trailing" constant="60" id="Dng-AB-AOu"/>
+                        <constraint firstAttribute="bottom" secondItem="nC3-G2-vma" secondAttribute="bottom" id="RTf-I0-dQM"/>
+                        <constraint firstItem="nC3-G2-vma" firstAttribute="top" secondItem="im2-ER-BZB" secondAttribute="bottom" constant="12" id="Rvm-lu-6zp"/>
+                        <constraint firstItem="nC3-G2-vma" firstAttribute="centerX" secondItem="im2-ER-BZB" secondAttribute="centerX" id="VHy-aw-di4"/>
+                        <constraint firstAttribute="trailing" secondItem="im2-ER-BZB" secondAttribute="trailing" id="WSg-R4-LYd"/>
+                        <constraint firstItem="im2-ER-BZB" firstAttribute="leading" secondItem="EhH-vM-Rsk" secondAttribute="leading" id="XBf-S4-TpF"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="e9I-12-ncd" secondAttribute="trailing" constant="26" id="0VN-Sx-kWW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="FTN-4t-5UK" secondAttribute="trailing" id="3S5-Tl-rLi"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BBe-Oy-Vuv" secondAttribute="trailing" constant="27" id="5yg-Fv-1bS"/>
+                <constraint firstItem="FTN-4t-5UK" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="6Wx-pR-aUu"/>
+                <constraint firstItem="Hqz-Ji-Brc" firstAttribute="leading" secondItem="d7g-mK-9UZ" secondAttribute="trailing" constant="10" id="ABK-vT-n1G"/>
+                <constraint firstItem="r8x-lQ-Z0S" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="AV0-G1-mbc"/>
+                <constraint firstItem="BBe-Oy-Vuv" firstAttribute="top" secondItem="EhH-vM-Rsk" secondAttribute="bottom" constant="60" id="CBb-2y-YV3"/>
+                <constraint firstItem="5UA-QR-dKU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="FGE-oK-Aab"/>
+                <constraint firstItem="r41-uz-0os" firstAttribute="top" secondItem="e9I-12-ncd" secondAttribute="bottom" constant="5" id="FI5-9B-S69"/>
+                <constraint firstItem="y8w-hG-IG7" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="GMf-hu-67o"/>
+                <constraint firstItem="d7g-mK-9UZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="Lhg-Cu-lpI"/>
+                <constraint firstItem="r8x-lQ-Z0S" firstAttribute="top" secondItem="5UA-QR-dKU" secondAttribute="bottom" constant="30" id="MQT-QP-QMc"/>
+                <constraint firstItem="FTN-4t-5UK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="NKa-hF-EEG"/>
+                <constraint firstItem="r41-uz-0os" firstAttribute="centerX" secondItem="e9I-12-ncd" secondAttribute="centerX" id="RQ1-On-7tp"/>
+                <constraint firstItem="5UA-QR-dKU" firstAttribute="top" secondItem="y8w-hG-IG7" secondAttribute="bottom" constant="20" id="SgL-35-2zk"/>
+                <constraint firstItem="e9I-12-ncd" firstAttribute="top" secondItem="d7g-mK-9UZ" secondAttribute="bottom" constant="50" id="Zjv-cw-af1"/>
+                <constraint firstItem="EhH-vM-Rsk" firstAttribute="top" secondItem="r8x-lQ-Z0S" secondAttribute="bottom" constant="16" id="ZmC-ID-bFv"/>
+                <constraint firstItem="e9I-12-ncd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="ZoV-k6-Xp3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="BBe-Oy-Vuv" secondAttribute="bottom" constant="100" id="bar-qU-frh"/>
+                <constraint firstItem="d7g-mK-9UZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="47" id="dr0-ZS-OSA"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="r8x-lQ-Z0S" secondAttribute="trailing" constant="26" id="jve-jh-MDP"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5UA-QR-dKU" secondAttribute="trailing" constant="26" id="k8G-hd-IFQ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="y8w-hG-IG7" secondAttribute="trailing" constant="26" id="kWj-Hd-tVj"/>
+                <constraint firstItem="Hqz-Ji-Brc" firstAttribute="centerY" secondItem="d7g-mK-9UZ" secondAttribute="centerY" id="lBi-F8-jXL"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="EhH-vM-Rsk" secondAttribute="trailing" constant="26" id="ren-tN-Qj0"/>
+                <constraint firstItem="e9I-12-ncd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="u7r-nM-bTp"/>
+                <constraint firstItem="y8w-hG-IG7" firstAttribute="top" secondItem="r41-uz-0os" secondAttribute="bottom" constant="40" id="wJP-dt-TDN"/>
+                <constraint firstItem="EhH-vM-Rsk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="xke-IY-tOr"/>
+                <constraint firstAttribute="bottom" secondItem="FTN-4t-5UK" secondAttribute="bottom" id="z9o-Bj-50k"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="89.732142857142847"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_backArrow" width="19" height="15"/>
+        <image name="icon_disableNext" width="21" height="41"/>
+        <image name="image_gradientBg" width="428" height="926"/>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="400" id="KGk-i7-Jjw" customClass="TicketPreviewHeaderTableCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="395"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="390" height="395"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ol6-P7-gC3">
+                        <rect key="frame" x="10" y="10" width="370" height="375"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ekr-ak-sJS">
+                                <rect key="frame" x="10" y="10" width="350" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="200" id="8Qa-wG-IIn"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unique Tourist Destination " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sa-Wl-qtp" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                <rect key="frame" x="10" y="220" width="185" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" name="white"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                        <integer key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YcA-bb-gaH" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                <rect key="frame" x="10" y="243" width="350" height="92"/>
+                                <string key="text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</string>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="13"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_calender_pink" translatesAutoresizingMaskIntoConstraints="NO" id="0gu-1I-3cc">
+                                <rect key="frame" x="10" y="345" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="1Rm-Kc-Lcy"/>
+                                    <constraint firstAttribute="width" constant="20" id="2Jy-VT-dy7"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="13 fab, 2024 " lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfQ-ag-8fd" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                <rect key="frame" x="38" y="345" width="322" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="1UJ-BY-0zD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <color key="textColor" name="white"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="14"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="clear"/>
+                        <constraints>
+                            <constraint firstItem="9sa-Wl-qtp" firstAttribute="leading" secondItem="Ol6-P7-gC3" secondAttribute="leading" constant="10" id="0lq-FS-8nm"/>
+                            <constraint firstItem="0gu-1I-3cc" firstAttribute="centerY" secondItem="hfQ-ag-8fd" secondAttribute="centerY" id="5oI-Bd-mrB"/>
+                            <constraint firstAttribute="trailing" secondItem="YcA-bb-gaH" secondAttribute="trailing" constant="10" id="AFS-7G-9lx"/>
+                            <constraint firstItem="YcA-bb-gaH" firstAttribute="leading" secondItem="Ol6-P7-gC3" secondAttribute="leading" constant="10" id="EaN-xQ-6ir"/>
+                            <constraint firstItem="hfQ-ag-8fd" firstAttribute="top" secondItem="YcA-bb-gaH" secondAttribute="bottom" constant="10" id="I2w-PU-wRh"/>
+                            <constraint firstItem="hfQ-ag-8fd" firstAttribute="leading" secondItem="0gu-1I-3cc" secondAttribute="trailing" constant="8" id="NRR-h8-PPr"/>
+                            <constraint firstItem="hfQ-ag-8fd" firstAttribute="centerY" secondItem="0gu-1I-3cc" secondAttribute="centerY" id="TVA-3Z-Oap"/>
+                            <constraint firstItem="0gu-1I-3cc" firstAttribute="leading" secondItem="Ol6-P7-gC3" secondAttribute="leading" constant="10" id="Wjh-a3-JTZ"/>
+                            <constraint firstItem="ekr-ak-sJS" firstAttribute="leading" secondItem="Ol6-P7-gC3" secondAttribute="leading" constant="10" id="Zyl-ig-1Wg"/>
+                            <constraint firstItem="hfQ-ag-8fd" firstAttribute="centerY" secondItem="0gu-1I-3cc" secondAttribute="centerY" id="f84-bR-5W8"/>
+                            <constraint firstAttribute="bottom" secondItem="0gu-1I-3cc" secondAttribute="bottom" constant="10" id="m9J-I0-Bd9"/>
+                            <constraint firstAttribute="trailing" secondItem="hfQ-ag-8fd" secondAttribute="trailing" constant="10" id="qW0-rG-Jek"/>
+                            <constraint firstItem="9sa-Wl-qtp" firstAttribute="top" secondItem="ekr-ak-sJS" secondAttribute="bottom" constant="10" id="rPl-rz-wSN"/>
+                            <constraint firstItem="YcA-bb-gaH" firstAttribute="top" secondItem="9sa-Wl-qtp" secondAttribute="bottom" constant="5" id="t5o-1u-ss7"/>
+                            <constraint firstItem="ekr-ak-sJS" firstAttribute="top" secondItem="Ol6-P7-gC3" secondAttribute="top" constant="10" id="w4h-zp-GhW"/>
+                            <constraint firstAttribute="trailing" secondItem="ekr-ak-sJS" secondAttribute="trailing" constant="10" id="z0W-BU-sfD"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Ol6-P7-gC3" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="7kv-qI-gmk"/>
+                    <constraint firstAttribute="trailing" secondItem="Ol6-P7-gC3" secondAttribute="trailing" constant="10" id="Krt-D9-86X"/>
+                    <constraint firstAttribute="bottom" secondItem="Ol6-P7-gC3" secondAttribute="bottom" constant="10" id="u16-gm-vzS"/>
+                    <constraint firstItem="Ol6-P7-gC3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="vN8-rZ-nhi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" name="clear"/>
+            <connections>
+                <outlet property="_ticketDate" destination="hfQ-ag-8fd" id="0Qi-hj-Ev1"/>
+                <outlet property="_ticketDesc" destination="YcA-bb-gaH" id="lhN-pm-VFa"/>
+                <outlet property="_ticketImage" destination="ekr-ak-sJS" id="0DB-fF-1Nb"/>
+                <outlet property="_ticketTitle" destination="9sa-Wl-qtp" id="vP1-BE-HTv"/>
+            </connections>
+            <point key="canvasLocation" x="-70.229007633587784" y="107.04225352112677"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_calender_pink" width="11" height="11"/>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

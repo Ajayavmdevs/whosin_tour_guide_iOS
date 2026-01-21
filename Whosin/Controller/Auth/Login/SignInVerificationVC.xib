@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Bold.ttf">
+            <string>SFUIText-Bold</string>
+        </array>
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignInVerificationVC" customModule="Whosin" customModuleProvider="target">
+            <connections>
+                <outlet property="_deviceName" destination="dli-em-4YA" id="3GU-cr-SKJ"/>
+                <outlet property="_loaction" destination="z23-WP-1BQ" id="Xvp-Ka-vgU"/>
+                <outlet property="_timeLabel" destination="BB5-iA-XnY" id="Y6t-Cl-yRz"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="svW-1w-2Xo">
+                    <rect key="frame" x="20" y="89" width="80" height="50"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="9H0-Av-gnK"/>
+                        <constraint firstAttribute="width" constant="80" id="PoV-lB-fTQ"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHOS'IN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STF-Sb-Zcu">
+                    <rect key="frame" x="20" y="149" width="147.66666666666666" height="38.333333333333343"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="32"/>
+                    <color key="textColor" name="white"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Is it you trying to sign in?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vcY-fA-1MX">
+                    <rect key="frame" x="20" y="217.33333333333334" width="212" height="21.666666666666657"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="18"/>
+                    <color key="textColor" name="white"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="you_trying_to_signin"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="oQZ-WZ-Qaw">
+                    <rect key="frame" x="20" y="269" width="353" height="72.333333333333314"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jjg-D3-qdl">
+                            <rect key="frame" x="0.0" y="0.0" width="54.333333333333336" height="19.333333333333332"/>
+                            <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="16"/>
+                            <color key="textColor" name="white"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="device"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dli-em-4YA">
+                            <rect key="frame" x="0.0" y="22.333333333333314" width="50" height="50"/>
+                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="fBY-Lh-GCg">
+                    <rect key="frame" x="20" y="356.33333333333331" width="353" height="72.333333333333314"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Ja-jk-U0X">
+                            <rect key="frame" x="0.0" y="0.0" width="69.333333333333329" height="19.333333333333332"/>
+                            <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="16"/>
+                            <color key="textColor" name="white"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="location"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z23-WP-1BQ">
+                            <rect key="frame" x="0.0" y="22.333333333333371" width="50" height="50"/>
+                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="K6L-Cg-zkY">
+                    <rect key="frame" x="20" y="443.66666666666669" width="353" height="72.333333333333314"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSe-CX-hVx">
+                            <rect key="frame" x="0.0" y="0.0" width="39.666666666666664" height="19.333333333333332"/>
+                            <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="16"/>
+                            <color key="textColor" name="white"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="time"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BB5-iA-XnY">
+                            <rect key="frame" x="0.0" y="22.333333333333314" width="50" height="50"/>
+                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                            <color key="textColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="NzZ-u0-ScP">
+                    <rect key="frame" x="20" y="556" width="353" height="35"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G0V-HX-2WK">
+                            <rect key="frame" x="0.0" y="0.0" width="166.66666666666666" height="35"/>
+                            <color key="backgroundColor" name="brandPink"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="g2h-Ja-1qa"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="14"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="NO, IT'S NOT ME"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="17.5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="no_its_not_me"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="_handleNotMeEvent:" destination="-1" eventType="touchUpInside" id="mbS-Lb-PGr"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FE8-4D-fwZ">
+                            <rect key="frame" x="186.66666666666663" y="0.0" width="166.33333333333337" height="35"/>
+                            <color key="backgroundColor" name="brandGreen"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="35" id="J9d-1a-woP"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="14"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="YES"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="17.5"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="capital_yes"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="_handleYesEvent:" destination="-1" eventType="touchUpInside" id="snZ-pq-jJc"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="brandAppBgColor"/>
+            <constraints>
+                <constraint firstItem="K6L-Cg-zkY" firstAttribute="top" secondItem="fBY-Lh-GCg" secondAttribute="bottom" constant="15" id="3dS-YO-Zzl"/>
+                <constraint firstItem="fBY-Lh-GCg" firstAttribute="top" secondItem="oQZ-WZ-Qaw" secondAttribute="bottom" constant="15" id="7NC-83-soH"/>
+                <constraint firstItem="fBY-Lh-GCg" firstAttribute="trailing" secondItem="oQZ-WZ-Qaw" secondAttribute="trailing" id="9bY-bo-djO"/>
+                <constraint firstItem="NzZ-u0-ScP" firstAttribute="trailing" secondItem="oQZ-WZ-Qaw" secondAttribute="trailing" id="A94-5i-Hm2"/>
+                <constraint firstItem="vcY-fA-1MX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="HMf-u3-gif"/>
+                <constraint firstItem="svW-1w-2Xo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="Jzz-KV-ukm"/>
+                <constraint firstItem="oQZ-WZ-Qaw" firstAttribute="top" secondItem="vcY-fA-1MX" secondAttribute="bottom" constant="30" id="Kxu-In-e5K"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="oQZ-WZ-Qaw" secondAttribute="trailing" constant="20" id="PVh-fK-2be"/>
+                <constraint firstItem="K6L-Cg-zkY" firstAttribute="trailing" secondItem="oQZ-WZ-Qaw" secondAttribute="trailing" id="Qlk-O7-ahv"/>
+                <constraint firstItem="NzZ-u0-ScP" firstAttribute="leading" secondItem="oQZ-WZ-Qaw" secondAttribute="leading" id="S3x-Xj-1eY"/>
+                <constraint firstItem="vcY-fA-1MX" firstAttribute="top" secondItem="STF-Sb-Zcu" secondAttribute="bottom" constant="30" id="Tat-cJ-MQO"/>
+                <constraint firstItem="svW-1w-2Xo" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="VIS-MK-sad"/>
+                <constraint firstItem="NzZ-u0-ScP" firstAttribute="top" secondItem="K6L-Cg-zkY" secondAttribute="bottom" constant="40" id="WQi-UE-AE0"/>
+                <constraint firstItem="STF-Sb-Zcu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="ZDE-Ux-qB3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="NzZ-u0-ScP" secondAttribute="bottom" constant="30" id="eHl-bL-ihd"/>
+                <constraint firstItem="K6L-Cg-zkY" firstAttribute="leading" secondItem="oQZ-WZ-Qaw" secondAttribute="leading" id="w5l-yZ-JYf"/>
+                <constraint firstItem="fBY-Lh-GCg" firstAttribute="leading" secondItem="oQZ-WZ-Qaw" secondAttribute="leading" id="wsQ-fb-fKA"/>
+                <constraint firstItem="oQZ-WZ-Qaw" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="y2u-SQ-JSs"/>
+                <constraint firstItem="STF-Sb-Zcu" firstAttribute="top" secondItem="svW-1w-2Xo" secondAttribute="bottom" constant="10" id="zd2-0G-pa1"/>
+            </constraints>
+            <point key="canvasLocation" x="51" y="-11"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_Logo" width="138" height="84"/>
+        <namedColor name="brandAppBgColor">
+            <color red="0.059000000357627869" green="0.071000002324581146" blue="0.11400000005960464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandGreen">
+            <color red="0.0" green="0.67799997329711914" blue="0.18000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandPink">
+            <color red="0.90200001001358032" green="0.0" blue="0.49399998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

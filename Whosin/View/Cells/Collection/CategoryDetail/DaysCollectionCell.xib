@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-SemiBold.ttf">
+            <string>SFUIText-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="DaysCollectionCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="167" height="30"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="167" height="30"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hsT-ML-EuB">
+                        <rect key="frame" x="3" y="0.0" width="161" height="30"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ll6-g4-Q8A">
+                                <rect key="frame" x="5" y="4" width="151" height="22"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQ4-Vc-ti5">
+                                        <rect key="frame" x="0.0" y="0.0" width="127" height="22"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-SemiBold" family="SF UI Text" pointSize="16"/>
+                                        <color key="textColor" name="white"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ejw-Bd-pQb">
+                                        <rect key="frame" x="127" y="0.0" width="24" height="22"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="24" id="aKo-JK-7jX"/>
+                                        </constraints>
+                                        <inset key="imageEdgeInsets" minX="4" minY="2" maxX="4" maxY="2"/>
+                                        <state key="normal" image="Close"/>
+                                        <connections>
+                                            <action selector="_handleCloseEvent:" destination="gTV-IL-0wX" eventType="touchUpInside" id="nQ1-ri-kHv"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.13" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ll6-g4-Q8A" secondAttribute="bottom" constant="4" id="64n-BA-CEr"/>
+                            <constraint firstItem="ll6-g4-Q8A" firstAttribute="leading" secondItem="hsT-ML-EuB" secondAttribute="leading" constant="5" id="QTy-fA-yk0"/>
+                            <constraint firstAttribute="height" constant="30" id="Vag-X2-vmb"/>
+                            <constraint firstItem="ll6-g4-Q8A" firstAttribute="top" secondItem="hsT-ML-EuB" secondAttribute="top" constant="4" id="drT-1i-STt"/>
+                            <constraint firstAttribute="trailing" secondItem="ll6-g4-Q8A" secondAttribute="trailing" constant="5" id="zBN-9u-dPj"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="hsT-ML-EuB" secondAttribute="trailing" constant="3" id="JoU-YY-6BL"/>
+                <constraint firstItem="hsT-ML-EuB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="SAA-oq-3m7"/>
+                <constraint firstAttribute="bottom" secondItem="hsT-ML-EuB" secondAttribute="bottom" id="V75-oB-MER"/>
+                <constraint firstItem="hsT-ML-EuB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="3" id="s81-Q4-BOW"/>
+            </constraints>
+            <size key="customSize" width="239" height="104"/>
+            <connections>
+                <outlet property="_bgView" destination="hsT-ML-EuB" id="yKx-vb-rGB"/>
+                <outlet property="_closeBtn" destination="ejw-Bd-pQb" id="EGX-7i-HG0"/>
+                <outlet property="_dayLabel" destination="qQ4-Vc-ti5" id="7GO-CH-MUP"/>
+                <outlet property="_hegihtConstraint" destination="Vag-X2-vmb" id="b2W-Qi-8BW"/>
+            </connections>
+            <point key="canvasLocation" x="18.115942028985508" y="79.6875"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="Close" width="22" height="22"/>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

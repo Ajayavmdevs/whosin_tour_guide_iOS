@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Bold.ttf">
+            <string>SFUIText-Bold</string>
+        </array>
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+        <array key="SFUIText-Semibold.ttf">
+            <string>SFUIText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="137" id="KGk-i7-Jjw" customClass="PackageDescTableCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="383" height="140"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="383" height="140"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="1xp-Yp-YXM">
+                        <rect key="frame" x="10" y="15" width="363" height="110"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jtc-Um-2ZC">
+                                <rect key="frame" x="0.0" y="0.0" width="363" height="30"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jPL-bs-WPS" customClass="GradientView" customModule="Whosin" customModuleProvider="target">
+                                        <rect key="frame" x="5" y="5" width="44" height="20"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50%" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BTX-6b-nwE">
+                                                <rect key="frame" x="0.0" y="0.0" width="44" height="20"/>
+                                                <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="14"/>
+                                                <color key="textColor" name="white"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <constraints>
+                                            <constraint firstItem="BTX-6b-nwE" firstAttribute="leading" secondItem="jPL-bs-WPS" secondAttribute="leading" id="DLF-cZ-b4L"/>
+                                            <constraint firstAttribute="trailing" secondItem="BTX-6b-nwE" secondAttribute="trailing" id="TMZ-hR-R6n"/>
+                                            <constraint firstItem="BTX-6b-nwE" firstAttribute="top" secondItem="jPL-bs-WPS" secondAttribute="top" id="cO2-AX-k2q"/>
+                                            <constraint firstAttribute="width" constant="44" id="d7z-FV-Jbd"/>
+                                            <constraint firstAttribute="height" constant="20" id="hkJ-0W-TXO"/>
+                                            <constraint firstAttribute="bottom" secondItem="BTX-6b-nwE" secondAttribute="bottom" id="xfa-J9-8Gu"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                                <color key="value" red="0.40784313725490196" green="0.40784313725490196" blue="0.40784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                                <color key="value" red="0.55686274509803924" green="0.55686274509803924" blue="0.55686274509803924" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TESTTESTTESTTESTTESTTESTTESTTESTTESTTEST" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WLr-ae-xCW">
+                                        <rect key="frame" x="59" y="0.0" width="252" height="38.5"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="16"/>
+                                        <color key="textColor" name="white"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="D 350" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DsU-XF-wOd" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                        <rect key="frame" x="321" y="5" width="42" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="85" id="8Ak-0R-HzY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFUIText-Semibold" family="SF UI Text" pointSize="14"/>
+                                        <color key="textColor" name="white"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                                <integer key="value" value="7"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                <integer key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="clear"/>
+                                <constraints>
+                                    <constraint firstItem="WLr-ae-xCW" firstAttribute="top" secondItem="jPL-bs-WPS" secondAttribute="top" constant="-5" id="AHc-W4-gyz"/>
+                                    <constraint firstItem="jPL-bs-WPS" firstAttribute="leading" secondItem="Jtc-Um-2ZC" secondAttribute="leading" constant="5" id="KId-7S-hF5"/>
+                                    <constraint firstAttribute="trailing" secondItem="DsU-XF-wOd" secondAttribute="trailing" id="KfD-N9-mHI"/>
+                                    <constraint firstItem="DsU-XF-wOd" firstAttribute="top" secondItem="Jtc-Um-2ZC" secondAttribute="top" constant="5" id="U05-6B-KaV"/>
+                                    <constraint firstItem="DsU-XF-wOd" firstAttribute="centerY" secondItem="BTX-6b-nwE" secondAttribute="centerY" id="c52-yh-hD4"/>
+                                    <constraint firstItem="WLr-ae-xCW" firstAttribute="leading" secondItem="jPL-bs-WPS" secondAttribute="trailing" constant="10" id="fXf-1P-MDI"/>
+                                    <constraint firstItem="jPL-bs-WPS" firstAttribute="top" secondItem="Jtc-Um-2ZC" secondAttribute="top" constant="5" id="ihk-lU-xyI"/>
+                                    <constraint firstAttribute="bottom" secondItem="DsU-XF-wOd" secondAttribute="bottom" constant="5" id="u0A-GH-G4c"/>
+                                    <constraint firstItem="DsU-XF-wOd" firstAttribute="leading" secondItem="WLr-ae-xCW" secondAttribute="trailing" constant="10" id="uR7-Vs-4G4"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="                                       " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tiW-mI-62n">
+                                <rect key="frame" x="0.0" y="35" width="363" height="75"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                <color key="textColor" name="BrandLightGray"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" name="clear"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="1xp-Yp-YXM" secondAttribute="trailing" constant="10" id="emH-s7-sVh"/>
+                    <constraint firstItem="1xp-Yp-YXM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="fT4-fJ-DPK"/>
+                    <constraint firstAttribute="bottom" secondItem="1xp-Yp-YXM" secondAttribute="bottom" constant="15" id="gjw-FY-rl9"/>
+                    <constraint firstItem="1xp-Yp-YXM" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="jRV-oR-Bro"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" name="clear"/>
+            <connections>
+                <outlet property="_bgView" destination="jPL-bs-WPS" id="YiL-4m-Pdh"/>
+                <outlet property="_descLabel" destination="tiW-mI-62n" id="4b4-6Z-IyT"/>
+                <outlet property="_discountLabel" destination="BTX-6b-nwE" id="j2d-JQ-gSk"/>
+                <outlet property="_discountPriceLabel" destination="DsU-XF-wOd" id="F76-56-TAE"/>
+                <outlet property="_title" destination="WLr-ae-xCW" id="uTf-5V-mla"/>
+            </connections>
+            <point key="canvasLocation" x="177.536231884058" y="125.89285714285714"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="BrandLightGray">
+            <color red="0.57999998331069946" green="0.58799999952316284" blue="0.6470000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

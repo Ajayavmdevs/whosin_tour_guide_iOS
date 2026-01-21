@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Semibold.ttf">
+            <string>SFUIText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="409" id="KGk-i7-Jjw" customClass="SuggestedTicketCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="531" height="409"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="531" height="409"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fnc-d9-v97">
+                        <rect key="frame" x="0.0" y="0.0" width="531" height="409"/>
+                        <subviews>
+                            <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U3u-qk-rt4">
+                                <rect key="frame" x="20" y="20" width="162.33333333333334" height="49"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="61C-ql-4t2">
+                                        <rect key="frame" x="0.0" y="0.0" width="162.33333333333334" height="49"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Featured for you" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATK-A2-yLy" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="162.33333333333334" height="24"/>
+                                                <fontDescription key="fontDescription" name="SFUIText-Semibold" family="SF UI Text" pointSize="20"/>
+                                                <color key="textColor" name="white"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                                        <integer key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                        <real key="value" value="20"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lgp-cS-efi" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="26" width="162.33333333333334" height="23"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" name="white"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                        <real key="value" value="12"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" name="clear"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="61C-ql-4t2" secondAttribute="bottom" id="KPF-s4-hr6"/>
+                                    <constraint firstItem="61C-ql-4t2" firstAttribute="leading" secondItem="U3u-qk-rt4" secondAttribute="leading" id="MST-mZ-ZSz"/>
+                                    <constraint firstAttribute="trailing" secondItem="61C-ql-4t2" secondAttribute="trailing" id="bcq-l1-UII"/>
+                                    <constraint firstItem="61C-ql-4t2" firstAttribute="top" secondItem="U3u-qk-rt4" secondAttribute="top" id="pev-NM-N0q"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" clearsContextBeforeDrawing="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="flU-e6-JRo" customClass="CustomNoKeyboardCollectionView" customModule="Whosin" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="84" width="531" height="315"/>
+                                <color key="backgroundColor" name="clear"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="315" id="hie-5q-MNf"/>
+                                </constraints>
+                                <inset key="scrollIndicatorInsets" minX="2000" minY="2000" maxX="2000" maxY="2000"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="VRf-pf-u2t">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="U3u-qk-rt4" firstAttribute="top" secondItem="fnc-d9-v97" secondAttribute="top" constant="20" id="Pmx-f5-rxX"/>
+                            <constraint firstItem="U3u-qk-rt4" firstAttribute="leading" secondItem="fnc-d9-v97" secondAttribute="leading" constant="20" id="RWb-vD-QcJ"/>
+                            <constraint firstItem="flU-e6-JRo" firstAttribute="leading" secondItem="fnc-d9-v97" secondAttribute="leading" id="SbP-xr-WOa"/>
+                            <constraint firstAttribute="bottom" secondItem="flU-e6-JRo" secondAttribute="bottom" constant="10" id="UWC-IO-wuM"/>
+                            <constraint firstItem="flU-e6-JRo" firstAttribute="top" secondItem="U3u-qk-rt4" secondAttribute="bottom" constant="15" id="cbV-Sg-E6G"/>
+                            <constraint firstAttribute="trailing" secondItem="flU-e6-JRo" secondAttribute="trailing" id="ci9-ef-xpl"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="fnc-d9-v97" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="7nE-Mq-6KX"/>
+                    <constraint firstItem="fnc-d9-v97" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Qhf-Su-tdR"/>
+                    <constraint firstAttribute="trailing" secondItem="fnc-d9-v97" secondAttribute="trailing" id="duk-QA-0bs"/>
+                    <constraint firstAttribute="bottom" secondItem="fnc-d9-v97" secondAttribute="bottom" id="rF1-qz-pj5"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" name="clear"/>
+            <connections>
+                <outlet property="_collectionHeight" destination="hie-5q-MNf" id="aht-dQ-IqG"/>
+                <outlet property="_collectionView" destination="flU-e6-JRo" id="cTN-ak-YVK"/>
+                <outlet property="_subTitleTextLabel" destination="Lgp-cS-efi" id="rRN-O7-UyO"/>
+                <outlet property="titleText" destination="ATK-A2-yLy" id="PEF-5v-Qff"/>
+            </connections>
+            <point key="canvasLocation" x="81.679389312977094" y="155.28169014084509"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

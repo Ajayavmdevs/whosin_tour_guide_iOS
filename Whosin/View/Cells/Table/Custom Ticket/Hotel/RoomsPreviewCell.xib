@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="175" id="KGk-i7-Jjw" customClass="RoomsPreviewCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="483" height="175"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="483" height="175"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dnv-Yr-IUE">
+                        <rect key="frame" x="15" y="4" width="453" height="151"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Puw-C5-oZT" customClass="CustomNoKeyboardCollectionView" customModule="Whosin" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="36" width="453" height="115"/>
+                                <color key="backgroundColor" name="clear"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="115" id="0UQ-Ub-FId"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="PAF-2x-0JI">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                            </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HAa-Dy-iT2">
+                                <rect key="frame" x="0.0" y="35.666666666666664" width="453" height="0.3333333333333357"/>
+                                <color key="backgroundColor" name="tabUnselect"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.5" id="LMs-8U-N1u"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="room type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thf-nc-A0s" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                <rect key="frame" x="10" y="8.0000000000000018" width="433" height="19.666666666666671"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="white"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.20392156862745098" green="0.20392156862745098" blue="0.20392156862745098" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="HAa-Dy-iT2" firstAttribute="top" secondItem="thf-nc-A0s" secondAttribute="bottom" constant="8" id="8Oc-s2-VZS"/>
+                            <constraint firstItem="Puw-C5-oZT" firstAttribute="top" secondItem="HAa-Dy-iT2" secondAttribute="bottom" id="94q-lL-lta"/>
+                            <constraint firstAttribute="trailing" secondItem="thf-nc-A0s" secondAttribute="trailing" constant="10" id="K9O-0Y-mzv"/>
+                            <constraint firstItem="thf-nc-A0s" firstAttribute="leading" secondItem="Dnv-Yr-IUE" secondAttribute="leading" constant="10" id="LRR-pi-5ph"/>
+                            <constraint firstItem="thf-nc-A0s" firstAttribute="top" secondItem="Dnv-Yr-IUE" secondAttribute="top" constant="8" id="LRo-C1-wll"/>
+                            <constraint firstItem="Puw-C5-oZT" firstAttribute="leading" secondItem="Dnv-Yr-IUE" secondAttribute="leading" id="O3m-t3-wEJ"/>
+                            <constraint firstAttribute="trailing" secondItem="HAa-Dy-iT2" secondAttribute="trailing" id="dEh-vj-AeM"/>
+                            <constraint firstAttribute="bottom" secondItem="Puw-C5-oZT" secondAttribute="bottom" id="ez0-Qq-CK6"/>
+                            <constraint firstItem="HAa-Dy-iT2" firstAttribute="leading" secondItem="Dnv-Yr-IUE" secondAttribute="leading" id="oX2-Lg-8zx"/>
+                            <constraint firstAttribute="trailing" secondItem="Puw-C5-oZT" secondAttribute="trailing" id="zpQ-qg-4ku"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" name="clear"/>
+                <constraints>
+                    <constraint firstItem="Dnv-Yr-IUE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="07p-Dd-l4W"/>
+                    <constraint firstAttribute="trailing" secondItem="Dnv-Yr-IUE" secondAttribute="trailing" constant="15" id="Fgp-pw-UXq"/>
+                    <constraint firstItem="Dnv-Yr-IUE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="4" id="Rkx-8u-r3d"/>
+                    <constraint firstAttribute="bottom" secondItem="Dnv-Yr-IUE" secondAttribute="bottom" constant="20" id="XSo-ze-ajx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" name="clear"/>
+            <connections>
+                <outlet property="_collectionView" destination="Puw-C5-oZT" id="nvd-x5-5mT"/>
+                <outlet property="_height" destination="0UQ-Ub-FId" id="yM3-b2-xvh"/>
+                <outlet property="_roomType" destination="thf-nc-A0s" id="nUK-RO-xp8"/>
+            </connections>
+            <point key="canvasLocation" x="-80.152671755725194" y="19.366197183098592"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tabUnselect">
+            <color red="0.49799999594688416" green="0.49799999594688416" blue="0.49799999594688416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

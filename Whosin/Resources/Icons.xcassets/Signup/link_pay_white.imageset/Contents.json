@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "link_pay_white.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

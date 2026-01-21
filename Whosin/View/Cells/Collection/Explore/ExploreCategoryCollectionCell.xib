@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ExploreCategoryCollectionCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="130" height="174"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="130" height="174"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HtU-tw-vBQ">
+                        <rect key="frame" x="5" y="5" width="120" height="164"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="A8d-ZK-p4V">
+                                <rect key="frame" x="15" y="10" width="90" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="90" id="181-Ss-rj3"/>
+                                    <constraint firstAttribute="height" constant="90" id="q2p-3X-P2R"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="45"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="brandBorderGray"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Vf-Yo-anY" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                <rect key="frame" x="5" y="105" width="110" height="54"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="10"/>
+                                <color key="textColor" name="white"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <integer key="value" value="16"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="selectedFont" value="I"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="clear"/>
+                        <constraints>
+                            <constraint firstItem="4Vf-Yo-anY" firstAttribute="leading" secondItem="HtU-tw-vBQ" secondAttribute="leading" constant="5" id="2sx-PB-6Bj"/>
+                            <constraint firstAttribute="trailing" secondItem="4Vf-Yo-anY" secondAttribute="trailing" constant="5" id="4mh-b8-65K"/>
+                            <constraint firstItem="A8d-ZK-p4V" firstAttribute="centerX" secondItem="HtU-tw-vBQ" secondAttribute="centerX" id="SCE-Ic-A6R"/>
+                            <constraint firstItem="4Vf-Yo-anY" firstAttribute="top" secondItem="A8d-ZK-p4V" secondAttribute="bottom" constant="5" id="dcX-wq-aSm"/>
+                            <constraint firstAttribute="bottom" secondItem="4Vf-Yo-anY" secondAttribute="bottom" constant="5" id="uQn-12-vRz"/>
+                            <constraint firstItem="A8d-ZK-p4V" firstAttribute="top" secondItem="HtU-tw-vBQ" secondAttribute="top" constant="10" id="ykT-NN-LL7"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="HtU-tw-vBQ" secondAttribute="trailing" constant="5" id="3UR-Sl-MdH"/>
+                <constraint firstItem="HtU-tw-vBQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="54y-UV-xpI"/>
+                <constraint firstAttribute="bottom" secondItem="HtU-tw-vBQ" secondAttribute="bottom" constant="5" id="Zqe-EJ-KgQ"/>
+                <constraint firstItem="HtU-tw-vBQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="aoU-gl-dSx"/>
+            </constraints>
+            <size key="customSize" width="130" height="174"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="_avatarImageView" destination="A8d-ZK-p4V" id="oiA-2h-gPp"/>
+                <outlet property="_nameLabel" destination="4Vf-Yo-anY" id="tr9-2w-mrv"/>
+            </connections>
+            <point key="canvasLocation" x="176.81159420289856" y="74.330357142857139"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="brandBorderGray">
+            <color red="0.30196078431372547" green="0.34509803921568627" blue="0.41568627450980394" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

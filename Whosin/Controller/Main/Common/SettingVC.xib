@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Bold.ttf">
+            <string>SFUIText-Bold</string>
+        </array>
+        <array key="SFUIText-Medium.ttf">
+            <string>SFUIText-Medium</string>
+        </array>
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingVC" customModule="Whosin" customModuleProvider="target">
+            <connections>
+                <outlet property="_tableView" destination="m6o-Ir-9mI" id="khb-NN-HBG"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Settings" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Mb-wn-RON">
+                    <rect key="frame" x="141.5" y="117.5" width="131.5" height="37"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="31"/>
+                    <color key="textColor" name="white"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="settings"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Have control over your account and settings here, and update your data" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXB-Kp-f2b">
+                    <rect key="frame" x="32" y="194.5" width="350" height="33.5"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                    <color key="textColor" name="BrandLightGray"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="account_settings_info"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="m6o-Ir-9mI" customClass="CustomTableView" customModule="Whosin" customModuleProvider="target">
+                    <rect key="frame" x="25" y="278" width="364" height="550"/>
+                    <color key="backgroundColor" name="clear"/>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iXw-fd-dxp">
+                    <rect key="frame" x="10" y="111" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="5lc-7C-wDP"/>
+                        <constraint firstAttribute="width" constant="50" id="Q3W-Bi-nks"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI Text" pointSize="20"/>
+                    <color key="tintColor" name="white"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="icon_backArrow">
+                        <color key="titleColor" name="BrandLightGray"/>
+                    </state>
+                    <connections>
+                        <action selector="_handleCloseEvent:" destination="-1" eventType="touchUpInside" id="MIJ-uS-XJb"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="brandAppBgColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="m6o-Ir-9mI" secondAttribute="bottom" id="0QY-4c-ANX"/>
+                <constraint firstItem="6Mb-wn-RON" firstAttribute="centerY" secondItem="iXw-fd-dxp" secondAttribute="centerY" id="6gy-Om-2ti"/>
+                <constraint firstItem="m6o-Ir-9mI" firstAttribute="top" secondItem="uXB-Kp-f2b" secondAttribute="bottom" constant="50" id="8Aw-O0-jBG"/>
+                <constraint firstItem="iXw-fd-dxp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="8FY-Rg-Ch7"/>
+                <constraint firstItem="uXB-Kp-f2b" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="D5o-Ws-d2W"/>
+                <constraint firstItem="uXB-Kp-f2b" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="32" id="H91-n4-YTh"/>
+                <constraint firstItem="6Mb-wn-RON" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RwG-WY-XAC"/>
+                <constraint firstItem="uXB-Kp-f2b" firstAttribute="top" secondItem="6Mb-wn-RON" secondAttribute="bottom" constant="40" id="YqV-hr-cQz"/>
+                <constraint firstItem="m6o-Ir-9mI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="iin-tS-ePV"/>
+                <constraint firstItem="iXw-fd-dxp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="pyk-Ht-aBR"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="m6o-Ir-9mI" secondAttribute="trailing" constant="25" id="tjb-W2-zAD"/>
+                <constraint firstAttribute="trailing" secondItem="uXB-Kp-f2b" secondAttribute="trailing" constant="32" id="ydo-JY-8vn"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="87.723214285714278"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_backArrow" width="19" height="15"/>
+        <namedColor name="BrandLightGray">
+            <color red="0.57999998331069946" green="0.58799999952316284" blue="0.6470000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandAppBgColor">
+            <color red="0.059000000357627869" green="0.071000002324581146" blue="0.11400000005960464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

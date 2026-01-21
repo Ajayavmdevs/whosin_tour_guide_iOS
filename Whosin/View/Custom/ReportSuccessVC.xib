@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Heavy.ttf">
+            <string>SFUIText-Heavy</string>
+        </array>
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+        <array key="SFUIText-Semibold.ttf">
+            <string>SFUIText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReportSuccessVC" customModule="Whosin" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TJt-Sd-Qrn">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ee0-sv-vuN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OyX-24-qIo" customClass="GradientView" customModule="Whosin" customModuleProvider="target">
+                                <rect key="frame" x="50" y="295.5" width="314" height="305"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jeH-4H-BTa">
+                                        <rect key="frame" x="264" y="10" width="40" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="5rv-Jk-y2r"/>
+                                            <constraint firstAttribute="width" constant="40" id="kT0-1e-zpJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="24"/>
+                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="X"/>
+                                        <connections>
+                                            <action selector="_handleCloseEvent:" destination="-1" eventType="touchUpInside" id="cAq-Bj-Y4c"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Report successfully submitted" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLQ-dQ-inc">
+                                        <rect key="frame" x="10" y="70" width="294" height="21.5"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Heavy" family="SF UI Text" pointSize="18"/>
+                                        <color key="textColor" name="white"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="report_successfully_submitted"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_sucess" translatesAutoresizingMaskIntoConstraints="NO" id="f4Z-g0-EV2">
+                                        <rect key="frame" x="97" y="111.5" width="120" height="120"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="120" id="JIb-dy-yHi"/>
+                                            <constraint firstAttribute="width" constant="120" id="sEy-xo-ux9"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your report helps us to improve out process and keeps whosin safe for everyone." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4A-Jg-A2X">
+                                        <rect key="frame" x="10" y="251.5" width="294" height="33.5"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                        <color key="textColor" name="white"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="you_report_helps_us_to_improve"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YIn-eA-y7C">
+                                        <rect key="frame" x="30" y="285" width="254" height="0.0"/>
+                                        <color key="backgroundColor" name="white"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" id="Gbm-4M-01L"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFUIText-Semibold" family="SF UI Text" pointSize="18"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Wallet">
+                                            <color key="titleColor" red="0.75294117650000003" green="0.086274509799999996" blue="0.40784313729999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="12"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="Wallet"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="jeH-4H-BTa" secondAttribute="trailing" constant="10" id="060-Ko-Qeq"/>
+                                    <constraint firstAttribute="trailing" secondItem="YIn-eA-y7C" secondAttribute="trailing" constant="30" id="G3v-QC-vP1"/>
+                                    <constraint firstItem="XLQ-dQ-inc" firstAttribute="leading" secondItem="OyX-24-qIo" secondAttribute="leading" constant="10" id="Ion-Yg-dxA"/>
+                                    <constraint firstItem="XLQ-dQ-inc" firstAttribute="top" secondItem="jeH-4H-BTa" secondAttribute="bottom" constant="20" id="Mro-jS-bNQ"/>
+                                    <constraint firstAttribute="bottom" secondItem="YIn-eA-y7C" secondAttribute="bottom" constant="20" id="OZL-fU-LdM"/>
+                                    <constraint firstItem="w4A-Jg-A2X" firstAttribute="top" secondItem="f4Z-g0-EV2" secondAttribute="bottom" constant="20" id="Pgo-0F-TPE"/>
+                                    <constraint firstItem="f4Z-g0-EV2" firstAttribute="top" secondItem="XLQ-dQ-inc" secondAttribute="bottom" constant="20" id="UD7-Ql-nfx"/>
+                                    <constraint firstItem="w4A-Jg-A2X" firstAttribute="leading" secondItem="OyX-24-qIo" secondAttribute="leading" constant="10" id="bLs-rX-MAv"/>
+                                    <constraint firstAttribute="trailing" secondItem="XLQ-dQ-inc" secondAttribute="trailing" constant="10" id="byo-aj-eqA"/>
+                                    <constraint firstItem="f4Z-g0-EV2" firstAttribute="centerX" secondItem="OyX-24-qIo" secondAttribute="centerX" id="g1L-Dc-TEd"/>
+                                    <constraint firstItem="YIn-eA-y7C" firstAttribute="top" secondItem="w4A-Jg-A2X" secondAttribute="bottom" id="iJm-DT-xxK"/>
+                                    <constraint firstAttribute="trailing" secondItem="w4A-Jg-A2X" secondAttribute="trailing" constant="10" id="nZ0-YQ-zev"/>
+                                    <constraint firstItem="jeH-4H-BTa" firstAttribute="top" secondItem="OyX-24-qIo" secondAttribute="top" constant="10" id="xyx-O2-8fy"/>
+                                    <constraint firstItem="YIn-eA-y7C" firstAttribute="leading" secondItem="OyX-24-qIo" secondAttribute="leading" constant="30" id="yFS-qd-nnI"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                        <color key="value" red="0.95686274509803915" green="0.28627450980392155" blue="0.84705882352941175" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                        <color key="value" red="0.75294117647058822" green="0.086274509803921567" blue="0.40784313725490196" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="OyX-24-qIo" firstAttribute="centerX" secondItem="Ee0-sv-vuN" secondAttribute="centerX" id="1Vj-Rm-ums"/>
+                            <constraint firstItem="OyX-24-qIo" firstAttribute="leading" secondItem="Ee0-sv-vuN" secondAttribute="leading" constant="50" id="GS2-PC-8lK"/>
+                            <constraint firstItem="OyX-24-qIo" firstAttribute="centerY" secondItem="Ee0-sv-vuN" secondAttribute="centerY" id="Jld-Hw-H1w"/>
+                            <constraint firstAttribute="trailing" secondItem="OyX-24-qIo" secondAttribute="trailing" constant="50" id="Pza-VP-sBi"/>
+                        </constraints>
+                    </view>
+                    <blurEffect style="systemMaterial"/>
+                </visualEffectView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="clear"/>
+            <constraints>
+                <constraint firstItem="TJt-Sd-Qrn" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="MJ0-85-wjc"/>
+                <constraint firstItem="TJt-Sd-Qrn" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="Re2-5B-h0F"/>
+                <constraint firstItem="TJt-Sd-Qrn" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Wqg-Nk-kUR"/>
+                <constraint firstItem="TJt-Sd-Qrn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="pGS-L7-hRt"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="69.642857142857139"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_sucess" width="128" height="128"/>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

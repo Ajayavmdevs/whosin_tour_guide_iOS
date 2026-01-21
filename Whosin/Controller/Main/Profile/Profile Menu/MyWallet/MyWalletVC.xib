@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Semibold.ttf">
+            <string>SFUIText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyWalletVC" customModule="Whosin" customModuleProvider="target">
+            <connections>
+                <outlet property="_backButton" destination="9aM-Dl-Ncv" id="iwx-0L-29v"/>
+                <outlet property="_containerView" destination="k0K-zn-khk" id="bZa-9u-RT3"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Wallet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AG7-vB-GVJ">
+                    <rect key="frame" x="152" y="116" width="110.5" height="27.5"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Semibold" family="SF UI Text" pointSize="23"/>
+                    <color key="textColor" name="white"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="my_wallet"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k0K-zn-khk">
+                    <rect key="frame" x="0.0" y="143.5" width="414" height="752.5"/>
+                    <color key="backgroundColor" name="clear"/>
+                </view>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9aM-Dl-Ncv">
+                    <rect key="frame" x="10" y="105" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="fCG-pd-YZ6"/>
+                        <constraint firstAttribute="width" constant="50" id="txG-DW-NYC"/>
+                    </constraints>
+                    <color key="tintColor" name="white"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="icon_backArrow"/>
+                    <connections>
+                        <action selector="_handleBackEvent:" destination="-1" eventType="touchUpInside" id="Nbe-XI-bsl"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="brandAppBgColor"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="k0K-zn-khk" secondAttribute="trailing" id="4iJ-My-bLb"/>
+                <constraint firstItem="k0K-zn-khk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="57e-ZS-h9N"/>
+                <constraint firstItem="k0K-zn-khk" firstAttribute="top" secondItem="AG7-vB-GVJ" secondAttribute="bottom" id="GRE-ex-Cp2"/>
+                <constraint firstItem="9aM-Dl-Ncv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="10" id="Kh7-Yt-jbo"/>
+                <constraint firstItem="AG7-vB-GVJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="aTS-nD-IEO"/>
+                <constraint firstAttribute="bottom" secondItem="k0K-zn-khk" secondAttribute="bottom" id="dip-iU-X1e"/>
+                <constraint firstItem="AG7-vB-GVJ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="h6l-vm-Hni"/>
+                <constraint firstItem="9aM-Dl-Ncv" firstAttribute="centerY" secondItem="AG7-vB-GVJ" secondAttribute="centerY" id="lfc-UX-Tca"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="95.758928571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_backArrow" width="19" height="15"/>
+        <namedColor name="brandAppBgColor">
+            <color red="0.059000000357627869" green="0.071000002324581146" blue="0.11400000005960464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Semibold.ttf">
+            <string>SFUIText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="322" id="KGk-i7-Jjw" customClass="LocationMapViewCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="384" height="338"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="384" height="338"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gjZ-8U-gFw">
+                        <rect key="frame" x="20" y="108" width="344" height="220"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d6N-lp-rAP">
+                                <rect key="frame" x="0.0" y="0.0" width="344" height="220"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="220" id="3LP-UB-PaW"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" name="paigerBgColor"/>
+                        <constraints>
+                            <constraint firstItem="d6N-lp-rAP" firstAttribute="top" secondItem="gjZ-8U-gFw" secondAttribute="top" id="MbA-pt-C2s"/>
+                            <constraint firstItem="d6N-lp-rAP" firstAttribute="leading" secondItem="gjZ-8U-gFw" secondAttribute="leading" id="Nn1-um-a6G"/>
+                            <constraint firstAttribute="trailing" secondItem="d6N-lp-rAP" secondAttribute="trailing" id="lC6-vS-y5k"/>
+                            <constraint firstAttribute="bottom" secondItem="d6N-lp-rAP" secondAttribute="bottom" id="rYW-IA-i5q"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <integer key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cjc-qA-bQN">
+                        <rect key="frame" x="20" y="10" width="344" height="88"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Location" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8T-ZS-w2W">
+                                <rect key="frame" x="0.0" y="0.0" width="344" height="70.333333333333329"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Semibold" family="SF UI Text" pointSize="20"/>
+                                <color key="textColor" name="white"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="location"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="752" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jja-cn-twH">
+                                <rect key="frame" x="0.0" y="72.333333333333329" width="344" height="15.666666666666671"/>
+                                <string key="text" base64-UTF8="YES">
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+ICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAg
+A
+</string>
+                                <fontDescription key="fontDescription" name="SFUIText-Semibold" family="SF UI Text" pointSize="13"/>
+                                <color key="textColor" name="white"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="clear"/>
+                        <constraints>
+                            <constraint firstItem="Jja-cn-twH" firstAttribute="top" secondItem="i8T-ZS-w2W" secondAttribute="bottom" constant="2" id="A0x-Tw-itU"/>
+                            <constraint firstAttribute="trailing" secondItem="Jja-cn-twH" secondAttribute="trailing" id="Ecg-oW-N8Q"/>
+                            <constraint firstItem="i8T-ZS-w2W" firstAttribute="top" secondItem="cjc-qA-bQN" secondAttribute="top" id="HhM-Xm-n1v"/>
+                            <constraint firstItem="Jja-cn-twH" firstAttribute="leading" secondItem="cjc-qA-bQN" secondAttribute="leading" id="NTc-nX-XtC"/>
+                            <constraint firstItem="i8T-ZS-w2W" firstAttribute="top" secondItem="cjc-qA-bQN" secondAttribute="top" id="O5b-zS-68y"/>
+                            <constraint firstItem="i8T-ZS-w2W" firstAttribute="leading" secondItem="cjc-qA-bQN" secondAttribute="leading" id="QAu-4p-hb7"/>
+                            <constraint firstAttribute="bottom" secondItem="Jja-cn-twH" secondAttribute="bottom" id="aoO-J9-T0F"/>
+                            <constraint firstAttribute="trailing" secondItem="i8T-ZS-w2W" secondAttribute="trailing" id="t0i-uB-bGC"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" name="clear"/>
+                <constraints>
+                    <constraint firstItem="cjc-qA-bQN" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="22q-z2-Sst"/>
+                    <constraint firstItem="gjZ-8U-gFw" firstAttribute="top" secondItem="cjc-qA-bQN" secondAttribute="bottom" constant="10" id="4kQ-n7-5Pk"/>
+                    <constraint firstAttribute="bottom" secondItem="gjZ-8U-gFw" secondAttribute="bottom" constant="10" id="FCv-gn-TJz"/>
+                    <constraint firstAttribute="trailing" secondItem="cjc-qA-bQN" secondAttribute="trailing" constant="20" id="Fwx-p2-Bvc"/>
+                    <constraint firstItem="gjZ-8U-gFw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="N5H-zW-uV3"/>
+                    <constraint firstAttribute="trailing" secondItem="gjZ-8U-gFw" secondAttribute="trailing" constant="20" id="Odi-KS-Tfj"/>
+                    <constraint firstItem="cjc-qA-bQN" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="TYJ-VO-EiA"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" name="clear"/>
+            <connections>
+                <outlet property="_addressText" destination="Jja-cn-twH" id="oHU-Ie-50r"/>
+                <outlet property="_mapImage" destination="d6N-lp-rAP" id="GHv-u5-elQ"/>
+            </connections>
+            <point key="canvasLocation" x="178.62595419847327" y="38.732394366197184"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="paigerBgColor">
+            <color red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

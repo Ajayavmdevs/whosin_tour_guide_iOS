@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="82" id="KGk-i7-Jjw" customClass="CancellationPolicyTableCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="452" height="82"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="452" height="82"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hew-D5-OyI">
+                        <rect key="frame" x="15" y="0.0" width="422" height="82"/>
+                        <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PmQ-RK-536">
+                                <rect key="frame" x="246.66666666666669" y="0.0" width="0.66666666666665719" height="82"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="0.59999999999999998" id="IvJ-rv-lwt"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s8Y-oh-jnS" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                <rect key="frame" x="8" y="10" width="230.66666666666666" height="62"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Label">
+                                        <attributes>
+                                            <color key="NSColor" name="white"/>
+                                            <font key="NSFont" metaFont="system" size="17"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="14"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vMS-cf-uGA" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                <rect key="frame" x="255.33333333333331" y="10" width="158.66666666666669" height="62"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="white"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                        <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="14"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aMh-Gp-3dl">
+                                <rect key="frame" x="0.0" y="81.666666666666671" width="422" height="0.3333333333333286"/>
+                                <color key="backgroundColor" red="0.53333333333333333" green="0.53333333333333333" blue="0.54117647058823526" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="0.20000000000000001" id="bOY-vx-KIT"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.3529411764705882" green="0.3529411764705882" blue="0.3529411764705882" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="aMh-Gp-3dl" secondAttribute="bottom" id="89G-hQ-WK0"/>
+                            <constraint firstAttribute="bottom" secondItem="s8Y-oh-jnS" secondAttribute="bottom" constant="10" id="FKo-66-nRW"/>
+                            <constraint firstItem="vMS-cf-uGA" firstAttribute="leading" secondItem="PmQ-RK-536" secondAttribute="trailing" constant="8" id="G8d-CP-H2k"/>
+                            <constraint firstItem="vMS-cf-uGA" firstAttribute="top" secondItem="Hew-D5-OyI" secondAttribute="top" constant="10" id="IbW-wX-1bX"/>
+                            <constraint firstAttribute="trailing" secondItem="vMS-cf-uGA" secondAttribute="trailing" constant="8" id="O7F-RA-Zr7"/>
+                            <constraint firstItem="aMh-Gp-3dl" firstAttribute="leading" secondItem="Hew-D5-OyI" secondAttribute="leading" id="TaS-1c-nMj"/>
+                            <constraint firstAttribute="trailing" secondItem="aMh-Gp-3dl" secondAttribute="trailing" id="a4d-mV-91b"/>
+                            <constraint firstAttribute="bottom" secondItem="PmQ-RK-536" secondAttribute="bottom" id="b79-Et-TtO"/>
+                            <constraint firstItem="PmQ-RK-536" firstAttribute="top" secondItem="Hew-D5-OyI" secondAttribute="top" id="ckO-Dg-O2F"/>
+                            <constraint firstAttribute="bottom" secondItem="vMS-cf-uGA" secondAttribute="bottom" constant="10" id="dX3-or-QIJ"/>
+                            <constraint firstItem="s8Y-oh-jnS" firstAttribute="leading" secondItem="Hew-D5-OyI" secondAttribute="leading" constant="8" id="ecK-tL-SEx"/>
+                            <constraint firstItem="PmQ-RK-536" firstAttribute="leading" secondItem="s8Y-oh-jnS" secondAttribute="trailing" constant="8" id="oIJ-GH-A67"/>
+                            <constraint firstItem="PmQ-RK-536" firstAttribute="centerX" secondItem="Hew-D5-OyI" secondAttribute="centerX" constant="36" id="qYg-6c-Yso"/>
+                            <constraint firstItem="s8Y-oh-jnS" firstAttribute="top" secondItem="Hew-D5-OyI" secondAttribute="top" constant="10" id="yG3-3b-iYg"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="Hew-D5-OyI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="Z6P-cN-gUf"/>
+                    <constraint firstItem="Hew-D5-OyI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="aQD-8x-87W"/>
+                    <constraint firstAttribute="bottom" secondItem="Hew-D5-OyI" secondAttribute="bottom" id="dnK-6M-Y4T"/>
+                    <constraint firstAttribute="trailing" secondItem="Hew-D5-OyI" secondAttribute="trailing" constant="15" id="hqt-RO-zww"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" name="clear"/>
+            <connections>
+                <outlet property="_bgView" destination="Hew-D5-OyI" id="wrj-Ef-xMu"/>
+                <outlet property="_cancellationTime" destination="s8Y-oh-jnS" id="rNq-0c-Seb"/>
+                <outlet property="_refundLabel" destination="vMS-cf-uGA" id="f7P-Ze-oAK"/>
+                <outlet property="_sapratorView" destination="aMh-Gp-3dl" id="blT-4W-pCc"/>
+            </connections>
+            <point key="canvasLocation" x="230.53435114503816" y="2.1126760563380285"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

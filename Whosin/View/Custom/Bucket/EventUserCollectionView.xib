@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-LightItalic.ttf">
+            <string>SFUIText-LightItalic</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventUserCollectionView" customModule="_Nights" customModuleProvider="target">
+            <connections>
+                <outlet property="_collectionView" destination="vZG-Ky-2iR" id="W5f-7b-28M"/>
+                <outlet property="_contentView" destination="iN0-l3-epB" id="ZgJ-ku-B4C"/>
+                <outlet property="_usersLabel" destination="Bgg-nM-3ZW" id="kYV-RQ-m41"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="70"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="utK-TH-oVz">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="62"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vZG-Ky-2iR">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="46"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="46" id="PJw-qa-izc"/>
+                            </constraints>
+                            <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="fOV-Af-3pP">
+                                <size key="itemSize" width="54" height="38"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </collectionView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="                                                 " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bgg-nM-3ZW">
+                            <rect key="frame" x="0.0" y="49" width="146" height="13"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="13" id="bQc-p3-fUU"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="SFUIText-LightItalic" family="SF UI Text" pointSize="11"/>
+                            <color key="textColor" name="brandDarkGray"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="vZG-Ky-2iR" firstAttribute="width" secondItem="utK-TH-oVz" secondAttribute="width" id="DuQ-WS-XXg"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" name="clear"/>
+            <constraints>
+                <constraint firstItem="utK-TH-oVz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="015-sa-mFD"/>
+                <constraint firstAttribute="trailing" secondItem="utK-TH-oVz" secondAttribute="trailing" id="PB7-f9-fvZ"/>
+                <constraint firstItem="utK-TH-oVz" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="aHZ-pK-O2A"/>
+                <constraint firstAttribute="bottom" secondItem="utK-TH-oVz" secondAttribute="bottom" constant="8" id="y7U-jI-hyw"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
+            <point key="canvasLocation" x="132" y="110"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="brandDarkGray">
+            <color red="0.47099998593330383" green="0.47099998593330383" blue="0.47099998593330383" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

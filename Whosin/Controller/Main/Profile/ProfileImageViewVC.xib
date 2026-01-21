@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileImageViewVC" customModule="Whosin" customModuleProvider="target">
+            <connections>
+                <outlet property="_profileImage" destination="q5G-vq-J1f" id="aec-u0-PGj"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SLX-kb-eyX">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="s1y-l7-mvZ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" name="clear"/>
+                    </view>
+                    <blurEffect style="systemThinMaterial"/>
+                </visualEffectView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q5G-vq-J1f">
+                    <rect key="frame" x="0.0" y="50" width="393" height="752"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="150"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MDJ-2w-j2S">
+                    <rect key="frame" x="20" y="79" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="D3s-Dn-Zk7"/>
+                        <constraint firstAttribute="width" constant="40" id="XF4-TI-X1U"/>
+                    </constraints>
+                    <color key="tintColor" name="white"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="icon_backArrow"/>
+                    <connections>
+                        <action selector="_handleCloseEvent:" destination="-1" eventType="touchUpInside" id="NWn-P5-04Z"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="clear"/>
+            <constraints>
+                <constraint firstItem="SLX-kb-eyX" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="AZy-gU-bYG"/>
+                <constraint firstItem="q5G-vq-J1f" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="D1M-ZE-gOh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="q5G-vq-J1f" secondAttribute="trailing" id="Exg-7a-wea"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SLX-kb-eyX" secondAttribute="trailing" id="Gcm-v6-IHn"/>
+                <constraint firstAttribute="bottom" secondItem="SLX-kb-eyX" secondAttribute="bottom" id="Hhh-oj-bUF"/>
+                <constraint firstItem="q5G-vq-J1f" firstAttribute="top" secondItem="MDJ-2w-j2S" secondAttribute="bottom" constant="50" id="Rbb-ZD-p21"/>
+                <constraint firstItem="q5G-vq-J1f" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="50" id="azy-41-4rl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="q5G-vq-J1f" secondAttribute="bottom" constant="50" id="gpN-it-mMY"/>
+                <constraint firstAttribute="bottom" secondItem="q5G-vq-J1f" secondAttribute="bottom" constant="50" id="h39-kz-ulz"/>
+                <constraint firstItem="SLX-kb-eyX" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hT5-1W-lvz"/>
+                <constraint firstItem="MDJ-2w-j2S" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="hW6-9H-IB5"/>
+                <constraint firstItem="MDJ-2w-j2S" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="tMn-B2-lnl"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Rbb-ZD-p21"/>
+                    <exclude reference="gpN-it-mMY"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="91" y="-11"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_backArrow" width="19" height="15"/>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

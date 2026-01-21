@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+        <array key="SFUIText-Semibold.ttf">
+            <string>SFUIText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="131" id="KGk-i7-Jjw" customClass="CompititorMessageCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="359" height="131"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="359" height="131"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4FO-9O-d1G" customClass="GradientView" customModule="Whosin" customModuleProvider="target">
+                        <rect key="frame" x="10" y="15" width="102.5" height="101"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oQA-Iw-vAE" customClass="AttributedLabel" customModule="Whosin" customModuleProvider="target">
+                                <rect key="frame" x="10" y="10" width="72.5" height="69"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="24f-Qd-Cvm"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
+                                <color key="textColor" name="white"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="12 Sep, 10:45 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jeI-cL-LcQ">
+                                <rect key="frame" x="10" y="81" width="82.5" height="12"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="10"/>
+                                <color key="textColor" name="white"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ryh-Jd-EhT">
+                                <rect key="frame" x="8" y="8" width="86.5" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="46" id="ern-iU-rey"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIText-Semibold" family="SF UI Text" pointSize="12"/>
+                                <color key="textColor" systemColor="linkColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.16862745098039217" green="0.16862745098039217" blue="0.16862745098039217" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="9ge-qx-SMS"/>
+                            <constraint firstItem="Ryh-Jd-EhT" firstAttribute="leading" secondItem="4FO-9O-d1G" secondAttribute="leading" constant="8" id="Dd4-GG-0Jy"/>
+                            <constraint firstAttribute="bottom" secondItem="jeI-cL-LcQ" secondAttribute="bottom" constant="8" id="M7i-RS-ZOw"/>
+                            <constraint firstAttribute="trailing" secondItem="Ryh-Jd-EhT" secondAttribute="trailing" constant="8" id="O0C-PR-7ST"/>
+                            <constraint firstItem="jeI-cL-LcQ" firstAttribute="top" secondItem="oQA-Iw-vAE" secondAttribute="bottom" constant="2" id="ck0-z5-dei"/>
+                            <constraint firstItem="oQA-Iw-vAE" firstAttribute="leading" secondItem="4FO-9O-d1G" secondAttribute="leading" constant="10" id="drs-bJ-8nl"/>
+                            <constraint firstItem="jeI-cL-LcQ" firstAttribute="leading" secondItem="4FO-9O-d1G" secondAttribute="leading" constant="10" id="eFf-ix-Bmy"/>
+                            <constraint firstAttribute="trailing" secondItem="jeI-cL-LcQ" secondAttribute="trailing" constant="10" id="f7F-57-HOa"/>
+                            <constraint firstAttribute="trailing" secondItem="oQA-Iw-vAE" secondAttribute="trailing" constant="20" id="kZA-q7-dJX"/>
+                            <constraint firstItem="oQA-Iw-vAE" firstAttribute="top" secondItem="Ryh-Jd-EhT" secondAttribute="bottom" constant="2" id="lgv-9s-qpP"/>
+                            <constraint firstItem="Ryh-Jd-EhT" firstAttribute="top" secondItem="4FO-9O-d1G" secondAttribute="top" constant="8" id="r8c-8O-hOW"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                <color key="value" red="0.16862745098039217" green="0.16862745098039217" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                <color key="value" red="0.16862745098039217" green="0.16862745098039217" blue="0.16862745098039217" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" name="clear"/>
+                <constraints>
+                    <constraint firstItem="4FO-9O-d1G" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="J0k-9B-qi3"/>
+                    <constraint firstItem="4FO-9O-d1G" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="U5j-Po-E2w"/>
+                    <constraint firstItem="4FO-9O-d1G" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="UhO-H5-3Rf"/>
+                    <constraint firstAttribute="bottom" secondItem="4FO-9O-d1G" secondAttribute="bottom" constant="15" id="c8W-ee-gCt"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="4FO-9O-d1G" secondAttribute="trailing" constant="100" id="sN6-Sp-f2j"/>
+                </constraints>
+                <userDefinedRuntimeAttributes>
+                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                </userDefinedRuntimeAttributes>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" name="clear"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="_bgView" destination="4FO-9O-d1G" id="50r-FH-uYp"/>
+                <outlet property="_messageLabel" destination="oQA-Iw-vAE" id="K9S-e0-mzc"/>
+                <outlet property="_messageTimeLabel" destination="jeI-cL-LcQ" id="gAB-AA-bvN"/>
+                <outlet property="_senderNameLabel" destination="Ryh-Jd-EhT" id="Vsf-XI-sNW"/>
+            </connections>
+            <point key="canvasLocation" x="160.1449275362319" y="110.82589285714285"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="linkColor">
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

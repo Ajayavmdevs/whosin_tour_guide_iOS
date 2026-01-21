@@ -1,0 +1,15 @@
+{
+  "images" : [
+    {
+      "filename" : "img_chat_wallpaper_3.jpg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  },
+  "properties" : {
+    "template-rendering-intent" : "original"
+  }
+}

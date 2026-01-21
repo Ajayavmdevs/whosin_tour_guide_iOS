@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Bold.ttf">
+            <string>SFUIText-Bold</string>
+        </array>
+        <array key="SFUIText-Medium.ttf">
+            <string>SFUIText-Medium</string>
+        </array>
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+        <array key="SFUIText-Semibold.ttf">
+            <string>SFUIText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TwoStepVarificationVC" customModule="Whosin" customModuleProvider="target">
+            <connections>
+                <outlet property="_bottomTitleText" destination="Zfi-1l-iPx" id="KGm-30-5YU"/>
+                <outlet property="_discriptionText" destination="GhO-hu-gid" id="qSa-hd-VSr"/>
+                <outlet property="_phoneNumber" destination="1Bf-Gc-Sct" id="eTB-aI-1GX"/>
+                <outlet property="_progress" destination="xqS-XN-OvQ" id="NAP-oz-kjv"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SKd-it-chS">
+                    <rect key="frame" x="348" y="133" width="30" height="30"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="icon_close"/>
+                    <connections>
+                        <action selector="_handleCloseEvent:" destination="-1" eventType="touchUpInside" id="qLL-Yp-Hl8"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_Logo" translatesAutoresizingMaskIntoConstraints="NO" id="ZwD-qk-BMf">
+                    <rect key="frame" x="20" y="148" width="80" height="50"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="5lU-Hz-brv"/>
+                        <constraint firstAttribute="width" constant="80" id="I1K-sN-dMf"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHOS'IN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qz9-HB-Yau">
+                    <rect key="frame" x="20" y="208" width="147.66666666666666" height="37.333333333333343"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="32"/>
+                    <color key="textColor" name="white"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2-Step Verification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pCK-l4-mEa">
+                    <rect key="frame" x="20" y="265.33333333333331" width="164" height="21"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI Text" pointSize="18"/>
+                    <color key="textColor" name="white"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="two_step_verification"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is extra step to shows, it's really you trying to sign in" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xzt-sU-90e">
+                    <rect key="frame" x="20" y="291.33333333333331" width="353" height="38.333333333333314"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="its_really_you_trying_to_sign_in"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X6t-nb-m1F">
+                    <rect key="frame" x="20" y="339.66666666666669" width="156" height="30"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+971 8521452142" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Bf-Gc-Sct">
+                            <rect key="frame" x="10" y="8" width="136" height="14"/>
+                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
+                            <color key="textColor" name="white"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" name="tabUnselect"/>
+                    <constraints>
+                        <constraint firstItem="1Bf-Gc-Sct" firstAttribute="leading" secondItem="X6t-nb-m1F" secondAttribute="leading" constant="10" id="A3H-wQ-lgB"/>
+                        <constraint firstAttribute="height" constant="30" id="Whg-kM-2rF"/>
+                        <constraint firstAttribute="trailing" secondItem="1Bf-Gc-Sct" secondAttribute="trailing" constant="10" id="Wir-ID-h2R"/>
+                        <constraint firstAttribute="bottom" secondItem="1Bf-Gc-Sct" secondAttribute="bottom" constant="8" id="db4-or-HRs"/>
+                        <constraint firstItem="1Bf-Gc-Sct" firstAttribute="top" secondItem="X6t-nb-m1F" secondAttribute="top" constant="8" id="yeq-A1-hnC"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="15"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xqS-XN-OvQ" customClass="RoundProgressView" customModule="Whosin" customModuleProvider="target">
+                    <rect key="frame" x="106.66666666666669" y="394.66666666666669" width="180" height="180.00000000000006"/>
+                    <color key="backgroundColor" name="clear"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="180" id="0kl-N1-Tcs"/>
+                        <constraint firstAttribute="height" constant="180" id="bvc-mu-Wdz"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="progressColor">
+                            <color key="value" name="brandPink"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                            <real key="value" value="40"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderwidth">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Check your other phone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zfi-1l-iPx">
+                    <rect key="frame" x="20" y="604.66666666666663" width="200.66666666666666" height="20"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Semibold" family="SF UI Text" pointSize="17"/>
+                    <color key="textColor" name="white"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="check_your_other_phone"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHOS'IN sent you notification to your other phone, Tap on notification and open app, Tap YES to continue." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GhO-hu-gid">
+                    <rect key="frame" x="20" y="629.66666666666663" width="353" height="57.333333333333371"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="sent_notification_to_your_phone_tap_for_continue"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bx6-YT-ikq">
+                    <rect key="frame" x="20" y="707" width="120" height="35"/>
+                    <color key="backgroundColor" name="brandGreen"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="mGR-de-9y2"/>
+                        <constraint firstAttribute="width" constant="120" id="nIt-lp-ydc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFUIText-Semibold" family="SF UI Text" pointSize="14"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="More option"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="17.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="more_option"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="_handleResendEvent:" destination="-1" eventType="touchUpInside" id="fVj-8O-KXH"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="brandAppBgColor"/>
+            <constraints>
+                <constraint firstItem="X6t-nb-m1F" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="1U1-1z-Mjx"/>
+                <constraint firstItem="pCK-l4-mEa" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="1UM-MR-dgG"/>
+                <constraint firstItem="SKd-it-chS" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="4VU-rx-Ebq"/>
+                <constraint firstItem="Qz9-HB-Yau" firstAttribute="top" secondItem="ZwD-qk-BMf" secondAttribute="bottom" constant="10" id="IyD-g9-jBF"/>
+                <constraint firstItem="Qz9-HB-Yau" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="L6N-Zq-d0R"/>
+                <constraint firstAttribute="trailing" secondItem="xzt-sU-90e" secondAttribute="trailing" constant="20" id="MIb-Qm-z2M"/>
+                <constraint firstItem="pCK-l4-mEa" firstAttribute="top" secondItem="Qz9-HB-Yau" secondAttribute="bottom" constant="20" id="OXz-rk-zAx"/>
+                <constraint firstItem="bx6-YT-ikq" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="P7J-Uo-vCO"/>
+                <constraint firstItem="ZwD-qk-BMf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="Pz6-Kq-OLj"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="GhO-hu-gid" secondAttribute="trailing" constant="20" id="TG9-lc-iDW"/>
+                <constraint firstItem="X6t-nb-m1F" firstAttribute="top" secondItem="xzt-sU-90e" secondAttribute="bottom" constant="10" id="TYR-fJ-JIh"/>
+                <constraint firstItem="Zfi-1l-iPx" firstAttribute="top" secondItem="xqS-XN-OvQ" secondAttribute="bottom" constant="30" id="UrE-gm-wcc"/>
+                <constraint firstItem="ZwD-qk-BMf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="XHw-Gy-3np"/>
+                <constraint firstItem="xzt-sU-90e" firstAttribute="top" secondItem="pCK-l4-mEa" secondAttribute="bottom" constant="5" id="YZG-Xh-lcE"/>
+                <constraint firstItem="xqS-XN-OvQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="aAH-MT-tHm"/>
+                <constraint firstItem="xqS-XN-OvQ" firstAttribute="top" secondItem="X6t-nb-m1F" secondAttribute="bottom" constant="25" id="bOj-7s-9gc"/>
+                <constraint firstItem="GhO-hu-gid" firstAttribute="top" secondItem="Zfi-1l-iPx" secondAttribute="bottom" constant="5" id="dMQ-qD-9Kh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SKd-it-chS" secondAttribute="trailing" constant="15" id="dqd-TX-cnD"/>
+                <constraint firstItem="GhO-hu-gid" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="hcM-7h-hPc"/>
+                <constraint firstItem="xzt-sU-90e" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="jNR-B1-R5G"/>
+                <constraint firstItem="Zfi-1l-iPx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="rzz-k3-6MV"/>
+                <constraint firstItem="bx6-YT-ikq" firstAttribute="top" secondItem="GhO-hu-gid" secondAttribute="bottom" constant="20" id="tM2-Wg-vuA"/>
+            </constraints>
+            <point key="canvasLocation" x="131" y="-11"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_Logo" width="138" height="84"/>
+        <image name="icon_close" width="30" height="30"/>
+        <namedColor name="brandAppBgColor">
+            <color red="0.059000000357627869" green="0.071000002324581146" blue="0.11400000005960464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandGreen">
+            <color red="0.0" green="0.67799997329711914" blue="0.18000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandPink">
+            <color red="0.90200001001358032" green="0.0" blue="0.49399998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tabUnselect">
+            <color red="0.49799999594688416" green="0.49799999594688416" blue="0.49799999594688416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

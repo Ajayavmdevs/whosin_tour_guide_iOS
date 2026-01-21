@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+        <array key="SFUIText-Semibold.ttf">
+            <string>SFUIText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EventGuestListBottomSheet" customModule="Whosin" customModuleProvider="target">
+            <connections>
+                <outlet property="_tableView" destination="iEq-ug-50z" id="F2y-eR-fix"/>
+                <outlet property="_title" destination="plL-l2-hV0" id="9X1-jd-ule"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite Guests" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="plL-l2-hV0">
+                    <rect key="frame" x="143" y="68" width="128.5" height="24"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Semibold" family="SF UI Text" pointSize="20"/>
+                    <color key="textColor" name="white"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="invite_guests"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pED-Kl-8qj">
+                    <rect key="frame" x="20" y="68" width="49" height="30"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Cancel"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="cancel"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="_handleCloseEvent:" destination="-1" eventType="touchUpInside" id="iDs-O6-sUd"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uXH-h9-nar">
+                    <rect key="frame" x="356" y="68" width="38" height="30"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Done"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="done"/>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="_handleInviteEvent:" destination="-1" eventType="touchUpInside" id="UUy-C9-dve"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="iEq-ug-50z" customClass="CustomTableView" customModule="Whosin" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="112" width="414" height="750"/>
+                    <color key="backgroundColor" name="clear"/>
+                </tableView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="brandAppBgColor"/>
+            <constraints>
+                <constraint firstItem="iEq-ug-50z" firstAttribute="top" secondItem="plL-l2-hV0" secondAttribute="bottom" constant="20" id="07a-5c-PxD"/>
+                <constraint firstItem="plL-l2-hV0" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="4JW-R8-iob"/>
+                <constraint firstItem="pED-Kl-8qj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="8M0-BK-xvs"/>
+                <constraint firstItem="pED-Kl-8qj" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="COI-fx-i5C"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="iEq-ug-50z" secondAttribute="bottom" id="N3z-Bt-csH"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="uXH-h9-nar" secondAttribute="trailing" constant="20" id="W1X-Dc-EaF"/>
+                <constraint firstItem="uXH-h9-nar" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="YwY-yE-QUd"/>
+                <constraint firstItem="plL-l2-hV0" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eWG-qL-sQ3"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="iEq-ug-50z" secondAttribute="trailing" id="fA1-Bj-oCQ"/>
+                <constraint firstItem="iEq-ug-50z" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="jq2-9Q-IGd"/>
+            </constraints>
+            <point key="canvasLocation" x="132" y="79"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="brandAppBgColor">
+            <color red="0.059000000357627869" green="0.071000002324581146" blue="0.11400000005960464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

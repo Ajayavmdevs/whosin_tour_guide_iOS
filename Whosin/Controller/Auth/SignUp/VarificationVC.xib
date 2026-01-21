@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Agrandir-GrandHeavy.otf">
+            <string>Agrandir-GrandHeavy</string>
+        </array>
+        <array key="Agrandir-Regular.otf">
+            <string>Agrandir-Regular</string>
+        </array>
+        <array key="GraphikRegular.otf">
+            <string>Graphik-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="VarificationVC" customModule="Whosin" customModuleProvider="target">
+            <connections>
+                <outlet property="_btnResend" destination="0g1-Lk-ivu" id="veU-W0-Cp4"/>
+                <outlet property="_changeButton" destination="HS0-Hn-5Pc" id="z3k-vh-omt"/>
+                <outlet property="_closeButton" destination="nVo-Rj-6SL" id="GNY-pn-gr1"/>
+                <outlet property="_lblMobileNumber" destination="96D-QG-wJr" id="dBM-4g-mXZ"/>
+                <outlet property="_lblResend" destination="dfW-WN-9mm" id="27v-LU-zVd"/>
+                <outlet property="_textFieldFive" destination="pP2-UX-hjM" id="RgN-Gu-tkn"/>
+                <outlet property="_textFieldFour" destination="hdP-tu-ROX" id="Gp2-gF-P6o"/>
+                <outlet property="_textFieldOne" destination="C8c-f0-hu2" id="nIu-RB-YWW"/>
+                <outlet property="_textFieldSix" destination="EbJ-J0-9VY" id="fmx-tK-h1d"/>
+                <outlet property="_textFieldThree" destination="QiP-Bo-9gx" id="Noa-Ng-nQP"/>
+                <outlet property="_textFieldTwo" destination="cq1-Ts-44O" id="ybI-Mk-lYr"/>
+                <outlet property="_titleTextLabel" destination="4RY-Xn-vj7" id="bRr-Ox-Jeg"/>
+                <outlet property="_verifyButton" destination="Im6-r1-dGT" id="YUa-qs-QvX"/>
+                <outlet property="bottomConatraint" destination="TQM-aW-OsI" id="jkH-tU-BWH"/>
+                <outlet property="view" destination="8sE-ma-WGZ" id="TVD-xZ-BkY"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="8sE-ma-WGZ">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="VERIFY YOUR NUMBER" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RY-Xn-vj7">
+                    <rect key="frame" x="40" y="74" width="334" height="30.5"/>
+                    <fontDescription key="fontDescription" name="Agrandir-GrandHeavy" family="Agrandir" pointSize="26"/>
+                    <color key="textColor" name="white"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="N1G-G0-Dab">
+                    <rect key="frame" x="40" y="131.5" width="135" height="30.5"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="XXXXXXXX40" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="96D-QG-wJr">
+                            <rect key="frame" x="0.0" y="0.0" width="72" height="30.5"/>
+                            <fontDescription key="fontDescription" name="Graphik-Regular" family="Graphik" pointSize="12"/>
+                            <color key="textColor" name="white"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HS0-Hn-5Pc">
+                            <rect key="frame" x="79" y="0.0" width="56" height="30.5"/>
+                            <color key="tintColor" red="0.21960784310000001" green="0.25882352939999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal">
+                                <attributedString key="attributedTitle">
+                                    <fragment content="Change">
+                                        <attributes>
+                                            <color key="NSColor" name="BrandLightYellow"/>
+                                            <font key="NSFont" size="16" name="Agrandir-TextBold"/>
+                                            <integer key="NSUnderline" value="1"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </state>
+                            <connections>
+                                <action selector="_handlechangeNumber:" destination="-1" eventType="touchUpInside" id="WI1-Uw-K8u"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="BSL-cj-NMQ">
+                    <rect key="frame" x="40" y="197" width="290" height="40"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="X" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="C8c-f0-hu2">
+                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="hZd-ej-JEg"/>
+                                <constraint firstAttribute="height" constant="40" id="su7-Re-6oZ"/>
+                            </constraints>
+                            <color key="textColor" name="black"/>
+                            <fontDescription key="fontDescription" name="Graphik-Regular" family="Graphik" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="sadowPath" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="0.75"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" name="black"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                    <color key="value" name="brandGray"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="_handleOTPTextFieldEditingBegan:" destination="-1" eventType="editingDidBegin" id="krW-NQ-B6F"/>
+                                <action selector="_handleOTPTextFieldEditingEnd:" destination="-1" eventType="editingDidEnd" id="wel-Mc-2yi"/>
+                            </connections>
+                        </textField>
+                        <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="X" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cq1-Ts-44O">
+                            <rect key="frame" x="50" y="0.0" width="40" height="40"/>
+                            <color key="backgroundColor" name="white"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="00V-aB-LAO"/>
+                                <constraint firstAttribute="width" constant="40" id="9k5-py-SVt"/>
+                            </constraints>
+                            <color key="textColor" name="black"/>
+                            <fontDescription key="fontDescription" name="Graphik-Regular" family="Graphik" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="sadowPath" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="0.75"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" name="black"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                    <color key="value" name="brandGray"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="_handleOTPTextFieldEditingBegan:" destination="-1" eventType="editingDidBegin" id="XLT-A7-Eqd"/>
+                                <action selector="_handleOTPTextFieldEditingEnd:" destination="-1" eventType="editingDidEnd" id="4Fh-gV-ctT"/>
+                            </connections>
+                        </textField>
+                        <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="X" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QiP-Bo-9gx">
+                            <rect key="frame" x="100" y="0.0" width="40" height="40"/>
+                            <color key="backgroundColor" name="white"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="2bg-MC-Jyr"/>
+                                <constraint firstAttribute="height" constant="40" id="w52-kf-AWT"/>
+                            </constraints>
+                            <color key="textColor" name="black"/>
+                            <fontDescription key="fontDescription" name="Graphik-Regular" family="Graphik" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="sadowPath" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="0.75"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" name="black"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                    <color key="value" name="brandGray"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="_handleOTPTextFieldEditingBegan:" destination="-1" eventType="editingDidBegin" id="55e-LU-XFp"/>
+                                <action selector="_handleOTPTextFieldEditingEnd:" destination="-1" eventType="editingDidEnd" id="M2Q-H6-ExB"/>
+                            </connections>
+                        </textField>
+                        <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="X" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hdP-tu-ROX">
+                            <rect key="frame" x="150" y="0.0" width="40" height="40"/>
+                            <color key="backgroundColor" name="white"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="1Aj-1g-XDj"/>
+                                <constraint firstAttribute="width" constant="40" id="8gF-jr-sup"/>
+                            </constraints>
+                            <color key="textColor" name="black"/>
+                            <fontDescription key="fontDescription" name="Graphik-Regular" family="Graphik" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="sadowPath" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="0.75"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" name="black"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                    <color key="value" name="brandGray"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="_handleOTPTextFieldEditingBegan:" destination="-1" eventType="editingDidBegin" id="ZJZ-YX-GJm"/>
+                                <action selector="_handleOTPTextFieldEditingEnd:" destination="-1" eventType="editingDidEnd" id="6j6-tE-E53"/>
+                            </connections>
+                        </textField>
+                        <textField opaque="NO" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="X" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pP2-UX-hjM">
+                            <rect key="frame" x="200" y="0.0" width="40" height="40"/>
+                            <color key="backgroundColor" name="white"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="bKx-49-PgO"/>
+                                <constraint firstAttribute="height" constant="40" id="uOW-0A-Zvt"/>
+                            </constraints>
+                            <color key="textColor" name="black"/>
+                            <fontDescription key="fontDescription" name="Graphik-Regular" family="Graphik" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="sadowPath" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="shadowWidth">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                    <color key="value" name="brandGray"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="0.75"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" name="black"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="_handleOTPTextFieldEditingBegan:" destination="-1" eventType="editingDidBegin" id="ITI-85-Qec"/>
+                                <action selector="_handleOTPTextFieldEditingEnd:" destination="-1" eventType="editingDidEnd" id="efe-AC-Tt3"/>
+                            </connections>
+                        </textField>
+                        <textField opaque="NO" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="X" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EbJ-J0-9VY">
+                            <rect key="frame" x="250" y="0.0" width="40" height="40"/>
+                            <color key="backgroundColor" name="white"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="PvD-87-lxJ"/>
+                                <constraint firstAttribute="width" constant="40" id="cCv-J6-ofd"/>
+                            </constraints>
+                            <color key="textColor" name="black"/>
+                            <fontDescription key="fontDescription" name="Graphik-Regular" family="Graphik" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="sadowPath" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="shadowWidth">
+                                    <real key="value" value="0.0"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                    <color key="value" name="brandGray"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                    <real key="value" value="0.75"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                    <color key="value" name="black"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                    <integer key="value" value="1"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="_handleOTPTextFieldEditingBegan:" destination="-1" eventType="editingDidBegin" id="4Cq-2q-ERD"/>
+                                <action selector="_handleOTPTextFieldEditingEnd:" destination="-1" eventType="editingDidEnd" id="f63-Xm-mn9"/>
+                            </connections>
+                        </textField>
+                    </subviews>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="kv3-fE-yMa">
+                    <rect key="frame" x="40" y="309" width="145" height="26"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Didn’t get a code?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfW-WN-9mm">
+                            <rect key="frame" x="0.0" y="0.0" width="99" height="26"/>
+                            <fontDescription key="fontDescription" name="Agrandir-Regular" family="Agrandir" pointSize="12"/>
+                            <color key="textColor" name="white"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0g1-Lk-ivu">
+                            <rect key="frame" x="104" y="0.0" width="41" height="26"/>
+                            <color key="tintColor" red="0.21960784310000001" green="0.25882352939999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal">
+                                <attributedString key="attributedTitle">
+                                    <fragment content="Resend">
+                                        <attributes>
+                                            <color key="NSColor" name="brandOrange"/>
+                                            <font key="NSFont" size="12" name="Agrandir-TextBold"/>
+                                            <integer key="NSUnderline" value="1"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </state>
+                            <connections>
+                                <action selector="_handleResendCodeEvent:" destination="-1" eventType="touchUpInside" id="vT7-ia-87O"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2lj-jP-yuT">
+                    <rect key="frame" x="40" y="112.5" width="258.5" height="19"/>
+                    <string key="text">Enter the code we’ve sent by text to
+</string>
+                    <fontDescription key="fontDescription" name="Agrandir-Regular" family="Agrandir" pointSize="16"/>
+                    <color key="textColor" name="white"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nVo-Rj-6SL">
+                    <rect key="frame" x="354" y="49" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="hh2-6P-CFi"/>
+                        <constraint firstAttribute="height" constant="40" id="xv9-9A-lKr"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="icon_Close"/>
+                    <connections>
+                        <action selector="_handleCloseEvent:" destination="-1" eventType="touchUpInside" id="yrE-Gd-5ml"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Im6-r1-dGT" customClass="GradientBorderButton" customModule="Whosin" customModuleProvider="target">
+                    <rect key="frame" x="70" y="758" width="274" height="39"/>
+                    <color key="backgroundColor" name="clear"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="39" id="vbm-aV-kAt"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Agrandir-GrandHeavy" family="Agrandir" pointSize="14"/>
+                    <color key="tintColor" name="black"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Verify">
+                        <color key="titleColor" name="white"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="0.75"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" name="black"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="_handleVerifyEmailEvent:" destination="-1" eventType="touchUpInside" id="nfA-wy-GzE"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="OPP-0O-Zdx"/>
+            <color key="backgroundColor" name="brandBackground"/>
+            <constraints>
+                <constraint firstItem="Im6-r1-dGT" firstAttribute="leading" secondItem="OPP-0O-Zdx" secondAttribute="leading" constant="70" id="053-y1-Tro"/>
+                <constraint firstItem="nVo-Rj-6SL" firstAttribute="top" secondItem="OPP-0O-Zdx" secondAttribute="top" constant="5" id="BL0-Xu-so5"/>
+                <constraint firstItem="4RY-Xn-vj7" firstAttribute="leading" secondItem="OPP-0O-Zdx" secondAttribute="leading" constant="40" id="KNA-xW-Z1o"/>
+                <constraint firstItem="OPP-0O-Zdx" firstAttribute="trailing" secondItem="nVo-Rj-6SL" secondAttribute="trailing" constant="20" id="Mjr-jB-oJe"/>
+                <constraint firstItem="OPP-0O-Zdx" firstAttribute="trailing" secondItem="Im6-r1-dGT" secondAttribute="trailing" constant="70" id="Pc5-Sh-rbD"/>
+                <constraint firstItem="kv3-fE-yMa" firstAttribute="top" secondItem="BSL-cj-NMQ" secondAttribute="bottom" constant="72" id="S9i-iz-QX6"/>
+                <constraint firstItem="OPP-0O-Zdx" firstAttribute="bottom" secondItem="Im6-r1-dGT" secondAttribute="bottom" constant="65" id="TQM-aW-OsI"/>
+                <constraint firstItem="N1G-G0-Dab" firstAttribute="leading" secondItem="4RY-Xn-vj7" secondAttribute="leading" id="Uqa-lg-Vza"/>
+                <constraint firstItem="kv3-fE-yMa" firstAttribute="leading" secondItem="BSL-cj-NMQ" secondAttribute="leading" id="Wz2-Ee-ioI"/>
+                <constraint firstItem="N1G-G0-Dab" firstAttribute="top" secondItem="2lj-jP-yuT" secondAttribute="bottom" id="c3h-Vm-daL"/>
+                <constraint firstItem="BSL-cj-NMQ" firstAttribute="top" secondItem="N1G-G0-Dab" secondAttribute="bottom" constant="35" id="cP2-T1-yIe"/>
+                <constraint firstItem="4RY-Xn-vj7" firstAttribute="top" secondItem="OPP-0O-Zdx" secondAttribute="top" constant="30" id="jCZ-dA-LI1"/>
+                <constraint firstItem="Im6-r1-dGT" firstAttribute="centerX" secondItem="8sE-ma-WGZ" secondAttribute="centerX" id="jYS-TX-tdD"/>
+                <constraint firstItem="2lj-jP-yuT" firstAttribute="top" secondItem="4RY-Xn-vj7" secondAttribute="bottom" constant="8" id="jkv-Ee-kKU"/>
+                <constraint firstItem="2lj-jP-yuT" firstAttribute="leading" secondItem="4RY-Xn-vj7" secondAttribute="leading" id="p6V-s8-TfS"/>
+                <constraint firstItem="OPP-0O-Zdx" firstAttribute="trailing" secondItem="4RY-Xn-vj7" secondAttribute="trailing" constant="40" id="ysg-eY-FRE"/>
+                <constraint firstItem="BSL-cj-NMQ" firstAttribute="leading" secondItem="4RY-Xn-vj7" secondAttribute="leading" id="z7f-aG-zQP"/>
+            </constraints>
+            <point key="canvasLocation" x="534.78260869565224" y="63.616071428571423"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_Close" width="12" height="12"/>
+        <namedColor name="BrandLightYellow">
+            <color red="0.92500001192092896" green="1" blue="0.45100000500679016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="black">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandBackground">
+            <color red="0.039000000804662704" green="0.097999997437000275" blue="0.18799999356269836" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandGray">
+            <color red="0.68599998950958252" green="0.68199998140335083" blue="0.6940000057220459" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandOrange">
+            <color red="0.99199998378753662" green="0.60799998044967651" blue="0.41200000047683716" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

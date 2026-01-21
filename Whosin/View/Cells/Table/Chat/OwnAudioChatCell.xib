@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="99" id="KGk-i7-Jjw" customClass="OwnAudioChatCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="407" height="99"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="407" height="99"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XPd-hV-1wm">
+                        <rect key="frame" x="117" y="10" width="280" height="86"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8tk-hH-RpI">
+                                <rect key="frame" x="10" y="23" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="0xI-Nv-9Nm"/>
+                                    <constraint firstAttribute="width" constant="40" id="Vx2-MU-cff"/>
+                                </constraints>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="Play_button"/>
+                                <state key="selected" image="pause_button"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" name="brandGreen"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="_handlePlayEvent:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xXO-DN-ThU"/>
+                                </connections>
+                            </button>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="6E3-Uf-Nts">
+                                <rect key="frame" x="58" y="26.5" width="214" height="34"/>
+                                <color key="tintColor" name="brandGreen"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="33" id="FEc-Ij-6f7"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="_handleSliderTouchDown:" destination="KGk-i7-Jjw" eventType="touchDown" id="PNi-lk-U8K"/>
+                                    <action selector="_handleSliderTouchUp:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="9ks-HJ-vBX"/>
+                                    <action selector="_handleSliderValueChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="J2K-mA-ZzB"/>
+                                </connections>
+                            </slider>
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="mVt-1e-Lgl">
+                                <rect key="frame" x="223" y="60.5" width="47" height="20"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="10:45" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZeW-8T-nr2">
+                                        <rect key="frame" x="0.0" y="4" width="27" height="12"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="10"/>
+                                        <color key="textColor" name="white"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_sending" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bkx-fk-ZGC">
+                                        <rect key="frame" x="32" y="2.5" width="15" height="15"/>
+                                        <color key="tintColor" name="white"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="15" id="5Wj-mn-HmC"/>
+                                            <constraint firstAttribute="width" secondItem="Bkx-fk-ZGC" secondAttribute="height" multiplier="1:1" id="rkz-AH-doa"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Ffv-zV-U7k"/>
+                                </constraints>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="-- : --" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkq-ea-dQq">
+                                <rect key="frame" x="60" y="64.5" width="27.5" height="12"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="10"/>
+                                <color key="textColor" name="white"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xQm-2y-Vz0" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                <rect key="frame" x="8" y="4" width="264" height="11"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="11" id="5BE-1R-3iT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                <color key="textColor" name="white"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <integer key="value" value="11"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isItalic" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="chatBubbleBgColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="mVt-1e-Lgl" secondAttribute="trailing" constant="10" id="DCU-GJ-Meq"/>
+                            <constraint firstAttribute="width" constant="280" id="JAs-jj-2Zn"/>
+                            <constraint firstItem="8tk-hH-RpI" firstAttribute="top" secondItem="xQm-2y-Vz0" secondAttribute="bottom" constant="8" id="Mhj-ms-OZB"/>
+                            <constraint firstAttribute="trailing" secondItem="xQm-2y-Vz0" secondAttribute="trailing" constant="8" id="Po1-Bk-0f8"/>
+                            <constraint firstItem="gkq-ea-dQq" firstAttribute="leading" secondItem="6E3-Uf-Nts" secondAttribute="leading" id="R8U-3D-ZSH"/>
+                            <constraint firstItem="8tk-hH-RpI" firstAttribute="leading" secondItem="XPd-hV-1wm" secondAttribute="leading" constant="10" id="Udo-8E-92s"/>
+                            <constraint firstItem="6E3-Uf-Nts" firstAttribute="centerY" secondItem="8tk-hH-RpI" secondAttribute="centerY" id="VFz-TO-9I6"/>
+                            <constraint firstItem="gkq-ea-dQq" firstAttribute="top" secondItem="6E3-Uf-Nts" secondAttribute="bottom" constant="5" id="ZQu-Mg-D6Z"/>
+                            <constraint firstAttribute="trailing" secondItem="6E3-Uf-Nts" secondAttribute="trailing" constant="10" id="cz5-Rt-dAC"/>
+                            <constraint firstAttribute="bottom" secondItem="mVt-1e-Lgl" secondAttribute="bottom" constant="5" id="eXO-6p-XsR"/>
+                            <constraint firstItem="6E3-Uf-Nts" firstAttribute="leading" secondItem="8tk-hH-RpI" secondAttribute="trailing" constant="10" id="ffx-ic-2Yb"/>
+                            <constraint firstItem="gkq-ea-dQq" firstAttribute="centerY" secondItem="mVt-1e-Lgl" secondAttribute="centerY" id="iPH-9N-kH5"/>
+                            <constraint firstItem="xQm-2y-Vz0" firstAttribute="leading" secondItem="XPd-hV-1wm" secondAttribute="leading" constant="8" id="ja6-kr-wNj"/>
+                            <constraint firstItem="xQm-2y-Vz0" firstAttribute="top" secondItem="XPd-hV-1wm" secondAttribute="top" constant="4" id="uai-T9-jPp"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="8"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" name="clear"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="XPd-hV-1wm" secondAttribute="trailing" constant="10" id="0bF-df-ySI"/>
+                    <constraint firstItem="XPd-hV-1wm" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="QkP-pb-AgG"/>
+                    <constraint firstAttribute="bottom" secondItem="XPd-hV-1wm" secondAttribute="bottom" constant="10" id="iAg-y3-m6i"/>
+                    <constraint firstItem="XPd-hV-1wm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="oD6-dJ-GSQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" name="clear"/>
+            <connections>
+                <outlet property="_audioDuration" destination="gkq-ea-dQq" id="q5L-Gf-niD"/>
+                <outlet property="_durationSlider" destination="6E3-Uf-Nts" id="JTs-mu-1Tz"/>
+                <outlet property="_playButton" destination="8tk-hH-RpI" id="RtW-HK-bRL"/>
+                <outlet property="_replyByName" destination="xQm-2y-Vz0" id="6rg-4j-gq6"/>
+                <outlet property="_statusImage" destination="Bkx-fk-ZGC" id="D6N-P3-s2o"/>
+                <outlet property="_timeLabel" destination="ZeW-8T-nr2" id="M3t-5K-q9v"/>
+            </connections>
+            <point key="canvasLocation" x="194.92753623188406" y="12.388392857142856"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Play_button" width="40.5" height="40"/>
+        <image name="icon_sending" width="32" height="32"/>
+        <image name="pause_button" width="40.5" height="40"/>
+        <namedColor name="brandGreen">
+            <color red="0.0" green="0.67799997329711914" blue="0.18000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="chatBubbleBgColor">
+            <color red="0.79600000381469727" green="0.0" blue="0.45100000500679016" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

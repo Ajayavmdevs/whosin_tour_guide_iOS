@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22685"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Bold.ttf">
+            <string>SFUIText-Bold</string>
+        </array>
+        <array key="SFUIText-Medium.ttf">
+            <string>SFUIText-Medium</string>
+        </array>
+        <array key="SFUIText-Semibold.ttf">
+            <string>SFUIText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="LargeOffersCollectionCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="505" height="421"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="505" height="421"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" id="KwW-QX-nWp">
+                        <rect key="frame" x="0.0" y="0.0" width="505" height="421"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="zK3-DG-Oq7">
+                                <rect key="frame" x="0.0" y="0.0" width="505" height="421"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" id="BlY-hR-xFV" customClass="GradientView" customModule="Whosin" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="301" width="505" height="120"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <color key="backgroundColor" name="clear"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                        <color key="value" red="0.32156862749999998" green="0.32156862749999998" blue="0.32156862749999998" alpha="0.0" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                        <color key="value" red="0.32156862749999998" green="0.32156862749999998" blue="0.32156862749999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="noC-aE-P5p" customClass="CustomVenueInfoView" customModule="Whosin" customModuleProvider="target">
+                                <rect key="frame" x="15" y="359" width="475" height="52"/>
+                                <color key="backgroundColor" name="clear"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="52" id="wDe-WY-uJe"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="                   " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yyh-wm-N3G">
+                                <rect key="frame" x="10" y="10" width="395" height="38.5"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="32"/>
+                                <color key="textColor" name="white"/>
+                                <color key="highlightedColor" name="white"/>
+                                <size key="shadowOffset" width="1.5" height="1.5"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.20000000000000001"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="1" height="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" name="BrandgradientLightBlack"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prR-Iz-QQ9">
+                                <rect key="frame" x="415" y="10" width="80" height="30"/>
+                                <color key="backgroundColor" name="brandPink"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Umc-Y5-taZ"/>
+                                    <constraint firstAttribute="width" constant="119" id="VWc-GP-hLv"/>
+                                    <constraint firstAttribute="width" constant="80" id="naj-Vr-Z2D"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFUIText-Semibold" family="SF UI Text" pointSize="16"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Invite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="15"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="VWc-GP-hLv"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <action selector="_handleInviteEvent:" destination="gTV-IL-0wX" eventType="touchUpInside" id="ys3-iV-PNl"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="                   " lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="none" showsExpansionTextWhenTruncated="YES" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y0S-JG-xt7">
+                                <rect key="frame" x="10" y="53.5" width="485" height="16"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI Text" pointSize="13"/>
+                                <color key="textColor" name="white"/>
+                                <color key="highlightedColor" name="white"/>
+                                <size key="shadowOffset" width="1.5" height="1.5"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                                        <color key="value" name="brandGray"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <integer key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="1.5" height="1.5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" name="clear"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="prR-Iz-QQ9" secondAttribute="trailing" constant="10" id="5rs-x7-hku"/>
+                            <constraint firstAttribute="trailing" secondItem="y0S-JG-xt7" secondAttribute="trailing" constant="10" id="A6p-hc-QsA"/>
+                            <constraint firstItem="prR-Iz-QQ9" firstAttribute="leading" secondItem="Yyh-wm-N3G" secondAttribute="trailing" constant="10" id="BT0-fT-ChS"/>
+                            <constraint firstItem="Yyh-wm-N3G" firstAttribute="top" secondItem="KwW-QX-nWp" secondAttribute="top" constant="10" id="Crc-LC-aoj"/>
+                            <constraint firstAttribute="trailing" secondItem="noC-aE-P5p" secondAttribute="trailing" constant="15" id="JFE-7o-Mmj"/>
+                            <constraint firstItem="noC-aE-P5p" firstAttribute="top" secondItem="KwW-QX-nWp" secondAttribute="top" constant="10" id="P0B-SB-Ikq"/>
+                            <constraint firstItem="y0S-JG-xt7" firstAttribute="leading" secondItem="KwW-QX-nWp" secondAttribute="leading" constant="10" id="P6G-Lb-SOg"/>
+                            <constraint firstAttribute="bottom" secondItem="noC-aE-P5p" secondAttribute="bottom" constant="10" id="Q1f-jx-rRx"/>
+                            <constraint firstItem="Yyh-wm-N3G" firstAttribute="leading" secondItem="KwW-QX-nWp" secondAttribute="leading" constant="10" id="UlM-Bv-KJl"/>
+                            <constraint firstItem="noC-aE-P5p" firstAttribute="top" relation="greaterThanOrEqual" secondItem="y0S-JG-xt7" secondAttribute="bottom" constant="20" id="e25-bM-jiW"/>
+                            <constraint firstItem="prR-Iz-QQ9" firstAttribute="top" secondItem="KwW-QX-nWp" secondAttribute="top" constant="10" id="guF-FJ-g2r"/>
+                            <constraint firstItem="noC-aE-P5p" firstAttribute="leading" secondItem="KwW-QX-nWp" secondAttribute="leading" constant="15" id="o25-hn-rZK"/>
+                            <constraint firstItem="y0S-JG-xt7" firstAttribute="top" secondItem="Yyh-wm-N3G" secondAttribute="bottom" constant="5" id="pgI-6k-pjA"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="P0B-SB-Ikq"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" name="clear"/>
+            <size key="customSize" width="505" height="421"/>
+            <connections>
+                <outlet property="_OfferTitle" destination="Yyh-wm-N3G" id="BbB-QW-hwZ"/>
+                <outlet property="_coverImage" destination="zK3-DG-Oq7" id="Dz0-if-IHw"/>
+                <outlet property="_mainContainerView" destination="KwW-QX-nWp" id="0fz-eO-qHk"/>
+                <outlet property="_offerDesc" destination="y0S-JG-xt7" id="ew1-YQ-QUj"/>
+                <outlet property="_venueInfoView" destination="noC-aE-P5p" id="Tj5-Yu-1WF"/>
+            </connections>
+            <point key="canvasLocation" x="87.681159420289859" y="25.111607142857142"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="BrandgradientLightBlack">
+            <color red="0.071000002324581146" green="0.071000002324581146" blue="0.071000002324581146" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandGray">
+            <color red="0.24699999392032623" green="0.2630000114440918" blue="0.3059999942779541" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandPink">
+            <color red="0.90200001001358032" green="0.0" blue="0.49399998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

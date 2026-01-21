@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BottomSheetVC" customModule="_Nights" customModuleProvider="target">
+            <connections>
+                <outlet property="_containerView" destination="Cum-1C-0W9" id="zJf-wi-8KD"/>
+                <outlet property="_tableView" destination="wT6-xE-LE3" id="RSb-gu-kGL"/>
+                <outlet property="_tableViewHeight" destination="3mU-pe-ySq" id="Y51-sU-GkN"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cum-1C-0W9">
+                    <rect key="frame" x="0.0" y="721" width="414" height="175"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XUC-Fs-w3B">
+                            <rect key="frame" x="192" y="8" width="30" height="3"/>
+                            <color key="backgroundColor" name="brandDarkGray"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="30" id="BAP-Ho-PTf"/>
+                                <constraint firstAttribute="height" constant="3" id="G0L-43-EgL"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="1.5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="wT6-xE-LE3" customClass="CustomTableView" customModule="_Nights" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="41" width="414" height="104"/>
+                            <color key="backgroundColor" name="brandBackground"/>
+                            <constraints>
+                                <constraint firstAttribute="height" priority="250" constant="104" id="3mU-pe-ySq"/>
+                            </constraints>
+                        </tableView>
+                    </subviews>
+                    <color key="backgroundColor" name="brandBackground"/>
+                    <constraints>
+                        <constraint firstItem="XUC-Fs-w3B" firstAttribute="centerX" secondItem="Cum-1C-0W9" secondAttribute="centerX" id="C7g-68-iwO"/>
+                        <constraint firstItem="wT6-xE-LE3" firstAttribute="leading" secondItem="Cum-1C-0W9" secondAttribute="leading" id="LX3-fw-cq6"/>
+                        <constraint firstItem="wT6-xE-LE3" firstAttribute="top" secondItem="XUC-Fs-w3B" secondAttribute="bottom" constant="30" id="Mot-SR-K3q"/>
+                        <constraint firstAttribute="trailing" secondItem="wT6-xE-LE3" secondAttribute="trailing" id="cfY-2E-dc7"/>
+                        <constraint firstItem="XUC-Fs-w3B" firstAttribute="top" secondItem="Cum-1C-0W9" secondAttribute="top" constant="8" id="umk-Sm-Eph"/>
+                        <constraint firstAttribute="bottom" secondItem="wT6-xE-LE3" secondAttribute="bottom" constant="30" id="wic-RF-sdb"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="clear"/>
+            <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Cum-1C-0W9" secondAttribute="trailing" id="Lbr-eg-JSE"/>
+                <constraint firstAttribute="bottom" secondItem="Cum-1C-0W9" secondAttribute="bottom" id="bqI-gq-ecT"/>
+                <constraint firstItem="Cum-1C-0W9" firstAttribute="top" relation="greaterThanOrEqual" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="16" id="npc-ZJ-zf1"/>
+                <constraint firstItem="Cum-1C-0W9" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="the-W8-Kku"/>
+            </constraints>
+            <point key="canvasLocation" x="132" y="110"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="brandBackground">
+            <color red="0.14509803921568629" green="0.14509803921568629" blue="0.14509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandDarkGray">
+            <color red="0.47099998593330383" green="0.47099998593330383" blue="0.47099998593330383" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

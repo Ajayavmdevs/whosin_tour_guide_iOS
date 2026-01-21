@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="144" id="KGk-i7-Jjw" customClass="PromoterClosingEventCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="481" height="144"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="481" height="144"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="e2U-bn-1qf">
+                        <rect key="frame" x="24" y="12" width="433" height="85"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BRN-8f-aTk">
+                                <rect key="frame" x="0.0" y="0.0" width="433" height="85"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Closing Event type" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkw-Cv-HDB" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="421" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="5O2-XY-PoE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" name="white"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                <real key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="closing_event_type"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="j4k-hX-Upe">
+                                        <rect key="frame" x="0.0" y="30" width="200" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="JPx-Ol-5Ri"/>
+                                            <constraint firstAttribute="width" constant="200" id="xZF-Hj-k0u"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="Automatic"/>
+                                            <segment title="Manual"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="_handleClosingTypeRequiredEvent:" destination="KGk-i7-Jjw" eventType="valueChanged" id="j5g-8R-gf9"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" name="clear"/>
+                                <constraints>
+                                    <constraint firstItem="rkw-Cv-HDB" firstAttribute="top" secondItem="BRN-8f-aTk" secondAttribute="top" id="0fR-69-uAt"/>
+                                    <constraint firstAttribute="bottom" secondItem="j4k-hX-Upe" secondAttribute="bottom" constant="10" id="N0t-4T-EXG"/>
+                                    <constraint firstItem="j4k-hX-Upe" firstAttribute="leading" secondItem="BRN-8f-aTk" secondAttribute="leading" id="O0d-jC-abU"/>
+                                    <constraint firstItem="rkw-Cv-HDB" firstAttribute="leading" secondItem="BRN-8f-aTk" secondAttribute="leading" id="P9B-tr-O6T"/>
+                                    <constraint firstItem="j4k-hX-Upe" firstAttribute="top" secondItem="rkw-Cv-HDB" secondAttribute="bottom" constant="10" id="Ywj-yr-LJx"/>
+                                    <constraint firstAttribute="trailing" secondItem="rkw-Cv-HDB" secondAttribute="trailing" constant="12" id="xQI-Jr-j6M"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YTB-Gs-cRv">
+                                <rect key="frame" x="0.0" y="0.0" width="433" height="34"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HmV-68-gSx" customClass="CustomButton" customModule="Whosin" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="433" height="34"/>
+                                        <color key="backgroundColor" red="0.16862745100000001" green="0.16862745100000001" blue="0.16862745100000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="select_closing_time"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                                <integer key="value" value="2"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                <real key="value" value="14"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="_handleSelectDateEvent:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="xvB-UD-dzS"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="clear"/>
+                                <constraints>
+                                    <constraint firstItem="HmV-68-gSx" firstAttribute="top" secondItem="YTB-Gs-cRv" secondAttribute="top" id="55c-45-TFZ"/>
+                                    <constraint firstAttribute="height" constant="34" id="9Th-U7-5kz"/>
+                                    <constraint firstAttribute="trailing" secondItem="HmV-68-gSx" secondAttribute="trailing" id="PZL-ci-RR2"/>
+                                    <constraint firstItem="HmV-68-gSx" firstAttribute="leading" secondItem="YTB-Gs-cRv" secondAttribute="leading" id="iQo-eM-TI5"/>
+                                    <constraint firstAttribute="bottom" secondItem="HmV-68-gSx" secondAttribute="bottom" id="vww-HW-y2O"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="BRN-8f-aTk" firstAttribute="leading" secondItem="e2U-bn-1qf" secondAttribute="leading" id="O26-26-VfB"/>
+                            <constraint firstItem="BRN-8f-aTk" firstAttribute="leading" secondItem="YTB-Gs-cRv" secondAttribute="leading" id="Swu-jg-bBp"/>
+                        </constraints>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" name="clear"/>
+                <constraints>
+                    <constraint firstItem="e2U-bn-1qf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="4B3-6m-ylv"/>
+                    <constraint firstAttribute="bottom" secondItem="e2U-bn-1qf" secondAttribute="bottom" constant="12" id="6vX-f8-fjt"/>
+                    <constraint firstItem="e2U-bn-1qf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="EpU-uE-33p"/>
+                    <constraint firstAttribute="trailing" secondItem="e2U-bn-1qf" secondAttribute="trailing" constant="24" id="MFf-jJ-bp8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" name="clear"/>
+            <connections>
+                <outlet property="_closingTypesegement" destination="j4k-hX-Upe" id="EuK-Pc-PNK"/>
+                <outlet property="_selectManualTimeView" destination="YTB-Gs-cRv" id="v2S-PN-bz9"/>
+                <outlet property="_selectTimeBtn" destination="HmV-68-gSx" id="0JF-M4-S3S"/>
+            </connections>
+            <point key="canvasLocation" x="159.54198473282443" y="16.197183098591552"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_7" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-ExtraLightItalic.ttf">
+            <string>Montserrat-ExtraLightItalic</string>
+        </array>
+        <array key="Montserrat-Medium.ttf">
+            <string>Montserrat-Medium</string>
+        </array>
+        <array key="Montserrat-VariableFont_wght.ttf">
+            <string>MontserratRoman-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="337" id="KGk-i7-Jjw" customClass="PromoterUserRequestTableCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="420" height="391"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="420" height="391"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MS5-Se-0Lt">
+                        <rect key="frame" x="22" y="5" width="376" height="381"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="9BX-6Z-bsa">
+                                <rect key="frame" x="0.0" y="0.0" width="376" height="381"/>
+                                <subviews>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C1L-bb-9Vr" customClass="CustomGallaryView" customModule="Whosin" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="376" height="280"/>
+                                        <color key="backgroundColor" name="clear"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="280" id="tlp-pQ-dJk"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oy0-gT-qmD">
+                                        <rect key="frame" x="0.0" y="281" width="376" height="59"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Y37-H9-e6B">
+                                                <rect key="frame" x="20" y="8" width="248" height="36"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adam Sandler" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWT-Vr-mQw">
+                                                        <rect key="frame" x="0.0" y="0.0" width="248" height="21.333333333333332"/>
+                                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="16"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="requested to join your ring" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3NO-s3-abM">
+                                                        <rect key="frame" x="0.0" y="21.333333333333314" width="248" height="14.666666666666664"/>
+                                                        <fontDescription key="fontDescription" name="Montserrat-ExtraLightItalic" family="Montserrat" pointSize="12"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Bpt-nl-h8c">
+                                                <rect key="frame" x="276" y="-14" width="85" height="80"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M0k-GY-nhe" customClass="CustomButton" customModule="Whosin" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="85" height="22"/>
+                                                        <color key="backgroundColor" red="0.84705882352941175" green="0.0" blue="0.45490196078431372" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="22" id="SEg-hP-TEv"/>
+                                                            <constraint firstAttribute="width" constant="85" id="Tp7-lm-ZYj"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="11"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="view profile"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="11"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                                                <integer key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="_handleVeiwProfileEvent:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Akv-Jp-Q3a"/>
+                                                        </connections>
+                                                    </button>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C9C-5t-ZjV" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="30" width="85" height="50"/>
+                                                        <fontDescription key="fontDescription" name="Montserrat-ExtraLightItalic" family="Montserrat" pointSize="12"/>
+                                                        <color key="textColor" name="amberColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                                                <integer key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                <real key="value" value="10"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isItalic" value="YES"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" name="clear"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Y37-H9-e6B" secondAttribute="bottom" constant="15" id="IeY-1e-fmi"/>
+                                            <constraint firstItem="Bpt-nl-h8c" firstAttribute="leading" secondItem="Y37-H9-e6B" secondAttribute="trailing" constant="8" id="Q68-Jl-4md"/>
+                                            <constraint firstItem="Bpt-nl-h8c" firstAttribute="centerY" secondItem="Y37-H9-e6B" secondAttribute="centerY" id="YFI-pe-38u"/>
+                                            <constraint firstItem="Y37-H9-e6B" firstAttribute="top" secondItem="oy0-gT-qmD" secondAttribute="top" constant="8" id="cJn-R4-lfL"/>
+                                            <constraint firstItem="Y37-H9-e6B" firstAttribute="leading" secondItem="oy0-gT-qmD" secondAttribute="leading" constant="20" id="eQT-Ik-oak"/>
+                                            <constraint firstAttribute="trailing" secondItem="Bpt-nl-h8c" secondAttribute="trailing" constant="15" id="zWL-Xf-MXP"/>
+                                        </constraints>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WGL-Lr-nlP">
+                                        <rect key="frame" x="0.0" y="341" width="376" height="40"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="eWe-M9-9L6">
+                                                <rect key="frame" x="20" y="5" width="336" height="25"/>
+                                                <subviews>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rejected" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bs7-g0-qW9" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="25"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                        <color key="textColor" name="buyNowColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                                                <integer key="value" value="3"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                <real key="value" value="16"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mp8-dp-4Y9" customClass="CustomActivityButton" customModule="Whosin" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="158" height="25"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="oq9-Uz-NXb"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="MontserratRoman-Regular" family="Montserrat" pointSize="14"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Reject">
+                                                            <color key="titleColor" red="0.8901960784313725" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                                <color key="value" red="0.8901960784313725" green="0.16470588235294117" blue="0.16470588235294117" alpha="1" colorSpace="calibratedRGB"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                                                <integer key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                <real key="value" value="14"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="reject"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="_handleRejectEvent:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="QLt-Kr-0wT"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VT4-vK-cfe" customClass="CustomActivityButton" customModule="Whosin" customModuleProvider="target">
+                                                        <rect key="frame" x="178" y="0.0" width="158" height="25"/>
+                                                        <color key="backgroundColor" red="0.0" green="0.72549019607843135" blue="0.16078431372549018" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="25" id="ZPr-bm-DQy"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="14"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Approve">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="12"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                                                <integer key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                                                <real key="value" value="14"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="approve"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="_handleApproveEvent:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="PDf-6I-Pjc"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" name="clear"/>
+                                        <constraints>
+                                            <constraint firstItem="eWe-M9-9L6" firstAttribute="top" secondItem="WGL-Lr-nlP" secondAttribute="top" constant="5" id="7ek-yG-rGJ"/>
+                                            <constraint firstAttribute="trailing" secondItem="eWe-M9-9L6" secondAttribute="trailing" constant="20" id="Omm-KK-SSB"/>
+                                            <constraint firstAttribute="bottom" secondItem="eWe-M9-9L6" secondAttribute="bottom" constant="10" id="UNf-L1-wbf"/>
+                                            <constraint firstItem="eWe-M9-9L6" firstAttribute="leading" secondItem="WGL-Lr-nlP" secondAttribute="leading" constant="20" id="c0h-S8-qmr"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="9BX-6Z-bsa" firstAttribute="leading" secondItem="MS5-Se-0Lt" secondAttribute="leading" id="Icu-ih-Rg7"/>
+                            <constraint firstAttribute="trailing" secondItem="9BX-6Z-bsa" secondAttribute="trailing" id="JFc-ea-lUj"/>
+                            <constraint firstItem="9BX-6Z-bsa" firstAttribute="top" secondItem="MS5-Se-0Lt" secondAttribute="top" id="ZqS-Zs-rxQ"/>
+                            <constraint firstAttribute="bottom" secondItem="9BX-6Z-bsa" secondAttribute="bottom" id="w41-PI-VDa"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="13"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="MS5-Se-0Lt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="05q-MT-AMm"/>
+                    <constraint firstAttribute="bottom" secondItem="MS5-Se-0Lt" secondAttribute="bottom" constant="5" id="WYz-IB-734"/>
+                    <constraint firstAttribute="trailing" secondItem="MS5-Se-0Lt" secondAttribute="trailing" constant="22" id="bqB-8E-Kjt"/>
+                    <constraint firstItem="MS5-Se-0Lt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="22" id="dn3-jI-wiC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="_approveBtn" destination="VT4-vK-cfe" id="w5t-Bx-nSy"/>
+                <outlet property="_bannerView" destination="C1L-bb-9Vr" id="GeV-fQ-eZO"/>
+                <outlet property="_btnsView" destination="WGL-Lr-nlP" id="3x9-fi-3QV"/>
+                <outlet property="_joinedTime" destination="C9C-5t-ZjV" id="1Y7-rU-oia"/>
+                <outlet property="_rejectBtn" destination="Mp8-dp-4Y9" id="KAD-I7-O3A"/>
+                <outlet property="_rejectedLable" destination="bs7-g0-qW9" id="aF8-yD-3Hq"/>
+                <outlet property="_subTitleText" destination="3NO-s3-abM" id="7NU-SP-a0u"/>
+                <outlet property="_userName" destination="wWT-Vr-mQw" id="iMs-Mv-2Ad"/>
+                <outlet property="_viewProfileBtn" destination="M0k-GY-nhe" id="yj4-Qb-WSj"/>
+            </connections>
+            <point key="canvasLocation" x="131.77570093457942" y="68.358531317494609"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="amberColor">
+            <color red="1" green="0.74901960784313726" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="buyNowColor">
+            <color red="0.86274509803921573" green="0.23529411764705882" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

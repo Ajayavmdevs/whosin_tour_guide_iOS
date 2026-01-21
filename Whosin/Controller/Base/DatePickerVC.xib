@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Medium.ttf">
+            <string>SFUIText-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DatePickerVC" customModule="Whosin" customModuleProvider="target">
+            <connections>
+                <outlet property="_calendarContainerView" destination="YVN-mX-5jr" id="Jme-33-xeh"/>
+                <outlet property="_doneButton" destination="k67-Q7-o1s" id="eHu-JV-j0a"/>
+                <outlet property="_mainContainerView" destination="1ZJ-GS-oso" id="bd3-qV-t4N"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1ZJ-GS-oso">
+                    <rect key="frame" x="0.0" y="423" width="414" height="473"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_gradientBg" translatesAutoresizingMaskIntoConstraints="NO" id="B3G-LS-8zC">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="473"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </imageView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Qd-gB-xXZ">
+                            <rect key="frame" x="192" y="8" width="30" height="3"/>
+                            <color key="backgroundColor" name="brandDarkGray"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="3" id="qgS-FV-1u9"/>
+                                <constraint firstAttribute="width" constant="30" id="rjf-DR-8B9"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="1.5"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rxW-jI-HmK">
+                            <rect key="frame" x="16" y="27" width="382" height="320"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YVN-mX-5jr">
+                                    <rect key="frame" x="0.0" y="0.0" width="382" height="320"/>
+                                    <color key="backgroundColor" name="clear"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="320" id="y7v-2Y-s9T"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                        </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="k67-Q7-o1s">
+                            <rect key="frame" x="16" y="363" width="382" height="40"/>
+                            <color key="backgroundColor" name="brandCardDarkBackground"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Inp-Qi-iak"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI Text" pointSize="15"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Done"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="_handleDoneEvent:" destination="-1" eventType="touchUpInside" id="y5B-Do-gHr"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" name="brandBackground"/>
+                    <constraints>
+                        <constraint firstItem="rxW-jI-HmK" firstAttribute="leading" secondItem="1ZJ-GS-oso" secondAttribute="leading" constant="16" id="87c-eh-uf4"/>
+                        <constraint firstItem="B3G-LS-8zC" firstAttribute="leading" secondItem="1ZJ-GS-oso" secondAttribute="leading" id="EJl-Z7-9dr"/>
+                        <constraint firstItem="B3G-LS-8zC" firstAttribute="top" secondItem="1ZJ-GS-oso" secondAttribute="top" id="IqY-IQ-bax"/>
+                        <constraint firstAttribute="trailing" secondItem="k67-Q7-o1s" secondAttribute="trailing" constant="16" id="Mdk-sB-xwr"/>
+                        <constraint firstAttribute="trailing" secondItem="rxW-jI-HmK" secondAttribute="trailing" constant="16" id="SY9-SB-siB"/>
+                        <constraint firstAttribute="trailing" secondItem="B3G-LS-8zC" secondAttribute="trailing" id="TJN-2d-ZVt"/>
+                        <constraint firstItem="4Qd-gB-xXZ" firstAttribute="centerX" secondItem="1ZJ-GS-oso" secondAttribute="centerX" id="TVo-oO-F9Q"/>
+                        <constraint firstAttribute="bottom" secondItem="k67-Q7-o1s" secondAttribute="bottom" constant="70" id="U3J-F9-2Ry"/>
+                        <constraint firstItem="rxW-jI-HmK" firstAttribute="top" secondItem="4Qd-gB-xXZ" secondAttribute="bottom" constant="16" id="Xei-im-VPb"/>
+                        <constraint firstItem="k67-Q7-o1s" firstAttribute="top" secondItem="rxW-jI-HmK" secondAttribute="bottom" constant="16" id="aly-6D-853"/>
+                        <constraint firstAttribute="bottom" secondItem="B3G-LS-8zC" secondAttribute="bottom" id="ayG-qk-iRf"/>
+                        <constraint firstItem="4Qd-gB-xXZ" firstAttribute="top" secondItem="1ZJ-GS-oso" secondAttribute="top" constant="8" id="h5E-kG-qXU"/>
+                        <constraint firstItem="k67-Q7-o1s" firstAttribute="leading" secondItem="1ZJ-GS-oso" secondAttribute="leading" constant="16" id="ySG-Dg-1Co"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
+                            <color key="value" name="brandPink"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                            <real key="value" value="0.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                            <real key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="clear"/>
+            <constraints>
+                <constraint firstItem="1ZJ-GS-oso" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="aPW-9g-Qg5"/>
+                <constraint firstAttribute="trailing" secondItem="1ZJ-GS-oso" secondAttribute="trailing" id="hgV-24-DjW"/>
+                <constraint firstAttribute="bottom" secondItem="1ZJ-GS-oso" secondAttribute="bottom" id="iO7-SZ-fOY"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="88.392857142857139"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="image_gradientBg" width="428" height="926"/>
+        <namedColor name="brandBackground">
+            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandCardDarkBackground">
+            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandDarkGray">
+            <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandPink">
+            <color red="0.90200001001358032" green="0.0" blue="0.49399998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

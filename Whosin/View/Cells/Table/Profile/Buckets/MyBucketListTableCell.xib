@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Bold.ttf">
+            <string>SFUIText-Bold</string>
+        </array>
+        <array key="SFUIText-Medium.ttf">
+            <string>SFUIText-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="402" id="KGk-i7-Jjw" customClass="MyBucketListTableCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="493" height="402"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="493" height="402"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Bucketlist" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lTP-sl-pSi">
+                        <rect key="frame" x="20" y="15" width="353" height="72"/>
+                        <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="20"/>
+                        <color key="textColor" name="white"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="1Gh-Xj-j6g" customClass="CustomNoKeyboardCollectionView" customModule="Whosin" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="92" width="493" height="300"/>
+                        <color key="backgroundColor" name="clear"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="300" id="w2G-lb-SkI"/>
+                        </constraints>
+                        <inset key="scrollIndicatorInsets" minX="1000" minY="0.0" maxX="0.0" maxY="500"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="LGE-b3-8ck">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5iH-C9-U3y">
+                        <rect key="frame" x="393" y="36" width="80" height="30"/>
+                        <color key="backgroundColor" name="brandGreen"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="Wa1-Bb-RBA"/>
+                            <constraint firstAttribute="width" constant="80" id="aGn-g0-inp"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI Text" pointSize="13"/>
+                        <color key="tintColor" name="white"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" title="Create +"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="15"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                        <connections>
+                            <action selector="_handleCreateBucketEvent:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="oTt-Gh-bSY"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="5iH-C9-U3y" firstAttribute="leading" secondItem="lTP-sl-pSi" secondAttribute="trailing" constant="20" id="9E0-P3-LH6"/>
+                    <constraint firstAttribute="trailing" secondItem="5iH-C9-U3y" secondAttribute="trailing" constant="20" id="Hcx-w5-3uF"/>
+                    <constraint firstItem="lTP-sl-pSi" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="Hgr-1i-Pa3"/>
+                    <constraint firstItem="lTP-sl-pSi" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="I9J-hv-EMk"/>
+                    <constraint firstItem="1Gh-Xj-j6g" firstAttribute="top" secondItem="lTP-sl-pSi" secondAttribute="bottom" constant="10" id="IdO-4z-G7M"/>
+                    <constraint firstItem="1Gh-Xj-j6g" firstAttribute="top" secondItem="lTP-sl-pSi" secondAttribute="bottom" constant="5" id="fea-gZ-VGa"/>
+                    <constraint firstItem="5iH-C9-U3y" firstAttribute="centerY" secondItem="lTP-sl-pSi" secondAttribute="centerY" id="hp3-xE-d88"/>
+                    <constraint firstItem="1Gh-Xj-j6g" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="j3n-vS-CcW"/>
+                    <constraint firstAttribute="bottom" secondItem="1Gh-Xj-j6g" secondAttribute="bottom" constant="10" id="wfX-PN-9CH"/>
+                    <constraint firstAttribute="trailing" secondItem="1Gh-Xj-j6g" secondAttribute="trailing" id="yhJ-U5-stF"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="IdO-4z-G7M"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" name="clear"/>
+            <connections>
+                <outlet property="_collectionView" destination="1Gh-Xj-j6g" id="oCP-ai-CqG"/>
+            </connections>
+            <point key="canvasLocation" x="183.96946564885496" y="-7.746478873239437"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="brandGreen">
+            <color red="0.0" green="0.67799997329711914" blue="0.18000000715255737" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

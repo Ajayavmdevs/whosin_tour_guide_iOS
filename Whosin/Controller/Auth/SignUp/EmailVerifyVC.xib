@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Heavy.ttf">
+            <string>SFUIText-Heavy</string>
+        </array>
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
+        <array key="SFUIText-SemiBold.ttf">
+            <string>SFUIText-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EmailVerifyVC" customModule="Whosin" customModuleProvider="target">
+            <connections>
+                <outlet property="_backButton" destination="0sQ-Gj-ikk" id="F0X-Xy-I7L"/>
+                <outlet property="_descText" destination="iXV-8z-tYM" id="W3L-BL-Ijq"/>
+                <outlet property="_emailTextField" destination="0qr-1m-d5v" id="pnj-ax-e9o"/>
+                <outlet property="_nextButton" destination="Ixw-iB-e1L" id="AfS-YO-QFG"/>
+                <outlet property="_titleLabel" destination="JX4-4X-nVm" id="REq-1U-WoA"/>
+                <outlet property="bottomConatraint" destination="cr0-x0-FIF" id="00g-6Z-dNj"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="image_gradientBg" translatesAutoresizingMaskIntoConstraints="NO" id="1pa-Rp-M6w">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                </imageView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0sQ-Gj-ikk" customClass="CustomGradientBorderButton" customModule="Whosin" customModuleProvider="target">
+                    <rect key="frame" x="26" y="47" width="36" height="36"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.13" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="FIQ-41-ESZ"/>
+                        <constraint firstAttribute="width" constant="36" id="pT4-pZ-Tmz"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="icon_backArrow"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="_handleBackButtonEvent:" destination="-1" eventType="touchUpInside" id="Gmf-BC-0UP"/>
+                    </connections>
+                </button>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ixw-iB-e1L" customClass="CustomGradientBorderButton" customModule="Whosin" customModuleProvider="target">
+                    <rect key="frame" x="318" y="677" width="70" height="70"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.13" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="70" id="SMe-Go-6YU"/>
+                        <constraint firstAttribute="width" constant="70" id="WvW-iD-AOT"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="_handleNextEvent:" destination="-1" eventType="touchUpInside" id="SLk-RX-uj9"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello John, What’s your email address?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JX4-4X-nVm">
+                    <rect key="frame" x="26" y="133" width="362" height="53"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Heavy" family="SF UI Text" pointSize="22"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please add your email to unlock access to many features" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iXV-8z-tYM">
+                    <rect key="frame" x="26" y="191" width="362" height="38.5"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="0.84999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="email_to_unlock_access_to_many_features"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0qr-1m-d5v" customClass="CustomTextField" customModule="Whosin" customModuleProvider="target">
+                    <rect key="frame" x="26" y="269.5" width="362" height="49"/>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="0.13" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="49" id="fIM-2j-Ts6"/>
+                    </constraints>
+                    <color key="textColor" name="white"/>
+                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
+                    <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="24.5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                            <color key="value" red="1" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="_handleEditingBegan:" destination="-1" eventType="editingDidBegin" id="eVc-Oj-UfW"/>
+                    </connections>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KBM-Nx-lAC">
+                    <rect key="frame" x="369" y="111" width="30" height="30"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="icon_close"/>
+                    <connections>
+                        <action selector="_handleCloseEvent:" destination="-1" eventType="touchUpInside" id="12I-Vh-7v1"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AjE-N2-UOa" customClass="GradientView" customModule="Whosin" customModuleProvider="target">
+                    <rect key="frame" x="144.5" y="418.5" width="125" height="40"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dzc-ek-0Kn">
+                            <rect key="frame" x="0.0" y="0.0" width="125" height="40"/>
+                            <color key="backgroundColor" name="clear"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="125" id="Wfn-bx-27t"/>
+                                <constraint firstAttribute="height" constant="40" id="t25-Zq-B0a"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="SFUIText-SemiBold" family="SF UI Text" pointSize="18"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Submit"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="submit"/>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="_handleSubmitEvent:" destination="-1" eventType="touchUpInside" id="pf4-uV-arl"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Dzc-ek-0Kn" secondAttribute="bottom" id="9fp-4g-tjg"/>
+                        <constraint firstItem="Dzc-ek-0Kn" firstAttribute="leading" secondItem="AjE-N2-UOa" secondAttribute="leading" id="Kkl-qU-OMc"/>
+                        <constraint firstAttribute="trailing" secondItem="Dzc-ek-0Kn" secondAttribute="trailing" id="Lw5-2K-14b"/>
+                        <constraint firstItem="Dzc-ek-0Kn" firstAttribute="top" secondItem="AjE-N2-UOa" secondAttribute="top" id="yXo-Uv-MjB"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                            <color key="value" red="0.94901960780000005" green="0.1058823529" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                            <color key="value" red="0.94901960780000005" green="0.1058823529" blue="0.45882352939999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="horizontalMode" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="JX4-4X-nVm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="1RM-nk-LbE"/>
+                <constraint firstItem="0qr-1m-d5v" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="1kK-RU-GEG"/>
+                <constraint firstItem="0qr-1m-d5v" firstAttribute="top" secondItem="iXV-8z-tYM" secondAttribute="bottom" constant="40" id="4RG-me-In7"/>
+                <constraint firstItem="iXV-8z-tYM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="8Ua-nH-12P"/>
+                <constraint firstItem="KBM-Nx-lAC" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="15" id="D1N-K0-L06"/>
+                <constraint firstItem="iXV-8z-tYM" firstAttribute="top" secondItem="JX4-4X-nVm" secondAttribute="bottom" constant="5" id="DQA-IC-Dsy"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="0qr-1m-d5v" secondAttribute="trailing" constant="26" id="Gaw-YE-Aja"/>
+                <constraint firstItem="1pa-Rp-M6w" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="MN9-UD-LaA"/>
+                <constraint firstItem="1pa-Rp-M6w" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="OIj-Ys-S1v"/>
+                <constraint firstItem="0sQ-Gj-ikk" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="47" id="RUe-bw-fHi"/>
+                <constraint firstItem="AjE-N2-UOa" firstAttribute="top" secondItem="0qr-1m-d5v" secondAttribute="bottom" constant="100" id="T7h-cQ-Xgl"/>
+                <constraint firstAttribute="trailing" secondItem="iXV-8z-tYM" secondAttribute="trailing" constant="26" id="WSq-rN-yx7"/>
+                <constraint firstAttribute="bottom" secondItem="1pa-Rp-M6w" secondAttribute="bottom" id="cGO-2X-2gk"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Ixw-iB-e1L" secondAttribute="bottom" constant="81" id="cr0-x0-FIF"/>
+                <constraint firstItem="AjE-N2-UOa" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="eXY-8f-Ear"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KBM-Nx-lAC" secondAttribute="trailing" constant="15" id="f9T-vn-eO1"/>
+                <constraint firstItem="0sQ-Gj-ikk" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="26" id="mui-qN-LmW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="1pa-Rp-M6w" secondAttribute="trailing" id="nZm-Vp-qXf"/>
+                <constraint firstItem="JX4-4X-nVm" firstAttribute="top" secondItem="0sQ-Gj-ikk" secondAttribute="bottom" constant="50" id="tVW-ut-Wcl"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="JX4-4X-nVm" secondAttribute="trailing" constant="26" id="wC3-8I-olZ"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Ixw-iB-e1L" secondAttribute="trailing" constant="26" id="z9Y-A4-D6n"/>
+            </constraints>
+            <point key="canvasLocation" x="131.8840579710145" y="88.392857142857139"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_backArrow" width="19" height="15"/>
+        <image name="icon_close" width="30" height="30"/>
+        <image name="image_gradientBg" width="428" height="926"/>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

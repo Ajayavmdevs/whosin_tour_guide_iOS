@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Bold.ttf">
+            <string>SFUIText-Bold</string>
+        </array>
+        <array key="SFUIText-Medium.ttf">
+            <string>SFUIText-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" rowHeight="473" id="KGk-i7-Jjw" customClass="AllVenueSeachTableCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="549" height="473"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="549" height="473"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DVc-FO-utL">
+                        <rect key="frame" x="10" y="0.0" width="529" height="50"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VVs-90-cke">
+                                <rect key="frame" x="0.0" y="0.0" width="46" height="50"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="20"/>
+                                <color key="textColor" name="white"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dIw-cm-zQ2">
+                                <rect key="frame" x="494" y="0.0" width="35" height="50"/>
+                                <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI Text" pointSize="14"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="More">
+                                    <color key="titleColor" name="brandPink"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="more"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="_handleMoreEvent:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="eAB-IK-go5"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="Iia-VZ-tVc"/>
+                            <constraint firstAttribute="bottom" secondItem="dIw-cm-zQ2" secondAttribute="bottom" id="N9B-3f-VRl"/>
+                            <constraint firstAttribute="trailing" secondItem="dIw-cm-zQ2" secondAttribute="trailing" id="QgY-IN-6vK"/>
+                            <constraint firstAttribute="bottom" secondItem="VVs-90-cke" secondAttribute="bottom" id="kzb-h1-PRI"/>
+                            <constraint firstItem="VVs-90-cke" firstAttribute="leading" secondItem="DVc-FO-utL" secondAttribute="leading" id="tUG-cd-SyO"/>
+                            <constraint firstItem="VVs-90-cke" firstAttribute="top" secondItem="DVc-FO-utL" secondAttribute="top" id="yGd-bQ-Z6g"/>
+                            <constraint firstItem="dIw-cm-zQ2" firstAttribute="top" secondItem="DVc-FO-utL" secondAttribute="top" id="zTd-rh-cd6"/>
+                        </constraints>
+                    </view>
+                    <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="f5G-PW-FVe" customClass="CustomNoKeyboardCollectionView" customModule="Whosin" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="50" width="549" height="180"/>
+                        <color key="backgroundColor" name="clear"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="180" id="LGE-s6-Yx8"/>
+                        </constraints>
+                        <inset key="scrollIndicatorInsets" minX="1200" minY="0.0" maxX="0.0" maxY="700"/>
+                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="C9A-tc-fEc">
+                            <size key="itemSize" width="128" height="128"/>
+                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        </collectionViewFlowLayout>
+                    </collectionView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="DVc-FO-utL" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Elh-Rs-0my"/>
+                    <constraint firstAttribute="trailing" secondItem="DVc-FO-utL" secondAttribute="trailing" constant="10" id="N1R-35-tAf"/>
+                    <constraint firstItem="DVc-FO-utL" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="T0h-go-Eha"/>
+                    <constraint firstItem="f5G-PW-FVe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="hAT-mG-RsB"/>
+                    <constraint firstAttribute="bottom" secondItem="f5G-PW-FVe" secondAttribute="bottom" id="jao-9p-wKA"/>
+                    <constraint firstAttribute="trailing" secondItem="f5G-PW-FVe" secondAttribute="trailing" id="qKY-ej-kJL"/>
+                    <constraint firstItem="f5G-PW-FVe" firstAttribute="top" secondItem="DVc-FO-utL" secondAttribute="bottom" id="rxY-kr-6H8"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" name="clear"/>
+            <connections>
+                <outlet property="_collectionView" destination="f5G-PW-FVe" id="35N-WU-AMD"/>
+                <outlet property="_heaightConstraint" destination="LGE-s6-Yx8" id="YdK-Zd-Th4"/>
+                <outlet property="_titleLabel" destination="VVs-90-cke" id="p4a-pK-rDh"/>
+            </connections>
+            <point key="canvasLocation" x="-121.0144927536232" y="-51.897321428571423"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="brandPink">
+            <color red="0.90200001001358032" green="0.0" blue="0.49399998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="clear">
+            <color red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-SemiBold.ttf">
+            <string>SFUIText-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="EventStatusCollectionCell" customModule="Whosin" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="183" height="34"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="183" height="34"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hsT-ML-EuB">
+                        <rect key="frame" x="3" y="0.0" width="177" height="34"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ll6-g4-Q8A">
+                                <rect key="frame" x="5" y="0.0" width="167" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Near me" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qQ4-Vc-ti5">
+                                        <rect key="frame" x="0.0" y="0.0" width="167" height="34"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-SemiBold" family="SF UI Text" pointSize="12"/>
+                                        <color key="textColor" name="white"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.13725490196078433" green="0.13725490196078433" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="ll6-g4-Q8A" secondAttribute="bottom" id="64n-BA-CEr"/>
+                            <constraint firstItem="ll6-g4-Q8A" firstAttribute="leading" secondItem="hsT-ML-EuB" secondAttribute="leading" constant="5" id="QTy-fA-yk0"/>
+                            <constraint firstItem="ll6-g4-Q8A" firstAttribute="top" secondItem="hsT-ML-EuB" secondAttribute="top" id="drT-1i-STt"/>
+                            <constraint firstAttribute="trailing" secondItem="ll6-g4-Q8A" secondAttribute="trailing" constant="5" id="zBN-9u-dPj"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="0.0"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <integer key="value" value="7"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="hsT-ML-EuB" secondAttribute="trailing" constant="3" id="JoU-YY-6BL"/>
+                <constraint firstItem="hsT-ML-EuB" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="SAA-oq-3m7"/>
+                <constraint firstAttribute="bottom" secondItem="hsT-ML-EuB" secondAttribute="bottom" id="V75-oB-MER"/>
+                <constraint firstItem="hsT-ML-EuB" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="3" id="s81-Q4-BOW"/>
+            </constraints>
+            <size key="customSize" width="255" height="114"/>
+            <connections>
+                <outlet property="_bgView" destination="hsT-ML-EuB" id="yKx-vb-rGB"/>
+                <outlet property="_textLabel" destination="qQ4-Vc-ti5" id="OOr-9y-B5F"/>
+            </connections>
+            <point key="canvasLocation" x="29.710144927536234" y="76.339285714285708"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
