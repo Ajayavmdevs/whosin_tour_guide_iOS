@@ -13,8 +13,6 @@ class NotificationVC: ChildViewController {
     private let kCellIdentifierEventRequest = String(describing: EventRequestTableCell.self)
     private let kCellIdentifierRequest = String(describing: PendingRequestTableCell.self)
     private let kCellIdentifierUserRequest = String(describing: UserRequestTableCell.self)
-    private let kCellIdentifierPromoterRequest = String(describing: PromoterUserRequestTableCell.self)
-    private let kCellNotificationEvent = String(describing: CMNotificationEventTableCell.self)
     private let kCellPlusOneRequest = String(describing: PlusOneRequestTableCell.self)
     private let kCellSubAdminRequest = String(describing: SubAdminRequestTableCell.self)
     private let kEmptyCellIdentifier = String(describing: EmptyDataCell.self)
@@ -234,15 +232,7 @@ class NotificationVC: ChildViewController {
                             kCellHeightKey: EmptyDataCell.height
                         ])
                     } else {
-                        _promoterUserNotifications?.notification.forEach { model in
-                            cellData.append([
-                                kCellIdentifierKey: kCellIdentifierPromoterRequest,
-                                kCellTagKey: kCellIdentifierPromoterRequest,
-                                kCellObjectDataKey: model,
-                                kCellClassKey: PromoterUserRequestTableCell.self,
-                                kCellHeightKey: PromoterUserRequestTableCell.height
-                            ])
-                        }
+
                     }
                 } else {
                     if _eventNotification?.notification.isEmpty == true || _eventNotification?.notification == nil {
@@ -297,14 +287,6 @@ class NotificationVC: ChildViewController {
                                 kCellObjectDataKey: model,
                                 kCellClassKey: UserRequestTableCell.self,
                                 kCellHeightKey: UserRequestTableCell.height
-                            ])
-                        } else {
-                            cellData.append([
-                                kCellIdentifierKey: kCellNotificationEvent,
-                                kCellTagKey: kCellNotificationEvent,
-                                kCellObjectDataKey: model.event,
-                                kCellClassKey: CMNotificationEventTableCell.self,
-                                kCellHeightKey: CMNotificationEventTableCell.height
                             ])
                         }
                     }
@@ -373,8 +355,6 @@ class NotificationVC: ChildViewController {
             [kCellIdentifierKey: kCellIdentifierEventRequest, kCellNibNameKey: kCellIdentifierEventRequest, kCellClassKey: EventRequestTableCell.self, kCellHeightKey: EventRequestTableCell.height],
             [kCellIdentifierKey: kCellIdentifierUserRequest, kCellNibNameKey: kCellIdentifierUserRequest, kCellClassKey: UserRequestTableCell.self, kCellHeightKey: UserRequestTableCell.height],
             [kCellIdentifierKey: kEmptyCellIdentifier, kCellNibNameKey: kEmptyCellIdentifier, kCellClassKey: EmptyDataCell.self, kCellHeightKey: EmptyDataCell.height],
-            [kCellIdentifierKey: kCellNotificationEvent, kCellNibNameKey: kCellNotificationEvent, kCellClassKey: CMNotificationEventTableCell.self, kCellHeightKey: CMNotificationEventTableCell.height],
-            [kCellIdentifierKey: kCellIdentifierPromoterRequest, kCellNibNameKey: kCellIdentifierPromoterRequest, kCellClassKey: PromoterUserRequestTableCell.self, kCellHeightKey: PromoterUserRequestTableCell.height],
             [kCellIdentifierKey: kCellPlusOneRequest, kCellNibNameKey: kCellPlusOneRequest, kCellClassKey: PlusOneRequestTableCell.self, kCellHeightKey: PlusOneRequestTableCell.height],
             [kCellIdentifierKey: kCellSubAdminRequest, kCellNibNameKey: kCellSubAdminRequest, kCellClassKey: SubAdminRequestTableCell.self, kCellHeightKey: SubAdminRequestTableCell.height]
 
@@ -551,10 +531,6 @@ extension NotificationVC: CustomNoKeyboardTableViewDelegate {
             } else if let object = cellDict?[kCellObjectDataKey] as? NotificationModel {
                 cell.setupData(object)
             }
-        } else if let cell = cell as? CMNotificationEventTableCell {
-            if let object = cellDict?[kCellObjectDataKey] as? PromoterEventsModel {
-                cell.setupData(object)
-            }
         } else if let cell = cell as? EmptyDataCell {
             guard let object = cellDict?[kCellObjectDataKey] as? [String:Any] else { return }
             cell.setupData(object)
@@ -571,12 +547,6 @@ extension NotificationVC: CustomNoKeyboardTableViewDelegate {
                 cell.setUpData(object, isNotification: true)
             } else if let object = cellDict?[kCellObjectDataKey] as? PromoterChatListModel {
                 cell.setUpChatData(object, isPromoter: true)
-            }
-        } else if let cell = cell as? PromoterUserRequestTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? NotificationModel else { return }
-            cell.setupData(object, isPromoter: APPSESSION.userDetail?.isRingMember == true)
-            cell.updateStatusCallback = { status in
-                self._requestUserNoftification(true)
             }
         }
         else if let cell = cell as? PlusOneRequestTableCell {
@@ -596,160 +566,12 @@ extension NotificationVC: CustomNoKeyboardTableViewDelegate {
     }
     
     func didSelectTableCell(_ cell: UITableViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
-        if let cell = cell as? PendingRequestTableCell {
-            if let object = cellDict?[kCellObjectDataKey] as? NotificationModel {
-                if  object.type == "ring-request-accepted" || object.type == "promoter-request-accepted"  {
-                    if APPSESSION.userDetail?.isRingMember != true {
-                        let vc = INIT_CONTROLLER_XIB(CompletePromoterProfileVC.self)
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                } else if object.type == "ring-request-rejected" || object.type == "promoter-request-rejected" {
-                    let vc = INIT_CONTROLLER_XIB(ApplicationRejectVC.self)
-                    vc.remainingDays = Utils.remainingDays(from: object.updatedAt) ?? 15
-                    vc.isRingType = object.type == "ring-request-rejected"
-                    vc.hidesBottomBarWhenPushed = true
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-            } else if !APPSETTING.pendingRequestList.isEmpty {
-                let vc = INIT_CONTROLLER_XIB(FollowRequestListVC.self)
-                navigationController?.pushViewController(vc, animated: true)
-            }
-        } else  if cell is UserRequestTableCell {
-            if APPSESSION.userDetail?.isRingMember == true {
-                guard let object = cellDict?[kCellObjectDataKey] as? NotificationModel else { return }
-                let vc = INIT_CONTROLLER_XIB(PromoterPublicProfileVc.self)
-                vc.promoterId = object.typeId
-                navigationController?.pushViewController(vc, animated: true)
-            } else {
-                guard let object = cellDict?[kCellObjectDataKey] as? NotificationModel else { return }
-                let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                vc.complimentryId = object.typeId
-                navigationController?.pushViewController(vc, animated: true)
-            }
-        } else if cell is CMNotificationEventTableCell {
-            if let object = cellDict?[kCellObjectDataKey] as? PromoterEventsModel {
-                let vc = INIT_CONTROLLER_XIB(PromoterEventDetailVC.self)
-                vc.eventModel = object
-                vc.id = object.id
-                vc.isComplementary = true
-                vc.hidesBottomBarWhenPushed = true
-                navigationController?.pushViewController(vc, animated: true)
-            }
-        } else if let cell = cell as? PromoterUserRequestTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? NotificationModel else { return}
-            let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-            vc.complimentryId = object.typeId
-            navigationController?.pushViewController(vc, animated: true)
-        } else {
-            guard let object = cellDict?[kCellObjectDataKey] as? NotificationModel else { return }
-            if object.type == "venue" {
-                let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-                vc.venueId = object.typeId
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else if object.type == "offer" {
-                let vc = INIT_CONTROLLER_XIB(OfferPackageDetailVC.self)
-                vc.offerId = object.typeId
-                vc.modalPresentationStyle = .overFullScreen
-                vc.vanueOpenCallBack = { venueId, venueModel in
-                    let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-                    vc.venueId = venueId
-                    vc.venueDetailModel = venueModel
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-                vc.buyNowOpenCallBack = { offer, venue, timing in
-                    let vc = INIT_CONTROLLER_XIB(BuyPackgeVC.self)
-                    vc.isFromActivity = false
-                    vc.type = "offers"
-                    vc.timingModel = timing
-                    vc.offerModel = offer
-                    vc.venue = venue
-                    vc.setCallback {
-                        let controller = INIT_CONTROLLER_XIB(MyCartVC.self)
-                        controller.modalPresentationStyle = .overFullScreen
-                        self.navigationController?.pushViewController(controller, animated: true)
-                    }
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-                presentAsPanModal(controller: vc)
-            } else if object.type == "category" {
-                guard let categoryModel = _notificationData?.category.toArrayDetached(ofType: CategoryDetailModel.self) else { return }
-                let vc = INIT_CONTROLLER_XIB(CategoryDetailVC.self)
-                vc.categoryDetailModel = categoryModel.first(where: { $0.id == object.typeId })
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else if object.type == "follows" {
-                guard let userDetail = APPSESSION.userDetail else { return}
-                if !object.typeId.isEmpty {
-                    if object.isPromoter, userDetail.isRingMember {
-                        let vc = INIT_CONTROLLER_XIB(PromoterPublicProfileVc.self)
-                        vc.promoterId = object.id
-                        vc.isFromPersonal = true
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    } else if object.isRingMember, userDetail.isPromoter {
-                        let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                        vc.complimentryId = object.id
-                        vc.isFromPersonal = true
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    } else {
-                        let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                        vc.contactId = object.typeId
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                }
-            } else if object.type == "link" {
+        guard let object = cellDict?[kCellObjectDataKey] as? NotificationModel else { return }
+            if object.type == "link" {
                 if let url = URL(string: object.typeId) {
                     if UIApplication.shared.canOpenURL(url) {
                         UIApplication.shared.open(url, options: [:], completionHandler: nil)
                     }
-                }
-            } else if object.type == "follow" {
-                guard let userDetail = APPSESSION.userDetail else { return }
-                if object.typeId != userDetail.id {
-                    if object.isPromoter, userDetail.isRingMember {
-                        let vc = INIT_CONTROLLER_XIB(PromoterPublicProfileVc.self)
-                        vc.promoterId = object.id
-                        vc.isFromPersonal = true
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    } else if object.isRingMember, userDetail.isPromoter {
-                        let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                        vc.complimentryId = object.id
-                        vc.isFromPersonal = true
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    } else {
-                        let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                        vc.contactId = object.typeId
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                }
-            } else if object.type == "event" {
-                let vc = INIT_CONTROLLER_XIB(EventDetailVC.self)
-                vc.eventId = object.typeId
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else if object.type == "outing" {
-                if !object.typeId.isEmpty {
-                    let vc = INIT_CONTROLLER_XIB(OutingDetailVC.self)
-                    vc.outingId = object.typeId
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-            } else if object.type == "deal" {
-                if !object.typeId.isEmpty {
-                    let vc = INIT_CONTROLLER_XIB(DealsDetailVC.self)
-                    vc.dealId = object.typeId
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-            } else if object.type == "activity" {
-                if !object.typeId.isEmpty {
-                    let vc = INIT_CONTROLLER_XIB(ActivityInfoVC.self)
-                    vc.activityId = object.typeId
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-            } else if object.type == "add-to-ring" {
-                if APPSESSION.userDetail?.isPromoter == true { return }
-                if APPSESSION.userDetail?.isRingMember != true {
-                    let vc = INIT_CONTROLLER_XIB(PromoterApplicationVC.self)
-                    vc.isComlementry = true
-                    vc.referredById = object.typeId
-                    vc.hidesBottomBarWhenPushed = true
-                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             } else if object.type == "ticket" {
                 let vc = INIT_CONTROLLER_XIB(CustomTicketDetailVC.self)
@@ -783,28 +605,10 @@ extension NotificationVC: CustomNoKeyboardTableViewDelegate {
                 navController.setNavigationBarHidden(true, animated: false)
                 window.setRootViewController(navController, options: UIWindow.TransitionOptions(direction:.fade, style: .easeInOut))
             }
-            if let cell = cell as? EventRequestTableCell {
-                if let object = cellDict?[kCellObjectDataKey] as? NotificationModel {
-                    let vc = INIT_CONTROLLER_XIB(PromoterEventDetailVC.self)
-                    vc.id = object.event?.id ?? ""
-                    vc.hidesBottomBarWhenPushed = true
-                    navigationController?.pushViewController(vc, animated: true)
-                } else if let object = cellDict?[kCellObjectDataKey] as? PromoterChatListModel {
-                    let vc = INIT_CONTROLLER_XIB(PromoterEventDetailVC.self)
-                    vc.id = object.id
-                    vc.hidesBottomBarWhenPushed = true
-                    navigationController?.pushViewController(vc, animated: true)
-                }
-            } else if let cell = cell as? PlusOneRequestTableCell {
-                let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                vc.contactId = object.userId
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
         }
     }
     
 
-}
 
 extension NotificationVC: ChatTableHeaderViewDelegate {
     

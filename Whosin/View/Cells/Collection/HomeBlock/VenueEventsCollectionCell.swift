@@ -91,15 +91,6 @@ class VenueEventsCollectionCell: UICollectionViewCell {
     // --------------------------------------
     
     @IBAction private func _handleViewEvent(_ sender: UIButton) {
-        parentBaseController?.feedbackGenerator?.impactOccurred()
-        guard let venueDetail = _venueDetailModel else {
-            return
-        }
-        let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-        vc.venueId = self._venueId
-        vc.venueDetailModel = venueDetail
-        vc.hidesBottomBarWhenPushed = false
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

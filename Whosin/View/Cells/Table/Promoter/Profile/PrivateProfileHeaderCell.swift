@@ -301,20 +301,8 @@ class PrivateProfileHeaderCell: UITableViewCell {
     }
     
     @IBAction private func _handleSwitchToPersional(_ sender: CustomActivityButton) {
-        if isFromPersonal {
-            guard let controller = self.parentViewController?.navigationController?.viewControllers.first(where: {$0.isKind(of: UsersProfileVC.self)}) else {
-                let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                vc.contactId = promoterModel?.profile?.userId ?? ""
-                vc.isSwitchProfile = true
-                self.parentViewController?.navigationController?.pushViewController(vc, animated: false)
-                return
-            }
-            self.parentViewController?.navigationController?.popViewController(animated: false)
-        } else {
             NotificationCenter.default.post(name: .switchToPersonalProfile, object: nil)
             self.parentViewController?.dismiss(animated: true, completion: nil)
-        }
-        
     }
     
     @IBAction private func _handlePublicAddToRingEvent(_ sender: CustomActivityButton) {

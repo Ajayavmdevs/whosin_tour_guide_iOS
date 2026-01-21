@@ -212,35 +212,6 @@ extension CustomPromotionBanner: CustomNoKeyboardCollectionViewDelegate, UIColle
             _openURL(urlString: object.typeId)
         } else if object.type == "activity" {
             _openActivity(id: object.typeId, name: "")
-        } else if object.type == "venue" {
-            let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-            vc.venueId = object.typeId
-            parentViewController?.navigationController?.pushViewController(vc, animated: true)
-        } else if object.type == "offer" {
-            let vc = INIT_CONTROLLER_XIB(OfferPackageDetailVC.self)
-            vc.offerId = object.typeId
-            vc.modalPresentationStyle = .overFullScreen
-            vc.vanueOpenCallBack = { venueId, venueModel in
-                let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-                vc.venueId = venueId
-                vc.venueDetailModel = venueModel
-                self.parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            }
-            vc.buyNowOpenCallBack = { offer, venue, timing in
-                let vc = INIT_CONTROLLER_XIB(BuyPackgeVC.self)
-                vc.isFromActivity = false
-                vc.type = "offers"
-                vc.timingModel = timing
-                vc.offerModel = offer
-                vc.venue = venue
-                vc.setCallback {
-                    let controller = INIT_CONTROLLER_XIB(MyCartVC.self)
-                    controller.modalPresentationStyle = .overFullScreen
-                    self.parentViewController?.navigationController?.pushViewController(controller, animated: true)
-                }
-                self.parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            }
-            self.parentViewController?.presentAsPanModal(controller: vc)
         }
     }
     
@@ -251,10 +222,6 @@ extension CustomPromotionBanner: CustomNoKeyboardCollectionViewDelegate, UIColle
     }
     
     private func _openActivity(id: String, name: String) {
-        let vc = INIT_CONTROLLER_XIB(ActivityInfoVC.self)
-        vc.activityId = id
-        vc.activityName = name
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
     }
 
 }

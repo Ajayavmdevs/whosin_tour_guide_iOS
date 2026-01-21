@@ -90,12 +90,6 @@ extension SocialEventFilterCell: CustomCollectionViewDelegate {
     }
     
     func didSelectCell(_ cell: UICollectionViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
-        guard let object = cellDict?[kCellObjectDataKey] as? String,let events = cellDict?[kCellItemsKey] as? [PromoterEventsModel] else { return }
-        let vc = INIT_CONTROLLER_XIB(SeeAllDetailVC.self)
-        vc.detailType = "filterEvent"
-        vc.viewTitle = object
-        vc.eventListModel = events
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
     func cellSize(_ collectionView: UICollectionView, cellDict: [String : Any]?, indexPath: IndexPath) -> CGSize {

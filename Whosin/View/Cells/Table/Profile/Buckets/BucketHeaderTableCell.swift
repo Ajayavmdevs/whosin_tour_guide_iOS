@@ -172,10 +172,7 @@ class BucketHeaderTableCell: UITableViewCell {
     }
     
     private func _openActivity(id: String, name: String) {
-        let vc = INIT_CONTROLLER_XIB(ActivityInfoVC.self)
-        vc.activityId = id
-        vc.activityName = name
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
+
     }
     // --------------------------------------
     // MARK: Services

@@ -85,11 +85,6 @@ class SharedUserNoMarginCell: UICollectionViewCell {
     @IBAction func _handleContactEvent(_ sender: UIButton) {
         guard let model = contacts else { return }
         guard let userDetail = APPSESSION.userDetail else { return }
-        if model.id != userDetail.id {
-            let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-            vc.contactId = model.id
-            parentViewController?.navigationController?.pushViewController(vc, animated: true)
-        }
     }
     
 }

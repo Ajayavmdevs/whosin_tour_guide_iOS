@@ -131,21 +131,11 @@ class EventTableCell: UITableViewCell {
     }
     
     @IBAction  private func _handleEditEvent(_ sender: UIButton) {
-        let controler = INIT_CONTROLLER_XIB(InviteBottomSheet.self)
-        controler.outingModel = _outingListModel
-        let navController = NavigationController(rootViewController: controler)
-        navController.modalPresentationStyle = .custom
-        parentBaseController?.present(navController, animated: true)
     }
 
     @IBAction private func _handleInvitedGuestListEvent(_ sender: UIButton) {
         let presentedViewController = INIT_CONTROLLER_XIB(EventGuestListBottomSheet.self)
         presentedViewController.eventId = _eventList?.id ?? kEmptyString
-        presentedViewController.userOpenCallBack = { userId in
-            let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-            vc.contactId = userId
-            self.parentViewController?.navigationController?.pushViewController(vc, animated: true)
-        }
         presentedViewController.openChatCallBack = { chatModel in
             let vc = INIT_CONTROLLER_XIB(ChatDetailVC.self)
             vc.hidesBottomBarWhenPushed = true
@@ -166,13 +156,6 @@ extension EventTableCell: CustomCollectionViewDelegate {
         if let object = cellDict?[kCellObjectDataKey] as? InvitationModel {
             cell.setupEventData(object, inviteStatus: object.inviteStatus)
         }
-    }
-    
-    func didSelectCell(_ cell: UICollectionViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
-        guard let model = cellDict?[kCellObjectDataKey] as? InvitationModel else { return }
-        let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-        vc.contactId = model.userId
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
     func cellSize(_ collectionView: UICollectionView, cellDict: [String : Any]?, indexPath: IndexPath) -> CGSize {

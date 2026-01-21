@@ -119,12 +119,6 @@ class CustomOffersBtnView: UIView {
     // --------------------------------------
         
     @objc private func _handleInviteEvent(_ sender: UIButton) {
-        let controler = INIT_CONTROLLER_XIB(InviteBottomSheet.self)
-        controler._selectedOffer = offersModel
-        controler.venueModel = offersModel?.venue
-        let navController = NavigationController(rootViewController: controler)
-        navController.modalPresentationStyle = .custom
-        parentBaseController?.present(navController, animated: true)
     }
     
     @objc private func _handleClaimNowEvent(_ sender: UIButton) {
@@ -137,18 +131,6 @@ class CustomOffersBtnView: UIView {
     }
     
     @objc private func _handleBuyNowEvent(_ sender: UIButton) {
-        guard let model = offersModel else { return }
-        let vc = INIT_CONTROLLER_XIB(BuyPackgeVC.self)
-        vc.type = "offers"
-        vc.offerModel = model
-        vc.venue = self.venueModel
-        vc.timingModel = self.venueModel?.timing.toArrayDetached(ofType: TimingModel.self)
-        vc.setCallback {
-            let controller = INIT_CONTROLLER_XIB(MyCartVC.self)
-            controller.modalPresentationStyle = .overFullScreen
-            self.parentViewController?.navigationController?.pushViewController(controller, animated: true)
-        }
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
     }
 
 }

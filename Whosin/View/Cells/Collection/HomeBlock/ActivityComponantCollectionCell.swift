@@ -99,17 +99,6 @@ class ActivityComponantCollectionCell: UICollectionViewCell {
     }
     
     @IBAction private func _handleBuyNowEvent(_ sender: UIButton) {
-        guard let model = activityModel else { return }
-        let vc = INIT_CONTROLLER_XIB(BuyPackgeVC.self)
-        vc.isFromActivity = true
-        vc.type = "activity"
-        vc.activityModel.append(model)
-        vc.setCallback {
-            let controller = INIT_CONTROLLER_XIB(MyCartVC.self)
-            controller.modalPresentationStyle = .overFullScreen
-            self.parentViewController?.navigationController?.pushViewController(controller, animated: true)
-        }
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

@@ -121,23 +121,6 @@ extension CustomVenueCalloutView: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = _userList[indexPath.row]
         guard let userDetail = APPSESSION.userDetail, user.id != userDetail.id else { return}
-        if user.isPromoter, userDetail.isRingMember {
-            let vc = INIT_CONTROLLER_XIB(PromoterPublicProfileVc.self)
-            vc.promoterId = user.id
-            vc.isFromPersonal = true
-            parentViewController?.navigationController?.pushViewController(vc, animated: true)
-        } else if user.isRingMember, userDetail.isPromoter {
-            let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-            vc.complimentryId = user.id
-            vc.isFromPersonal = true
-            parentViewController?.navigationController?.pushViewController(vc, animated: true)
-        } else {
-            let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-            vc.contactId = user.id
-            vc.modalPresentationStyle = .overFullScreen
-            parentViewController?.navigationController?.navigationController?.pushViewController(vc, animated: true)
-        }
-
     }
 }
 

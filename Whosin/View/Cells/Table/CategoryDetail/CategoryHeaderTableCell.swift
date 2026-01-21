@@ -58,10 +58,7 @@ class CategoryHeaderTableCell: UITableViewCell {
     }
     
     private func _openActivity(id: String, name: String) {
-        let vc = INIT_CONTROLLER_XIB(ActivityInfoVC.self)
-        vc.activityId = id
-        vc.activityName = name
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
+
     }
 
     // --------------------------------------
@@ -87,37 +84,6 @@ extension CategoryHeaderTableCell: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if _bannerList[indexPath.row].type == "link" {
             _openURL(urlString: _bannerList[indexPath.row].link)
-        } else if _bannerList[indexPath.row].type == "activity" {
-            _openActivity(id: _bannerList[indexPath.row].activityId, name: "")
-        } else if _bannerList[indexPath.row].type == "venue" {
-            let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-            vc.venueId = _bannerList[indexPath.row].venueId
-            parentViewController?.navigationController?.pushViewController(vc, animated: true)
-        } else if _bannerList[indexPath.row].type == "offer" {
-            let vc = INIT_CONTROLLER_XIB(OfferPackageDetailVC.self)
-            vc.offerId = _bannerList[indexPath.row].offerId
-            vc.modalPresentationStyle = .overFullScreen
-            vc.vanueOpenCallBack = { venueId, venueModel in
-                let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-                vc.venueId = venueId
-                vc.venueDetailModel = venueModel
-                self.parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            }
-            vc.buyNowOpenCallBack = { offer, venue, timing in
-                let vc = INIT_CONTROLLER_XIB(BuyPackgeVC.self)
-                vc.isFromActivity = false
-                vc.type = "offers"
-                vc.timingModel = timing
-                vc.offerModel = offer
-                vc.venue = venue
-                vc.setCallback {
-                    let controller = INIT_CONTROLLER_XIB(MyCartVC.self)
-                    controller.modalPresentationStyle = .overFullScreen
-                    self.parentViewController?.navigationController?.pushViewController(controller, animated: true)
-                }
-                self.parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            }
-            self.parentViewController?.presentAsPanModal(controller: vc)
         } else if _bannerList[indexPath.row].type == "ticket" {
             let vc = INIT_CONTROLLER_XIB(CustomTicketDetailVC.self)
             vc.ticketID = _bannerList[indexPath.row].ticketId

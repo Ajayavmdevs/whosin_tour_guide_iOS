@@ -68,21 +68,6 @@ class PackageOfferTableCell: UITableViewCell {
     func updateLabel() {
         _stepperLabel.text = "\(stepperValue)"
         guard let _venueModel = _venueModel, let _vouchersModel = _packageModel else { return }
-        let cartModel = BuyPackgeVC.tmpCart.first { $0.id == _vouchersModel.id }
-        if cartModel != nil {
-            cartModel?.quantity = stepperValue
-        } else {
-            if isEvent {
-                guard let _eventModel = _eventModel else { return }
-                guard let tmpModel = CartModel(event: _eventModel, venue: _venueModel, _packageModel ?? PackageModel()) else { return }
-                tmpModel.quantity = stepperValue
-                BuyPackgeVC.tmpCart.append(tmpModel)
-            } else {
-                guard let tmpModel = CartModel(venueModel: _venueModel, _packageModel ?? PackageModel()) else { return }
-                tmpModel.quantity = stepperValue
-                BuyPackgeVC.tmpCart.append(tmpModel)
-            }
-        }
         NotificationCenter.default.post(name: Notification.Name("addtoCartCount"), object: nil, userInfo: nil)
         
     }
@@ -105,13 +90,6 @@ class PackageOfferTableCell: UITableViewCell {
         }
         _stepperStack.isHidden = model.remainingQty <= 0 || !model.isAllowSale
         _soldOutText.isHidden = model.remainingQty > 0 || !model.isAllowSale
-        if let qty = BuyPackgeVC.tmpCart.first(where: { $0.id == model.id })?.quantity {
-            _stepperLabel.text = "\(qty)"
-            stepperValue = qty
-        } else {
-            _stepperLabel.text = "0"
-            stepperValue = 0
-        }
         _venueModel = venueModel
         _packageModel = model
         if let metadata = promoModel?.metadata.first(where: { $0.packageId == model.id }), promoModel?.promoDiscountType != "flat" {
@@ -179,13 +157,6 @@ class PackageOfferTableCell: UITableViewCell {
         }
         _stepperStack.isHidden = model.remainingQty <= 0 || !model.isAllowSale
         _soldOutText.isHidden = model.remainingQty > 0 || !model.isAllowSale
-        if let qty = BuyPackgeVC.tmpCart.first(where: { $0.id == model.id })?.quantity {
-            _stepperLabel.text = "\(qty)"
-            stepperValue = qty
-        } else {
-            _stepperLabel.text = "0"
-            stepperValue = 0
-        }
         _venueModel = venueModel
         _packageModel = model
         _eventModel = event

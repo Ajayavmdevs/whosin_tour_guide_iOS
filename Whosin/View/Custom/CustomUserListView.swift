@@ -107,33 +107,7 @@ extension CustomUserListView: CustomNoKeyboardCollectionViewDelegate {
     }
     
     func didSelectCell(_ cell: UICollectionViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
-        if let cell = cell as? MyVenuesCollectionCell, let object = cellDict?[kCellObjectDataKey] as? UserDetailModel {
-            if _titleLabel.text == "Plus One Members" {
-                if object.isRingMember {
-                    let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                    vc.complimentryId = Utils.stringIsNullOrEmpty(object.userId) ? object.id : object.userId
-                    parentViewController?.navigationController?.pushViewController(vc, animated: true)
-                } else {
-                    let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                    vc.contactId = Utils.stringIsNullOrEmpty(object.userId) ? object.id : object.userId
-                    parentViewController?.navigationController?.pushViewController(vc, animated: true)
-                }
-            } else {
-                if Utils.stringIsNullOrEmpty(object.avatar) && Utils.stringIsNullOrEmpty(object.title) {
-                    if object.userId != APPSESSION.userId {
-                        let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                        vc.complimentryId = Utils.stringIsNullOrEmpty(object.userId) ? object.id : object.userId
-                        parentViewController?.navigationController?.pushViewController(vc, animated: true)
-                    }
-                } else {
-                    if APPSESSION.userDetail?.isRingMember == false {
-                        let vc = INIT_CONTROLLER_XIB(MyCircleDetailVC.self)
-                        vc.circleModel = object
-                        parentViewController?.navigationController?.pushViewController(vc, animated: true)
-                    }
-                }
-            }
-        }
+
     }
     
     func cellSize(_ collectionView: UICollectionView, cellDict: [String : Any]?, indexPath: IndexPath) -> CGSize {

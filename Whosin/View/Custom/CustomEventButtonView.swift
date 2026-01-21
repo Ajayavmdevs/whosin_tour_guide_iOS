@@ -544,10 +544,6 @@ class CustomEventButtonView: UIView {
     @IBAction func _handleImInEvent(_ sender: UIButton) {
 
         guard let invite = eventModel?.invite else { return }
-        if eventModel?.plusOneMandatory == true && !CMEventListVC.isHavePlusOneGroup && !isPlusOne {
-            parentBaseController?.alert(message: "Please add more friends to your group...")
-            return
-        }
 
         if isPlusOne {
             if let isfull = eventModel?.isEventFull {

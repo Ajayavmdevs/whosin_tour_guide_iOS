@@ -238,12 +238,7 @@ extension SubAdminNotification: CustomTableViewDelegate, UIScrollViewDelegate, U
     }
     
     func didSelectTableCell(_ cell: UITableViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
-        if let cell = cell as? UserRequestTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? UserDetailModel else { return}
-            let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-            vc.complimentryId = object.userId
-            navigationController?.pushViewController(vc, animated: true)
-        }
+
     }
     
 }

@@ -4,7 +4,6 @@ class MyEventTableCell: UITableViewCell {
     
     @IBOutlet private weak var _collectionView: CustomNoKeyboardCollectionView!
     
-    private let kCellIdentifierStory = String(describing: MyEventCollectionCell.self)
     var _eventList: [EventModel] = []
     private var isOneRecord: Bool = false
     
@@ -51,23 +50,12 @@ class MyEventTableCell: UITableViewCell {
     }
     
     private var _storyPrototype: [[String: Any]]? {
-        return [[kCellIdentifierKey: kCellIdentifierStory, kCellNibNameKey: kCellIdentifierStory, kCellClassKey: MyEventCollectionCell.self, kCellHeightKey: MyEventCollectionCell.height]]
+        return []
     }
     
     private func _loadData(_ isloading: Bool = false) {
         var cellSectionData = [[String: Any]]()
         var cellData = [[String: Any]]()
-        _eventList.forEach { model in
-            if !Utils.isVenueDetailEmpty(model.venueDetail) {
-                cellData.append([
-                    kCellIdentifierKey: kCellIdentifierStory,
-                    kCellTagKey: model.id,
-                    kCellObjectDataKey: model,
-                    kCellClassKey: MyEventCollectionCell.self,
-                    kCellHeightKey: MyEventCollectionCell.height
-                ])
-            }
-        }
         cellSectionData.append([kSectionTitleKey: kEmptyString, kSectionDataKey: cellData])
         _collectionView.loadData(cellSectionData)
     }
@@ -97,18 +85,7 @@ class MyEventTableCell: UITableViewCell {
 extension MyEventTableCell: CustomNoKeyboardCollectionViewDelegate {
     
     func setupCollectionCell(_ cell: UICollectionViewCell, cellDict: [String : Any]?, indexPath: IndexPath) {
-        guard let cell = cell as? MyEventCollectionCell else { return }
-        if let object = cellDict?[kCellObjectDataKey] as? EventModel {
-            cell.setupEventData(object)
-        }
-    }
     
-    
-    func didSelectCell(_ cell: UICollectionViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
-        guard let object = cellDict?[kCellObjectDataKey] as? EventModel else { return }
-        let vc = INIT_CONTROLLER_XIB(EventDetailVC.self)
-        vc.event = object
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

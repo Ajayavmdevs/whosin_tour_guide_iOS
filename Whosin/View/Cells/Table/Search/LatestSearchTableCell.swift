@@ -4,7 +4,6 @@ class LatestSearchTableCell: UITableViewCell {
     
     @IBOutlet private weak var _collectionView: CustomCollectionView!
     private let kCellIdentifier = String(describing: SearchStroyCollectionCell.self)
-    private let kCellIdentifierDeals = String(describing: BucketDealCollectionCell.self)
     
     // --------------------------------------
     // MARK: Class

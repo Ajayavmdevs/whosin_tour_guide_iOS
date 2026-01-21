@@ -98,43 +98,11 @@ class MyReviewsTableViewCell: UITableViewCell {
     
     @objc func _openDetail() {
         switch ratingModel?.type {
-        case "venues":
-            let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-            vc.venueId = ratingModel?.itemId ?? ""
-            parentBaseController?.navigationController?.pushViewController(vc, animated: true)
         case "ticket":
             let vc = INIT_CONTROLLER_XIB(CustomTicketDetailVC.self)
             vc.ticketID = ratingModel?.itemId ?? ""
             vc.hidesBottomBarWhenPushed = true
             parentBaseController?.navigationController?.pushViewController(vc, animated: true)
-        case "activities":
-            let vc = INIT_CONTROLLER_XIB(ActivityDetailVC.self)
-            vc._selectedTypeId = ratingModel?.itemId ?? ""
-            parentBaseController?.navigationController?.pushViewController(vc, animated: true)
-        case "event":
-            let vc = INIT_CONTROLLER_XIB(EventDetailVC.self)
-            vc.eventId = ratingModel?.itemId ?? ""
-            parentBaseController?.navigationController?.pushViewController(vc, animated: true)
-        case "events_organizers":
-            let vc = INIT_CONTROLLER_XIB(EventDetailVC.self)
-            vc.eventId = ratingModel?.itemId ?? ""
-            parentBaseController?.navigationController?.pushViewController(vc, animated: true)
-        case "yachts":
-            let vc = INIT_CONTROLLER_XIB(YachtClubDetailVC.self)
-            vc.yachtClubId = ratingModel?.itemId ?? ""
-            parentBaseController?.navigationController?.pushViewController(vc, animated: true)
-
-        case "complimentary":
-            let vc = INIT_CONTROLLER_XIB(PromoterEventDetailVC.self)
-            vc.id = ratingModel?.itemId ?? ""
-            vc.isComplementary = true
-            parentBaseController?.navigationController?.pushViewController(vc, animated: true)
-
-        case "promoter":
-            let vc = INIT_CONTROLLER_XIB(PromoterEventDetailVC.self)
-            vc.id = ratingModel?.itemId ?? ""
-            parentBaseController?.navigationController?.pushViewController(vc, animated: true)
-
         case .none:
             print("no types matched")
         case .some(_):

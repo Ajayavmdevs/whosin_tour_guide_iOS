@@ -132,23 +132,12 @@ class OutingCollectionCell: UICollectionViewCell {
     }
     
     @IBAction private func _handleEditEvent(_ sender: UIButton) {
-            let controler = INIT_CONTROLLER_XIB(InviteBottomSheet.self)
-            controler.outingModel = _outingListModel
-        controler._selectedOffer = _outingListModel?.offer
-            let navController = NavigationController(rootViewController: controler)
-            navController.modalPresentationStyle = .custom
-            parentBaseController?.present(navController, animated: true)
     }
 
     @IBAction private func _handleSeeAllUserEvent(_ sender: UIButton) {
         let presentedViewController = INIT_CONTROLLER_XIB(EventGuestListBottomSheet.self)
         presentedViewController.isFromOuting = true
         presentedViewController._userList = _outingListModel?._invitedUser
-        presentedViewController.userOpenCallBack = { userId in
-            let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-            vc.contactId = userId
-            self.parentViewController?.navigationController?.pushViewController(vc, animated: true)
-        }
         presentedViewController.openChatCallBack = { chatModel in
             let vc = INIT_CONTROLLER_XIB(ChatDetailVC.self)
             vc.hidesBottomBarWhenPushed = true
@@ -171,33 +160,10 @@ extension OutingCollectionCell: CustomCollectionViewDelegate {
     func didSelectCell(_ cell: UICollectionViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
         guard let model = cellDict?[kCellObjectDataKey] as? UserDetailModel else { return }
         guard let userDetail = APPSESSION.userDetail else { return }
-        if model.id != userDetail.id {
-            if model.isPromoter, userDetail.isRingMember {
-                let vc = INIT_CONTROLLER_XIB(PromoterPublicProfileVc.self)
-                vc.promoterId = model.id
-                vc.isFromPersonal = true
-                parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            } else if model.isRingMember, userDetail.isPromoter {
-                let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                vc.complimentryId = model.id
-                vc.isFromPersonal = true
-                parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                vc.contactId = model.id
-                parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            }
-        }
+
     }
     
     func cellSize(_ collectionView: UICollectionView, cellDict: [String : Any]?, indexPath: IndexPath) -> CGSize {
         CGSize(width: 40, height: SharedUsersCollectionCell.height)
-    }
-}
-
-extension OutingCollectionCell: UpdateUsersDelegate {
-    func updateUsers(_ data: OutingListModel) {
-        _outingListModel = data
-        _loadData()
     }
 }

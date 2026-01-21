@@ -171,16 +171,6 @@ class NotificationManager: NSObject {
             case "follow":
                 openUserDetails(id)
 
-            case "invite":
-                NotificationCenter.default.post(name: .reloadEventNotification, object: nil)
-                openPromoterEventDetails(id, isCM: APPSESSION.userDetail?.isRingMember == true)
-
-            case "promoter-event":
-                openPromoterEventDetails(id, isCM: APPSESSION.userDetail?.isRingMember == true)
-
-            case "invite_rejected":
-                openPromoterEventDetails(id, isCM: APPSESSION.userDetail?.isRingMember == true)
-
             case "add-to-ring":
                 openNotificationVC()
 
@@ -232,12 +222,6 @@ class NotificationManager: NSObject {
                 let offerId = components[components.count - 1]
                 openOfferDetails(offerId)
             } else if secondLastComponent == "p" {
-                let eventId = components[components.count - 1]
-                if APPSESSION.userDetail?.isRingMember == true {
-                    openPromoterEventDetails(eventId, isCM: true)
-                } else if APPSESSION.userDetail?.isPromoter == true {
-                    openPromoterEventDetails(eventId, isCM: false)
-                }
             } else if urlString.contains("invoice") {
                 _ = link.absoluteString
                 guard let window = APP.window, APPSESSION.didLogin  else { return }
@@ -270,18 +254,7 @@ class NotificationManager: NSObject {
     
     func openVenueDetails(_ venueId: String) {
         guard let currentController = APP.window?.rootViewController, APPSESSION.didLogin else { return }
-        Log.debug(currentController.description)
-        if let visibleVc = Utils.getVisibleViewController(from: currentController) {
-            if let vc = visibleVc as? VenueDetailsVC {
-                if vc.venueId == venueId {
-                    return
-                }
-            }
-        }
-        let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-        vc.venueId = venueId
-        vc.venueDetailModel = Utils.getModelFromId(model: APPSETTING.venueModel, id: venueId)
-        Utils.pushViewController(vc)
+
     }
     
     func openTicketDetails(_ ticketId: String) {
@@ -301,75 +274,21 @@ class NotificationManager: NSObject {
     }
     
     func openActivityDetails(_ activityId: String) {
-        guard let currentController = APP.window?.rootViewController, APPSESSION.didLogin else { return }
-        Log.debug(currentController.description)
-        let vc = INIT_CONTROLLER_XIB(ActivityInfoVC.self)
-        vc.activityId = activityId
-        vc.modalPresentationStyle = .overFullScreen
-        Utils.openViewController(vc)
     }
     
     func openEventDetails(_ eventId: String) {
-        guard let currentController = APP.window?.rootViewController, APPSESSION.didLogin else { return }
-        Log.debug(currentController.description)
-        let vc = INIT_CONTROLLER_XIB(EventDetailVC.self)
-        vc.eventId = eventId
-        Utils.pushViewController(vc)
     }
     
     func openOfferDetails(_ offerId: String) {
-        guard let currentController = APP.window?.rootViewController, APPSESSION.didLogin else { return }
-        Log.debug(currentController.description)
-        let controller = INIT_CONTROLLER_XIB(OfferPackageDetailVC.self)
-        controller.offerId = offerId
-        controller.vanueOpenCallBack = { venueId, venueModel in
-            let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-            vc.venueId = venueId
-            vc.venueDetailModel = venueModel
-            Utils.getCurrentVC()?.navigationController?.pushViewController(vc, animated: true)
-        }
-        controller.buyNowOpenCallBack = { offer, venue, timing in
-            let vc = INIT_CONTROLLER_XIB(BuyPackgeVC.self)
-            vc.isFromActivity = false
-            vc.type = "offers"
-            vc.timingModel = timing
-            vc.offerModel = offer
-            vc.venue = venue
-            vc.setCallback {
-                let controller = INIT_CONTROLLER_XIB(MyCartVC.self)
-                controller.modalPresentationStyle = .overFullScreen
-                Utils.getCurrentVC()?.navigationController?.pushViewController(controller, animated: true)
-            }
-            Utils.getCurrentVC()?.navigationController?.pushViewController(vc, animated: true)
-        }
-        Utils.getCurrentVC()?.presentAsPanModal(controller: controller)
     }
     
     func openOutingDetails(_ outingId: String) {
-        guard let currentController = APP.window?.rootViewController, APPSESSION.didLogin else { return }
-        Log.debug(currentController.description)
-        let vc = INIT_CONTROLLER_XIB(OutingDetailVC.self)
-        vc.outingId = outingId
-        vc.modalPresentationStyle = .overFullScreen
-        Utils.openViewController(vc)
     }
     
     func openCategoryDetails(_ categoryId: String) {
-        guard let currentController = APP.window?.rootViewController, APPSESSION.didLogin else { return }
-        Log.debug(currentController.description)
-        let vc = INIT_CONTROLLER_XIB(CategoryDetailVC.self)
-        vc.categoryId = categoryId
-        vc.modalPresentationStyle = .overFullScreen
-        Utils.openViewController(vc)
     }
     
     func openBucketDetails(_ bucketId: String) {
-        guard let currentController = APP.window?.rootViewController, APPSESSION.didLogin else { return }
-        Log.debug(currentController.description)
-        let vc = INIT_CONTROLLER_XIB(BucketDetailVC.self)
-        vc.bucketId = bucketId
-        vc.modalPresentationStyle = .overFullScreen
-        Utils.openViewController(vc)
     }
     
     func openNotificationVC() {
@@ -385,80 +304,12 @@ class NotificationManager: NSObject {
     }
 
     func openUserDetails(_ userId: String) {
-        guard let currentController = APP.window?.rootViewController, APPSESSION.didLogin else { return }
-        if let visibleVc = Utils.getVisibleViewController(from: currentController) {
-            if let vc = visibleVc as? UsersProfileVC {
-                if vc.contactId == userId {
-                    return
-                }
-            }
-        }
-        Log.debug(currentController.description)
-        let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-        vc.contactId = userId
-        Utils.openViewController(vc)
     }
     
     func openCMDetails(_ userId: String) {
-        if APPSESSION.userDetail?.isRingMember == true {
-            guard let currentController = APP.window?.rootViewController, APPSESSION.didLogin else { return }
-            if let visibleVc = Utils.getVisibleViewController(from: currentController) {
-                if visibleVc is ComplementaryProfileVC {
-                    return
-                }
-            }
-            Log.debug(currentController.description)
-            let vc = INIT_CONTROLLER_XIB(ComplementaryProfileVC.self)
-            vc._selectedIndex = 3
-            vc.hidesBottomBarWhenPushed = true
-            Utils.openViewController(vc)
-        } else {
-            guard let currentController = APP.window?.rootViewController, APPSESSION.didLogin else { return }
-            if let visibleVc = Utils.getVisibleViewController(from: currentController) {
-                if visibleVc is PromoterApplicationVC {
-                    return
-                }
-            }
-            Log.debug(currentController.description)
-            let vc = INIT_CONTROLLER_XIB(PromoterApplicationVC.self)
-            vc.isComlementry = true
-            vc.referredById = userId
-            vc.hidesBottomBarWhenPushed = true
-            Utils.openViewController(vc)
-        }
     }
     
     func openPromoterDetails(_ userId: String) {
-        guard let currentController = APP.window?.rootViewController, APPSESSION.didLogin else { return }
-        if let visibleVc = Utils.getVisibleViewController(from: currentController) {
-            if visibleVc is PromoterProfileVC {
-                    return
-            }
-        }
-        Log.debug(currentController.description)
-        let vc = INIT_CONTROLLER_XIB(PromoterProfileVC.self)
-        vc._selectedIndex = 4
-        vc.hidesBottomBarWhenPushed = true
-        Utils.openViewController(vc)
-    }
-    
-    func openPromoterEventDetails(_ eventId: String, isCM: Bool = false) {
-        NotificationCenter.default.post(name: .reloadMyEventsNotifier   , object: nil)
-        guard let currentController = APP.window?.rootViewController, APPSESSION.didLogin else { return }
-        if let visibleVc = Utils.getVisibleViewController(from: currentController) {
-            if let vc = visibleVc as? PromoterEventDetailVC {
-                if vc.id == eventId {
-                    return
-                }
-            }
-        }
-        Log.debug(currentController.description)
-        let vc = INIT_CONTROLLER_XIB(PromoterEventDetailVC.self)
-        vc.id = eventId
-        vc.isComplementary = isCM
-        vc.hidesBottomBarWhenPushed = true
-        vc.modalPresentationStyle = .overFullScreen
-        Utils.pushViewController(vc)
     }
     
     func openCurrentUserProfile() {

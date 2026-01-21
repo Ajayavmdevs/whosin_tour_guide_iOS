@@ -507,11 +507,6 @@ class VenueDetailsTableCell: UITableViewCell {
     }
     
     @IBAction private func _handleInviteEvent(_ sender: UIButton) {
-        let controler = INIT_CONTROLLER_XIB(InviteBottomSheet.self)
-        controler.venueModel = venueDetailModel
-        let navController = NavigationController(rootViewController: controler)
-        navController.modalPresentationStyle = .custom
-        parentBaseController?.present(navController, animated: true)
     }
 }
 

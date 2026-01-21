@@ -94,23 +94,6 @@ extension EventAdminsTableCell: CustomCollectionViewDelegate {
     func didSelectCell(_ cell: UICollectionViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
         guard let cell = cell as? SharedUsersCollectionCell,
               let object = cellDict?[kCellObjectDataKey] as? UserDetailModel else { return }
-        guard let userDetail = APPSESSION.userDetail else { return }
-        if object.id != userDetail.id {
-            if object.isPromoter, userDetail.isRingMember {
-                let vc = INIT_CONTROLLER_XIB(PromoterPublicProfileVc.self)
-                vc.promoterId = object.id
-                vc.isFromPersonal = true
-                parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            } else if object.isRingMember, userDetail.isPromoter {
-                let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                vc.complimentryId = object.id
-                vc.isFromPersonal = true
-                parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                vc.contactId = object.id
-                parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            }
-        }
+
     }
 }

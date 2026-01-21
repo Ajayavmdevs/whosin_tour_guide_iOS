@@ -40,22 +40,8 @@ class ChatDetailVC: ChildViewController {
     private let kEventCellIdentifire = String(describing: CompititorImageCell.self)
     private let kOwnAudioCellIdentifire = String(describing: OwnAudioChatCell.self)
     private let kCoptitorAudioCellIdentifire = String(describing: CompititorAudioChatCell.self)
-    private let kOwnVenueCell = String(describing: OwnVenueCell.self)
-    private let kComptitorVenueCell = String(describing: CompititorVenueCell.self)
     private let kOwnStoryCell = String(describing: OwnStoryCell.self)
     private let kComptitorStoryCell = String(describing: CompititorStoryCell.self)
-    private let kOwnUserCell = String(describing: OwnContactShareCell.self)
-    private let kComptitorUserCell = String(describing: CompititorContactShareCell.self)
-    private let kOwnOfferCell = String(describing: OwnOfferCell.self)
-    private let kComptitorOfferCell = String(describing: CompititorOfferCell.self)
-    private let kOwnYachtOfferCell = String(describing: OwnYachtOfferCell.self)
-    private let kComptitorYachtOfferCell = String(describing: CompititorYachtOfferCell.self)
-    private let kOwnYachtClubCell = String(describing: OwnYachtClubCell.self)
-    private let kComptitorYachtClubCell = String(describing: CompititorYachtClubCell.self)
-    private let kOwnPromoterEventCell = String(describing: OwnPromoterEventCell.self)
-    private let kCompetitiorPromoterEventCell = String(describing: CompititorPromoterEventCell.self)
-    private let kCompetitiorReplyPromoterEventCell = String(describing: CompititorReplyPromoterEventCell.self)
-    private let kOwnReplyPromoterEventCell = String(describing: OwnReplyPromoterEventCell.self)
     private let kCMReplyPromoterEventCell = String(describing: CompititorReplyTicketCell.self)
     private let kOwnReplyTicketCell = String(describing: OwnReplyTicketCell.self)
     private let kOwnTicketCell = String(describing: OwnTicketCell.self)
@@ -183,22 +169,8 @@ class ChatDetailVC: ChildViewController {
         _chatTableView.register(UINib(nibName: kComptitorImageCellIdentifire, bundle: nil), forCellReuseIdentifier: kComptitorImageCellIdentifire)
         _chatTableView.register(UINib(nibName: kOwnAudioCellIdentifire, bundle: nil), forCellReuseIdentifier: kOwnAudioCellIdentifire)
         _chatTableView.register(UINib(nibName: kCoptitorAudioCellIdentifire, bundle: nil), forCellReuseIdentifier: kCoptitorAudioCellIdentifire)
-        _chatTableView.register(UINib(nibName: kOwnVenueCell, bundle: nil), forCellReuseIdentifier: kOwnVenueCell)
-        _chatTableView.register(UINib(nibName: kComptitorVenueCell, bundle: nil), forCellReuseIdentifier: kComptitorVenueCell)
         _chatTableView.register(UINib(nibName: kOwnStoryCell, bundle: nil), forCellReuseIdentifier: kOwnStoryCell)
         _chatTableView.register(UINib(nibName: kComptitorStoryCell, bundle: nil), forCellReuseIdentifier: kComptitorStoryCell)
-        _chatTableView.register(UINib(nibName: kOwnUserCell, bundle: nil), forCellReuseIdentifier: kOwnUserCell)
-        _chatTableView.register(UINib(nibName: kComptitorUserCell, bundle: nil), forCellReuseIdentifier: kComptitorUserCell)
-        _chatTableView.register(UINib(nibName: kOwnOfferCell, bundle: nil), forCellReuseIdentifier: kOwnOfferCell)
-        _chatTableView.register(UINib(nibName: kComptitorOfferCell, bundle: nil), forCellReuseIdentifier: kComptitorOfferCell)
-        _chatTableView.register(UINib(nibName: kOwnYachtOfferCell, bundle: nil), forCellReuseIdentifier: kOwnYachtOfferCell)
-        _chatTableView.register(UINib(nibName: kComptitorYachtOfferCell, bundle: nil), forCellReuseIdentifier: kComptitorYachtOfferCell)
-        _chatTableView.register(UINib(nibName: kOwnYachtClubCell, bundle: nil), forCellReuseIdentifier: kOwnYachtClubCell)
-        _chatTableView.register(UINib(nibName: kComptitorYachtClubCell, bundle: nil), forCellReuseIdentifier: kComptitorYachtClubCell)
-        _chatTableView.register(UINib(nibName: kOwnPromoterEventCell, bundle: nil), forCellReuseIdentifier: kOwnPromoterEventCell)
-        _chatTableView.register(UINib(nibName: kCompetitiorPromoterEventCell, bundle: nil), forCellReuseIdentifier: kCompetitiorPromoterEventCell)
-        _chatTableView.register(UINib(nibName: kCompetitiorReplyPromoterEventCell, bundle: nil), forCellReuseIdentifier: kCompetitiorReplyPromoterEventCell)
-        _chatTableView.register(UINib(nibName: kOwnReplyPromoterEventCell, bundle: nil), forCellReuseIdentifier: kOwnReplyPromoterEventCell)
         _chatTableView.register(UINib(nibName: kOwnReplyTicketCell, bundle: nil), forCellReuseIdentifier: kOwnReplyTicketCell)
         _chatTableView.register(UINib(nibName: kOwnTicketCell, bundle: nil), forCellReuseIdentifier: kOwnTicketCell)
         _chatTableView.register(UINib(nibName: kCompititorTicketCell, bundle: nil), forCellReuseIdentifier: kCompititorTicketCell)
@@ -517,13 +489,7 @@ class ChatDetailVC: ChildViewController {
     @IBAction private func _handleProfileEvent(_ sender: UIButton) {
         guard let _chatModel = self.chatModel else { return }
         guard let userDetail = APPSESSION.userDetail else { return }
-        if _chatModel.chatType == ChatType.promoterEvent.rawValue, APPSESSION.userDetail?.isPromoter == true {
-            let vc = INIT_CONTROLLER_XIB(PromoterEventDetailVC.self)
-            vc.id = _chatModel.chatId
-            vc.isComplementary = false
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
-        } else if _chatModel.chatType != ChatType.promoterEvent.rawValue {
+        if _chatModel.chatType != ChatType.promoterEvent.rawValue {
             let controller = INIT_CONTROLLER_XIB(ChatProfileVC.self)
             let id = Preferences.isSubAdmin ? userDetail.promoterId : userDetail.id
             if chatType == .user || chatType == .promoterEvent {
@@ -636,13 +602,6 @@ class ChatDetailVC: ChildViewController {
     }
     
     @IBAction func _handleOpenEventView(sender: UIButton) {
-        guard let model = chatModel else { return }
-        let vc = INIT_CONTROLLER_XIB(PromoterEventDetailVC.self)
-        vc.id = model.chatId
-        vc.isComplementary = true
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
-        
     }
     
     @IBAction func _handleViewTicketEvent(_ sender: UIButton) {
@@ -817,12 +776,7 @@ extension ChatDetailVC: UITableViewDelegate, UITableViewDataSource {
         let model = _msgList[indexPath.row]
         let id = Preferences.isSubAdmin ? currentUser?.promoterId : currentUser?.id
         if  model.isSent(id ?? "") {
-            if model.replyTo?.type == "Prmoter-event" {
-                let cell = tableView.dequeueReusableCell(withIdentifier: kOwnReplyPromoterEventCell, for: indexPath) as! OwnReplyPromoterEventCell
-                cell.setup(model)
-                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
-                return cell
-            } else if model.replyTo?.type == "ticket" {
+            if model.replyTo?.type == "ticket" {
                 let cell = tableView.dequeueReusableCell(withIdentifier: kOwnReplyTicketCell, for: indexPath) as! OwnReplyTicketCell
                 cell.setup(model)
                 cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
@@ -837,38 +791,8 @@ extension ChatDetailVC: UITableViewDelegate, UITableViewDataSource {
                 cell.setup(model)
                 cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
                 return cell
-            } else if (model.type == MessageType.venue.rawValue) {
-                let cell = tableView.dequeueReusableCell(withIdentifier: kOwnVenueCell,for: indexPath) as! OwnVenueCell
-                cell.setup(model)
-                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
-                return cell
             } else if (model.type == MessageType.story.rawValue) {
                 let cell = tableView.dequeueReusableCell(withIdentifier: kOwnStoryCell,for: indexPath) as! OwnStoryCell
-                cell.setup(model)
-                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
-                return cell
-            } else if (model.type == MessageType.user.rawValue) {
-                let cell = tableView.dequeueReusableCell(withIdentifier: kOwnUserCell,for: indexPath) as! OwnContactShareCell
-                cell.setup(model)
-                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
-                return cell
-            } else if (model.type == MessageType.offer.rawValue) {
-                let cell = tableView.dequeueReusableCell(withIdentifier: kOwnOfferCell,for: indexPath) as! OwnOfferCell
-                cell.setup(model)
-                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
-                return cell
-            } else if (model.type == MessageType.yacht.rawValue) {
-                let cell = tableView.dequeueReusableCell(withIdentifier: kOwnYachtOfferCell,for: indexPath) as! OwnYachtOfferCell
-                cell.setup(model)
-                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
-                return cell
-            } else if (model.type == MessageType.yachtClub.rawValue) {
-                let cell = tableView.dequeueReusableCell(withIdentifier: kOwnYachtClubCell,for: indexPath) as! OwnYachtClubCell
-                cell.setup(model)
-                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
-                return cell
-            } else if (model.type == MessageType.promoterEvent.rawValue) {
-                let cell = tableView.dequeueReusableCell(withIdentifier: kOwnPromoterEventCell,for: indexPath) as! OwnPromoterEventCell
                 cell.setup(model)
                 cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
                 return cell
@@ -884,12 +808,7 @@ extension ChatDetailVC: UITableViewDelegate, UITableViewDataSource {
                 return cell
             }
         } else {
-            if model.replyTo?.type == "Prmoter-event" {
-                let cell = tableView.dequeueReusableCell(withIdentifier: kCompetitiorReplyPromoterEventCell,for: indexPath) as! CompititorReplyPromoterEventCell
-                cell.setup(model)
-                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
-                return cell
-            } else if model.replyTo?.type == "ticket" {
+            if model.replyTo?.type == "ticket" {
                 let cell = tableView.dequeueReusableCell(withIdentifier: kCMReplyPromoterEventCell,for: indexPath) as! CompititorReplyTicketCell
                 cell.setup(model)
                 cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
@@ -904,38 +823,8 @@ extension ChatDetailVC: UITableViewDelegate, UITableViewDataSource {
                 cell.setup(model)
                 cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
                 return cell
-            } else if (model.type == MessageType.venue.rawValue) {
-                let cell = tableView.dequeueReusableCell(withIdentifier: kComptitorVenueCell,for: indexPath) as! CompititorVenueCell
-                cell.setup(model)
-                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
-                return cell
             } else if (model.type == MessageType.story.rawValue) {
                 let cell = tableView.dequeueReusableCell(withIdentifier: kComptitorStoryCell,for: indexPath) as! CompititorStoryCell
-                cell.setup(model)
-                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
-                return cell
-            } else if (model.type == MessageType.user.rawValue) {
-                let cell = tableView.dequeueReusableCell(withIdentifier: kComptitorUserCell,for: indexPath) as! CompititorContactShareCell
-                cell.setup(model)
-                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
-                return cell
-            } else if (model.type == MessageType.offer.rawValue) {
-                let cell = tableView.dequeueReusableCell(withIdentifier: kComptitorOfferCell,for: indexPath) as! CompititorOfferCell
-                cell.setup(model)
-                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
-                return cell
-            } else if (model.type == MessageType.yacht.rawValue) {
-                let cell = tableView.dequeueReusableCell(withIdentifier: kComptitorYachtOfferCell,for: indexPath) as! CompititorYachtOfferCell
-                cell.setup(model)
-                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
-                return cell
-            } else if (model.type == MessageType.yachtClub.rawValue) {
-                let cell = tableView.dequeueReusableCell(withIdentifier: kComptitorYachtClubCell,for: indexPath) as! CompititorYachtClubCell
-                cell.setup(model)
-                cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
-                return cell
-            } else if (model.type == MessageType.promoterEvent.rawValue) {
-                let cell = tableView.dequeueReusableCell(withIdentifier: kCompetitiorPromoterEventCell,for: indexPath) as! CompititorPromoterEventCell
                 cell.setup(model)
                 cell.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi));
                 return cell
@@ -956,98 +845,13 @@ extension ChatDetailVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let model = _msgList[indexPath.row]
-        if (model.type == MessageType.venue.rawValue) {
-            guard let venueModel = Mapper<VenueDetailModel>().map(JSONString: model.msg) else { return }
-            let controller = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-            controller.venueId = venueModel.id
-            controller.venueDetailModel = Utils.getModelFromId(model: APPSETTING.venueModel, id: venueModel.id)
-            self.navigationController?.pushViewController(controller, animated: true)
-        } else if model.type == MessageType.user.rawValue {
-            guard let userModel = Mapper<UserDetailModel>().map(JSONString: model.msg), let userDetail = APPSESSION.userDetail else { return }
-            if APPSESSION.userId == userModel.id {
-                let controller = NavigationController(rootViewController: INIT_CONTROLLER_XIB(ProfileVC.self))
-                controller.modalPresentationStyle = .fullScreen
-                present(controller, animated: true, completion: nil)
-            } else {
-                if userModel.isPromoter, userDetail.isRingMember {
-                    let vc = INIT_CONTROLLER_XIB(PromoterPublicProfileVc.self)
-                    vc.promoterId = userModel.id
-                    vc.isFromPersonal = true
-                    self.navigationController?.pushViewController(vc, animated: true)
-                } else if userModel.isRingMember, userDetail.isPromoter {
-                    let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                    vc.complimentryId = userModel.id
-                    vc.isFromPersonal = true
-                    self.navigationController?.pushViewController(vc, animated: true)
-                } else {
-                    let controller = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                    controller.contactId = userModel.id
-                    self.navigationController?.pushViewController(controller, animated: true)
-                }
-            }
-        } else if model.type == MessageType.offer.rawValue {
-            guard let offerModel = Mapper<OffersModel>().map(JSONString: model.msg) else { return }
-            let vc = INIT_CONTROLLER_XIB(OfferPackageDetailVC.self)
-            vc.modalPresentationStyle = .overFullScreen
-            vc.offerId = offerModel.id
-            vc.venueModel = offerModel.venue
-            vc.timingModel = offerModel.venue?.timing.toArrayDetached(ofType: TimingModel.self)
-            vc.vanueOpenCallBack = { venueId, venueModel in
-                let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-                vc.venueId = venueId
-                vc.venueDetailModel = venueModel
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-            vc.buyNowOpenCallBack = { offer, venue, timing in
-                let vc = INIT_CONTROLLER_XIB(BuyPackgeVC.self)
-                vc.isFromActivity = false
-                vc.type = "offers"
-                vc.timingModel = timing
-                vc.offerModel = offer
-                vc.venue = venue
-                vc.setCallback {
-                    let controller = INIT_CONTROLLER_XIB(MyCartVC.self)
-                    controller.modalPresentationStyle = .overFullScreen
-                    self.navigationController?.pushViewController(controller, animated: true)
-                }
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-            presentAsPanModal(controller: vc)
-        } else if model.type == MessageType.yacht.rawValue {
-            guard let offerModel = Mapper<YachtOfferDetailModel>().map(JSONString: model.msg) else { return }
-            let vc = INIT_CONTROLLER_XIB(YachtOfferDetailVC.self)
-            vc.offerId = offerModel.id
-            vc.yachDetailModel = offerModel
-            self.navigationController?.pushViewController(vc, animated: true)
-        } else if model.type == MessageType.yachtClub.rawValue {
-            guard let model = Mapper<YachtClubModel>().map(JSONString: model.msg) else { return }
-            let vc = INIT_CONTROLLER_XIB(YachtClubDetailVC.self)
-            vc.yachtClubId = model.id
-            vc.yachDetailModel = model
-            self.navigationController?.pushViewController(vc, animated: true)
-        } else if model.type == MessageType.promoterEvent.rawValue {
-            guard let model = Mapper<PromoterEventsModel>().map(JSONString: model.msg) else { return }
-            let vc = INIT_CONTROLLER_XIB(PromoterEventDetailVC.self)
-            vc.isComplementary = APPSESSION.userDetail?.isRingMember ?? true
-            vc.id = model.eventId
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
-        }  else if model.type == MessageType.ticket.rawValue {
+        if model.type == MessageType.ticket.rawValue {
             guard let model = Mapper<TicketModel>().map(JSONString: model.msg) else { return }
             let vc = INIT_CONTROLLER_XIB(CustomTicketDetailVC.self)
             vc.ticketID = model._id
             vc.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(vc, animated: true)
-        }
-        //        else if model.replyTo?.type == "Prmoter-event"  {
-        //            guard let model = Mapper<PromoterEventsModel>().map(JSONString: model.replyTo?.data ?? "") else { return }
-        //            let vc = INIT_CONTROLLER_XIB(PromoterEventDetailVC.self)
-        //            vc.isComplementary = APPSESSION.userDetail?.isRingMember ?? true
-        //            vc.id = model.eventId
-        //            vc.hidesBottomBarWhenPushed = true
-        //            self.navigationController?.pushViewController(vc, animated: true)
-        //        }
-        
+        }        
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

@@ -49,12 +49,6 @@ class LargeOffersCollectionCell: UICollectionViewCell {
     }
     
     @IBAction func _handleInviteEvent(_ sender: UIButton) {
-        let controler = INIT_CONTROLLER_XIB(InviteBottomSheet.self)
-        controler._selectedOffer = _offerModel
-        controler.venueModel = _offerModel.venue
-        let navController = NavigationController(rootViewController: controler)
-        navController.modalPresentationStyle = .custom
-        parentBaseController?.present(navController, animated: true)
     }
     
 }

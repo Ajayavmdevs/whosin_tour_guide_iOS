@@ -90,29 +90,29 @@ class HomeStoryViewCell: UITableViewCell {
             let viewedStories = Utils.getViewedStories()
 
             // Work on a copy
-            let sortedModel = self.venueDetailModel.sorted { (story1, story2) -> Bool in
-                let isViewed1 = viewedStories.contains(story1.id)
-                let isViewed2 = viewedStories.contains(story2.id)
-
-                if isViewed1 == isViewed2 {
-                    if isViewed1 {
-                        let index1 = viewedStories.firstIndex(of: story1.id) ?? 0
-                        let index2 = viewedStories.firstIndex(of: story2.id) ?? 0
-                        return index1 > index2
-                    } else {
-                        let date1 = story1.storie.first?.createdAt.toDate(format: kFormatDateStandard) ?? .distantPast
-                        let date2 = story2.storie.first?.createdAt.toDate(format: kFormatDateStandard) ?? .distantPast
-                        return date1 < date2
-                    }
-                }
-
-                return !isViewed1 && isViewed2
-            }
+//            let sortedModel = self.venueDetailModel.sorted { (story1, story2) -> Bool in
+//                let isViewed1 = viewedStories.contains(story1.id)
+//                let isViewed2 = viewedStories.contains(story2.id)
+//
+//                if isViewed1 == isViewed2 {
+//                    if isViewed1 {
+//                        let index1 = viewedStories.firstIndex(of: story1.id) ?? 0
+//                        let index2 = viewedStories.firstIndex(of: story2.id) ?? 0
+//                        return index1 > index2
+//                    } else {
+//                        let date1 = story1.storie.first?.createdAt.toDate(format: kFormatDateStandard) ?? .distantPast
+//                        let date2 = story2.storie.first?.createdAt.toDate(format: kFormatDateStandard) ?? .distantPast
+//                        return date1 < date2
+//                    }
+//                }
+//
+//                return !isViewed1 && isViewed2
+//            }
 
             var cellSectionData = [[String: Any]]()
             var cellData = [[String: Any]]()
 
-            sortedModel.forEach { story in
+            venueDetailModel.forEach { story in
                 cellData.append([
                     kCellIdentifierKey: self.kCellIdentifierStory,
                     kCellTagKey: story.id,
@@ -126,7 +126,7 @@ class HomeStoryViewCell: UITableViewCell {
             }
 
             cellSectionData.append([kSectionTitleKey: kEmptyString, kSectionDataKey: cellData])
-            self.displayedStories = sortedModel
+            self.displayedStories = venueDetailModel
             DispatchQueue.main.async {
                 self._storyCollectionView.loadData(cellSectionData)
             }

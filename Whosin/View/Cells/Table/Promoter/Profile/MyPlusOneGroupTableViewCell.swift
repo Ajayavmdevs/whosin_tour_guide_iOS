@@ -127,10 +127,6 @@ class MyPlusOneGroupTableViewCell: UITableViewCell {
     }
     
     @IBAction private func _handleSeeAllEvent(_ sender: UIButton) {
-        let vc = INIT_CONTROLLER_XIB(SeeAllDetailVC.self)
-        vc.detailType = isNormal ? "normalPlusOne" : "plusOne"
-        vc.usersListModel = ringMembers
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
@@ -158,10 +154,6 @@ extension MyPlusOneGroupTableViewCell:  CustomCollectionViewDelegate {
             vc.modalPresentationStyle = .overFullScreen
             vc.groupMembers = ringMembers
             parentViewController?.present(vc, animated: true)
-        } else {
-            let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-            vc.contactId = isNormal ? model.userId : model.id
-            parentViewController?.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

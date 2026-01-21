@@ -87,10 +87,6 @@ class MyVenuesTableCell: UITableViewCell {
     // --------------------------------------
     
     @IBAction func _handleSeeAllEvent(_ sender: CustomButton) {
-        parentBaseController?.feedbackGenerator?.impactOccurred()
-        let vc = INIT_CONTROLLER_XIB(SeeAllDetailVC.self)
-        vc.detailType = "venues"
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
@@ -116,9 +112,5 @@ extension MyVenuesTableCell: CustomCollectionViewDelegate,UICollectionViewDelega
     func didSelectCell(_ cell: UICollectionViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
         guard let cell = cell as? MyVenuesCollectionCell,
               let object = cellDict?[kCellObjectDataKey] as? VenueDetailModel else { return }
-        let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-        vc.venueId = object.id
-        vc.venueDetailModel = object
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }

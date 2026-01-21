@@ -150,19 +150,6 @@ class AdsTableCell: UITableViewCell {
     private func _openView(_ ads: AdListModel) {
     
         switch ads.type {
-        case "venue":
-            let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-            vc.venueId = ads.item
-            parentViewController?.navigationController?.pushViewController(vc, animated: true)
-        case "activity":
-            let vc = INIT_CONTROLLER_XIB(ActivityInfoVC.self)
-            vc.activityId = ads.item
-            vc.activityName = ads.activity?.name ?? kEmptyString
-            parentViewController?.navigationController?.pushViewController(vc, animated: true)
-        case "event":
-            let controller = INIT_CONTROLLER_XIB(EventDetailVC.self)
-            controller.event = ads.event
-            parentViewController?.navigationController?.pushViewController(controller, animated: true)
         case "link":
             _openURL(urlString: ads.item)
         case "ticket":

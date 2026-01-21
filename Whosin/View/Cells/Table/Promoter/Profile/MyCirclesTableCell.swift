@@ -112,10 +112,6 @@ class MyCirclesTableCell: UITableViewCell {
     }
     
     @IBAction func _handleSeeAllEvent(_ sender: CustomButton) {
-        let vc = INIT_CONTROLLER_XIB(SeeAllDetailVC.self)
-        vc.detailType = "circles"
-        vc.usersListModel = circleList
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

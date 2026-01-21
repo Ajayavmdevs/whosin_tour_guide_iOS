@@ -80,17 +80,6 @@ class DealsFeaturesCell: UITableViewCell {
     }
     
     @IBAction private func _handleBuyNowEvent(_ sender: UIButton) {
-        parentBaseController?.feedbackGenerator?.impactOccurred()
-        let controller = INIT_CONTROLLER_XIB(BuyPackgeVC.self)
-        controller.dealsId = _dealsModel?.id ?? ""
-        controller.dealsModel = _dealsModel
-        controller.modalPresentationStyle = .overFullScreen
-        controller.setCallback {
-            let controller = INIT_CONTROLLER_XIB(MyCartVC.self)
-            controller.modalPresentationStyle = .overFullScreen
-            self.parentViewController?.navigationController?.pushViewController(controller, animated: true)
-        }
-        parentViewController?.navigationController?.pushViewController(controller, animated: true)
     }
     
 }

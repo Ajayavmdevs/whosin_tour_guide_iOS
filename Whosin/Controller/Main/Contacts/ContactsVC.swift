@@ -1,7 +1,7 @@
 import UIKit
 import MessageUI
 
-class ContactsVC: ProfileBaseMainVC {
+class ContactsVC: BaseViewController {
     
     @IBOutlet private weak var _tableView: CustomNoKeyboardTableView!
     @IBOutlet private weak var _searchBar: UISearchBar!
@@ -203,24 +203,6 @@ extension ContactsVC: CustomNoKeyboardTableViewDelegate {
                 _selectedContacts.append(selectedContact)
             }
             _loadData()
-        } else {
-            let user = WHOSINCONTACT.contactList[indexPath.row]
-            guard let userDetail = APPSESSION.userDetail, user.id != userDetail.id else { return }
-            if user.isPromoter, userDetail.isRingMember {
-                let vc = INIT_CONTROLLER_XIB(PromoterPublicProfileVc.self)
-                vc.promoterId = user.id
-                vc.isFromPersonal = true
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else if user.isRingMember, userDetail.isPromoter {
-                let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                vc.complimentryId = user.id
-                vc.isFromPersonal = true
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                vc.contactId = user.id
-                navigationController?.pushViewController(vc, animated: true)
-            }
         }
     }
     
@@ -241,9 +223,7 @@ extension ContactsVC: CustomNoKeyboardTableViewDelegate {
         self.present(messageVC, animated: false, completion: nil)
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        didScroll(scrollView)
-    }
+
     
 }
 

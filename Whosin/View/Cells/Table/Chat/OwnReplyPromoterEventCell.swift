@@ -138,18 +138,7 @@ class OwnReplyPromoterEventCell: UITableViewCell {
         _startTime.text = "\(model.startTime)"
         _endTime.text = "\(model.endTime)"
         
-        if !Utils.stringIsNullOrEmpty(model.date) {
-            _countdownLabel.font = FontBrand.SFboldFont(size: 24)
-            let currentTime = Utils.getCurrentDate(withFormat: kFormatDateStandard)
-            let startTime = Date(timeInterval: "\(currentTime)".toDate(format: kStanderdDate).timeIntervalSince(currentTime), since: currentTime)
-            let tmpEndDate = "\(model.date) \(model.startTime)".toDateUae(format: kFormatDateTimeLocal)
-            _countdownLabel.animationType = .Evaporate
-            _countdownLabel.timeFormat = "dd:HH:mm:ss"
-            _countdownLabel.setCountDownDate(targetDate: tmpEndDate as NSDate)
-            DISPATCH_ASYNC_MAIN_AFTER(0.015) {
-                self._countdownLabel.start()
-            }
-        }
+
         if let user = APPSESSION.userDetail {
             guard user.isPromoter, user.id != message?.replyBy, !Utils.stringIsNullOrEmpty(message?.replyBy) else {
                 _replyByName.text = kEmptyString
@@ -189,11 +178,6 @@ class OwnReplyPromoterEventCell: UITableViewCell {
     // --------------------------------------
     @IBAction func _handleOpenEventDetail(_ sender: Any) {
         guard let model = Mapper<PromoterEventsModel>().map(JSONString: messageModel?.replyTo?.data ?? "") else { return }
-        let vc = INIT_CONTROLLER_XIB(PromoterEventDetailVC.self)
-        vc.isComplementary = APPSESSION.userDetail?.isRingMember ?? true
-        vc.id = model.eventId
-        vc.hidesBottomBarWhenPushed = true
-        parentBaseController?.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction private func _handlePlayEvent(_ sender: UIButton) {

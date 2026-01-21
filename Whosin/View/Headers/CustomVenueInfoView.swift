@@ -194,20 +194,6 @@ class CustomVenueInfoView: UIView {
             } else if parentBaseController != nil {
                 parentBaseController?.navigationController?.pushViewController(controller, animated: true)
             }
-        } else {
-            if venueId.isEmpty { return }
-            if let pv = parentViewController?.presentingViewController as? VenueDetailsVC, pv.venueId == venueId {
-                parentViewController?.navigationController?.popViewController(animated: true)
-                return
-            }
-            let controller = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-            controller.venueId = venueId
-            controller.venueDetailModel = Utils.getModelFromId(model: APPSETTING.venueModel, id: venueId)
-            if parentViewController != nil {
-                parentViewController?.navigationController?.pushViewController(controller, animated: true)
-            } else if parentBaseController != nil {
-                parentBaseController?.navigationController?.pushViewController(controller, animated: true)
-            }
         }
     }
     

@@ -118,12 +118,6 @@ class YachtCollectionCell: UICollectionViewCell {
     // MARK: Event
     // --------------------------------------
     @IBAction func _handleClickEvent(_ sender: UIButton) {
-        guard let id = _yachtDetail?.yachtClubId else { return }
-        parentBaseController?.feedbackGenerator?.impactOccurred()
-        let vc = INIT_CONTROLLER_XIB(YachtClubDetailVC.self)
-        vc.yachtClubId = id
-        vc.hidesBottomBarWhenPushed = false
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
 
     }
     

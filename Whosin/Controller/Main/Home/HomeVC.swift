@@ -13,18 +13,15 @@ class HomeVC: NavigationBarViewController {
     
     @IBOutlet weak var _tableView: CustomNoKeyboardTableView!
     @IBOutlet weak var _headerHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var _bottomView: CustomEventBottomView!
     private var lastContentOffset: CGFloat = 0
     private var isAnimating = false
     private let kCellIdentifierStoryView = String(describing: HomeStoryViewCell.self)
     private let kCellIdentifierCategories = String(describing: CategoryTableCell.self)
-    private let kCompleteProfile = String(String(describing: CompleteProfileTableCell.self))
     private let kLoadingCell = String(String(describing: LoadingCell.self))
     
     private var _visibleVideoCell: VideoComponentTableCell?
     private var _visibleSingleVideoCell: SingleVideoTableCell?
     private var homeModel: HomeModel?
-    private var bottomView = CustomEventBottomView()
     private var promotionBannerModel: PromotionalBannerItemModel?
     
     // --------------------------------------
@@ -48,22 +45,16 @@ class HomeVC: NavigationBarViewController {
         OneSignal.login(externalId: APPSESSION.userDetail?.id ?? "", token: APPSESSION.token)
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-//            self.playPauseVideoIfVisible()
-//        }
-//    }
-
+    //    override func viewDidAppear(_ animated: Bool) {
+    //        super.viewDidAppear(animated)
+    //        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+    //            self.playPauseVideoIfVisible()
+    //        }
+    //    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hideNavigationBar()
-        if APPSESSION.userDetail?.isRingMember == true {
-            setupBottomBar()
-        } else {
-            _bottomView.isHidden = true
-            bottomView.isHidden = true
-        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -88,36 +79,8 @@ class HomeVC: NavigationBarViewController {
     }
     
     func setupBottomBar() {
-        if self.bottomView.superview == self.view {
-            self.bottomView.isHidden = false
-            self.view.bringSubviewToFront(self.bottomView)
-            _requestConfirmedEvents()
-            return
-        }
-        
-        self.bottomView.removeFromSuperview()
-        
-        if let tabBarController = self.tabBarController {
-             for subview in tabBarController.view.subviews {
-                 if subview is CustomEventBottomView {
-                     subview.removeFromSuperview()
-                 }
-             }
-        }
-
-        self.view.addSubview(self.bottomView)
-        self.view.bringSubviewToFront(self.bottomView)
-        self.bottomView.translatesAutoresizingMaskIntoConstraints = false
-
-        self.bottomView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom)
-        }
-        
-        self.bottomView.isHidden = false
-        _requestConfirmedEvents()
     }
-
+    
     
     override func setupUi() {
         _tableView.setup(
@@ -160,12 +123,12 @@ class HomeVC: NavigationBarViewController {
     
     func startInitialAPIChecks() {
         let group = DispatchGroup()
-
+        
         // 1. Session Check
         group.enter()
         APPSESSION.sessionCheck { message, error in
             defer { group.leave() }
-
+            
             if !Utils.stringIsNullOrEmpty(message) {
                 DispatchQueue.main.async {
                     if message == "Session expired, please login again!" {
@@ -179,7 +142,7 @@ class HomeVC: NavigationBarViewController {
                 }
             }
         }
-
+        
         // 2. Cart Data
         group.enter()
         WhosinServices.viewCart { [weak self] container, error in
@@ -188,14 +151,14 @@ class HomeVC: NavigationBarViewController {
             guard let data = container?.data else { return }
             APPSETTING.ticketCartModel = data
         }
-
+        
         // 3. Rayna Review
         group.enter()
         WhosinServices.checkRaynaReview { [weak self] container, error in
             defer { group.leave() }
             guard let self = self else { return }
             guard let data = container?.data else { return }
-
+            
             if data.reviewStatus == "pending" {
                 NotificationCenter.default.post(name: .openTicketReview, object: nil, userInfo: ["ticketId": data.customTicketId])
             }
@@ -209,8 +172,8 @@ class HomeVC: NavigationBarViewController {
                 NotificationCenter.default.post(name: kInAppNotification, object: model.first)
             }
         }
-
-
+        
+        
         group.notify(queue: .main) {
             self.hideHUD()
         }
@@ -261,16 +224,7 @@ class HomeVC: NavigationBarViewController {
     }
     
     private func _requestConfirmedEvents() {
-        WhosinServices.confirmedEventList { [weak self] container, error in
-            guard let self = self else {
-                self?._bottomView.isHidden = true
-                return
-            }
-            guard let data = container?.data else { return }
-            self._bottomView.isHidden = data.isEmpty
-            self._tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
-            self.bottomView.setupData(data)
-        }
+
     }
     
     private func checkRaynaReview() {
@@ -354,34 +308,34 @@ class HomeVC: NavigationBarViewController {
         
         _ = homeModel.homeblocksModel.first(where: { $0.type == "apply-ring" })?.applicationStatus == "pending"
         
-//        if APPSESSION.userDetail?.requiredFields() == true, !isCMStatusPending, !Preferences.isGuest {
-//            cellData.append([
-//                kCellIdentifierKey: kCompleteProfile,
-//                kCellTagKey: "CompleteProfile",
-//                kCellObjectDataKey: true,
-//                kCellClassKey: CompleteProfileTableCell.self,
-//                kCellHeightKey: CompleteProfileTableCell.height
-//            ])
-//        }
+        //        if APPSESSION.userDetail?.requiredFields() == true, !isCMStatusPending, !Preferences.isGuest {
+        //            cellData.append([
+        //                kCellIdentifierKey: kCompleteProfile,
+        //                kCellTagKey: "CompleteProfile",
+        //                kCellObjectDataKey: true,
+        //                kCellClassKey: CompleteProfileTableCell.self,
+        //                kCellHeightKey: CompleteProfileTableCell.height
+        //            ])
+        //        }
         
-            homeModel.homeblocksModel.forEach { data in
-                if !data.isVisible { return }
-                cellData.append([
-                    kCellIdentifierKey: data.cellType.identifier,
-                    kCellTagKey: data.type == "membership-package" ? "membership-package" : data.id,
-                    kCellAllowCacheKey: data.cellType.isNeedCacheCell,
-                    kCellCacheKey : data.cellType.cachedCell ?? nil,
-//                    kCellCacheKey: data.type == "ticket" || data.type == "favorite_ticket" ?  Bundle.main.loadNibNamed(data.cellType.identifier , owner: self, options: nil)?.first as! UITableViewCell : kEmptyString,
-                    kCellObjectDataKey: data,
-                    kCellHeightKey: data.cellType.height
-                ])
-            }
-            
-            DISPATCH_ASYNC_MAIN {
-                cellSectionData.append([kSectionTitleKey: kEmptyString, kSectionDataKey: cellData])
-                self._tableView.loadData(cellSectionData)
-                self._tableView.fetchAndInsertBanner()
-            }
+        homeModel.homeblocksModel.forEach { data in
+            if !data.isVisible { return }
+            cellData.append([
+                kCellIdentifierKey: data.cellType.identifier,
+                kCellTagKey: data.type == "membership-package" ? "membership-package" : data.id,
+                kCellAllowCacheKey: data.cellType.isNeedCacheCell,
+                kCellCacheKey : data.cellType.cachedCell ?? nil,
+                //                    kCellCacheKey: data.type == "ticket" || data.type == "favorite_ticket" ?  Bundle.main.loadNibNamed(data.cellType.identifier , owner: self, options: nil)?.first as! UITableViewCell : kEmptyString,
+                kCellObjectDataKey: data,
+                kCellHeightKey: data.cellType.height
+            ])
+        }
+        
+        DISPATCH_ASYNC_MAIN {
+            cellSectionData.append([kSectionTitleKey: kEmptyString, kSectionDataKey: cellData])
+            self._tableView.loadData(cellSectionData)
+            self._tableView.fetchAndInsertBanner()
+        }
     }
     
     // --------------------------------------
@@ -389,16 +343,11 @@ class HomeVC: NavigationBarViewController {
     // --------------------------------------
     
     private var _prototype: [[String: Any]]? {
-        return [HomeBlockCellType.venue.prototype, HomeBlockCellType.venueSmall.prototype,HomeBlockCellType.ticket.prototype, HomeBlockCellType.customVenue.prototype,HomeBlockCellType.promoterEvents.prototype,
-                HomeBlockCellType.offer.prototype, HomeBlockCellType.customOffer.prototype, HomeBlockCellType.customComponents.prototype,
-                HomeBlockCellType.deal.prototype, HomeBlockCellType.activity.prototype, HomeBlockCellType.event.prototype,HomeBlockCellType.promoter.prototype,
-                HomeBlockCellType.video.prototype,HomeBlockCellType.ticketCategoryRounded.prototype, HomeBlockCellType.nearBy.prototype,HomeBlockCellType.userSuggested.prototype,HomeBlockCellType.yacht.prototype,
-                HomeBlockCellType.myOuting.prototype, [kCellIdentifierKey: kCellIdentifierCategories, kCellNibNameKey: kCellIdentifierCategories, kCellClassKey: CategoryTableCell.self, kCellHeightKey: CategoryTableCell.height],
+        return [HomeBlockCellType.ticket.prototype, HomeBlockCellType.video.prototype, HomeBlockCellType.ticketCategoryRounded.prototype,  [kCellIdentifierKey: kCellIdentifierCategories, kCellNibNameKey: kCellIdentifierCategories, kCellClassKey: CategoryTableCell.self, kCellHeightKey: CategoryTableCell.height],
                 [kCellIdentifierKey: kCellIdentifierStoryView, kCellNibNameKey: kCellIdentifierStoryView, kCellClassKey: HomeStoryViewCell.self, kCellHeightKey: HomeStoryViewCell.height],
-                [kCellIdentifierKey: kCompleteProfile, kCellNibNameKey: kCompleteProfile, kCellClassKey: CompleteProfileTableCell.self, kCellHeightKey: CompleteProfileTableCell.height],
                 [kCellIdentifierKey: BannerAdsTableCell.identifier,
-                         kCellNibNameKey: BannerAdsTableCell.identifier,
-                         kCellClassKey: BannerAdsTableCell.self,
+                    kCellNibNameKey: BannerAdsTableCell.identifier,
+                      kCellClassKey: BannerAdsTableCell.self,
                      kCellHeightKey: BannerAdsTableCell.height("1:1")],
                 [kCellIdentifierKey: kLoadingCell, kCellNibNameKey: kLoadingCell, kCellClassKey: LoadingCell.self, kCellHeightKey: LoadingCell.height], HomeBlockCellType.banner.prototype, HomeBlockCellType.bigCategory.prototype, HomeBlockCellType.cities.prototype, HomeBlockCellType.singleVideo.prototype, HomeBlockCellType.smallCategory.prototype,HomeBlockCellType.contactUs.prototype
         ]
@@ -407,73 +356,7 @@ class HomeVC: NavigationBarViewController {
     
     @objc private func handleOpenVenueDetail(_ notification: Notification) {
         if let userInfo = notification.userInfo {
-            if let offerId = userInfo["offerId"] as? String, !Utils.stringIsNullOrEmpty(offerId) {
-                guard let rootVc = APP.window?.rootViewController else { return }
-                if let visibleVc = Utils.getVisibleViewController(from: rootVc) as? OfferPackageDetailVC, visibleVc.offerId == offerId {
-                    return
-                }
-                guard let model = APPSETTING.offers?.filter({ $0.id == offerId }).first else { return }
-                let vc = INIT_CONTROLLER_XIB(OfferPackageDetailVC.self)
-                vc.modalPresentationStyle = .overFullScreen
-                vc.offerId = offerId
-                vc.venueModel = model.venue
-                vc.timingModel = model.venue?.timing.toArrayDetached(ofType: TimingModel.self)
-                vc.vanueOpenCallBack = { venueId, venueModel in
-                    guard let rootVc = APP.window?.rootViewController else { return }
-                    if let visibleVc = Utils.getVisibleViewController(from: rootVc) as? VenueDetailsVC, visibleVc.venueId == venueId {
-                        return
-                    }
-                    let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-                    vc.venueId = venueId
-                    vc.venueDetailModel = venueModel
-                    if let visibleVc = Utils.getVisibleViewController(from: rootVc) {
-                        visibleVc.navigationController?.pushViewController(vc, animated: true)
-                    } else {
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                }
-                vc.buyNowOpenCallBack = { offer, venue, timing in
-                    guard let rootVc = APP.window?.rootViewController else { return }
-                    let vc = INIT_CONTROLLER_XIB(BuyPackgeVC.self)
-                    vc.isFromActivity = false
-                    vc.type = "offers"
-                    vc.timingModel = timing
-                    vc.offerModel = offer
-                    vc.venue = venue
-                    vc.setCallback {
-                        let controller = INIT_CONTROLLER_XIB(MyCartVC.self)
-                        controller.modalPresentationStyle = .overFullScreen
-                        if let visibleVc = Utils.getVisibleViewController(from: rootVc) {
-                            visibleVc.navigationController?.pushViewController(vc, animated: true)
-                        } else {
-                            self.navigationController?.pushViewController(vc, animated: true)
-                        }
-                    }
-                    if let visibleVc = Utils.getVisibleViewController(from: rootVc) {
-                        visibleVc.navigationController?.pushViewController(vc, animated: true)
-                    } else {
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-                }
-                guard let rootVc = APP.window?.rootViewController else { return }
-                if let visibleVc = Utils.getVisibleViewController(from: rootVc) {
-                    visibleVc.presentAsPanModal(controller: vc)
-                } else {
-                    presentAsPanModal(controller: vc)
-                }
-            } else if let venueId = userInfo["venueId"] as? String, !Utils.stringIsNullOrEmpty(venueId) {
-                guard let rootVc = APP.window?.rootViewController else { return }
-                if let visibleVc = Utils.getVisibleViewController(from: rootVc) as? VenueDetailsVC, visibleVc.venueId == venueId {
-                    return
-                }
-                let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-                vc.venueId = venueId
-                if let visibleVc = Utils.getVisibleViewController(from: rootVc) {
-                    visibleVc.navigationController?.pushViewController(vc, animated: true)
-                } else {
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-            } else if let ticketId = userInfo["ticketId"] as? String, !Utils.stringIsNullOrEmpty(ticketId) {
+            if let ticketId = userInfo["ticketId"] as? String, !Utils.stringIsNullOrEmpty(ticketId) {
                 guard let rootVc = APP.window?.rootViewController else { return }
                 if let visibleVc = Utils.getVisibleViewController(from: rootVc) as? CustomTicketDetailVC, visibleVc.ticketID == ticketId {
                     return
@@ -510,25 +393,7 @@ class HomeVC: NavigationBarViewController {
             guard let visibleVc = Utils.getVisibleViewController(from: rootVc) else { return }
             guard let userDetail = APPSESSION.userDetail else { return }
             let model = data["contact"] as? UserDetailModel
-            if model?.id != userDetail.id {
-                if model?.isPromoter == true, userDetail.isRingMember {
-                    let vc = INIT_CONTROLLER_XIB(PromoterPublicProfileVc.self)
-                    vc.promoterId = model?.id ??  ""
-                    vc.isFromPersonal = true
-                    visibleVc.navigationController?.pushViewController(vc, animated: true)
-                } else if model?.isPromoter == true, userDetail.isPromoter {
-                    let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                    vc.complimentryId = model?.id ??  ""
-                    vc.isFromPersonal = true
-                    visibleVc.navigationController?.pushViewController(vc, animated: true)
-                    
-                } else {
-                    let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                    vc.modalPresentationStyle = .overFullScreen
-                    vc.contactId = model?.id ?? ""
-                    visibleVc.navigationController?.pushViewController(vc, animated: true)
-                }
-            }
+
         }
     }
     
@@ -544,11 +409,7 @@ class HomeVC: NavigationBarViewController {
     
     @objc private func _handleReload(_ notification: Notification) {
         self._requestHomeData(true)
-        if APPSESSION.userDetail?.isRingMember == true {
-            setupBottomBar()
-        } else {
-            _bottomView.isHidden = true
-        }
+      
     }
     
     @objc private func _handleReloadLike(_ notification: Notification) {
@@ -603,102 +464,20 @@ extension HomeVC: CustomNoKeyboardTableViewDelegate, UITableViewDelegate {
             guard let object = cellDict?[kCellObjectDataKey] as? [VenueDetailModel] else { return }
             cell.setupData(object)
         }
-        else if let cell = cell as? CustomVenueComponetCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            cell.setupData(object)
-        }
-        else if let cell = cell as? CustomComponentTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            cell.setupData(object)
-        }
-        else if let cell = cell as? LargeVenueComponentTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            cell.setupData(object)
-        }
-        else if let cell = cell as? LargeOfferComponentTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            cell.setupData(object)
-        }
-        else if let cell = cell as? ExlusiveDealsTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            cell.setupData(object)
-        }
-        else if let cell = cell as? SmallVenueComponentTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            cell.setupData(object)
-        }
         else if let cell = cell as? VideoComponentTableCell {
             guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
             cell.setupData(object)
-//            if indexPath.row == 2 {
-                DISPATCH_ASYNC_MAIN_AFTER(0.01) {
-                    self.playPauseVideoIfVisible()
-                }
-//            }
-        }
-        else if let cell = cell as? ActivityComponantTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            cell.setupData(object)
-        }
-        else if let cell = cell as? EventsTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            cell.setupData(object)
-        }
-        else if let cell = cell as? MapComponentTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            cell.setupData(object)
-        }
-        else if let cell = cell as? MyOutingTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            cell.setupData(object.myOutingsList, "invitations".localized(), subTitle: object.descriptions)
+            DISPATCH_ASYNC_MAIN_AFTER(0.01) {
+                self.playPauseVideoIfVisible()
+            }
         }
         else if let cell = cell as? CategoryTableCell {
-//            guard let object = cellDict?[kCellObjectDataKey] as? [CategoryDetailModel] else { return }
             if let categories = cellDict?[kCellObjectDataKey] as? [CategoryDetailModel] {
                 cell.setupData(categories)
             } else {
                 guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
                 cell.setupData(object)
             }
-            
-        }
-        else if let cell = cell as? SuggestedFriendsTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            if object.type == "suggested-users" {
-                cell.setupData(object.suggestedUsers.toArrayDetached(ofType: UserDetailModel.self), title: object.title)
-            } else if object.type == "suggested-venues" {
-                cell.setupData(venues: object.suggestedVenue.toArrayDetached(ofType: VenueDetailModel.self), title: object.title, isVenue: true)
-            }
-        }
-        else if let cell = cell as? CompleteProfileTableCell {
-            guard let type = cellDict?[kCellTagKey] as? String else { return }
-            if type == "membership-package" {
-                guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-                cell._memberShipView.isHidden = false
-                cell._copleteProfileView.isHidden = true
-                cell.setup(object.membershipList[0].title, subTitle: object.membershipList[0].subTitle)
-            } else {
-                cell._memberShipView.isHidden = true
-                cell._copleteProfileView.isHidden = false
-                cell._userImage.loadWebImage(APPSESSION.userDetail?.image ?? kEmptyString, name: APPSESSION.userDetail?.firstName ?? kEmptyString)
-            }
-        }
-        else if let cell = cell as? YachtComponentTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            cell.setupData(object)
-        }
-        else if let cell = cell as? PromoterComponentCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            cell._bgView.startColor = UIColor(hexString: object.color)
-            cell._bgView.endColor = UIColor(hexString: object.color)
-            cell._applyButton.backgroundColor = UIColor(hexString: object.color)
-            cell._applyButton.setTitle(object.type != "apply-promoter" ? "apply_now".localized() : "apply_for_promoter".localized())
-            cell._applyButton.isHidden = object.applicationStatus == "pending"
-            cell.setup(object.title, subTitle: object.descriptions, image: object.backgroundImage, status: object.applicationStatus)
-        }
-        else if let cell = cell as? HomeCmEventTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            cell.setupData(object)
         }
         else if let cell = cell as? CustomTicketTableCell {
             guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
@@ -745,20 +524,20 @@ extension HomeVC: CustomNoKeyboardTableViewDelegate, UITableViewDelegate {
     
     func playPauseVideoIfVisible() {
         guard let superview = _tableView.superview else { return }
-
+        
         for cell in _tableView.visibleCells {
             guard let indexPath = _tableView.indexPath(for: cell) else { continue }
-
+            
             let cellRect = _tableView.rectForRow(at: indexPath)
             let convertedRect = _tableView.convert(cellRect, to: superview)
             let intersect = _tableView.frame.intersection(convertedRect)
             let visibleHeight = intersect.height
             let cellHeight = cellRect.height
             let ratio = visibleHeight / cellHeight
-
+            
             // Minimum visible threshold
             let threshold: CGFloat = 0.22
-
+            
             switch cell {
             case let videoCell as VideoComponentTableCell:
                 if ratio <= threshold {
@@ -766,101 +545,23 @@ extension HomeVC: CustomNoKeyboardTableViewDelegate, UITableViewDelegate {
                 } else if videoCell._replyView.isHidden {
                     videoCell.resumeVideo()
                 }
-
+                
             case let singleVideoCell as SingleVideoTableCell:
                 if ratio <= threshold {
                     singleVideoCell.pauseVideo()
                 } else if singleVideoCell._replyView.isHidden {
                     singleVideoCell.resumeVideo()
                 }
-
             case let bannerCell as BannerAdsTableCell:
                 if ratio <= threshold {
                     bannerCell.pause()
                 } else {
                     bannerCell.resume()
                 }
-
+                
             default:
                 break
             }
-        }
-    }
-    
-//    func playPauseVideoIfVisible() {
-//        self._tableView.visibleCells.forEach { cell in
-//            if cell is VideoComponentTableCell {
-//                guard let indexPath = self._tableView.indexPath(for: cell) else { return }
-//                let cellRect = self._tableView.rectForRow(at: indexPath)
-//                if let superview = self._tableView.superview {
-//                    let convertedRect = self._tableView.convert(cellRect, to:superview)
-//                    let intersect = self._tableView.frame.intersection(convertedRect)
-//                    let visibleHeight = intersect.height
-//                    let cellHeight = cellRect.height
-//                    let ratio = visibleHeight / cellHeight
-//                    if ratio <= 0.22 {
-//                        (cell as? VideoComponentTableCell)?.pauseVideo()
-//                    } else {
-//                        if (cell as? VideoComponentTableCell)?._replyView.isHidden == true {
-//                            (cell as? VideoComponentTableCell)?.resumeVideo()
-//                        }
-//                    }
-//                }
-//            } else if cell is SingleVideoTableCell {
-//                guard let indexPath = self._tableView.indexPath(for: cell) else { return }
-//                let cellRect = self._tableView.rectForRow(at: indexPath)
-//                if let superview = self._tableView.superview {
-//                    let convertedRect = self._tableView.convert(cellRect, to:superview)
-//                    let intersect = self._tableView.frame.intersection(convertedRect)
-//                    let visibleHeight = intersect.height
-//                    let cellHeight = cellRect.height
-//                    let ratio = visibleHeight / cellHeight
-//                    if ratio <= 0.22 {
-//                        (cell as? SingleVideoTableCell)?.pauseVideo()
-//                    } else {
-//                        if (cell as? SingleVideoTableCell)?._replyView.isHidden == true {
-//                            (cell as? SingleVideoTableCell)?.resumeVideo()
-//                        }
-//                    }
-//                }
-//            } else if cell is BannerAdsTableCell {
-//                guard let indexPath = self._tableView.indexPath(for: cell) else { return }
-//                let cellRect = self._tableView.rectForRow(at: indexPath)
-//                if let superview = self._tableView.superview {
-//                    let convertedRect = self._tableView.convert(cellRect, to:superview)
-//                    let intersect = self._tableView.frame.intersection(convertedRect)
-//                    let visibleHeight = intersect.height
-//                    let cellHeight = cellRect.height
-//                    let ratio = visibleHeight / cellHeight
-//                    if ratio <= 0.22 {
-//                        (cell as? BannerAdsTableCell)?.pause()
-//                    } else {
-//                        (cell as? BannerAdsTableCell)?.resume()
-//                    }
-//                }
-//            }
-//        }
-//    }
-    
-    func didSelectTableCell(_ cell: UITableViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
-        guard let type = cellDict?[kCellTagKey] as? String else { return }
-        if cell is CompleteProfileTableCell {
-            if type == "membership-package" {
-                let vc = INIT_CONTROLLER_XIB(PlanDetailsVC.self)
-                vc.hidesBottomBarWhenPushed = true
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                let vc = INIT_CONTROLLER_XIB(EditProfileVC.self)
-                vc.delegate = self
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-        } else if cell is PromoterComponentCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            if object.applicationStatus == "pending" { return }
-            let vc = INIT_CONTROLLER_XIB(PromoterApplicationVC.self)
-            vc.isComlementry = object.type != "apply-promoter"
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
     
@@ -897,18 +598,10 @@ extension HomeVC: CustomNoKeyboardTableViewDelegate, UITableViewDelegate {
             self.playPauseVideoIfVisible()
         }
         
-//        DISPATCH_ASYNC_MAIN_AFTER(0.1) {
-//            self.playPauseVideoIfVisible()
-//        }
     }
     
     func refreshData() {
         _requestHomeData(true)
-        if APPSESSION.userDetail?.isRingMember == true {
-            setupBottomBar()
-        } else {
-            _bottomView.isHidden = true
-        }
     }
 }
 

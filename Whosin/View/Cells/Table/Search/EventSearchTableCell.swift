@@ -72,24 +72,9 @@ class EventSearchTableCell: UITableViewCell {
         } else if let venue = data.venueDetail {
             _venueInfoView.setupData(venue: venue, isAllowClick: true)
         }
-        
-        if !Utils.stringIsNullOrEmpty(data.eventTime) {
-            let _starttime = Date(timeInterval: "\(Date())".toDate(format: kStanderdDate).timeIntervalSince(Date()), since: Date())
-            let _endtime = Date(timeInterval: data.eventTime.toDate(format: kStanderdDate).timeIntervalSince(Date()), since: Date())
-            _countDownLabel.animationType = .Evaporate
-            _countDownLabel.timeFormat = "dd:HH:mm:ss"
-            _countDownLabel.setCountDownDate(fromDate: _starttime as NSDate, targetDate: _endtime as NSDate)
-            _countDownLabel.start()
-            countdownView.isHidden = data._isEventExpired ? true : false
-        } else {
-            countdownView.isHidden = true
-        }
     }
     
     @objc private func orgDetail() {
-        let vc = INIT_CONTROLLER_XIB(EventOrganisierVC.self)
-        vc.orgId = _eventModel?.orgData?.id ?? kEmptyString
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
     }
 
 }

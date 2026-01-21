@@ -121,12 +121,6 @@ class MyRingsTableViewCell: UITableViewCell {
     // --------------------------------------
 
     @IBAction private func _handleSeeAllEvent(_ sender: UIButton) {
-        let vc = INIT_CONTROLLER_XIB(SeeAllDetailVC.self)
-        vc.detailType = "rings"
-//        if Preferences.isSubAdmin {
-//            vc.usersListModel = ringMembers
-//        }
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
 }
@@ -145,10 +139,6 @@ extension MyRingsTableViewCell:  CustomCollectionViewDelegate {
     }
     
     func didSelectCell(_ cell: UICollectionViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
-        guard let model = cellDict?[kCellObjectDataKey] as? UserDetailModel else { return }
-        let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-        vc.complimentryId = model.userId
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
     }
     
 }

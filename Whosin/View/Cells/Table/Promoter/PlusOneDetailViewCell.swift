@@ -143,15 +143,6 @@ extension PlusOneDetailViewCell:  CustomNoKeyboardCollectionViewDelegate {
     
     func didSelectCell(_ cell: UICollectionViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
         guard let object = cellDict?[kCellObjectDataKey] as? UserDetailModel else { return }
-        if object.isRingMember && APPSESSION.userDetail?.isPromoter == true {
-            let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-            vc.complimentryId = object.userId
-            self.parentViewController?.navigationController?.pushViewController(vc, animated: true)
-        } else {
-            let controller = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-            controller.contactId = object.userId
-            self.parentViewController?.navigationController?.pushViewController(controller, animated: true)
-        }
     }
     
 }

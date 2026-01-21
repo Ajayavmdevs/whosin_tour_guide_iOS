@@ -1,7 +1,7 @@
 import RealmSwift
 import UIKit
 
-let REALMSCHEMAVERSION = 362
+let REALMSCHEMAVERSION = 1
 
 class Repository: NSObject {
 
@@ -10,7 +10,7 @@ class Repository: NSObject {
     // --------------------------------------
 
     private class var _path: URL? {
-        Utils.getLocalDirectory("realm")?.appendingPathComponent("whosin_db", isDirectory: false).appendingPathExtension("realm")
+        Utils.getLocalDirectory("realm")?.appendingPathComponent("w_db", isDirectory: false).appendingPathExtension("realm")
     }
     
     func resetRealm () {
@@ -43,7 +43,7 @@ class Repository: NSObject {
                     // And will update the schema on disk automatically
                 }
             },
-            deleteRealmIfMigrationNeeded: false)
+            deleteRealmIfMigrationNeeded: true)
     }
 
     // --------------------------------------

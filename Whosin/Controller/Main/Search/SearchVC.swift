@@ -2,8 +2,6 @@ import UIKit
 import RealmSwift
 import Alamofire
 
-//var searchFilter: [String: Any] = [:]
-
 class SearchVC: NavigationBarViewController {
 
     @IBOutlet private weak var _addressHeightConstraint: NSLayoutConstraint!
@@ -23,28 +21,12 @@ class SearchVC: NavigationBarViewController {
     @IBOutlet private weak var _badgeView: UIView!
     @IBOutlet private weak var _badgeCount: CustomLabel!
     private let kCellIdentifierStoryView = String(describing: LatestSearchTableCell.self)
-    private let kCellIdentifierDeals = String(describing: DealRecommendedTableCell.self)
     private let kCellIdentifierCategories = String(describing: CategoryTableCell.self)
-    private let kCellIdentifierCategoryOffers = String(describing: CategoryRecommendedTableCell.self)
-    private let kCellIdentifierAds = String(describing: VenueRecommendedTableCell.self)
     private let kCellIdentifierHeader = String(describing: SearchHeaderCollectionCell.self)
-    private let kCellIdentifierVenue = String(describing: VenueSearchTableCell.self)
-    private let kCellIdentifierUser = String(describing: UserTableCell.self)
-    private let kCellIdentifierOffers = String(describing: CommanOffersTableCell.self)
     private let kCellIdentifierTicketList = String(describing: ExploreTicketTableCell.self)
-    private let kCellIdentifierEvent = String(describing: EventSearchTableCell.self)
-    private let kCellIdentifierActivity = String(describing: ActivitySearchTableCell.self)
     private let kCellIdentifierTicket = String(describing: AllCustomTicketTableCell.self)
-    private let kCellIdentifierAllVenue = String(describing: AllVenueSeachTableCell.self)
-    private let kCellIdentifierAllOffers = String(describing: AllOfferSearchTableCell.self)
-    private let kCellIdentifierAllUser = String(describing: AllUserSearchTableCell.self)
-    private let kCellIdentifierAllEvent = String(describing: AllEventSearchTableCell.self)
-    private let kCellIdentifierAllActivity = String(describing: AllActivitySearchTableCell.self)
     private let kCellIdentifierHistory = String(describing: SearchHistoryTableCell.self)
     private let kCellIdentifierSearchText = String(describing: SearchTextTableCell.self)
-    private let kCellIdentifierRecommendedOffers = String(describing: LargeOfferComponentTableCell.self)
-    private let kCellIdentifierRecommendedVenue = String(describing: LargeVenueComponentTableCell.self)
-
     private var _recommendedDetail: HomeModel?
     private var _tabs: [String] = []
     private var selectedIndex: Int = 0
@@ -351,60 +333,6 @@ class SearchVC: NavigationBarViewController {
                     kCellHeightKey: ExploreTicketTableCell.height
                 ])
             }
-            object.users?.forEach { user in
-                cellData.append([
-                    kCellIdentifierKey: kCellIdentifierUser,
-                    kCellTagKey: kCellIdentifierUser,
-                    kCellDifferenceContentKey: user.id,
-                    kCellDifferenceIdentifierKey: user.id,
-                    kCellObjectDataKey: user,
-                    kCellClassKey: UserTableCell.self,
-                    kCellHeightKey: UserTableCell.height
-                ])
-            }
-            object.venues?.forEach { venue in
-                cellData.append([
-                    kCellIdentifierKey: kCellIdentifierVenue,
-                    kCellTagKey: kCellIdentifierVenue,
-                    kCellDifferenceContentKey: venue.id,
-                    kCellDifferenceIdentifierKey: venue.id,
-                    kCellObjectDataKey: venue,
-                    kCellClassKey: VenueSearchTableCell.self,
-                    kCellHeightKey: VenueSearchTableCell.height
-                ])
-            }
-            object.events?.forEach { event in
-                if event.venueDetail == nil {
-                    event.venueDetail = APPSETTING.venueModel?.filter { $0.id == event.venue }.first
-                }
-                if !Utils.isVenueDetailEmpty(event.venueDetail) {
-                    cellData.append([
-                        kCellIdentifierKey: kCellIdentifierEvent,
-                        kCellTagKey: kCellIdentifierEvent,
-                        kCellObjectDataKey: event,
-                        kCellClassKey: EventSearchTableCell.self,
-                        kCellHeightKey: EventSearchTableCell.height
-                    ])
-                }
-            }
-            object.activities?.forEach { activity in
-                cellData.append([
-                    kCellIdentifierKey: kCellIdentifierActivity,
-                    kCellTagKey: kCellIdentifierActivity,
-                    kCellObjectDataKey: activity,
-                    kCellClassKey: ActivitySearchTableCell.self,
-                    kCellHeightKey: ActivitySearchTableCell.height
-                ])
-            }
-            object.offers?.forEach { offer in
-                cellData.append([
-                    kCellIdentifierKey: kCellIdentifierOffers,
-                    kCellTagKey: kCellIdentifierOffers,
-                    kCellObjectDataKey: offer,
-                    kCellClassKey: CommanOffersTableCell.self,
-                    kCellHeightKey: CommanOffersTableCell.height
-                ])
-            }
         }
         
         if finalResult.isEmpty || _selectedDay != "All" {
@@ -420,51 +348,6 @@ class SearchVC: NavigationBarViewController {
                                 kCellTitleKey: object.type,
                                 kCellClassKey: AllCustomTicketTableCell.self,
                                 kCellHeightKey: AllCustomTicketTableCell.height
-                            ])
-                        } else if type == "venue", let venues = object.venues {
-                            cellData.append([
-                                kCellIdentifierKey: kCellIdentifierAllVenue,
-                                kCellTagKey: kCellIdentifierAllVenue,
-                                kCellObjectDataKey: venues,
-                                kCellTitleKey: object.type,
-                                kCellClassKey: AllVenueSeachTableCell.self,
-                                kCellHeightKey: AllVenueSeachTableCell.height
-                            ])
-                        } else if type == "offer", let offers = object.offers {
-                            cellData.append([
-                                kCellIdentifierKey: kCellIdentifierAllOffers,
-                                kCellTagKey: kCellIdentifierAllOffers,
-                                kCellObjectDataKey: offers,
-                                kCellTitleKey: object.type,
-                                kCellClassKey: AllOfferSearchTableCell.self,
-                                kCellHeightKey: AllOfferSearchTableCell.height
-                            ])
-                        } else if type == "user", let users = object.users {
-                            cellData.append([
-                                kCellIdentifierKey: kCellIdentifierAllUser,
-                                kCellTagKey: kCellIdentifierAllUser,
-                                kCellObjectDataKey: users,
-                                kCellTitleKey: object.type,
-                                kCellClassKey: AllUserSearchTableCell.self,
-                                kCellHeightKey: AllUserSearchTableCell.height
-                            ])
-                        } else if type == "event", let events = object.events {
-                            cellData.append([
-                                kCellIdentifierKey: kCellIdentifierAllEvent,
-                                kCellTagKey: kCellIdentifierAllEvent,
-                                kCellObjectDataKey: events,
-                                kCellTitleKey: object.type,
-                                kCellClassKey: AllEventSearchTableCell.self,
-                                kCellHeightKey: AllEventSearchTableCell.height
-                            ])
-                        } else if type == "activity", let activities = object.activities {
-                            cellData.append([
-                                kCellIdentifierKey: kCellIdentifierAllActivity,
-                                kCellTagKey: kCellIdentifierAllActivity,
-                                kCellObjectDataKey: activities,
-                                kCellTitleKey: object.type,
-                                kCellClassKey: AllActivitySearchTableCell.self,
-                                kCellHeightKey: AllActivitySearchTableCell.height
                             ])
                         }
                     }
@@ -503,17 +386,7 @@ class SearchVC: NavigationBarViewController {
     
     private var _searchTablePrototype: [[String: Any]]? {
         return [
-            [kCellIdentifierKey: kCellIdentifierAllVenue, kCellNibNameKey: kCellIdentifierAllVenue, kCellClassKey: AllVenueSeachTableCell.self, kCellHeightKey: AllVenueSeachTableCell.height],
-            [kCellIdentifierKey: kCellIdentifierAllOffers, kCellNibNameKey: kCellIdentifierAllOffers, kCellClassKey: AllOfferSearchTableCell.self, kCellHeightKey: AllOfferSearchTableCell.height],
-            [kCellIdentifierKey: kCellIdentifierAllUser, kCellNibNameKey: kCellIdentifierAllUser, kCellClassKey: AllUserSearchTableCell.self, kCellHeightKey: AllUserSearchTableCell.height],
-            [kCellIdentifierKey: kCellIdentifierAllEvent, kCellNibNameKey: kCellIdentifierAllEvent, kCellClassKey: AllEventSearchTableCell.self, kCellHeightKey: AllEventSearchTableCell.height],
-            [kCellIdentifierKey: kCellIdentifierAllActivity, kCellNibNameKey: kCellIdentifierAllActivity, kCellClassKey: AllActivitySearchTableCell.self, kCellHeightKey: AllActivitySearchTableCell.height],
-            [kCellIdentifierKey: kCellIdentifierVenue, kCellNibNameKey: kCellIdentifierVenue, kCellClassKey: VenueSearchTableCell.self, kCellHeightKey: VenueSearchTableCell.height],
-            [kCellIdentifierKey: kCellIdentifierUser, kCellNibNameKey: kCellIdentifierUser, kCellClassKey: UserTableCell.self, kCellHeightKey: UserTableCell.height],
-            [kCellIdentifierKey: kCellIdentifierOffers, kCellNibNameKey: kCellIdentifierOffers, kCellClassKey: CommanOffersTableCell.self, kCellHeightKey: CommanOffersTableCell.height],
             [kCellIdentifierKey: kCellIdentifierTicketList, kCellNibNameKey: kCellIdentifierTicketList, kCellClassKey: ExploreTicketTableCell.self, kCellHeightKey: ExploreTicketTableCell.height],
-            [kCellIdentifierKey: kCellIdentifierEvent, kCellNibNameKey: kCellIdentifierEvent, kCellClassKey: EventSearchTableCell.self, kCellHeightKey: EventSearchTableCell.height],
-            [kCellIdentifierKey: kCellIdentifierActivity, kCellNibNameKey: kCellIdentifierActivity, kCellClassKey: ActivitySearchTableCell.self, kCellHeightKey: ActivitySearchTableCell.height],
             [kCellIdentifierKey: kCellIdentifierTicket, kCellNibNameKey: kCellIdentifierTicket, kCellClassKey: AllCustomTicketTableCell.self, kCellHeightKey: AllCustomTicketTableCell.height],
             [kCellIdentifierKey: BannerAdsTableCell.identifier, kCellNibNameKey: BannerAdsTableCell.identifier, kCellClassKey: BannerAdsTableCell.self, kCellHeightKey: BannerAdsTableCell.height],
             [kCellIdentifierKey: kCellIdentifierHistory, kCellNibNameKey: kCellIdentifierHistory, kCellClassKey: SearchHistoryTableCell.self, kCellHeightKey: SearchHistoryTableCell.height],
@@ -524,12 +397,9 @@ class SearchVC: NavigationBarViewController {
     private var _prototype: [[String: Any]]? {
         return [
             [kCellIdentifierKey: kCellIdentifierStoryView, kCellNibNameKey: kCellIdentifierStoryView, kCellClassKey: LatestSearchTableCell.self, kCellHeightKey: LatestSearchTableCell.height],
-            [kCellIdentifierKey: kCellIdentifierDeals, kCellNibNameKey: kCellIdentifierDeals, kCellClassKey: DealRecommendedTableCell.self, kCellHeightKey: DealRecommendedTableCell.height],
             [kCellIdentifierKey: kCellIdentifierCategories, kCellNibNameKey: kCellIdentifierCategories, kCellClassKey: CategoryTableCell.self, kCellHeightKey: CategoryTableCell.height],
-            [kCellIdentifierKey: kCellIdentifierAds, kCellNibNameKey: kCellIdentifierAds, kCellClassKey: VenueRecommendedTableCell.self, kCellHeightKey: VenueRecommendedTableCell.height],
             [kCellIdentifierKey: kCellIdentifierHistory, kCellNibNameKey: kCellIdentifierHistory, kCellClassKey: SearchHistoryTableCell.self, kCellHeightKey: SearchHistoryTableCell.height],
             [kCellIdentifierKey: kCellIdentifierSearchText, kCellNibNameKey: kCellIdentifierSearchText, kCellClassKey: SearchTextTableCell.self, kCellHeightKey: SearchTextTableCell.height],
-            HomeBlockCellType.venue.prototype, HomeBlockCellType.offer.prototype, HomeBlockCellType.activity.prototype, HomeBlockCellType.event.prototype, HomeBlockCellType.userSuggested.prototype, HomeBlockCellType.ticket.prototype,
             [kCellIdentifierKey: BannerAdsTableCell.identifier, kCellNibNameKey: BannerAdsTableCell.identifier, kCellClassKey: BannerAdsTableCell.self, kCellHeightKey: BannerAdsTableCell.height]
         ]
     }
@@ -554,23 +424,7 @@ class SearchVC: NavigationBarViewController {
     
     private func _openDetailScreenForSearchHistory(type: String, object: SearchHistoryModel) {
         guard let userDetail = APPSESSION.userDetail else { return }
-        if type == "user" {
-            if object.isPromoter, userDetail.isRingMember {
-                let vc = INIT_CONTROLLER_XIB(PromoterPublicProfileVc.self)
-                vc.promoterId = object.id
-                vc.isFromPersonal = true
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else if object.isRingMember, userDetail.isPromoter {
-                let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                vc.complimentryId = object.id
-                vc.isFromPersonal = true
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                let controller = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                controller.contactId = object.id
-                self.navigationController?.pushViewController(controller, animated: true)
-            }
-        }
+
     }
     
     @IBAction func _handleRemoveLocation(_ sender: UIButton) {
@@ -785,96 +639,17 @@ extension SearchVC: CustomNoKeyboardTableViewDelegate {
             guard let object = cellDict?[kCellObjectDataKey] as? [String] else { return }
             cell.setupData(object)
             cell.delegate = self
-        } else if let cell = cell as? SuggestedFriendsTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            if object.type == "suggested-users" {
-                cell.setupData(object.suggestedUsers.toArrayDetached(ofType: UserDetailModel.self), title: object.title)
-            } else if object.type == "suggested-venues" {
-                cell.setupData(venues: object.suggestedVenue.toArrayDetached(ofType: VenueDetailModel.self), title: object.title, isVenue: true)
-            }
         } else if let cell = cell as? SearchHistoryTableCell {
             guard let object = cellDict?[kCellObjectDataKey] as? SearchHistoryModel else { return }
             cell._profileImageView.image = nil
             cell.setupData(object)
             cell.delegate = self
-        } else if let cell = cell as? DealRecommendedTableCell {
-            guard let title = cellDict?[kCellTitleKey] as? String,
-                  let object = cellDict?[kCellObjectDataKey] as? List<DealsModel> else { return }
-            cell._titleLabel.text = title
-            cell.setupData(object.toArrayDetached(ofType: DealsModel.self))
-        } else if let cell = cell as? CategoryRecommendedTableCell {
-            guard let title = cellDict?[kCellTitleKey] as? String,
-                  let object = cellDict?[kCellObjectDataKey] as? List<CategoryDetailModel> else { return }
-            cell._titleLabel.text = title
-            cell.setupData(object.toArrayDetached(ofType: CategoryDetailModel.self))
         } else if let cell = cell as? CustomTicketTableCell {
             guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
             cell.setupExploreData(object)
-        } else if let cell = cell as? LargeOfferComponentTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            cell.setupData(object)
         } else if let cell = cell as? CategoryTableCell {
             guard let object = cellDict?[kCellObjectDataKey] as? [CategoryDetailModel] else { return }
             cell.setupData(object)
-        } else if let cell = cell as? LargeVenueComponentTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            cell.setupData(object)
-        } else if let cell = cell as? ActivityComponantTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            cell.setupData(object)
-        } else if let cell = cell as? EventsTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? HomeBlockModel else { return }
-            cell.setupData(object)
-        } else if let cell = cell as? VenueRecommendedTableCell {
-            guard let title = cellDict?[kCellTitleKey] as? String,
-                  let object = cellDict?[kCellObjectDataKey] as? List<VenueDetailModel> else { return }
-            cell._titleLabel.text = title
-            cell.setupData(object.toArrayDetached(ofType: VenueDetailModel.self))
-        } else if let cell = cell as? VenueSearchTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? VenueDetailModel else { return }
-            cell.setupData(object)
-        } else if let cell = cell as? UserTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? UserDetailModel else { return }
-            cell.setup(object)
-        } else if let cell = cell as? CommanOffersTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? OffersModel else { return }
-            cell.setup(object, type: .search)
-        } else if let cell = cell as? EventSearchTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? EventModel else { return }
-            cell.setupData(object)
-        } else if let cell = cell as? ActivitySearchTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? ActivitiesModel else { return }
-            cell.setupData(object)
-        } else if let cell = cell as? AllVenueSeachTableCell {
-            guard let title = cellDict?[kCellTitleKey] as? String,
-                  let object = cellDict?[kCellObjectDataKey] as? [VenueDetailModel] else { return }
-            cell.setupData(object)
-            cell._titleLabel.text = title.capitalized
-            cell.delegate = self
-        } else if let cell = cell as? AllOfferSearchTableCell {
-            guard let title = cellDict?[kCellTitleKey] as? String,
-                  let object = cellDict?[kCellObjectDataKey] as? [OffersModel] else { return }
-            cell.setupData(object)
-            cell._titleLabel.text = title.capitalized
-            cell.delegate = self
-        } else if let cell = cell as? AllUserSearchTableCell {
-            guard let title = cellDict?[kCellTitleKey] as? String,
-                  let object = cellDict?[kCellObjectDataKey] as? [UserDetailModel] else { return }
-            cell.setupData(object)
-            cell._titleLabel.text = title.capitalized
-            cell.delegate = self
-        } else if let cell = cell as? AllEventSearchTableCell {
-            guard let title = cellDict?[kCellTitleKey] as? String,
-                  let object = cellDict?[kCellObjectDataKey] as? [EventModel] else { return }
-            cell.setupData(object)
-            cell._titleLabel.text = title.capitalized
-            cell.delegate = self
-        } else if let cell = cell as? AllActivitySearchTableCell {
-            guard let title = cellDict?[kCellTitleKey] as? String,
-                  let object = cellDict?[kCellObjectDataKey] as? [ActivitiesModel] else { return }
-            cell.setupData(object)
-            cell._titleLabel.text = title.capitalized
-            cell.delegate = self
         } else if let cell = cell as? AllCustomTicketTableCell {
             guard let object = cellDict?[kCellObjectDataKey] as? [TicketModel] else { return }
             cell.setupData(object)
@@ -921,120 +696,9 @@ extension SearchVC: CustomNoKeyboardTableViewDelegate {
     }
     
     func didSelectTableCell(_ cell: UITableViewCell, sectionTitle: String?, cellDict: [String: Any]?, indexPath: IndexPath) {
-        if cell is CommanOffersTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? OffersModel else { return }
-            let controller = INIT_CONTROLLER_XIB(OfferPackageDetailVC.self)
-            controller.offerId = object.id
-            controller.venueModel = object.venue
-            controller.timingModel = object.venue?.timing.toArrayDetached(ofType: TimingModel.self)
-            APPSETTING.addSearchHistory(id: object.id, title: object.title, subtitle: object.descriptions, type: "offer", image: object.image, venueId: object.venue?.id ?? kEmptyString)
-            controller.modalPresentationStyle = .overFullScreen
-            controller.vanueOpenCallBack = { venueId, venueModel in
-                let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-                vc.venueId = venueId
-                vc.venueDetailModel = venueModel
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-            controller.buyNowOpenCallBack = { offer, venue, timing in
-                let vc = INIT_CONTROLLER_XIB(BuyPackgeVC.self)
-                vc.isFromActivity = false
-                vc.type = "offers"
-                vc.timingModel = timing
-                vc.offerModel = offer
-                vc.venue = venue
-                vc.setCallback {
-                    let controller = INIT_CONTROLLER_XIB(MyCartVC.self)
-                    controller.modalPresentationStyle = .overFullScreen
-                    self.navigationController?.pushViewController(controller, animated: true)
-                }
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-            presentAsPanModal(controller: controller)
-        } else if cell is VenueSearchTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? VenueDetailModel else { return }
-            let controller = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-            controller.venueId = object.id
-            controller.venueDetailModel = object
-            APPSETTING.addSearchHistory(id: object.id, title: object.name, subtitle: object.about, type: "venue", image: object.cover)
-            self.navigationController?.pushViewController(controller, animated: true)
-        } else if cell is EventSearchTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? EventModel else { return }
-            let controller = INIT_CONTROLLER_XIB(EventDetailVC.self)
-            controller.event = object
-            APPSETTING.addSearchHistory(id: object.id, title: object.title, subtitle: object.descriptions, type: "event", image: object.image)
-            self.navigationController?.pushViewController(controller, animated: true)
-        } else if cell is ActivitySearchTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? ActivitiesModel else { return }
-            let controller = INIT_CONTROLLER_XIB(ActivityInfoVC.self)
-            controller.activityId = object.id
-            controller.activityName = object.name
-            APPSETTING.addSearchHistory(id: object.id, title: object.name, subtitle: object.descriptions, type: "activity", image: Utils.stringIsNullOrEmpty(object.cover) ? object.cover : kEmptyString)
-            self.navigationController?.pushViewController(controller, animated: true)
-        } else if cell is UserTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? UserDetailModel else { return }
-            guard let userDetail = APPSESSION.userDetail else { return }
-            if object.id != userDetail.id {
-                if object.isPromoter, userDetail.isRingMember {
-                    let vc = INIT_CONTROLLER_XIB(PromoterPublicProfileVc.self)
-                    vc.promoterId = object.id
-                    vc.isFromPersonal = true
-                    self.navigationController?.pushViewController(vc, animated: true)
-                } else if object.isRingMember, userDetail.isPromoter {
-                    let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                    vc.complimentryId = object.id
-                    vc.isFromPersonal = true
-                    self.navigationController?.pushViewController(vc, animated: true)
-                } else {
-                    let controller = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                    controller.contactId = object.id
-                    APPSETTING.addSearchHistory(id: object.id, title: object.fullName, subtitle: object.email, type: "user", image: object.image)
-                    self.navigationController?.pushViewController(controller, animated: true)
-                }
-            }
-        } else if cell is SearchHistoryTableCell {
+        if cell is SearchHistoryTableCell {
             guard let object = cellDict?[kCellObjectDataKey] as? SearchHistoryModel else { return }
-            if object.type == "user" {
-                _openDetailScreenForSearchHistory(type: object.type, object: object)
-            } else if object.type == "venue" {
-                let controller = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-                controller.venueId = object.id
-                controller.venueDetailModel = Utils.getModelFromId(model: APPSETTING.venueModel, id: object.id)
-                self.navigationController?.pushViewController(controller, animated: true)
-            } else if object.type == "offer" {
-                let controller = INIT_CONTROLLER_XIB(OfferPackageDetailVC.self)
-                controller.offerId = object.id
-                controller.modalPresentationStyle = .overFullScreen
-                controller.vanueOpenCallBack = { venueId, venueModel in
-                    let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-                    vc.venueId = venueId
-                    vc.venueDetailModel = venueModel
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-                controller.buyNowOpenCallBack = { offer, venue, timing in
-                    let vc = INIT_CONTROLLER_XIB(BuyPackgeVC.self)
-                    vc.isFromActivity = false
-                    vc.type = "offers"
-                    vc.timingModel = timing
-                    vc.offerModel = offer
-                    vc.venue = venue
-                    vc.setCallback {
-                        let controller = INIT_CONTROLLER_XIB(MyCartVC.self)
-                        controller.modalPresentationStyle = .overFullScreen
-                        self.navigationController?.pushViewController(controller, animated: true)
-                    }
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-                presentAsPanModal(controller: controller)
-            } else if object.type == "event" {
-                let vc = INIT_CONTROLLER_XIB(EventDetailVC.self)
-                vc.eventId = object.id
-                self.navigationController?.pushViewController(vc, animated: true)
-            } else if object.type == "activity" {
-                let controller = INIT_CONTROLLER_XIB(ActivityInfoVC.self)
-                controller.activityId = object.id
-                controller.activityName = object.title
-                self.navigationController?.pushViewController(controller, animated: true)
-            } else if object.type == "ticket" {
+            if object.type == "ticket" {
                 let vc = INIT_CONTROLLER_XIB(CustomTicketDetailVC.self)
                 vc.ticketID = object.id
                 vc.hidesBottomBarWhenPushed = true

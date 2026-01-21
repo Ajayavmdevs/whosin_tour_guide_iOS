@@ -13,77 +13,23 @@ enum ProfileType: String {
 
 enum HomeBlockCellType: Int {
     case none = 0
-    case offer = 1
-    case venue = 2
-    case venueSmall = 3
-    case customVenue = 4
-    case customOffer = 5
-    case customComponents = 6
-    case video = 7
-    case deal = 8
-    case activity = 9
-    case event = 10
-    case nearBy = 11
-    case myOuting = 12
-    case userSuggested = 13
-    case suggestedVenue = 14
-    case membershipPackage = 15
-    case yacht = 16
-    case yachtOffer = 17
-    case promoter = 18
-    case promoterEvents = 19
-    case ticket = 20
-    case ticketCategories = 21
-    case cities = 22
-    case banner = 23
-    case singleVideo = 24
-    case bigCategory = 25
-    case smallCategory = 26
-    case ticketCategoryRounded = 27
-    case favoriteTicket = 28
-    case contactUs = 29
+    case video = 1
+    case ticket = 2
+    case ticketCategories = 3
+    case cities = 4
+    case banner = 5
+    case singleVideo = 6
+    case bigCategory = 7
+    case smallCategory = 8
+    case ticketCategoryRounded = 9
+    case favoriteTicket = 10
+    case contactUs = 11
     
 
     var identifier: String {
         switch self {
-        case .venue:
-            return String(describing: LargeVenueComponentTableCell.self)
-        case .venueSmall:
-            return String(describing: SmallVenueComponentTableCell.self)
-        case .customOffer, .customVenue:
-            return String(describing: CustomVenueComponetCell.self)
         case .video:
             return String(describing: VideoComponentTableCell.self)
-        case .offer:
-            return String(describing: LargeOfferComponentTableCell.self)
-        case .customComponents:
-            return String(describing: CustomComponentTableCell.self)
-        case .deal:
-            return String(describing: ExlusiveDealsTableCell.self)
-        case .activity:
-            return String(describing: ActivityComponantTableCell.self)
-        case .event:
-            return String(describing: EventsTableCell.self)
-        case .nearBy:
-            return String(describing: MapComponentTableCell.self)
-        case .myOuting:
-            return String(describing: MyOutingTableCell.self)
-        case .userSuggested:
-            return String(describing: SuggestedFriendsTableCell.self)
-        case .suggestedVenue:
-            return String(describing: SuggestedFriendsTableCell.self)
-        case .membershipPackage:
-            return String(describing: CompleteProfileTableCell.self)
-        case .yacht:
-            return String(describing: YachtComponentTableCell.self)
-        case .yachtOffer:
-            return String(describing: YachtComponentTableCell.self)
-        case .none:
-            return String(describing: MyOutingTableCell.self)
-        case .promoter:
-            return String(describing: PromoterComponentCell.self)
-        case .promoterEvents:
-            return String(describing: HomeCmEventTableCell.self)
         case .ticket:
             return String(describing: CustomTicketTableCell.self)
         case .ticketCategories:
@@ -104,49 +50,16 @@ enum HomeBlockCellType: Int {
             return String(describing: CustomTicketTableCell.self)
         case .contactUs:
             return String(describing: ConnectUSTableViewCell.self)
+        case .none:
+            return String(describing: CustomTicketTableCell.self)
+
         }
     }
 
     var height: CGFloat {
         switch self {
-        case .venue:
-            return LargeVenueComponentTableCell.height
-        case .venueSmall:
-            return SmallVenueComponentTableCell.height
         case .video:
             return VideoComponentTableCell.height
-        case .offer:
-            return LargeOfferComponentTableCell.height
-        case .customVenue:
-            return CustomVenueComponetCell.height
-        case .customOffer:
-            return CustomVenueComponetCell.height
-        case .customComponents:
-            return CustomComponentTableCell.height
-        case .deal:
-            return ExlusiveDealsTableCell.height
-        case .activity:
-            return ActivityComponantTableCell.height
-        case .event:
-            return EventsTableCell.height
-        case .nearBy:
-            return MapComponentTableCell.height
-        case .myOuting:
-            return MyOutingTableCell.height
-        case .userSuggested:
-            return SuggestedFriendsTableCell.height
-        case .suggestedVenue:
-            return SuggestedFriendsTableCell.height
-        case .membershipPackage:
-            return CompleteProfileTableCell.height
-        case .yacht:
-            return YachtComponentTableCell.height
-        case .yachtOffer:
-            return YachtComponentTableCell.height
-        case .promoter:
-            return PromoterComponentCell.height
-        case .promoterEvents:
-            return HomeCmEventTableCell.height
         case .ticket:
             return CustomTicketTableCell.height
         case .ticketCategories:

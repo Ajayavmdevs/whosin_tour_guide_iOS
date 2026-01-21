@@ -107,11 +107,3 @@ class PackagesCollectionCell: UICollectionViewCell {
     
 }
 
-extension PackagesCollectionCell: ShowMembershipInfoDelegate {
-    func ShowMembershipDetail() {
-        let vc = INIT_CONTROLLER_XIB(MembershipDetailVC.self)
-        vc.modalPresentationStyle = .overFullScreen
-        vc.hidesBottomBarWhenPushed = true
-        parentViewController?.present(vc, animated: true)
-    }
-}

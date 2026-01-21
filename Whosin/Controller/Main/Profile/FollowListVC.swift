@@ -208,23 +208,7 @@ extension FollowListVC: CustomTableViewDelegate, UIScrollViewDelegate, UITableVi
         if let cell = cell as? ContactsTableCell {
             guard let model = cellDict?[kCellObjectDataKey] as? UserDetailModel else { return }
             guard let userDetail = APPSESSION.userDetail else { return }
-            if model.id != userDetail.id {
-                if model.isPromoter, userDetail.isRingMember {
-                    let vc = INIT_CONTROLLER_XIB(PromoterPublicProfileVc.self)
-                    vc.promoterId = model.id
-                    vc.isFromPersonal = true
-                    self.navigationController?.pushViewController(vc, animated: true)
-                } else if model.isRingMember, userDetail.isPromoter {
-                    let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                    vc.complimentryId = model.id
-                    vc.isFromPersonal = true
-                    self.navigationController?.pushViewController(vc, animated: true)
-                } else {
-                    let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                    vc.contactId = model.id
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-            }
+
         } else if let cell = cell as? PendingRequestTableCell {
             if !APPSETTING.pendingRequestList.isEmpty {
                 let vc = INIT_CONTROLLER_XIB(FollowRequestListVC.self)

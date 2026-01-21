@@ -171,11 +171,3 @@ extension VenueSpecialOffersTabelCell: UIViewControllerTransitioningDelegate {
 }
 
 
-extension VenueSpecialOffersTabelCell: ShowMembershipInfoDelegate {
-    func ShowMembershipDetail() {
-        let vc = INIT_CONTROLLER_XIB(MembershipDetailVC.self)
-        vc.modalPresentationStyle = .overFullScreen
-        vc.hidesBottomBarWhenPushed = true
-        parentViewController?.present(vc, animated: true)
-    }
-}

@@ -176,47 +176,6 @@ extension SuggestedView: CustomNoKeyboardCollectionViewDelegate {
         }
     }
     
-    func didSelectCell(_ cell: UICollectionViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
-        parentBaseController?.feedbackGenerator?.impactOccurred()
-        if cell is SuggestedFriendCollectionCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? UserDetailModel else { return }
-            guard let user = APPSESSION.userDetail, user.id != object.id else { return }
-            if object.isPromoter, user.isRingMember {
-                let vc = INIT_CONTROLLER_XIB(PromoterPublicProfileVc.self)
-                vc.promoterId = object.id
-                vc.isFromPersonal = true
-                parentBaseController?.navigationController?.pushViewController(vc, animated: true)
-            } else if object.isRingMember, user.isPromoter {
-                let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                vc.complimentryId = object.id
-                vc.isFromPersonal = true
-                parentBaseController?.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                vc.contactId = object.id
-                vc.userDetail = object
-                vc.followStateCallBack = { id, isFollow in
-                    if let index = self.usersModel?.firstIndex(where: { $0.id == id}) {
-                        self.usersModel?[index].follow = isFollow
-                        self._loadData()
-                    }
-                }
-                parentBaseController?.navigationController?.pushViewController(vc, animated: true)
-            }
-        } else if cell is SuggestedVenueCollectionCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? VenueDetailModel else { return }
-            let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-            vc.venueId = object.id
-            vc.venueDetailModel = object
-            vc.followStateCallBack = { id, isFollow in
-                if let index = self.venueModel?.firstIndex(where: { $0.id == id}) {
-                    self.venueModel?[index].isFollowing = isFollow
-                    self._loadData()
-                }
-            }
-            parentBaseController?.navigationController?.pushViewController(vc, animated: true)
-        }
-    }
     
     func cellSize(_ collectionView: UICollectionView, cellDict: [String : Any]?, indexPath: IndexPath) -> CGSize {
         if isVenue {

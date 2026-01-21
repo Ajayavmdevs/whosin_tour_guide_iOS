@@ -263,14 +263,7 @@ extension PromoterEventListVC: CustomTableViewDelegate, UIScrollViewDelegate, UI
     }
     
     func didSelectTableCell(_ cell: UITableViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
-        if let cell = cell as? MyEventsTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? PromoterEventsModel else { return}
-            let vc = INIT_CONTROLLER_XIB(PromoterEventDetailVC.self)
-            vc.eventModel = object
-            vc.id = object.id
-            vc.hidesBottomBarWhenPushed = true
-            navigationController?.pushViewController(vc, animated: true)
-        }
+        
     }
 }
 

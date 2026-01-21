@@ -110,14 +110,6 @@ extension AllEventSearchTableCell: CustomNoKeyboardCollectionViewDelegate {
         }
     }
     
-    func didSelectCell(_ cell: UICollectionViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
-        guard let object = cellDict?[kCellObjectDataKey] as? EventModel else { return }
-        
-        APPSETTING.addSearchHistory(id: object.id, title: object.title, subtitle: object.descriptions, type: "event", image: object.image)
-        let controller = INIT_CONTROLLER_XIB(EventDetailVC.self)
-        controller.event = object
-        self.parentViewController?.navigationController?.pushViewController(controller, animated: true)
 
-    }
 }
 

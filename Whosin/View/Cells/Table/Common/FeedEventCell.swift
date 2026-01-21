@@ -121,9 +121,6 @@ class FeedEventCell: UITableViewCell {
     }
 
     @IBAction private func _handleTopButtonEvent(_ sender: UIButton) {
-        let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-        vc.contactId = _id
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
     }
 
 }

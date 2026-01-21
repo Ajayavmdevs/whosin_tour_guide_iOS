@@ -114,24 +114,7 @@ extension AllUserSearchTableCell: CustomNoKeyboardCollectionViewDelegate {
     func didSelectCell(_ cell: UICollectionViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
         guard let object = cellDict?[kCellObjectDataKey] as? UserDetailModel else { return }
         guard let userDetail = APPSESSION.userDetail else { return }
-        if object.id != userDetail.id {
-            APPSETTING.addSearchHistory(id: object.id, title: object.fullName, subtitle: object.email, type: "user", image: object.image)
-            if object.isPromoter, userDetail.isRingMember {
-                let vc = INIT_CONTROLLER_XIB(PromoterPublicProfileVc.self)
-                vc.promoterId = object.id
-                vc.isFromPersonal = true
-                parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            } else if object.isRingMember, userDetail.isPromoter {
-                let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                vc.complimentryId = object.id
-                vc.isFromPersonal = true
-                parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                let controller = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                controller.contactId = object.id
-                self.parentViewController?.navigationController?.pushViewController(controller, animated: true)
-            }
-        }
+
     }
 }
 

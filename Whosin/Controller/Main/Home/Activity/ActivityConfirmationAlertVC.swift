@@ -30,7 +30,6 @@ class ActivityConfirmationAlertVC: ChildViewController {
     // --------------------------------------
 
     private func _setupUi() {
-        _dateLabel.text = Utils.dateToString(date.toDate(format: kFormatDateDOB), format: "dd MMM")
         _timeLabel.text = time
         _priceLabel.text = "D\(itemCount * (Int(activityModel?._disocuntedPrice ?? "0") ?? 0))"
         _activityProvider.text = activityModel?.provider?.name

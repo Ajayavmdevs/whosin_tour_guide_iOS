@@ -5,7 +5,6 @@ class DealsDetailVC: ChildViewController {
     @IBOutlet private weak var _venueInfoView: CustomVenueInfoView!
     @IBOutlet private weak var _visualEffectView: UIVisualEffectView!
     @IBOutlet private weak var _tableView: CustomTableView!
-    private let kCellIdentifiereheader = String(describing: OfferDetailHeader.self)
     private let kCellIdentifierDescription = String(describing: VenueDescTableCell.self)
     private let kCellIdentifirePackages = String(describing: PackageOfferTableCell.self)
     private let kCellIdentifireNote = String(describing: OffersNoteCell.self)
@@ -52,7 +51,6 @@ class DealsDetailVC: ChildViewController {
     
     private var _prototype: [[String: Any]]? {
         return [
-            [kCellIdentifierKey: kCellIdentifiereheader, kCellNibNameKey: kCellIdentifiereheader, kCellClassKey: OfferDetailHeader.self, kCellHeightKey: OfferDetailHeader.height],
             [kCellIdentifierKey: kCellIdentifierDescription, kCellNibNameKey: kCellIdentifierDescription, kCellClassKey: VenueDescTableCell.self, kCellHeightKey: VenueDescTableCell.height],
             [kCellIdentifierKey: kCellIdentifirePackages, kCellNibNameKey: kCellIdentifirePackages, kCellClassKey: PackageOfferTableCell.self, kCellHeightKey: PackageOfferTableCell.height],
             [kCellIdentifierKey: kCellIdentifireNote, kCellNibNameKey: kCellIdentifireNote, kCellClassKey: OffersNoteCell.self, kCellHeightKey: OffersNoteCell.height],
@@ -77,13 +75,7 @@ class DealsDetailVC: ChildViewController {
                 _venueInfoView.setupData(venue: venue, isAllowClick: true)
             }
             guard let dealsModel = dealsModel else { return }
-            cellData.append([
-                kCellIdentifierKey: kCellIdentifiereheader,
-                kCellTagKey: kCellIdentifiereheader,
-                kCellObjectDataKey: dealsModel,
-                kCellClassKey: OfferDetailHeader.self,
-                kCellHeightKey: OfferDetailHeader.height
-            ])
+
             
             cellData.append([
                 kCellIdentifierKey: kCellIdentifierDescription,
@@ -157,13 +149,7 @@ extension DealsDetailVC: CustomTableViewDelegate,UIScrollViewDelegate {
     }
     
     func setupCell(_ cell: UITableViewCell, cellDict: [String : Any]?, indexPath: IndexPath){
-        if let cell = cell as? OfferDetailHeader {
-            guard let object = cellDict?[kCellObjectDataKey] as? DealsModel else { return }
-            cell.setupVoucherData(object)
-        } else if let cell = cell as? VenueDescTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? DealsModel else { return }
-            cell.setupDescriptionData(object.descriptions, title: object.title)
-        } else if let cell = cell as? DealsFeaturesCell {
+      if let cell = cell as? DealsFeaturesCell {
             guard let object = cellDict?[kCellObjectDataKey] as? DealsModel else { return }
             cell.setupDealsData(object)
         }

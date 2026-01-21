@@ -89,21 +89,11 @@ class CustomVenueCollectionCell: UICollectionViewCell {
     // --------------------------------------
     // MARK: Event
     // --------------------------------------
-    private func _openVenueDetail() {
-        parentBaseController?.feedbackGenerator?.impactOccurred()
-        let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-        vc.venueId = self._venueId
-        vc.venueDetailModel = _venueDetailModel
-        vc.hidesBottomBarWhenPushed = false
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
-    }
     
     @objc func _clickToOpenVenue(sender : UITapGestureRecognizer) {
-        _openVenueDetail()
     }
 
     @IBAction private func _handleBookEvent(_ sender: UIButton) {
-        _openVenueDetail()
     }
     
 }

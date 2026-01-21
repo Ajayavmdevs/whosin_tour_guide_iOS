@@ -258,11 +258,6 @@ extension MyCircleDetailVC: CustomTableViewDelegate, UIScrollViewDelegate, UITab
     
     func didSelectTableCell(_ cell: UITableViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
         guard let object = cellDict?[kCellObjectDataKey] as? UserDetailModel else { return }
-        if APPSESSION.userDetail?.id != object.id {
-            let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-            vc.complimentryId = object.id
-            navigationController?.pushViewController(vc, animated: true)
-        }
     }
     
 }

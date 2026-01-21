@@ -488,10 +488,6 @@ class StoryPerivewVC: ChildViewController {
                 return
             }
             isTapForVenueOrOffer = true
-            if let pv = self.presentingViewController as? VenueDetailsVC, pv.venueId == self._venueId {
-                dismiss(animated: true)
-                return
-            }
             dismiss(animated: true) {
                 NotificationCenter.default.post(name: kopenVenueDetailNotification, object:nil,userInfo: ["venueId": self._venueId])
             }

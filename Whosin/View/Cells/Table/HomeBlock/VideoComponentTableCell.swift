@@ -343,12 +343,6 @@ class VideoComponentTableCell: UITableViewCell {
             vc.hidesBottomBarWhenPushed = false
             parentViewController?.navigationController?.pushViewController(vc, animated: true)
         } else {
-            guard let venuModel = _venueDetailModel else { return }
-            let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-            vc.venueId = _venueId
-            vc.venueDetailModel = venuModel
-            vc.hidesBottomBarWhenPushed = false
-            parentViewController?.navigationController?.pushViewController(vc, animated: true)
         }
     }
     

@@ -317,12 +317,6 @@ class OutingTableCell: UITableViewCell {
     // --------------------------------------
     
     @IBAction private func _handleEditEvent(_ sender: UIButton) {
-        let controler = INIT_CONTROLLER_XIB(InviteBottomSheet.self)
-        controler.outingModel = _outingListModel
-        controler._selectedOffer = _outingListModel?.offer
-        let navController = NavigationController(rootViewController: controler)
-        navController.modalPresentationStyle = .custom
-        parentBaseController?.present(navController, animated: true)
     }
     
     @IBAction private func _handleCancelInvitationEvent(_ sender: UIButton) {
@@ -346,11 +340,6 @@ class OutingTableCell: UITableViewCell {
             let presentedViewController = INIT_CONTROLLER_XIB(EventGuestListBottomSheet.self)
             presentedViewController.isFromOuting = true
             presentedViewController._userList = _outingListModel?._invitedUser
-            presentedViewController.userOpenCallBack = { userId in
-                let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                vc.contactId = userId
-                self.parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            }
             presentedViewController.openChatCallBack = { chatModel in
                 let vc = INIT_CONTROLLER_XIB(ChatDetailVC.self)
                 vc.hidesBottomBarWhenPushed = true
@@ -373,23 +362,6 @@ extension OutingTableCell: CustomNoKeyboardCollectionViewDelegate {
     func didSelectCell(_ cell: UICollectionViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
         guard let object = cellDict?[kCellObjectDataKey] as? UserDetailModel else { return }
         guard let userDetail = APPSESSION.userDetail else { return }
-        if object.id != userDetail.id {
-            if object.isPromoter, userDetail.isRingMember {
-                let vc = INIT_CONTROLLER_XIB(PromoterPublicProfileVc.self)
-                vc.promoterId = object.id
-                vc.isFromPersonal = true
-                parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            } else if object.isRingMember, userDetail.isPromoter {
-                let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                vc.complimentryId = object.id
-                vc.isFromPersonal = true
-                parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                vc.contactId = object.id
-                parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            }
-        }
     }
     
     func cellSize(_ collectionView: UICollectionView, cellDict: [String : Any]?, indexPath: IndexPath) -> CGSize {

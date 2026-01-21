@@ -104,11 +104,6 @@ class EventInvitedUserTableCell: UITableViewCell {
     @IBAction private func _handleInvitedGuestListEvent(_ sender: UIButton) {
         let presentedViewController = INIT_CONTROLLER_XIB(EventGuestListBottomSheet.self)
         presentedViewController.eventId = eventId
-        presentedViewController.userOpenCallBack = { userId in
-            let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-            vc.contactId = userId
-            self.parentViewController?.navigationController?.pushViewController(vc, animated: true)
-        }
         presentedViewController.openChatCallBack = { chatModel in
             let vc = INIT_CONTROLLER_XIB(ChatDetailVC.self)
             vc.hidesBottomBarWhenPushed = true
@@ -122,11 +117,6 @@ class EventInvitedUserTableCell: UITableViewCell {
         let presentedViewController = INIT_CONTROLLER_XIB(EventGuestListBottomSheet.self)
         presentedViewController.eventId = eventId
         presentedViewController.inviteStatus = "in"
-        presentedViewController.userOpenCallBack = { userId in
-            let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-            vc.contactId = userId
-            self.parentViewController?.navigationController?.pushViewController(vc, animated: true)
-        }
         presentedViewController.openChatCallBack = { chatModel in
             let vc = INIT_CONTROLLER_XIB(ChatDetailVC.self)
             vc.hidesBottomBarWhenPushed = true

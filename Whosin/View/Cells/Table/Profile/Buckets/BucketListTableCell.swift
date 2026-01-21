@@ -250,23 +250,6 @@ extension BucketListTableCell: CustomCollectionViewDelegate {
     func didSelectCell(_ cell: UICollectionViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
         guard let model = cellDict?[kCellObjectDataKey] as? UserDetailModel else { return }
         guard let userDetail = APPSESSION.userDetail else { return }
-        if model.id != userDetail.id {
-            if model.isPromoter, userDetail.isRingMember {
-                let vc = INIT_CONTROLLER_XIB(PromoterPublicProfileVc.self)
-                vc.promoterId = model.id
-                vc.isFromPersonal = true
-                parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            } else if model.isRingMember, userDetail.isPromoter {
-                let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                vc.complimentryId = model.id
-                vc.isFromPersonal = true
-                parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                vc.contactId = model.id
-                parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            }
-        }
     }
     
     func cellSize(_ collectionView: UICollectionView, cellDict: [String : Any]?, indexPath: IndexPath) -> CGSize {

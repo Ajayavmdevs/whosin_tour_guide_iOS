@@ -227,12 +227,6 @@ extension PromoterChatsVC: CustomTableViewDelegate, UIScrollViewDelegate, UITabl
     
     func didSelectTableCell(_ cell: UITableViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
         if let cell = cell as? EventRequestTableCell {
-            if let object = cellDict?[kCellObjectDataKey] as? PromoterChatListModel {
-                let vc = INIT_CONTROLLER_XIB(PromoterEventDetailVC.self)
-                vc.id = object.id
-                vc.hidesBottomBarWhenPushed = true
-                navigationController?.pushViewController(vc, animated: true)
-            }
         }
     }
 }

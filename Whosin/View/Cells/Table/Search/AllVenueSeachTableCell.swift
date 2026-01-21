@@ -111,17 +111,5 @@ extension AllVenueSeachTableCell: CustomNoKeyboardCollectionViewDelegate {
         }
     }
     
-    func didSelectCell(_ cell: UICollectionViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
-        guard let object = cellDict?[kCellObjectDataKey] as? VenueDetailModel else { return }
-        
-        APPSETTING.addSearchHistory(id: object.id, title: object.name, subtitle: object.about, type: "venue", image: object.cover)
-        
-        let controller = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-        controller.venueId = object.id
-        controller.venueDetailModel = Utils.getModelFromId(model: APPSETTING.venueModel, id: object.id)
-        self.parentViewController?.navigationController?.pushViewController(controller, animated: true)
-        
-        
-    }
 }
 

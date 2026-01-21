@@ -177,24 +177,11 @@ extension FullMapVC: UICollectionViewDelegate, UICollectionViewDataSource, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
-        if _selectedIndex == 2 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ShoutoutEventCollectionCell", for: indexPath) as! ShoutoutEventCollectionCell
-            cell.setupData(_eventList[indexPath.row])
-            return cell
-        }
-        else if _selectedIndex == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ShoutoutVenueCollectionCell", for: indexPath) as! ShoutoutVenueCollectionCell
             if let venues = homeBlock?.nearByVenues {
                 cell.setUpdata(venues[indexPath.row])
             }
             return cell
-        }
-        else {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ShoutoutLargeCollectionCell", for: indexPath) as! ShoutoutLargeCollectionCell
-            cell.setupData(_shoutoutModel[indexPath.row])
-            return cell
-        }
     }
     
     

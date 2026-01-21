@@ -108,6 +108,14 @@ public extension UILabel {
 }
 
 extension String {
+    func toDateUae(format: String) -> Date {
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(identifier: "Asia/Dubai")
+        return formatter.date(from: self) ?? Date()
+    }
+    
     func toDisplayDate(outputFormat: String = "dd/MM/yyyy") -> String {
         let outputFormatter = DateFormatter()
         outputFormatter.dateFormat = outputFormat

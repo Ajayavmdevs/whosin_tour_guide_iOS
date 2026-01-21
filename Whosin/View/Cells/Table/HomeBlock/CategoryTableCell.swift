@@ -127,11 +127,7 @@ extension CategoryTableCell: CustomNoKeyboardCollectionViewDelegate {
             controller.hidesBottomBarWhenPushed = false
             parentViewController?.navigationController?.pushViewController(controller, animated: true)
         } else {
-            let controller = INIT_CONTROLLER_XIB(CategoryDetailVC.self)
-            controller.categoryDetailModel = object
-            controller.titleStr = object.title
-            controller.hidesBottomBarWhenPushed = false
-            parentViewController?.navigationController?.pushViewController(controller, animated: true)
+
         }
     }
     

@@ -147,18 +147,6 @@ class BucketOffersTableCell: UITableViewCell {
     }
     
     @IBAction private func _letsGoEvenHandle(_ sender: UIButton) {
-        let controler = INIT_CONTROLLER_XIB(InviteBottomSheet.self)
-        controler.venueModel = bucketItemModel?.venue
-        controler._selectedOffer = bucketItemModel
-        if let bucketModel = bucketModel {
-            controler.selectedContacts = bucketModel.sharedWith.filter { $0.id != APPSESSION.userDetail?.id }
-            controler.userIds = bucketModel.sharedWith
-                .filter { $0.id != APPSESSION.userDetail?.id }
-                .map { $0.id }
-        }
-        let navController = NavigationController(rootViewController: controler)
-        navController.modalPresentationStyle = .custom
-        parentBaseController?.present(navController, animated: true)
     }
     
 }
@@ -170,11 +158,3 @@ extension BucketOffersTableCell: UIViewControllerTransitioningDelegate {
     }
 }
 
-extension BucketOffersTableCell: ShowMembershipInfoDelegate {
-    func ShowMembershipDetail() {
-        let vc = INIT_CONTROLLER_XIB(MembershipDetailVC.self)
-        vc.modalPresentationStyle = .overFullScreen
-        vc.hidesBottomBarWhenPushed = true
-        parentViewController?.present(vc, animated: true)
-    }
-}

@@ -1,10 +1,9 @@
 import UIKit
 
-class CMEventHistoryVC: ProfileBaseMainVC {
+class CMEventHistoryVC: BaseViewController {
 
     @IBOutlet private weak var _tableView: CustomNoKeyboardTableView!
     private var isLoadingMyEvent: Bool = false
-    private let kCellMyList = String(describing: CMEventListCell.self)
     private let kLoadingCell = String(describing: LoadingCell.self)
     private var _eventHistory: [PromoterEventsModel] = []
     private var _page : Int = 1
@@ -19,10 +18,10 @@ class CMEventHistoryVC: ProfileBaseMainVC {
         _requestEventHistoryList(true)
     }
 
-    override func _refresh(_ callback: @escaping (Bool) -> Void) {
-        self._callback = callback
-        _requestEventHistoryList()
-    }
+//    override func _refresh(_ callback: @escaping (Bool) -> Void) {
+//        self._callback = callback
+//        _requestEventHistoryList()
+//    }
     
     // --------------------------------------
     // MARK: Setup
@@ -52,7 +51,7 @@ class CMEventHistoryVC: ProfileBaseMainVC {
     
     private var _prototype: [[String: Any]]? {
         return [
-            [kCellIdentifierKey: kCellMyList, kCellNibNameKey: kCellMyList, kCellClassKey: CMEventListCell.self, kCellHeightKey: CMEventListCell.height],
+//            [kCellIdentifierKey: kCellMyList, kCellNibNameKey: kCellMyList, kCellClassKey: CMEventListCell.self, kCellHeightKey: CMEventListCell.height],
             [kCellIdentifierKey: kLoadingCell, kCellNibNameKey: kLoadingCell, kLoadingCell: LoadingCell.self, kCellHeightKey: LoadingCell.height]]
     }
     
@@ -76,15 +75,15 @@ class CMEventHistoryVC: ProfileBaseMainVC {
         var cellSectionData = [[String: Any]]()
         var cellData = [[String: Any]]()
         
-        _eventHistory.enumerated().forEach { index, eventByVenue in
-            cellData.append([
-                kCellIdentifierKey: kCellMyList,
-                kCellTagKey: index == 0,
-                kCellObjectDataKey: eventByVenue,
-                kCellClassKey: CMEventListCell.self,
-                kCellHeightKey: CMEventListCell.height
-            ])
-        }
+//        _eventHistory.enumerated().forEach { index, eventByVenue in
+//            cellData.append([
+//                kCellIdentifierKey: kCellMyList,
+//                kCellTagKey: index == 0,
+//                kCellObjectDataKey: eventByVenue,
+//                kCellClassKey: CMEventListCell.self,
+//                kCellHeightKey: CMEventListCell.height
+//            ])
+//        }
 
 
         cellSectionData.append([kSectionTitleKey: kEmptyString, kSectionDataKey: cellData])
@@ -126,11 +125,7 @@ class CMEventHistoryVC: ProfileBaseMainVC {
 extension CMEventHistoryVC: CustomNoKeyboardTableViewDelegate, UITableViewDelegate {
     
     func setupCell(_ cell: UITableViewCell, cellDict: [String : Any]?, indexPath: IndexPath) {
-        if let cell = cell as? CMEventListCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? PromoterEventsModel, let showTitle = cellDict?[kCellTagKey] as? Bool else { return }
-            cell._promoterView.isHidden = true
-            cell.setupData([object], cellTitle: "event_history".localized(), showtitle: showTitle)
-        } else if let cell = cell as? EmptyDataCell {
+        if let cell = cell as? EmptyDataCell {
             guard let object = cellDict?[kCellObjectDataKey] as? [String:Any] else { return }
             cell.setupData(object)
         } else if let cell = cell as? LoadingCell {
@@ -147,23 +142,7 @@ extension CMEventHistoryVC: CustomNoKeyboardTableViewDelegate, UITableViewDelega
 //    }
 
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        didScroll(scrollView)
-        
-        let scrollViewContentHeight = scrollView.contentSize.height
-        let scrollOffsetThreshold = scrollViewContentHeight - scrollView.bounds.height
-        if scrollView.contentOffset.y > scrollOffsetThreshold && !isRequesting {
-            performPagination()
-        }
-    }
-    
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        didEndDecelerating(scrollView)
-    }
-    
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        didEndDragging(scrollView, willDecelerate: decelerate)
-    }
+
 
     private func performPagination() {
         guard !isPaginating else { return }

@@ -3,7 +3,7 @@ import UIKit
 class ChatProfileVC: ChildViewController {
     
     @IBOutlet private weak var _tableView: CustomTableView!
-    private let kCellIdentifier = String(describing: ProfileDetailTableCell.self)
+//    private let kCellIdentifier = String(describing: ProfileDetailTableCell.self)
     private let kBGCellIdentifier = String(describing: ChangeChatBgTableCell.self)
     private let kMediaCellIdentifier = String(describing: ProfileMediaTableCell.self)
     private let kBlockCellIdentifier = String(describing: BlockTableCell.self)
@@ -194,13 +194,13 @@ class ChatProfileVC: ChildViewController {
         var cellData = [[String: Any]]()
         _tableView.isHidden = false
         if let _userModel = userModel {
-            cellData.append([
-                kCellIdentifierKey: kCellIdentifier,
-                kCellTagKey: _userModel.id,
-                kCellObjectDataKey: _userModel,
-                kCellClassKey: ProfileDetailTableCell.self,
-                kCellHeightKey: ProfileDetailTableCell.height
-            ])
+//            cellData.append([
+//                kCellIdentifierKey: kCellIdentifier,
+//                kCellTagKey: _userModel.id,
+//                kCellObjectDataKey: _userModel,
+//                kCellClassKey: ProfileDetailTableCell.self,
+//                kCellHeightKey: ProfileDetailTableCell.height
+//            ])
             cellData.append([
                 kCellIdentifierKey: kBGCellIdentifier,
                 kCellTagKey: kBGCellIdentifier,
@@ -249,13 +249,13 @@ class ChatProfileVC: ChildViewController {
         var cellSectionData = [[String: Any]]()
         var cellData = [[String: Any]]()
         if let bucketDetail = _bucketDetail {
-            cellData.append([
-                kCellIdentifierKey: kCellIdentifier,
-                kCellTagKey: kCellIdentifier,
-                kCellObjectDataKey: bucketDetail,
-                kCellClassKey: ProfileDetailTableCell.self,
-                kCellHeightKey: ProfileDetailTableCell.height
-            ])
+//            cellData.append([
+//                kCellIdentifierKey: kCellIdentifier,
+//                kCellTagKey: kCellIdentifier,
+//                kCellObjectDataKey: bucketDetail,
+//                kCellClassKey: ProfileDetailTableCell.self,
+//                kCellHeightKey: ProfileDetailTableCell.height
+//            ])
             
             cellData.append([
                 kCellIdentifierKey: kBGCellIdentifier,
@@ -308,13 +308,13 @@ class ChatProfileVC: ChildViewController {
         var cellSectionData = [[String: Any]]()
         var cellData = [[String: Any]]()
         if let _eventModel = _eventModel {
-            cellData.append([
-                kCellIdentifierKey: kCellIdentifier,
-                kCellTagKey: kCellIdentifier,
-                kCellObjectDataKey: _eventModel,
-                kCellClassKey: ProfileDetailTableCell.self,
-                kCellHeightKey: ProfileDetailTableCell.height
-            ])
+//            cellData.append([
+//                kCellIdentifierKey: kCellIdentifier,
+//                kCellTagKey: kCellIdentifier,
+//                kCellObjectDataKey: _eventModel,
+//                kCellClassKey: ProfileDetailTableCell.self,
+//                kCellHeightKey: ProfileDetailTableCell.height
+//            ])
             if _eventModel.admins.contains(APPSESSION.userDetail?.id ?? kEmptyString) {
                 cellData.append([
                     kCellIdentifierKey: kBGCellIdentifier,
@@ -361,13 +361,13 @@ class ChatProfileVC: ChildViewController {
         var cellSectionData = [[String: Any]]()
         var cellData = [[String: Any]]()
         if let _outingModel = _outingModel {
-            cellData.append([
-                kCellIdentifierKey: kCellIdentifier,
-                kCellTagKey: kCellIdentifier,
-                kCellObjectDataKey: _outingModel,
-                kCellClassKey: ProfileDetailTableCell.self,
-                kCellHeightKey: ProfileDetailTableCell.height
-            ])
+//            cellData.append([
+//                kCellIdentifierKey: kCellIdentifier,
+//                kCellTagKey: kCellIdentifier,
+//                kCellObjectDataKey: _outingModel,
+//                kCellClassKey: ProfileDetailTableCell.self,
+//                kCellHeightKey: ProfileDetailTableCell.height
+//            ])
             
             cellData.append([
                 kCellIdentifierKey: kBGCellIdentifier,
@@ -410,7 +410,7 @@ class ChatProfileVC: ChildViewController {
     
     private var _prototype: [[String: Any]]? {
         return [
-            [kCellIdentifierKey: kCellIdentifier, kCellNibNameKey: kCellIdentifier, kCellClassKey: ProfileDetailTableCell.self, kCellHeightKey: ProfileDetailTableCell.height],
+//            [kCellIdentifierKey: kCellIdentifier, kCellNibNameKey: kCellIdentifier, kCellClassKey: ProfileDetailTableCell.self, kCellHeightKey: ProfileDetailTableCell.height],
             [kCellIdentifierKey: kBGCellIdentifier, kCellNibNameKey: kBGCellIdentifier, kCellClassKey: ChangeChatBgTableCell.self, kCellHeightKey: ChangeChatBgTableCell.height],
             [kCellIdentifierKey: kMediaCellIdentifier, kCellNibNameKey: kMediaCellIdentifier, kCellClassKey: ProfileMediaTableCell.self, kCellHeightKey: ProfileMediaTableCell.height],
             [kCellIdentifierKey: kBlockCellIdentifier, kCellNibNameKey: kBlockCellIdentifier, kCellClassKey: BlockTableCell.self, kCellHeightKey: BlockTableCell.height],
@@ -585,11 +585,12 @@ extension ChatProfileVC: CustomTableViewDelegate, UIScrollViewDelegate, UITableV
 
     func setupCell(_ cell: UITableViewCell, cellDict: [String : Any]?, indexPath: IndexPath) {
         if chatType == .user || chatType == .promoterEvent{
-            if let cell = cell as? ProfileDetailTableCell {
-                guard let object = cellDict?[kCellObjectDataKey] as? UserDetailModel else { return }
-                cell.setup(object)
-                cell._followStack.superview?.isHidden = false
-            } else if cell is ChangeChatBgTableCell {
+//            if let cell = cell as? ProfileDetailTableCell {
+//                guard let object = cellDict?[kCellObjectDataKey] as? UserDetailModel else { return }
+//                cell.setup(object)
+//                cell._followStack.superview?.isHidden = false
+//            } else
+            if cell is ChangeChatBgTableCell {
                 guard cellDict?[kCellObjectDataKey] is [UserModel] else { return }
             } else if let cell = cell as? ProfileMediaTableCell {
                 guard let object = cellDict?[kCellObjectDataKey] as? String else { return }
@@ -601,54 +602,7 @@ extension ChatProfileVC: CustomTableViewDelegate, UIScrollViewDelegate, UITableV
                 guard let object = cellDict?[kCellObjectDataKey] as? BucketDetailModel else { return }
                 cell.setupData(object, userModel: _userList ?? [], isFromSheet: true)
             }
-        } else if chatType == .bucket {
-            if let cell = cell as? ProfileDetailTableCell {
-                guard let object = cellDict?[kCellObjectDataKey] as? BucketDetailModel else { return }
-                cell.setupBucket(object)
-                cell._followStack.superview?.isHidden = true
-            } else if let cell = cell as? ContactsTableCell {
-                guard let object = cellDict?[kCellObjectDataKey] as? UserDetailModel else { return }
-                cell.setupData(object)
-            } else if let cell = cell as? ProfileMediaTableCell {
-                guard let object = cellDict?[kCellObjectDataKey] as? String else { return }
-                cell.setupData(object)
-            } else if let cell = cell as? BlockTableCell {
-                guard let object = cellDict?[kCellObjectDataKey] as? String else { return }
-                cell.setup(object)
-            }
-        } else if chatType == .event {
-            if let cell = cell as? ProfileDetailTableCell {
-                guard let object = cellDict?[kCellObjectDataKey] as? EventModel else { return }
-                cell.setupEvent(object)
-                cell._followStack.superview?.isHidden = true
-            } else if let cell = cell as? ContactsTableCell {
-                guard let object = cellDict?[kCellObjectDataKey] as? UserDetailModel else { return }
-                cell.setupData(object)
-            } else if let cell = cell as? ProfileMediaTableCell {
-                guard let object = cellDict?[kCellObjectDataKey] as? String else { return }
-                cell.setupData(object)
-            } else if let cell = cell as? BlockTableCell {
-                guard let object = cellDict?[kCellObjectDataKey] as? String else { return }
-                cell.setup(object)
-            }
-            
-        } else if chatType == .outing {
-            if let cell = cell as? ProfileDetailTableCell {
-                guard let object = cellDict?[kCellObjectDataKey] as? OutingListModel else { return }
-                cell.setupOuting(object)
-                cell._followStack.superview?.isHidden = true
-            } else if let cell = cell as? ContactsTableCell {
-                guard let user = cellDict?[kCellObjectDataKey] as? UserDetailModel else { return }
-                cell.setupData(user)
-            } else if let cell = cell as? ProfileMediaTableCell {
-                guard let object = cellDict?[kCellObjectDataKey] as? String else { return }
-                cell.setupData(object)
-            } else if let cell = cell as? BlockTableCell {
-                guard let object = cellDict?[kCellObjectDataKey] as? String else { return }
-                cell.setup(object)
-            }
         }
-        
     }
     
     func didSelectTableCell(_ cell: UITableViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
@@ -657,24 +611,6 @@ extension ChatProfileVC: CustomTableViewDelegate, UIScrollViewDelegate, UITableV
             let controller = INIT_CONTROLLER_XIB(ChatWallpaperVc.self)
             controller.chatId = _chatModel.chatId
             self.navigationController?.pushViewController(controller, animated: true)
-        }
-        else if cell is BucketListTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? BucketDetailModel else { return }
-            let destinationViewController = INIT_CONTROLLER_XIB(BucketDetailVC.self)
-            destinationViewController.bucketDetail = object
-            destinationViewController.bucketId = object.id
-            self.navigationController?.pushViewController(destinationViewController, animated: true)
-        } else if cell is ContactsTableCell {
-            guard let userDetail = APPSESSION.userDetail else { return }
-            if let object = cellDict?[kCellObjectDataKey] as? UserDetailModel {
-                if object.id != userDetail.id {
-                    _openUserDetail(object.id)
-                }
-            } else if let object = cellDict?[kCellObjectDataKey] as? InvitationModel {
-                if object.id != userDetail.id {
-                    _openUserDetail(object.userId)
-                }
-            }
         } else if cell is BlockTableCell {
             if let action = cellDict?[kCellButtonTitleKey] as? String {
                 if action == "Block" {
@@ -741,23 +677,6 @@ extension ChatProfileVC: CustomTableViewDelegate, UIScrollViewDelegate, UITableV
         }
         self.presentAsPanModal(controller: vc)
 
-    }
-    
-    private func _openUserDetail(_ id: String) {
-        let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-        vc.contactId = id
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if chatType == .event {
-            let scrollViewContentHeight = scrollView.contentSize.height
-            let scrollOffsetThreshold = scrollViewContentHeight - scrollView.bounds.height * 0.8
-
-            if scrollView.contentOffset.y > scrollOffsetThreshold && !isRequesting {
-                performPagination()
-            }
-        }
     }
 
     private func performPagination() {

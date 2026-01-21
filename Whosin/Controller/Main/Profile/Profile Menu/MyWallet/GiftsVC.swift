@@ -3,7 +3,6 @@ import UIKit
 class GiftsVC: ChildViewController {
 
     @IBOutlet private weak var _tableView: CustomTableView!
-    private let kCellIdentifier = String(describing: PurchaseVoucherCell.self)
     private let kLoadingCellIdentifier = String(describing: LoadingCell.self)
     private let kCellIdentifierActivity = String(describing: MyActivityTableCell.self)
     private var _vouchersList: [VouchersListModel] = []
@@ -79,51 +78,6 @@ class GiftsVC: ChildViewController {
             ])
         } else {
             _vouchersList.forEach { vouchersList in
-                if vouchersList.type == "activity" {
-                    if vouchersList.items.contains(where: { $0.id == vouchersList.activity?.id }), vouchersList.items.first?.remainingQty != 0 {
-                        cellData.append([
-                            kCellIdentifierKey: kCellIdentifierActivity,
-                            kCellTagKey: vouchersList.id,
-                            kCellObjectDataKey: vouchersList,
-                            kCellClassKey: MyActivityTableCell.self,
-                            kCellHeightKey: MyActivityTableCell.height
-                        ])
-                    }
-                } else if vouchersList.type == "offer" {
-                    if let offerPackagesIds = vouchersList.offer?.packages.map({ $0.id }) {
-                        if vouchersList.items.contains(where: { offerPackagesIds.contains($0.packageId) }), (vouchersList.items.reduce(0) { $0 + $1.remainingQty } != 0) {
-                            cellData.append([
-                                kCellIdentifierKey: kCellIdentifier,
-                                kCellTagKey: vouchersList.id,
-                                kCellObjectDataKey: vouchersList,
-                                kCellClassKey: PurchaseVoucherCell.self,
-                                kCellHeightKey: PurchaseVoucherCell.height
-                            ])
-                        }
-                    }
-                } else if vouchersList.type == "event" {
-                    if let offerPackagesIds = vouchersList.event?.packages.map({ $0.id }) {
-                        if vouchersList.items.contains(where: { offerPackagesIds.contains($0.packageId) }), (vouchersList.items.reduce(0) { $0 + $1.remainingQty } != 0) {
-                            cellData.append([
-                                kCellIdentifierKey: kCellIdentifier,
-                                kCellTagKey: vouchersList.id,
-                                kCellObjectDataKey: vouchersList,
-                                kCellClassKey: PurchaseVoucherCell.self,
-                                kCellHeightKey: PurchaseVoucherCell.height
-                            ])
-                        }
-                    }
-                } else if vouchersList.type == "deal" {
-                    if vouchersList.items.contains(where: { $0.id == vouchersList.deal?.id }), (vouchersList.items.reduce(0) { $0 + $1.remainingQty } != 0) {
-                        cellData.append([
-                            kCellIdentifierKey: kCellIdentifier,
-                            kCellTagKey: vouchersList.id,
-                            kCellObjectDataKey: vouchersList,
-                            kCellClassKey: PurchaseVoucherCell.self,
-                            kCellHeightKey: PurchaseVoucherCell.height
-                        ])
-                    }
-                }
             }
         }
         
@@ -133,7 +87,6 @@ class GiftsVC: ChildViewController {
     
     private var _prototype: [[String: Any]]? {
         return [
-            [kCellIdentifierKey: kCellIdentifier, kCellNibNameKey: kCellIdentifier, kCellClassKey: PurchaseVoucherCell.self, kCellHeightKey: PurchaseVoucherCell.height],
             [kCellIdentifierKey: kLoadingCellIdentifier, kCellNibNameKey: kLoadingCellIdentifier, kCellClassKey: LoadingCell.self, kCellHeightKey: LoadingCell.height],
             [kCellIdentifierKey: kCellIdentifierActivity, kCellNibNameKey: kCellIdentifierActivity, kCellClassKey: MyActivityTableCell.self, kCellHeightKey: MyActivityTableCell.height]
 
@@ -149,63 +102,8 @@ class GiftsVC: ChildViewController {
 extension GiftsVC: CustomTableViewDelegate {
     
     func setupCell(_ cell: UITableViewCell, cellDict: [String : Any]?, indexPath: IndexPath) {
-        if let cell = cell as? PurchaseVoucherCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? VouchersListModel  else { return }
-            cell.setupData(object, isFrom: "gift")
-        } else if let cell = cell as? MyActivityTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? VouchersListModel  else { return }
-            cell.setupData(object, isFromGift: true)
-        } else if let cell = cell as? LoadingCell {
-            cell.setupUi()
-        }
     }
     
     func didSelectTableCell(_ cell: UITableViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
-        if let cell = cell as? PurchaseVoucherCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? VouchersListModel  else { return }
-            if object.type == "offer" {
-                let controller = INIT_CONTROLLER_XIB(OfferPackageDetailVC.self)
-                controller.offerId = object.offer?.id ?? kEmptyString
-                controller.venueModel = object.offer?.venue
-                controller.timingModel = object.offer?.venue?.timing.toArrayDetached(ofType: TimingModel.self)
-                controller.modalPresentationStyle = .overFullScreen
-                controller.vanueOpenCallBack = { venueId, venueModel in
-                    let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-                    vc.venueId = venueId
-                    vc.venueDetailModel = venueModel
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
-                controller.buyNowOpenCallBack = { offer, venue, timing in
-                            let vc = INIT_CONTROLLER_XIB(BuyPackgeVC.self)
-                            vc.isFromActivity = false
-                            vc.type = "offers"
-                            vc.timingModel = timing
-                            vc.offerModel = offer
-                            vc.venue = venue
-                            vc.setCallback {
-                                let controller = INIT_CONTROLLER_XIB(MyCartVC.self)
-                                controller.modalPresentationStyle = .overFullScreen
-                                self.navigationController?.pushViewController(controller, animated: true)
-                            }
-                            self.navigationController?.pushViewController(vc, animated: true)
-                        }
-                navigationController?.presentAsPanModal(controller: controller)
-            } else if object.type == "event" {
-                let controller = INIT_CONTROLLER_XIB(EventDetailVC.self)
-                controller.eventId = object.event?.id ?? kEmptyString
-                navigationController?.pushViewController(controller, animated: true)
-            } else if object.type == "deal" {
-                let controller = INIT_CONTROLLER_XIB(DealsDetailVC.self)
-                controller.dealsModel = object.deal
-                navigationController?.pushViewController(controller, animated: true)
-            }
-        } else if let cell = cell as? MyActivityTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? VouchersListModel  else { return }
-            let controller = INIT_CONTROLLER_XIB(ActivityInfoVC.self)
-            controller.activityId = object.activity?.id ?? kEmptyString
-            controller.activityName = object.activity?.name ?? kEmptyString
-            controller.activityModel = object.activity
-            navigationController?.pushViewController(controller, animated: true)
-        }
     }
 }

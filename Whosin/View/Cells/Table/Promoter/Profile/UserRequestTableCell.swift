@@ -315,17 +315,7 @@ class UserRequestTableCell: UITableViewCell {
             let chatIds = [userId, Preferences.isSubAdmin ? userDetail.promoterId : userDetail.id].sorted()
             chatModel.chatId = chatIds.joined(separator: ",")
             openCallback?(chatModel)
-        } else {
-            if isPromoter {
-                let vc = INIT_CONTROLLER_XIB(PromoterPublicProfileVc.self)
-                vc.promoterId = memberId
-                parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                vc.complimentryId = memberId
-                parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            }
-        }
+        } 
     }
     
     @IBAction private func _handleRejectEvent(_ sender: CustomActivityButton) {

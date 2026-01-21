@@ -367,8 +367,6 @@ class ApplicationSessionManager: NSObject {
         Amplitude.instance().setUserId(userDetail.userId)
         if Utils.stringIsNullOrEmpty(userDetail.firstName), Preferences.isGuest == false {
             controller = INIT_CONTROLLER_XIB(SignInNameVC.self)
-        } else if userDetail.loginType == "sub-admin" {
-            controller = INIT_CONTROLLER_XIB(SubAdminTabbar.self)
         } else {
             controller = INIT_CONTROLLER_XIB(MainTabBarVC.self)
         }

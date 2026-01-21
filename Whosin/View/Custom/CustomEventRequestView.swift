@@ -364,17 +364,7 @@ class CustomEventRequestView: UIView {
         } else {
             vc.chatListModel = _chatListModel
         }
-        vc.openProfile = { id, isRingMember in
-            if isRingMember {
-                let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-                vc.complimentryId = id
-                self.parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            } else {
-                let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-                vc.contactId = id
-                self.parentViewController?.navigationController?.pushViewController(vc, animated: true)
-            }
-        }
+
         vc.openChat = { model in
             let vc = INIT_CONTROLLER_XIB(ChatDetailVC.self)
             vc.hidesBottomBarWhenPushed = true

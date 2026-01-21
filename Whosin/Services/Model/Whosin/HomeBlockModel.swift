@@ -141,24 +141,6 @@ class HomeBlockModel: Object, Mappable, ModelProtocol {
     
     var isVisible : Bool {
         switch cellType {
-        case .venue, .venueSmall :
-            if venues.isEmpty { return false }
-            venueList.removeAll()
-            venues.forEach { venueId in
-                if let venue = APPSETTING.venueModel?.first(where: {$0.id == venueId}) {
-                    venueList.append(venue)
-                }
-            }
-            return !venueList.isEmpty
-        case .offer:
-            if offers.isEmpty { return false }
-            offerList.removeAll()
-            offers.forEach { offerId in
-                if let offer = APPSETTING.offers?.first(where: {$0.id == offerId}), !offer._isExpired {
-                    offerList.append(offer)
-                }
-            }
-            return !offerList.isEmpty
         case .ticketCategories, .ticketCategoryRounded:
             if ticketCategories.isEmpty { return false }
             ticketCategoryList.removeAll()
@@ -168,32 +150,6 @@ class HomeBlockModel: Object, Mappable, ModelProtocol {
                 }
             }
             return !ticketCategoryList.isEmpty
-        case .customVenue:
-            if customVenues.isEmpty { return false }
-            customVenuesList.removeAll()
-            var isVisble = false
-            customVenues.forEach{ customVenue in
-                if let venueModel = APPSETTING.venueModel?.first(where: {$0.id == customVenue.venueId}) {
-                    customVenue.venueModel = venueModel
-                    customVenuesList.append(customVenue)
-                    isVisble = true
-                }
-            }
-            return isVisble
-        case .customOffer:
-            if customOffers.isEmpty { return false }
-            customOffersList.removeAll()
-            var isVisble = false
-            customOffers.forEach { customOffer in
-                if let offerModel = APPSETTING.offers?.first(where: {$0.id == customOffer.offerId}) {
-                    customOffer.offerModel = offerModel
-                    isVisble = true
-                    customOffersList.append(customOffer)
-                }
-            }
-            return isVisble
-        case .customComponents:
-            return !customComponents.isEmpty
         case .video:
             if let venueModel = APPSETTING.venueModel {
                 let list = videos.toArrayDetached(ofType: VideosModel.self)
@@ -209,81 +165,6 @@ class HomeBlockModel: Object, Mappable, ModelProtocol {
                 return !result.isEmpty
             }
             return false
-        case .deal:
-            if deals.isEmpty { return false }
-            var isVisble = false
-            dealsList.removeAll()
-            deals.forEach { deal in
-                if let venueModel = APPSETTING.venueModel?.first(where: {$0.id == deal.venueId}) {
-                    deal.venueModel = venueModel
-                    dealsList.append(deal)
-                    isVisble = true
-                }
-            }
-            return isVisble
-        case .activity:
-            if activities.isEmpty { return false }
-            activityList.removeAll()
-            activities.forEach { activityId in
-                if let activity = APPSETTING.activities?.first(where: {$0.id == activityId}) {
-                    if activity.provider != nil {
-                        activityList.append(activity)
-                    }
-                }
-            }
-            return !activityList.isEmpty
-        case .event:
-            if events.isEmpty { return false }
-            eventList.removeAll()
-            events.forEach { eventId in
-                if let event = APPSETTING.events?.first(where: {$0.id == eventId}) {
-                    if event.venueDetail != nil && event.orgData != nil {
-                        eventList.append(event)
-                    }
-                }
-            }
-            return !eventList.isEmpty
-        case .nearBy:
-            return false
-        case .myOuting:
-            myOutingsList = myOutings.toArrayDetached(ofType: OutingListModel.self)
-            myOutingsList = myOutingsList.filter({ $0.owner != nil })
-            return !myOutingsList.isEmpty
-        case .userSuggested:
-            return !suggestedUsers.isEmpty
-        case .suggestedVenue:
-            return !suggestedVenue.isEmpty
-        case .membershipPackage:
-            if membershipPackages.isEmpty { return false }
-            membershipList.removeAll()
-            membershipPackages.forEach { eventId in
-                if let event = APPSETTING.membershipPackage?.first(where: {$0.id == eventId}) {
-                    membershipList.append(event)
-                }
-            }
-            return !membershipList.isEmpty
-        case .yacht :
-            if yachts.isEmpty { return false }
-            yachtList.removeAll()
-            yachts.forEach { yachtId in
-                if let yacht = APPSETTING.yachtModel?.first(where: {$0.id == yachtId}) {
-                    yachtList.append(yacht)
-                }
-            }
-            return !yachtList.isEmpty
-        case .yachtOffer:
-            if yachtOffer.isEmpty { return false }
-            yachtOfferList.removeAll()
-            yachtOffer.forEach { yachtOfferId in
-                if let yacht = APPSETTING.yachtOfferModel?.first(where: {$0.id == yachtOfferId}) {
-                    yachtOfferList.append(yacht)
-                }
-            }
-            return !yachtOfferList.isEmpty
-        case .promoter:
-            return true
-        case .promoterEvents:
-            return !promoterEvents.isEmpty
         case .ticket:
             if tickets.isEmpty {
                 if hotels.isEmpty {
@@ -350,42 +231,6 @@ class HomeBlockModel: Object, Mappable, ModelProtocol {
     
     func isVisibleForSearch(venue: [VenueDetailModel], offer: [OffersModel], activity: [ActivitiesModel], event: [EventModel], suggestedUsers: [UserDetailModel], ticket: [TicketModel]) -> Bool {
         switch cellTypeForSearch {
-        case .offer:
-            if offers.isEmpty { return false }
-            offerList.removeAll()
-            offers.forEach { offerId in
-                if let offer = offer.first(where: {$0.id == offerId}), !offer._isExpired {
-                    offerList.append(offer)
-                }
-            }
-            return !offerList.isEmpty
-        case .venue :
-            if venues.isEmpty { return false }
-            venueList.removeAll()
-            venues.forEach { venueId in
-                if let venue = venue.first(where: {$0.id == venueId}) {
-                    venueList.append(venue)
-                }
-            }
-            return !venueList.isEmpty
-        case .activity:
-            if activities.isEmpty { return false }
-            activityList.removeAll()
-            activities.forEach { activityId in
-                if let venue = activity.first(where: {$0.id == activityId}) {
-                    activityList.append(venue)
-                }
-            }
-            return !activityList.isEmpty
-        case .event:
-            if events.isEmpty { return false }
-            eventList.removeAll()
-            events.forEach { eventId in
-                if let venue = event.first(where: {$0.id == eventId}) {
-                    eventList.append(venue)
-                }
-            }
-            return !eventList.isEmpty
         case .ticket:
             if tickets.isEmpty { return false }
             ticketList.removeAll()
@@ -395,10 +240,6 @@ class HomeBlockModel: Object, Mappable, ModelProtocol {
                 }
             }
             return !ticketList.isEmpty
-        case .userSuggested:
-            return !suggestedUsers.isEmpty
-        case .suggestedVenue:
-            return !suggestedVenue.isEmpty
         case .contactUs:
             if contactUsBlock.isEmpty { return false }
             return true
@@ -475,19 +316,7 @@ class HomeBlockModel: Object, Mappable, ModelProtocol {
 
     
     var cellTypeForSearch: HomeBlockCellType {
-        if type == "venue" {
-            return .venue
-        } else if type == "offer" {
-            return .offer
-        } else if type == "event" {
-            return .event
-        } else if type == "activity" {
-            return .activity
-        } else if type == "suggested-users" {
-            return .userSuggested
-        } else if type == "suggested-venues" {
-            return .suggestedVenue
-        } else if type == "ticket" {
+        if type == "ticket" {
             return .ticket
         } else if type == "contact-us" {
             return .contactUs
@@ -523,63 +352,37 @@ class HomeBlockModel: Object, Mappable, ModelProtocol {
     }
     
     var cellType: HomeBlockCellType {
-        if type == "venue" {
-            guard let type = size?.type else { return .venue }
-            if type == "large" || type == "XXL" { return .venue }
-            return .venueSmall
-        } else if type == "offer" {
-            return .offer
-        } else if type == "event" {
-            return .event
-        } else if type == "video" {
+        if type == "video" {
             return .video
-        } else if type == "custom-venue" {
-            return .customVenue
-        } else if type == "custom-offer" {
-            return .customOffer
-        } else if type == "custom-components" {
-            return .customComponents
-        } else if type == "deal" || type == "deals" {
-            return .deal
-        } else if type == "activity" {
-            return .activity
-        } else if type == "nearby" {
-            return .nearBy
-        } else if type == "my-outing" {
-            return .myOuting
-        } else if type == "suggested-users" {
-            return .userSuggested
-        } else if type == "suggested-venues" {
-            return .suggestedVenue
-        } else if type == "membership-package" {
-            return .membershipPackage
-        } else if type == "yacht" {
-            return .yacht
-        } else if type == "yacht-offer" {
-            return .yachtOffer
-        } else if type == "apply-ring" || type == "apply-promoter" {
-            return .promoter
-        } else if type == "promoter-events" {
-            return .promoterEvents
-        } else if type == "ticket" {
+        } else
+        if type == "ticket" {
             return .ticket
-        } else if type == "ticket-category" {
+        } else
+        if type == "ticket-category" {
             return shape == "rectangular" ? .ticketCategories : .ticketCategoryRounded
-        } else if type == "city" {
+        } else
+        if type == "city" {
             return .cities
-        } else if type == "big-category" {
+        } else
+        if type == "big-category" {
             return .bigCategory
-        } else if type == "small-category" {
+        } else
+        if type == "small-category" {
             return .smallCategory
-        } else if type == "custom-component" {
+        } else
+        if type == "custom-component" {
             return .singleVideo
-        } else if type == "banner" {
+        } else
+        if type == "banner" {
             return .banner
-        } else if type == "favorite_ticket" {
+        } else
+        if type == "favorite_ticket" {
             return .favoriteTicket
-        } else if type == "juniper-hotel" {
+        } else
+        if type == "juniper-hotel" {
             return .ticket
-        } else if type == "contact-us" {
+        } else
+        if type == "contact-us" {
             return .contactUs
         } else {
             return .none

@@ -63,7 +63,6 @@ extension SelectPrefrenceCell : UICollectionViewDataSource, UICollectionViewDele
             }
         }
         _collectionView.reloadData()
-        CompletePromoterProfileVC.params["preferences"] = selectedFilter.map({ $0.id })
     }
     
     func collectionView(_ collectionView: UICollectionView, layout

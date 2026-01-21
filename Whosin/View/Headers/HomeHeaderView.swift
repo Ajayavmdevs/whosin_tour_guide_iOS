@@ -105,18 +105,8 @@ class HomeHeaderView: UIView {
     }
     
     private func _showNotification(_ sender: UIButton) {
-//        let controller = INIT_CONTROLLER_XIB(NewDateTimePickerVC.self)
-//        
-//        parentViewController?.navigationController?.presentAsPanModal(controller: controller)
-
         let controller = INIT_CONTROLLER_XIB(NotificationVC.self)
-//        controller.modalPresentationStyle = .overFullScreen
         parentViewController?.navigationController?.pushViewController(controller, animated: true)
-//        let bottomSheet = PaymentBottomSheet()
-//        bottomSheet.tabbyAction = {
-//            print("tabby")
-//        }
-//        bottomSheet.show(in: self.parentBaseController ?? UIViewController())
     }
     
     @objc func handleUserUpdateState(_ notification: Notification) {
@@ -161,16 +151,6 @@ class HomeHeaderView: UIView {
     // MARK: Event
     // --------------------------------------
     
-//    @objc func imageTapped(_ gesture: UITapGestureRecognizer) {
-//        DISPATCH_ASYNC_MAIN {
-//            let controller = INIT_CONTROLLER_XIB(ProfileMenuVC.self)
-////            let controller = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-////            controller.complimentryId = ""
-////            let controller = INIT_CONTROLLER_XIB(PromoterPublicProfileVc.self)
-////            controller.promoterId = APPSESSION.userId
-//            self.parentViewController?.navigationController?.pushViewController(controller, animated: true)
-//        }
-//    }
     
     @IBAction private func _handleSettingEvent(_ sender: UIButton) {
         DISPATCH_ASYNC_MAIN {
@@ -186,9 +166,7 @@ class HomeHeaderView: UIView {
     }
     
     @IBAction func _handleProfileClickEvent(_ sender: UIButton) {
-        let controller = INIT_CONTROLLER_XIB(ProfileMenuVC.self)
-        self.parentViewController?.navigationController?.pushViewController(controller, animated: true)
-
+        parentViewController?.tabBarController?.selectedIndex = 2
     }
     
     @IBAction func _handleAddToCartEvent(_ sender: BadgeButton) {

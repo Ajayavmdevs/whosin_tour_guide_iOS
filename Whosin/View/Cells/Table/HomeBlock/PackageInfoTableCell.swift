@@ -63,15 +63,6 @@ class PackageInfoTableCell: UITableViewCell {
     
     func updateLabel() {
         _stepperLabel.text = "\(stepperValue)"
-        let cartModel = BuyPackgeVC.tmpCart.first { $0.id == _dealsModel?.id }
-        if cartModel != nil {
-            cartModel?.quantity = stepperValue
-        } else {
-            guard let _dealsModel = _dealsModel else { return }
-            guard let tmpModel = CartModel(dealsModel: _dealsModel) else { return }
-            tmpModel.quantity = stepperValue
-            BuyPackgeVC.tmpCart.append(tmpModel)
-        }
         NotificationCenter.default.post(name: Notification.Name("addtoCartCount"), object: nil, userInfo: nil)
     }
     
@@ -82,13 +73,6 @@ class PackageInfoTableCell: UITableViewCell {
     public func setupData(_ model: VoucharsModel, venueModel: VenueDetailModel, promoModel: PromoBaseModel?) {
         _coverImage.cornerRadius = 10
         _coverImage.loadWebImage(venueModel.cover)
-        if let qty = BuyPackgeVC.tmpCart.first(where: { $0.id == model.id })?.quantity {
-            _stepperLabel.text = "\(qty)"
-            stepperValue = qty
-        } else {
-            _stepperLabel.text = "0"
-            stepperValue = 0
-        }
         _venueModel = venueModel
         _vouchersModel = model
         if let metadata = promoModel?.metadata.first(where: { $0.packageId == model.id }), promoModel?.promoDiscountType != "flat" {
@@ -130,13 +114,6 @@ class PackageInfoTableCell: UITableViewCell {
     public func setupDealsData(_ model: DealsModel, promoModel: PromoBaseModel?) {
         _coverImage.cornerRadius = 10
         _coverImage.loadWebImage(model.image)
-        if let qty = BuyPackgeVC.tmpCart.first(where: { $0.id == model.id })?.quantity {
-            _stepperLabel.text = "\(qty)"
-            stepperValue = qty
-        } else {
-            _stepperLabel.text = "0"
-            stepperValue = 0
-        }
         _venueModel = model.venueModel
         _dealsModel = model
         if let metadata = promoModel?.metadata.first(where: { $0.dealId == model.id }), promoModel?.promoDiscountType != "flat" {

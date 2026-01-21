@@ -6,7 +6,6 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
         
     var controllers: [NavigationController] = []
     public var containerView: UIView?
-    private var customMiniView: MiniVideoView?
     private let cornerMargin: CGFloat = 5
     private var isMiniPlayerLoading: Bool = false
     
@@ -164,21 +163,16 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
         homeVC.tabBarItem.selectedImage = UIImage(named: "tab_home_selected")
         homeVC.tabBarItem.tag = ModuleType.home.rawValue
         controllers.append(NavigationController(rootViewController: homeVC))
-
-        let chatVC = INIT_CONTROLLER_XIB(ChatHomeVC.self)
-        chatVC.tabBarItem.title = "chat".localized()
-        chatVC.tabBarItem.image = UIImage(named: "tab_chat")
-        chatVC.tabBarItem.selectedImage = UIImage(named: "tab_chat_selected")
-        chatVC.tabBarItem.tag = ModuleType.chat.rawValue
-        controllers.append(NavigationController(rootViewController: chatVC))
+        
+        let searchVC = INIT_CONTROLLER_XIB(NewSearchVC.self)
+        searchVC.tabBarItem.title = "search".localized()
+        searchVC.tabBarItem.image = UIImage(named: "search_tab")
+        searchVC.tabBarItem.selectedImage = UIImage(named: "search_selected")
+        searchVC.tabBarItem.tag = ModuleType.explore.rawValue
+        controllers.append(NavigationController(rootViewController: searchVC))
 
         let profileVC: UIViewController
-        if Preferences.profileType == ProfileType.promoterProfile {
-            profileVC = INIT_CONTROLLER_XIB(PromoterTabbarVC.self)
-            profileVC.hidesBottomBarWhenPushed = true
-        } else {
-            profileVC = INIT_CONTROLLER_XIB(CommanProfileVC.self)
-        }
+        profileVC = INIT_CONTROLLER_XIB(ProfileMenuVC.self)
         profileVC.tabBarItem.title = ""
         profileVC.tabBarItem.image = UIImage(named: "tab_homeprofile")
         profileVC.tabBarItem.selectedImage = UIImage(named: "tab_homeprofile_selected")
@@ -191,7 +185,7 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
         exploreVC.tabBarItem.selectedImage = UIImage(named: "tab_explore_selected")
         exploreVC.tabBarItem.tag = ModuleType.explore.rawValue
         controllers.append(NavigationController(rootViewController: exploreVC))
-        
+
         let walletVC = INIT_CONTROLLER_XIB(MyWalletVC.self)
         walletVC.tabBarItem.title = "home_tab_wallet".localized()
         walletVC.isFromProfile = false
@@ -201,6 +195,9 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
         walletVC.tabBarItem.badgeValue = nil
         controllers.append(NavigationController(rootViewController: walletVC))
         controllers.forEach { $0.delegate = self }
+
+        
+
 
         viewControllers = controllers
         delegate = self
@@ -219,29 +216,29 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
     
     private func updateChatMessageCount() {
         guard controllers.count > 1 else { return }
-        ChatRepository().getAllUnReadMessagesCount(callback: { count in
-            DispatchQueue.main.async {
-                if count > 0 {
-                    self.controllers[1].tabBarItem.badgeValue = "\(count)"
-                } else {
-                    self.controllers[1].tabBarItem.badgeValue = nil
-                }
-            }
-        })
+//        ChatRepository().getAllUnReadMessagesCount(callback: { count in
+//            DispatchQueue.main.async {
+//                if count > 0 {
+//                    self.controllers[1].tabBarItem.badgeValue = "\(count)"
+//                } else {
+//                    self.controllers[1].tabBarItem.badgeValue = nil
+//                }
+//            }
+//        })
     }
     
     private func updateUnreadStatus() {
-        guard let model = APPSESSION.getUpdateModel else { return }
-        if model.wallet {
-            controllers[3].tabBarItem.badgeValue = nil
-        } else {
-            controllers[3].tabBarItem.badgeValue = nil
-        }
-        if model.bucket || model.event || model.outing {
-            updateBadgeView(isHidden: false)
-        } else {
-            updateBadgeView(isHidden: true)
-        }
+//        guard let model = APPSESSION.getUpdateModel else { return }
+//        if model.wallet {
+//            controllers[3].tabBarItem.badgeValue = nil
+//        } else {
+//            controllers[3].tabBarItem.badgeValue = nil
+//        }
+//        if model.bucket || model.event || model.outing {
+//            updateBadgeView(isHidden: false)
+//        } else {
+//            updateBadgeView(isHidden: true)
+//        }
     }
     
     // --------------------------------------
@@ -249,82 +246,82 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
     // --------------------------------------
     
     func showMiniPlayer(with gallery: [AdListModel]) {
-        guard let selectedVC = self.selectedViewController else { return }
-        if let nav = selectedVC as? UINavigationController, nav.viewControllers.count != 1 { return }
-        guard selectedVC.presentedViewController == nil else { return }
-        guard !tabBar.isHidden else { return }
-
-        if customMiniView != nil || containerView != nil {
-            containerView?.isHidden = false
-            customMiniView?.isHidden = false
-            customMiniView?.resumeVideos()
-            return
-        }
-
-        let height: CGFloat = 150
-        let width: CGFloat = 220
-        let margin: CGFloat = 5
-
-        let container = UIView()
-        container.layer.cornerRadius = 8
-        container.clipsToBounds = true
-        container.backgroundColor = .clear
-        container.translatesAutoresizingMaskIntoConstraints = false
-
-        let miniView = MiniVideoView()
-        miniView.frame = CGRect(x: 0, y: 0, width: width, height: height)
-
-        miniView.onClose = { [weak self] model in
-            guard let self = self else { return }
-            Utils.addLog(screen: "ad_close", object: model)
-            self.customMiniView?.wasMiniPlayerManuallyClosed = true
-            APPSESSION.didCloseMiniPlayer = true
-
-            DISPATCH_ASYNC_MAIN {
-                self.hideMiniPlayer(shouldRemove: true)
-            }
-        }
-
-        miniView.onClick = { [weak self] model in
-            self?.hideMiniPlayer()
-        }
-
-        if !gallery.isEmpty {
-            miniView.setupData(gallery)
-        }
-
-        container.addSubview(miniView)
-
-        guard let window = APP.window else { return }
-        window.addSubview(container)
-
-        let tabBarHeight = self.tabBar.frame.height
-        NSLayoutConstraint.activate([
-            container.widthAnchor.constraint(equalToConstant: width),
-            container.heightAnchor.constraint(equalToConstant: height),
-            container.trailingAnchor.constraint(equalTo: window.trailingAnchor, constant: -margin),
-            container.bottomAnchor.constraint(equalTo: window.bottomAnchor, constant: -(tabBarHeight + margin))
-        ])
-
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-        container.addGestureRecognizer(panGesture)
-
-        self.containerView = container
-        self.customMiniView = miniView
+//        guard let selectedVC = self.selectedViewController else { return }
+//        if let nav = selectedVC as? UINavigationController, nav.viewControllers.count != 1 { return }
+//        guard selectedVC.presentedViewController == nil else { return }
+//        guard !tabBar.isHidden else { return }
+//
+//        if customMiniView != nil || containerView != nil {
+//            containerView?.isHidden = false
+//            customMiniView?.isHidden = false
+//            customMiniView?.resumeVideos()
+//            return
+//        }
+//
+//        let height: CGFloat = 150
+//        let width: CGFloat = 220
+//        let margin: CGFloat = 5
+//
+//        let container = UIView()
+//        container.layer.cornerRadius = 8
+//        container.clipsToBounds = true
+//        container.backgroundColor = .clear
+//        container.translatesAutoresizingMaskIntoConstraints = false
+//
+//        let miniView = MiniVideoView()
+//        miniView.frame = CGRect(x: 0, y: 0, width: width, height: height)
+//
+//        miniView.onClose = { [weak self] model in
+//            guard let self = self else { return }
+//            Utils.addLog(screen: "ad_close", object: model)
+//            self.customMiniView?.wasMiniPlayerManuallyClosed = true
+//            APPSESSION.didCloseMiniPlayer = true
+//
+//            DISPATCH_ASYNC_MAIN {
+//                self.hideMiniPlayer(shouldRemove: true)
+//            }
+//        }
+//
+//        miniView.onClick = { [weak self] model in
+//            self?.hideMiniPlayer()
+//        }
+//
+//        if !gallery.isEmpty {
+//            miniView.setupData(gallery)
+//        }
+//
+//        container.addSubview(miniView)
+//
+//        guard let window = APP.window else { return }
+//        window.addSubview(container)
+//
+//        let tabBarHeight = self.tabBar.frame.height
+//        NSLayoutConstraint.activate([
+//            container.widthAnchor.constraint(equalToConstant: width),
+//            container.heightAnchor.constraint(equalToConstant: height),
+//            container.trailingAnchor.constraint(equalTo: window.trailingAnchor, constant: -margin),
+//            container.bottomAnchor.constraint(equalTo: window.bottomAnchor, constant: -(tabBarHeight + margin))
+//        ])
+//
+//        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
+//        container.addGestureRecognizer(panGesture)
+//
+//        self.containerView = container
+//        self.customMiniView = miniView
     }
     
     func hideMiniPlayer(shouldRemove: Bool = false) {
-        if shouldRemove {
-            customMiniView?.pauseVideos()
-            customMiniView?.removeFromSuperview()
-            containerView?.removeFromSuperview()
-            customMiniView = nil
-            containerView = nil
-        } else {
-            customMiniView?.pauseVideos()
-            customMiniView?.isHidden = true
-            containerView?.isHidden = true
-        }
+//        if shouldRemove {
+//            customMiniView?.pauseVideos()
+//            customMiniView?.removeFromSuperview()
+//            containerView?.removeFromSuperview()
+//            customMiniView = nil
+//            containerView = nil
+//        } else {
+//            customMiniView?.pauseVideos()
+//            customMiniView?.isHidden = true
+//            containerView?.isHidden = true
+//        }
     }
     
     @objc private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
@@ -407,23 +404,6 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
             if let homeVc = navigationController.viewControllers.first as? HomeVC {
                 homeVc.pauseVideoWhenDisappear()
             }
-        }
-        
-        if Preferences.profileType == ProfileType.profile {
-            let controller = NavigationController(rootViewController: INIT_CONTROLLER_XIB(ProfileVC.self))
-            controller.modalPresentationStyle = .fullScreen
-            controller.hidesBottomBarWhenPushed = true
-            present(controller, animated: true, completion: nil)
-        } else if Preferences.profileType == ProfileType.promoterProfile {
-            let controller = NavigationController(rootViewController: INIT_CONTROLLER_XIB(PromoterProfileVC.self))
-            controller.modalPresentationStyle = .fullScreen
-            controller.hidesBottomBarWhenPushed = true
-            present(controller, animated: true, completion: nil)
-        } else if Preferences.profileType == ProfileType.complementaryProfile {
-            let controller = NavigationController(rootViewController: INIT_CONTROLLER_XIB(ComplementaryProfileVC.self))
-            controller.modalPresentationStyle = .fullScreen
-            controller.hidesBottomBarWhenPushed = true
-            present(controller, animated: true, completion: nil)
         }
     }
     
@@ -524,28 +504,6 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
     }
     
     @objc func handleShowMiniPlayer() {
-        if isMiniPlayerLoading { return }
-        guard !APPSESSION.didCloseMiniPlayer else { return }
-        if let miniView = customMiniView, let container = containerView {
-            container.isHidden = false
-            miniView.isHidden = false
-            miniView.resumeVideos()
-            return
-        }
-        isMiniPlayerLoading = true
-        ADSETTING.requestAdSetting(completion: { [weak self] model in
-            guard let self = self else { return }
-            guard let modelList = model, !modelList.isEmpty else { return }
-            var videoUrls: [URL] = modelList.compactMap { URL(string: $0.video) }
-            videoUrls.forEach { Utils.downloadVideo($0) }
-
-            DISPATCH_ASYNC_MAIN {
-                self.isMiniPlayerLoading = false
-                if self.containerView == nil {
-                    self.showMiniPlayer(with: modelList)
-                }
-            }
-        })
     }
     
     @objc func handleShowAlert(_ notification: Notification) {
@@ -618,26 +576,11 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
     private func handleOpenDetailByType(_ view: IANComponentModel) {
         guard let rootVc = APP.window?.rootViewController else { return }
         switch view.action {
-        case "venue":
-            let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-            vc.venueId = view.data
-            self.navigationViewController(rootVc, vc: vc)
         case "link":
             guard let url = URL(string: view.data) else { return }
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
-        case "event":
-            let controller = INIT_CONTROLLER_XIB(EventDetailVC.self)
-            let event = EventModel()
-            event.id = view.data
-            controller.event = event
-            self.navigationViewController(rootVc, vc: controller)
-            
-        case "activity":
-            let vc = INIT_CONTROLLER_XIB(ActivityInfoVC.self)
-            vc.activityId = view.data
-            self.navigationViewController(rootVc, vc: vc)
         case "ticket":
             let vc = INIT_CONTROLLER_XIB(CustomTicketDetailVC.self)
             vc.ticketID = view.data
@@ -655,31 +598,6 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
             let navController = NavigationController(rootViewController: controller)
             navController.setNavigationBarHidden(true, animated: false)
             window.setRootViewController(navController, options: UIWindow.TransitionOptions(direction:.fade, style: .easeInOut))
-        case "offer":
-            let controller = INIT_CONTROLLER_XIB(OfferPackageDetailVC.self)
-            controller.offerId = view.data
-            controller.vanueOpenCallBack = { venueId, venueModel in
-                let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-                vc.venueId = venueId
-                vc.venueDetailModel = venueModel
-                self.navigationViewController(rootVc, vc: vc)
-            }
-            controller.buyNowOpenCallBack = { offer, venue, timing in
-                let vc = INIT_CONTROLLER_XIB(BuyPackgeVC.self)
-                vc.isFromActivity = false
-                vc.type = "offers"
-                vc.timingModel = timing
-                vc.offerModel = offer
-                vc.venue = venue
-                vc.setCallback {
-                    let controller = INIT_CONTROLLER_XIB(MyCartVC.self)
-                    controller.modalPresentationStyle = .overFullScreen
-                    self.navigationViewController(rootVc, vc: vc)
-                }
-                Utils.getCurrentVC()?.navigationController?.pushViewController(vc, animated: true)
-            }
-            Utils.getCurrentVC()?.presentAsPanModal(controller: controller)
-
         default:
             break
         }
@@ -707,10 +625,6 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
             if let homeVc = navigationController.viewControllers.first as? HomeVC {
                 let tableView = homeVc._tableView
                 tableView?.setContentOffset(CGPoint.zero, animated: true)
-            } else if let exploreVc = navigationController.viewControllers.first as? ExploreVC {
-                let tableView = exploreVc._tableView
-                let contentOffset = CGPoint(x: 0, y: 0)
-                tableView?.setContentOffset(contentOffset, animated: true)
             }
         }
         return true
@@ -718,11 +632,7 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
     
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
         guard let nav = viewController as? UINavigationController else { return }
-        if nav.viewControllers.count == 1, !(customMiniView?.wasMiniPlayerManuallyClosed ?? false) {
-            handleShowMiniPlayer()
-        } else {
-            hideMiniPlayer()
-        }
+
     }
 
 
@@ -738,13 +648,6 @@ extension MainTabBarVC: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, didShow viewController: UIViewController, animated: Bool) {
         guard let idx = controllers.firstIndex(of: navigationController as? NavigationController ?? NavigationController()),
               idx == selectedIndex else { return }
-        if navigationController.viewControllers.count == 1 {
-            if !(customMiniView?.wasMiniPlayerManuallyClosed ?? false) {
-                handleShowMiniPlayer()
-            }
-        } else {
-            hideMiniPlayer()
-        }
     }
 }
 

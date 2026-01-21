@@ -8,7 +8,6 @@ class PromoterNotificationsVC: ChildViewController {
     @IBOutlet weak var _promoterName: CustomLabel!
     @IBOutlet weak var _visualEffectView: UIVisualEffectView!
     private let kCellIdentifierEventRequest = String(describing: EventRequestTableCell.self)
-    private let kCellIdentifierUserRequest = String(describing: PromoterUserRequestTableCell.self)
     private let kEmptyCellIdentifier = String(describing: EmptyDataCell.self)
     private let kCellIdentifierLoading = String(describing: LoadingCell.self)
     private var _notificationType: String = "users"
@@ -84,7 +83,6 @@ class PromoterNotificationsVC: ChildViewController {
     private var _prototype: [[String: Any]]? {
         return [
             [kCellIdentifierKey: kCellIdentifierEventRequest, kCellNibNameKey: kCellIdentifierEventRequest, kCellClassKey: EventRequestTableCell.self, kCellHeightKey: EventRequestTableCell.height],
-            [kCellIdentifierKey: kCellIdentifierUserRequest, kCellNibNameKey: kCellIdentifierUserRequest, kCellClassKey: PromoterUserRequestTableCell.self, kCellHeightKey: PromoterUserRequestTableCell.height],
             [kCellIdentifierKey: kEmptyCellIdentifier, kCellNibNameKey: kEmptyCellIdentifier, kCellClassKey: EmptyDataCell.self, kCellHeightKey: EmptyDataCell.height],
             [kCellIdentifierKey: kCellIdentifierLoading, kCellNibNameKey: kCellIdentifierLoading, kCellClassKey: LoadingCell.self, kCellHeightKey: LoadingCell.height],
         ]
@@ -121,34 +119,12 @@ class PromoterNotificationsVC: ChildViewController {
         ]
     }
 
-    private func appendNotificationCells(from notifications: [NotificationModel]) -> [[String: Any]] {
-        return notifications.map { model in
-            [
-                kCellIdentifierKey: kCellIdentifierUserRequest,
-                kCellTagKey: kCellIdentifierUserRequest,
-                kCellObjectDataKey: model,
-                kCellClassKey: PromoterUserRequestTableCell.self,
-                kCellHeightKey: PromoterUserRequestTableCell.height
-            ]
-        }
-    }
 
     private func _loadData(isLoading: Bool = false) {
         var cellSectionData = [[String: Any]]()
         var cellData = [[String: Any]]()
         _promoterName.text = _promoterModel?.profile?.fullName
         _userImg.loadWebImage(_promoterModel?.profile?.image  ?? kEmptyString, name: _promoterModel?.profile?.fullName ?? kEmptyString)
-        if _notificationType == "users" {
-            if isSearching {
-                cellData.append(contentsOf: filteredNotifications.isEmpty ?
-                                [appendEmptyNotificationCell(message: "empty_user_requests".localized())] :
-                    appendNotificationCells(from: filteredNotifications))
-            } else {
-                cellData.append(contentsOf: _userNotifications.isEmpty ?
-                                [appendEmptyNotificationCell(message: "empty_user_requests".localized())] :
-                    appendNotificationCells(from: _userNotifications))
-            }
-        } else {
             if _eventNotification.isEmpty {
                 cellData.append(appendEmptyNotificationCell(message: "empty_event_requests".localized()))
             } else {
@@ -163,7 +139,7 @@ class PromoterNotificationsVC: ChildViewController {
                         ])
                     }
                 }
-            }
+
         }
 
         cellSectionData.append([kSectionTitleKey: " ", kSectionDataKey: cellData])
@@ -334,38 +310,13 @@ extension PromoterNotificationsVC: CustomTableViewDelegate, UIScrollViewDelegate
             } else if let object = cellDict?[kCellObjectDataKey] as? PromoterChatListModel {
                 cell.setUpChatData(object, isPromoter: true)
             }
-        } else if let cell = cell as? PromoterUserRequestTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? NotificationModel else { return }
-            cell.setupData(object)
-            cell.updateStatusCallback = { [weak self] status in
-                guard let self = self else { return }
-                self.showActivityIndicator()
-                self._userNotifications[indexPath.row].requestStatus = status
-                _page = (indexPath.row / 30) + 1
-                self._requestUserNoftification(true)
-            }
         } else if let cell = cell as? LoadingCell {
             cell.setupUi()
         }
     }
     
     func didSelectTableCell(_ cell: UITableViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
-        if let cell = cell as? PromoterUserRequestTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? NotificationModel else { return}
-            let vc = INIT_CONTROLLER_XIB(ComplementaryPublicProfileVC.self)
-            vc.complimentryId = object.typeId
-            vc.hidesBottomBarWhenPushed = true
-            navigationController?.pushViewController(vc, animated: true)
 
-        }
-        if let cell = cell as? EventRequestTableCell {
-            if let object = cellDict?[kCellObjectDataKey] as? NotificationModel {
-                let vc = INIT_CONTROLLER_XIB(PromoterEventDetailVC.self)
-                vc.id = object.event?.id ?? ""
-                vc.hidesBottomBarWhenPushed = true
-                navigationController?.pushViewController(vc, animated: true)
-            }
-        }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

@@ -123,7 +123,6 @@ class AppSettingsManager: NSObject {
         WhosinServices.myPlusOneList { [weak self] container, error in
             guard let self = self else { return }
             guard let data = container?.data else { return }
-            CMEventListVC.isHavePlusOneGroup = !data.isEmpty
         }
     }
     

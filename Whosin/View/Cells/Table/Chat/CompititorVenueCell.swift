@@ -52,11 +52,6 @@ class CompititorVenueCell: UITableViewCell {
     }
     
     @IBAction func _handleInviteEvent(_ sender: UIButton) {
-        let controler = INIT_CONTROLLER_XIB(InviteBottomSheet.self)
-        controler.venueModel = _venueModel
-        let navController = NavigationController(rootViewController: controler)
-        navController.modalPresentationStyle = .custom
-        parentBaseController?.present(navController, animated: true)
     }
     
     @IBAction private func _handleShareEvent(_ sender: UIButton) {

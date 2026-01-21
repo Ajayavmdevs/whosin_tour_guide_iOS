@@ -249,11 +249,6 @@ class UserInfoTableCell: UITableViewCell {
         let presentedViewController = INIT_CONTROLLER_XIB(EventGuestListBottomSheet.self)
         presentedViewController.isMutualFriend = true
         presentedViewController._userList = _mutualFriends
-        presentedViewController.userOpenCallBack = { userId in
-            let vc = INIT_CONTROLLER_XIB(UsersProfileVC.self)
-            vc.contactId = userId
-            self.parentViewController?.navigationController?.pushViewController(vc, animated: true)
-        }
         presentedViewController.openChatCallBack = { chatModel in
             let vc = INIT_CONTROLLER_XIB(ChatDetailVC.self)
             vc.hidesBottomBarWhenPushed = true

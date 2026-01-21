@@ -72,10 +72,6 @@ class VenueRecommendedTableCell: UITableViewCell {
     }
     
     private func _openVenueDetail(_ venueId: String, venueDetail: VenueDetailModel) {
-        let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-        vc.venueId = venueId
-        vc.venueDetailModel = venueDetail
-        parentViewController?.navigationController?.pushViewController(vc, animated: true)
     }
 
     

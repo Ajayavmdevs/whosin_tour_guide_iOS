@@ -125,15 +125,6 @@ extension EventListVC: CustomNoKeyboardTableViewDelegate {
             cell.setupEventData(object)
         }
     }
-    
-    func didSelectTableCell(_ cell: UITableViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
-        if cell is EventTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? EventModel else { return }
-            let destinationViewController = INIT_CONTROLLER_XIB(EventDetailVC.self)
-            destinationViewController.event = object
-            self.navigationController?.pushViewController(destinationViewController, animated: true)
-        }
-    }
 
     func refreshData() {
         if type == .upcoming {

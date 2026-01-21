@@ -357,58 +357,6 @@ extension MyCartVC: CustomTableViewDelegate, UITableViewDelegate {
     
     func didSelectTableCell(_ cell: UITableViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
         guard let object = cellDict?[kCellObjectDataKey] as? CartModel else { return }
-        if object.type == "offer" {
-            let vc = INIT_CONTROLLER_XIB(OfferPackageDetailVC.self)
-            vc.offerId = object.offerId
-            vc.vanueOpenCallBack = { venueId, venueModel in
-                let vc = INIT_CONTROLLER_XIB(VenueDetailsVC.self)
-                vc.venueId = venueId
-                vc.venueDetailModel = venueModel
-                self.navigationController?.pushViewController(vc, animated: true)
-            }
-            vc.buyNowOpenCallBack = { offer, venue, timing in
-                        let vc = INIT_CONTROLLER_XIB(BuyPackgeVC.self)
-                        vc.isFromActivity = false
-                        vc.type = "offers"
-                        vc.timingModel = timing
-                        vc.offerModel = offer
-                        vc.venue = venue
-                        vc.setCallback {
-                            let controller = INIT_CONTROLLER_XIB(MyCartVC.self)
-                            controller.modalPresentationStyle = .overFullScreen
-                            self.navigationController?.pushViewController(controller, animated: true)
-                        }
-                        self.navigationController?.pushViewController(vc, animated: true)
-                    }
-            presentAsPanModal(controller: vc)
-        } else if object.type == "activity" {
-            let vc = INIT_CONTROLLER_XIB(ActivityInfoVC.self)
-            vc.activityId = object.activityId
-            self.navigationController?.pushViewController(vc, animated: true)
-        } else if object.type == "deal" {
-            let vc = INIT_CONTROLLER_XIB(DealsDetailVC.self)
-            let venueModel = VenueDetailModel()
-            venueModel.id = object.venueId
-            venueModel.name = object.venueName
-            venueModel.address = object.venueAddress
-            venueModel.slogo = object.venueLogo
-            let dealModel = DealsModel()
-            dealModel.title = object.title
-            dealModel.descriptions = object.descriptions
-            dealModel.image = object.dealImage
-            dealModel.startDate = object.startDate
-            dealModel.endDate = Utils.dateToString(object.endDate, format: kFormatDate)
-            dealModel._days = object.days
-            dealModel.startTime = object.startTime
-            dealModel.endTime = object.endTime
-            dealModel.actualPrice = object.originalPrice
-            dealModel.discountedPrice = Int(object.floatDiscountedPrice)
-            dealModel.features = object.features
-            dealModel.vouchars = object.vouchars
-            dealModel.venueModel = venueModel
-            vc.dealsModel = dealModel
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

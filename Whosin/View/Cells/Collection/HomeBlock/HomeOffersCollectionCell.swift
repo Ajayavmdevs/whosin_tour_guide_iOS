@@ -227,12 +227,6 @@ class HomeOffersCollectionCell: UICollectionViewCell {
     }
     
     @IBAction func _handleInviteEvent(_ sender: UIButton) {
-        let controler = INIT_CONTROLLER_XIB(InviteBottomSheet.self)
-        controler._selectedOffer = _offerModel
-        controler.venueModel = _offerModel?.venue
-        let navController = NavigationController(rootViewController: controler)
-        navController.modalPresentationStyle = .custom
-        parentBaseController?.present(navController, animated: true)
     }
     
     @IBAction private func _handleClaimNowEvent(_ sender: UIButton) {
@@ -250,18 +244,7 @@ class HomeOffersCollectionCell: UICollectionViewCell {
     
     @IBAction func _handleBuyNowEvent(_ sender: Any) {
         guard let model = _offerModel else { return }
-        let vc = INIT_CONTROLLER_XIB(BuyPackgeVC.self)
-        vc.isFromActivity = false
-        vc.type = "offers"
-        vc.timingModel = model.venue?.timing.toArrayDetached(ofType: TimingModel.self)
-        vc.offerModel = model
-        vc.venue = model.venue
-        vc.setCallback {
-            let controller = INIT_CONTROLLER_XIB(MyCartVC.self)
-            controller.modalPresentationStyle = .overFullScreen
-            self.parentViewController?.navigationController?.pushViewController(controller, animated: true)
-        }
-        self.parentViewController?.navigationController?.pushViewController(vc, animated: true)
+
     }
     
 }

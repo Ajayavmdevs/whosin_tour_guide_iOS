@@ -250,11 +250,6 @@ extension LoginVC: ActionButtonDelegate {
             let navController = NavigationController(rootViewController: controller)
             navController.setNavigationBarHidden(true, animated: false)
             window.setRootViewController(navController, options: UIWindow.TransitionOptions(direction:.fade, style: .easeInOut))
-        } else if APPSESSION.userDetail?.loginType == "sub-admin"  {
-            guard let window = APP.window else { return }
-            let navController = NavigationController(rootViewController: INIT_CONTROLLER_XIB(SubAdminTabbar.self))
-            navController.setNavigationBarHidden(true, animated: false)
-            window.setRootViewController(navController, options: UIWindow.TransitionOptions(direction:.fade, style: .easeInOut))
         } else {
             if Utils.stringIsNullOrEmpty(APPSESSION.userDetail?.firstName) && Utils.stringIsNullOrEmpty(APPSESSION.userDetail?.lastName) {
                 let vc = INIT_CONTROLLER_XIB(SignInNameVC.self)

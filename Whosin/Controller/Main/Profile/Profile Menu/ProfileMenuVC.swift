@@ -150,7 +150,7 @@ class ProfileMenuVC: ChildViewController {
     
     private func _addMenuData() {
         _menuList.append(["title" : "settings".localized(), "icon": "profile_setting"])
-        _menuList.append(["title" : "claim_history".localized(), "icon": "profile_claim"])
+        _menuList.append(["title" : "Transaction History", "icon": "profile_claim"])
         _menuList.append(["title" : "wallet".localized(), "icon": "profile_wallet"])
         if APPSESSION.userDetail?.isMembershipActive == true {
             _menuList.append(["title" : "my_subscription".localized(), "icon": "icon_member"])

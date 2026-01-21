@@ -109,13 +109,7 @@ extension AllActivitySearchTableCell: CustomNoKeyboardCollectionViewDelegate {
     }
     
     func didSelectCell(_ cell: UICollectionViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
-        guard let object = cellDict?[kCellObjectDataKey] as? ActivitiesModel else { return }
-        
-        APPSETTING.addSearchHistory(id: object.id, title: object.name, subtitle: object.descriptions, type: "activity", image: object.cover)
-        let controller = INIT_CONTROLLER_XIB(ActivityInfoVC.self)
-        controller.activityId = object.id
-        controller.activityName = object.name
-        self.parentViewController?.navigationController?.pushViewController(controller, animated: true)
+   
 
     }
 }
