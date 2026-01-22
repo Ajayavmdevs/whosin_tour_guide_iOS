@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22155" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22131"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -43,7 +43,7 @@
                                 <rect key="frame" x="90" y="10" width="292" height="70.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="cbQ-r3-z4a">
-                                        <rect key="frame" x="0.0" y="33" width="145" height="5"/>
+                                        <rect key="frame" x="0.0" y="33" width="261.5" height="5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jPm-fs-dds">
                                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
@@ -65,17 +65,13 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="eek-7D-yEa">
-                                        <rect key="frame" x="155" y="28" width="137" height="14.5"/>
+                                        <rect key="frame" x="271.5" y="28" width="20.5" height="14.5"/>
                                         <subviews>
                                             <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Cln-gI-BCo">
-                                                <rect key="frame" x="0.0" y="-6.5" width="137" height="28"/>
+                                                <rect key="frame" x="0.0" y="7.5" width="20.5" height="0.0"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Ol-Vd-cLs" customClass="ContactButtonView" customModule="Whosin" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="137" height="28"/>
-                                                        <color key="backgroundColor" name="clear"/>
-                                                    </view>
                                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aD7-fX-SE9">
-                                                        <rect key="frame" x="137" y="0.0" width="75" height="28"/>
+                                                        <rect key="frame" x="20.5" y="0.0" width="75" height="28"/>
                                                         <color key="backgroundColor" name="clear"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="75" id="Dy3-kT-v9e"/>
@@ -101,7 +97,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bvX-WK-bth">
-                                                        <rect key="frame" x="137" y="0.0" width="30" height="28"/>
+                                                        <rect key="frame" x="20.5" y="0.0" width="30" height="28"/>
                                                         <color key="backgroundColor" name="clear"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="28" id="6ta-Si-Bjl"/>
@@ -125,7 +121,7 @@
                                                         </userDefinedRuntimeAttributes>
                                                     </button>
                                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0TD-ye-ptW">
-                                                        <rect key="frame" x="137" y="0.0" width="30" height="28"/>
+                                                        <rect key="frame" x="20.5" y="0.0" width="30" height="28"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="28" id="8Dz-ze-kZA"/>
                                                             <constraint firstAttribute="width" constant="30" id="NWw-Zj-pjZ"/>
@@ -137,7 +133,7 @@
                                                 </subviews>
                                             </stackView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="      " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vfU-DB-FjW">
-                                                <rect key="frame" x="0.0" y="0.0" width="137" height="14.5"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="20.5" height="14.5"/>
                                                 <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -252,7 +248,6 @@
                 <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="_contactBtnView" destination="8Ol-Vd-cLs" id="Ah4-n2-iPV"/>
                 <outlet property="_imageView" destination="UR3-IM-j33" id="7aZ-sR-uvG"/>
                 <outlet property="_subtitleLabel" destination="erl-ES-3B4" id="gwO-LU-dXM"/>
                 <outlet property="_timeLabel" destination="vfU-DB-FjW" id="d08-CA-xHR"/>

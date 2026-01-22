@@ -41,9 +41,6 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(handleUserUpdateState(_:)), name: .changeUserProfileTypeUpdateState, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: kMessageCountNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleShowAlert(_:)), name: .showAlertForUpgradeProfile, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleShowPenaltyAlert(_:)), name: .openPenaltyPaymenPopup, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleRevokeSubAdminAccess), name: .revokeSubAdminAccess, object: nil)
-        handleShowMiniPlayer()
         checkPushNotificationPermission()
         DISPATCH_ASYNC_MAIN_AFTER(0.1) {
             if APPSETTING.inAppModel != nil, let model = APPSETTING.inAppModel {
@@ -503,9 +500,6 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
         updateChatMessageCount()
     }
     
-    @objc func handleShowMiniPlayer() {
-    }
-    
     @objc func handleShowAlert(_ notification: Notification) {
         let message = notification.userInfo?["type"] as? String ?? "complimentary"
         let vc = INIT_CONTROLLER_XIB(RestartAppPopupVC.self)
@@ -513,36 +507,6 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
         vc.modalPresentationStyle = .overFullScreen
         vc.modalTransitionStyle = .crossDissolve
         self.present(vc, animated: true)
-    }
-    
-    @objc func handleShowPenaltyAlert(_ notification: Notification) {
-        guard let model = notification.userInfo?["data"] as? BaseModel, let event = notification.userInfo?["event"] as? PromoterEventsModel else { return }
-        DISPATCH_ASYNC_MAIN_AFTER(0.001) {
-            let destinationViewController = PenaltyPopupVC()
-            destinationViewController._msg = model.message
-            destinationViewController._title = "cancellation_charges".localized()
-            destinationViewController.model = model
-            destinationViewController.event = event
-            let navigationController = UINavigationController(rootViewController: destinationViewController)
-            navigationController.modalPresentationStyle = .overFullScreen
-            guard let rootVc = APP.window?.rootViewController else { return }
-            if let visibleVc = Utils.getVisibleViewController(from: rootVc) {
-                if visibleVc is PenaltyPopupVC {
-                    return
-                }
-                visibleVc.modalPresentationStyle = .overFullScreen
-                visibleVc.modalTransitionStyle = .crossDissolve
-                visibleVc.present(navigationController, animated: true)
-            } else {
-                navigationController.modalPresentationStyle = .overFullScreen
-                navigationController.modalTransitionStyle = .crossDissolve
-                self.present(navigationController, animated: true)
-            }
-        }
-    }
-    
-    @objc func handleRevokeSubAdminAccess() {
-        APPSETTING._getProfile()
     }
 
     private func restartApp() {

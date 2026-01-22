@@ -251,33 +251,12 @@ class ProfileMenuVC: ChildViewController {
     }
     
     @objc func openMembershipPackages(_ g: UITapGestureRecognizer) -> Void {
-        if APPSETTING.subscription?.userId == APPSESSION.userDetail?.id {
-            let destinationViewController = MembershipVC()
-            let navigationController = UINavigationController(rootViewController: destinationViewController)
-            navigationController.modalPresentationStyle = .overFullScreen
-            self.present(navigationController, animated: true, completion: nil)
-        } else {
-            let destinationViewController = MembershipDetailVC()
-            let navigationController = UINavigationController(rootViewController: destinationViewController)
-            navigationController.modalPresentationStyle = .overFullScreen
-            self.present(navigationController, animated: true, completion: nil)
-        }
     }
     
     @IBAction private func _handleFollowerListEvent(_ sender: UIButton) {
-        let vc = INIT_CONTROLLER_XIB(FollowListVC.self)
-        vc.isFollowerList = true
-        vc.followId = APPSESSION.userDetail?.id ?? kEmptyString
-        vc.delegate = self
-        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction private func _handleFollowingListEvent(_ sender: UIButton) {
-        let vc = INIT_CONTROLLER_XIB(FollowListVC.self)
-        vc.isFollowerList = false
-        vc.delegate = self
-        vc.followId = APPSESSION.userDetail?.id ?? kEmptyString
-        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @IBAction func _handleAVMEvent(_ sender: UIButton) {
@@ -327,15 +306,7 @@ extension ProfileMenuVC: CustomTableViewDelegate {
     
     func didSelectTableCell(_ cell: UITableViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
         guard let object = cellDict?[kCellTitleKey] as? String  else { return }
-        if object == "primium" {
-            if APPSETTING.userModel?.isMembershipActive == true {
-                var destinationViewController = BundlePlanDetailsVC()
-                destinationViewController.subscription = APPSETTING.membershipPackage?.first
-                let navigationController = UINavigationController(rootViewController: destinationViewController)
-                navigationController.modalPresentationStyle = .overFullScreen
-                self.present(navigationController, animated: true, completion: nil)
-            }
-        } else if object == "logout" {
+        if object == "logout" {
             _logout()
         } else if object == "setting" {
             switch indexPath.row {
@@ -343,21 +314,12 @@ extension ProfileMenuVC: CustomTableViewDelegate {
                 let controller = INIT_CONTROLLER_XIB(SettingVC.self)
                 controller.modalPresentationStyle = .overFullScreen
                 self.navigationController?.pushViewController(controller, animated: true)
-            case 1:
-                let controller = INIT_CONTROLLER_XIB(ClaimHistoryVC.self)
-                controller.modalPresentationStyle = .overFullScreen
-                self.navigationController?.pushViewController(controller, animated: true)
             case 2:
                 let destinationViewController = MyWalletVC()
                 destinationViewController.isFromProfile = true
                 self.navigationController?.pushViewController(destinationViewController, animated: true)
             case 3:
-                if APPSESSION.userDetail?.isMembershipActive == true {
-                    let vc = INIT_CONTROLLER_XIB(MembershipVC.self)
-                    self.navigationController?.pushViewController(vc, animated: true)
-                } else {
-                    shareAppLink()
-                }
+                shareAppLink()
             case 4:
                 if APPSESSION.userDetail?.isMembershipActive == true {
                     shareAppLink()
@@ -421,17 +383,6 @@ extension ProfileMenuVC: ReloadProfileDelegate {
 
 extension ProfileMenuVC: purchaseSuccessDelegate {
     func purchaseSuccess() {
-        WhosinServices.subscriptionDetail { [weak self] container, error in
-            guard let self = self else { return }
-            guard let data = container?.data else { return }
-//            self.subscription = data
-//            APPSETTING.subscription = data
-            let vc = INIT_CONTROLLER_XIB(PurchasePlanPopUpVC.self)
-            let navController = NavigationController(rootViewController: vc)
-            navController.modalPresentationStyle = .overFullScreen
-            self.present(navController, animated: true)
-            NotificationCenter.default.post(name: .changeSubscriptionState, object: nil)
-        }
     }
 }
 

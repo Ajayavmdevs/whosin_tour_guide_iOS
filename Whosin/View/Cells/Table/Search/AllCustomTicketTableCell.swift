@@ -2,7 +2,6 @@ import UIKit
 
 class AllCustomTicketTableCell: UITableViewCell {
 
-    weak var delegate: ShowCategoryDetailsDelegate?
     @IBOutlet weak var _titleLabel: UILabel!
     @IBOutlet private weak var _collectionView: CustomNoKeyboardCollectionView!
     private let kCellIdentifierActivity = String(describing: NewTicketCollectionCell.self)
@@ -91,7 +90,7 @@ class AllCustomTicketTableCell: UITableViewCell {
     // --------------------------------------
 
     @IBAction func _handleMoreEvent(_ sender: UIButton) {
-        delegate?.didSelectCategory("ticket")
+//        delegate?.didSelectCategory("ticket")
     }
     
 }

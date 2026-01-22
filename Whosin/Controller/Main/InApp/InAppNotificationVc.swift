@@ -157,7 +157,7 @@ class InAppNotificationVc: ChildViewController {
             return
         }
         label.text = model.text
-        label.textColor = UIColor(hex: model.color )
+        label.textColor = UIColor(hexString: model.color )
         label.textAlignment = model.textAlignment
     }
     
@@ -171,8 +171,8 @@ class InAppNotificationVc: ChildViewController {
             return
         }
         button.setTitle(model.text)
-        button.setTitleColor(UIColor(hex: model.color), for: .normal)
-        button.backgroundColor = UIColor(hex: model.bgColor)
+        button.setTitleColor(UIColor(hexString: model.color), for: .normal)
+        button.backgroundColor = UIColor(hexString: model.bgColor)
     }
     
     // --------------------------------------

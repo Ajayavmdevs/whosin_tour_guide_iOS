@@ -33,13 +33,6 @@ class HomeVC: NavigationBarViewController {
         _loadData(true)
         _requestHomeData()
         setupUi()
-        DISPATCH_ASYNC_MAIN_AFTER(1) {
-            guard let promotion =  APPSETTING.subscriptionPromo else { return }
-            let vc = INIT_CONTROLLER_XIB(UpgradePlanPopUpVC.self)
-            vc.modalPresentationStyle = .overFullScreen
-            vc.subscriptionModel = promotion
-            self.present(vc, animated: true, completion: nil)
-        }
         startInitialAPIChecks()
         self.checkForAppUpdate()
         OneSignal.login(externalId: APPSESSION.userDetail?.id ?? "", token: APPSESSION.token)

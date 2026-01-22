@@ -18,10 +18,6 @@ class CustomDaysHeaderView: UIView {
         setupUi()
     }
     
-//    required init?(coder aDecoder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
-    
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setupUi()
@@ -53,17 +49,10 @@ class CustomDaysHeaderView: UIView {
     }
 
     private func setupUi() {
-        // Create blur effect
-//        let blurEffect = UIBlurEffect(style: .regular)
-//        let blurView = UIVisualEffectView(effect: blurEffect)
-//        blurView.frame = bounds
-//        blurView.backgroundColor = .clear
-//        addSubview(blurView)
         self.backgroundColor = .clear
 
         let layout = UICollectionViewFlowLayout()
         collectionView = CustomCollectionView(frame: bounds, collectionViewLayout: layout)
-//        collectionView.frame = bounds.insetBy(dx: 10, dy: 10)
         collectionView.bounds = bounds
         collectionView.backgroundColor = .clear
         collectionView.layer.cornerRadius = 10
@@ -84,7 +73,6 @@ class CustomDaysHeaderView: UIView {
         collectionView.showsHorizontalScrollIndicator = false
         addSubview(collectionView)
     }
-
 
     
     public func setupData(_ data: [String], selectedDay: String, isFromExplore: Bool) {

@@ -190,7 +190,6 @@ class CustomFormField: UIView {
             let countryFlag = Utils.getCountryCode(for: dialCode)
             _countryFlag.text = Utils.getCountyFlag(code: countryFlag ?? kEmptyString)
             _countryCode.text = dialCode
-            PromoterApplicationVC.promoterParams["country_code"] = dialCode
         }
 //        else {
 //            _countryFlag.text = Utils.getcurrentFlag()

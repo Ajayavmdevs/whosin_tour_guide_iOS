@@ -90,5 +90,4 @@ extension TicketFeaturesTableCell: UICollectionViewDataSource, UICollectionViewD
         print("Cell Size for item \(indexPath.row): \(size)") // Debugging purpose
         return size
     }
-
 }

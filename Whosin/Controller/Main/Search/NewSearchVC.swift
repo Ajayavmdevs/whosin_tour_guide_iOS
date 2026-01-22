@@ -383,7 +383,7 @@ extension NewSearchVC: CustomNoKeyboardTableViewDelegate {
         } else if let cell = cell as? AllCustomTicketTableCell {
             guard let object = cellDict?[kCellObjectDataKey] as? [TicketModel] else { return }
             cell.setupData(object)
-            cell.delegate = self
+//            cell.delegate = self 
         } else if let cell = cell as? ExploreTicketTableCell {
             guard let object = cellDict?[kCellObjectDataKey] as? TicketModel else {
                 cell.clearData()
@@ -483,11 +483,6 @@ extension NewSearchVC: CustomCollectionViewDelegate, UICollectionViewDelegate {
     
     func didSelectCell(_ cell: UICollectionViewCell, sectionTitle: String?, cellDict: [String: Any]?, indexPath: IndexPath) {
         _loadSearchResultData()
-    }
-}
-
-extension NewSearchVC: ShowCategoryDetailsDelegate {
-    func didSelectCategory(_ day: String) {
     }
 }
 

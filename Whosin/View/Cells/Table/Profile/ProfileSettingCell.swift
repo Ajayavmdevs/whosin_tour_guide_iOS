@@ -42,7 +42,7 @@ class ProfileSettingCell: UITableViewCell {
     public func setupData(_ data : [String : Any], switchText: String = kEmptyString, isSwitchOn: Bool = false) {
         _titleMenu.text = data["title"] as? String
         _settingIcon.image = UIImage(named: data["icon"] as! String)
-        _iconView.backgroundColor = UIColor(hex: data["color"] as? String ?? kEmptyString)
+        _iconView.backgroundColor = UIColor(hexString: data["color"] as? String ?? kEmptyString)
         _switchButton.isHidden = switchText != "permission"
         _nextButton.isHidden = switchText == "permission"
         _switchButton.isOn = isSwitchOn

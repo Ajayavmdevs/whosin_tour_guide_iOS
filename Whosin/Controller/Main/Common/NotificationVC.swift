@@ -10,11 +10,6 @@ class NotificationVC: ChildViewController {
     @IBOutlet private weak var _tableView: CustomNoKeyboardTableView!
     @IBOutlet weak var _visualEffectView: UIVisualEffectView!
     private let kCellIdentifier = String(describing: NotificationTableCell.self)
-    private let kCellIdentifierEventRequest = String(describing: EventRequestTableCell.self)
-    private let kCellIdentifierRequest = String(describing: PendingRequestTableCell.self)
-    private let kCellIdentifierUserRequest = String(describing: UserRequestTableCell.self)
-    private let kCellPlusOneRequest = String(describing: PlusOneRequestTableCell.self)
-    private let kCellSubAdminRequest = String(describing: SubAdminRequestTableCell.self)
     private let kEmptyCellIdentifier = String(describing: EmptyDataCell.self)
     private let kCellIdentifierLoading = String(describing: LoadingCell.self)
     private var _notificationData: NotificationListModel?
@@ -243,18 +238,6 @@ class NotificationVC: ChildViewController {
                             kCellClassKey: EmptyDataCell.self,
                             kCellHeightKey: EmptyDataCell.height
                         ])
-                    } else {
-                        _eventNotification?.notification.forEach({ model in
-                            if model.event?.status != "cancelled" && model.event?.status != "completed" {
-                                cellData.append([
-                                    kCellIdentifierKey: kCellIdentifierEventRequest,
-                                    kCellTagKey: kCellIdentifierEventRequest,
-                                    kCellObjectDataKey: model,
-                                    kCellClassKey: EventRequestTableCell.self,
-                                    kCellHeightKey: EventRequestTableCell.height
-                                ])
-                            }
-                        })
                     }
                 }
             }
@@ -278,18 +261,6 @@ class NotificationVC: ChildViewController {
                         kCellClassKey: EmptyDataCell.self,
                         kCellHeightKey: EmptyDataCell.height
                     ])
-                } else {
-                    _userNotifications.forEach { model in
-                        if model.type == "add-to-ring" {
-                            cellData.append([
-                                kCellIdentifierKey: kCellIdentifierUserRequest,
-                                kCellTagKey: kCellIdentifierUserRequest,
-                                kCellObjectDataKey: model,
-                                kCellClassKey: UserRequestTableCell.self,
-                                kCellHeightKey: UserRequestTableCell.height
-                            ])
-                        }
-                    }
                 }
             }
         }
@@ -297,42 +268,9 @@ class NotificationVC: ChildViewController {
             _deleteBtn.isHidden = _notificationData?.notification.isEmpty == true
             _notificationData?.notification.sort { $0.updatedAt > $1.updatedAt }
             
-            if APPSESSION.userDetail?.isProfilePrivate == true {
-                cellData.append([
-                    kCellIdentifierKey: kCellIdentifierRequest,
-                    kCellTagKey: kCellIdentifierRequest,
-                    kCellObjectDataKey: APPSETTING.pendingRequestList,
-                    kCellClassKey: PendingRequestTableCell.self,
-                    kCellHeightKey: PendingRequestTableCell.height
-                ])
-            }
+
             
             _notificationData?.notification.forEach { notification in
-                if notification.type == "ring-request-rejected" || notification.type == "ring-request-accepted" || notification.type == "promoter-request-accepted" || notification.type == "promoter-request-rejected", APPSESSION.userDetail?.isPromoter == false {
-                    cellData.append([
-                        kCellIdentifierKey: kCellIdentifierRequest,
-                        kCellTagKey: kCellIdentifierRequest,
-                        kCellObjectDataKey: notification,
-                        kCellClassKey: PendingRequestTableCell.self,
-                        kCellHeightKey: PendingRequestTableCell.height
-                    ])
-                } else if notification.type == "add-to-plusone" {
-                    cellData.append([
-                        kCellIdentifierKey: kCellPlusOneRequest,
-                        kCellTagKey: kCellPlusOneRequest,
-                        kCellObjectDataKey: notification,
-                        kCellClassKey: PlusOneRequestTableCell.self,
-                        kCellHeightKey: PlusOneRequestTableCell.height
-                    ])
-                } else if notification.type == "promoter-subadmin" {
-                    cellData.append([
-                        kCellIdentifierKey: kCellSubAdminRequest,
-                        kCellTagKey: kCellSubAdminRequest,
-                        kCellObjectDataKey: notification,
-                        kCellClassKey: SubAdminRequestTableCell.self,
-                        kCellHeightKey: SubAdminRequestTableCell.height
-                    ])
-                } else {
                     cellData.append([
                         kCellIdentifierKey: kCellIdentifier,
                         kCellTagKey: kCellIdentifier,
@@ -341,7 +279,7 @@ class NotificationVC: ChildViewController {
                         kCellHeightKey: NotificationTableCell.height
                     ])
                 }
-            }
+            
         }
         cellSectionData.append([kSectionTitleKey: kEmptyString, kSectionDataKey: cellData])
         _tableView.loadData(cellSectionData)
@@ -350,14 +288,8 @@ class NotificationVC: ChildViewController {
     private var _prototype: [[String: Any]]? {
         return [
             [kCellIdentifierKey: kCellIdentifier, kCellNibNameKey: kCellIdentifier, kCellClassKey: NotificationTableCell.self, kCellHeightKey: NotificationTableCell.height],
-            [kCellIdentifierKey: kCellIdentifierRequest, kCellNibNameKey: kCellIdentifierRequest, kCellClassKey: PendingRequestTableCell.self, kCellHeightKey: PendingRequestTableCell.height],
             [kCellIdentifierKey: kCellIdentifierLoading, kCellNibNameKey: kCellIdentifierLoading, kCellClassKey: LoadingCell.self, kCellHeightKey: LoadingCell.height],
-            [kCellIdentifierKey: kCellIdentifierEventRequest, kCellNibNameKey: kCellIdentifierEventRequest, kCellClassKey: EventRequestTableCell.self, kCellHeightKey: EventRequestTableCell.height],
-            [kCellIdentifierKey: kCellIdentifierUserRequest, kCellNibNameKey: kCellIdentifierUserRequest, kCellClassKey: UserRequestTableCell.self, kCellHeightKey: UserRequestTableCell.height],
             [kCellIdentifierKey: kEmptyCellIdentifier, kCellNibNameKey: kEmptyCellIdentifier, kCellClassKey: EmptyDataCell.self, kCellHeightKey: EmptyDataCell.height],
-            [kCellIdentifierKey: kCellPlusOneRequest, kCellNibNameKey: kCellPlusOneRequest, kCellClassKey: PlusOneRequestTableCell.self, kCellHeightKey: PlusOneRequestTableCell.height],
-            [kCellIdentifierKey: kCellSubAdminRequest, kCellNibNameKey: kCellSubAdminRequest, kCellClassKey: SubAdminRequestTableCell.self, kCellHeightKey: SubAdminRequestTableCell.height]
-
         ]
     }
     
@@ -525,43 +457,11 @@ extension NotificationVC: CustomNoKeyboardTableViewDelegate {
         if let cell = cell as? NotificationTableCell {
             guard let object = cellDict?[kCellObjectDataKey] as? NotificationModel  else { return }
             cell.setupData(object, listData: _notificationData)
-        } else if let cell = cell as? PendingRequestTableCell {
-            if let object = cellDict?[kCellObjectDataKey] as? [UserDetailModel] {
-                cell.setupData(object)
-            } else if let object = cellDict?[kCellObjectDataKey] as? NotificationModel {
-                cell.setupData(object)
-            }
         } else if let cell = cell as? EmptyDataCell {
             guard let object = cellDict?[kCellObjectDataKey] as? [String:Any] else { return }
             cell.setupData(object)
         } else if let cell = cell as? LoadingCell {
             cell.setupUi()
-        } else if let cell = cell as? UserRequestTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? NotificationModel else { return }
-            cell.setupData(object, isPromoter: APPSESSION.userDetail?.isRingMember == true)
-            cell.updateStatusCallback = { status in
-                self._requestUserNoftification(true)
-            }
-        } else if let cell = cell as? EventRequestTableCell {
-            if let object = cellDict?[kCellObjectDataKey] as? NotificationModel {
-                cell.setUpData(object, isNotification: true)
-            } else if let object = cellDict?[kCellObjectDataKey] as? PromoterChatListModel {
-                cell.setUpChatData(object, isPromoter: true)
-            }
-        }
-        else if let cell = cell as? PlusOneRequestTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? NotificationModel else { return }
-            cell.setupData(object)
-            cell.reloadCallback = {
-                self._requestNotificationData()
-            }
-        }
-        else if let cell = cell as? SubAdminRequestTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? NotificationModel else { return }
-            cell.setupData(object)
-            cell.reloadCallback = {
-                self._requestNotificationData()
-            }
         }
     }
     

@@ -604,12 +604,7 @@ class ChatDetailVC: ChildViewController {
     @IBAction func _handleOpenEventView(sender: UIButton) {
     }
     
-    @IBAction func _handleViewTicketEvent(_ sender: UIButton) {
-        let vc = INIT_CONTROLLER_XIB(CMConfirmedEventVC.self)
-        vc.eventModel = cmEventDetail
-        vc.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(vc, animated: true)
-        
+    @IBAction func _handleViewTicketEvent(_ sender: UIButton) {        
     }
     
     @IBAction func _handleMenuOptionEvent(_ sender: UIButton) {

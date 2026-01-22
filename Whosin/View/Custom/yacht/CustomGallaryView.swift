@@ -8,10 +8,8 @@ import Lightbox
 class CustomGallaryView: UIView {
     
     @IBOutlet weak var _startingTxt: UILabel!
-    @IBOutlet weak var _menuBtnWidth: NSLayoutConstraint!
     @IBOutlet weak var _priceview: GradientView!
     @IBOutlet weak var _priceText: UILabel!
-    @IBOutlet weak var _optionBtn: CustomMenuButton!
     @IBOutlet weak var _discriptionText: UILabel!
     @IBOutlet weak var _titleText: UILabel!
     @IBOutlet weak var _colleciton: CustomNoKeyboardCollectionView!
@@ -143,19 +141,6 @@ class CustomGallaryView: UIView {
     // --------------------------------------
     // MARK: Event
     // --------------------------------------
-    
-    public func setupData(offer: YachtOfferDetailModel, yacht: YachtDetailModel, ishideMenu: Bool = false) {
-        isAutoScroll = false
-        offerModel = offer
-        yachModel = yacht
-        _optionBtn.setupYachData(model: yacht, offer: offer, offerType: .yacht)
-        _menuBtnWidth.constant = ishideMenu ? 0 : 50
-        _gallaryArray = offer.images.toArray(ofType: String.self)
-        _titleText.text = yacht.name
-        _discriptionText.text = yacht.about
-        _priceText.text = "D\(offer.startingAmount)/HR"
-        _loadData()
-    }
     
     public func setupHeader(_ images: [String], pageControl: Bool = true, imagePageControl: Bool = false, isPreview: Bool = true) {
         isPreviewAvailble = isPreview

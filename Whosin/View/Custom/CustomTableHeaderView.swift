@@ -55,7 +55,7 @@ class CustomTableHeaderView: UIView {
         
         selectIndicator = UIView(frame: CGRect(x: 0, y: frame.height - 10, width: indicatorWidth, height: indicatorHeight))
         selectIndicator.center.x = tabLabels[selectedIndex].center.x
-        selectIndicator.backgroundColor = UIColor.init(hex: "#6C7A9C")
+        selectIndicator.backgroundColor = UIColor.init(hexString: "#6C7A9C")
         addSubview(selectIndicator)
     }
     

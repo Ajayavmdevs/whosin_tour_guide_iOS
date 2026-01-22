@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,7 +14,6 @@
                 <userDefinedRuntimeAttribute type="boolean" keyPath="enableBackgroundImage" value="YES"/>
             </userDefinedRuntimeAttributes>
             <connections>
-                <outlet property="_bottomView" destination="taO-u7-sy5" id="2zV-nt-4BC"/>
                 <outlet property="_headerHeightConstraint" destination="yDE-Pd-zQv" id="UHE-Nx-ENH"/>
                 <outlet property="_tableView" destination="Efz-hH-Qnt" id="Zn6-Ld-vto"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -39,21 +38,11 @@
                         <constraint firstAttribute="height" constant="105" id="yDE-Pd-zQv"/>
                     </constraints>
                 </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="taO-u7-sy5" customClass="CustomEventBottomView" customModule="Whosin" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="816" width="414" height="80"/>
-                    <color key="backgroundColor" name="clear"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="80" id="hro-UG-Pdd"/>
-                    </constraints>
-                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="b48-wo-Wcp" secondAttribute="trailing" id="CHW-Dg-ZeI"/>
-                <constraint firstAttribute="bottom" secondItem="taO-u7-sy5" secondAttribute="bottom" id="FkN-dJ-PME"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="taO-u7-sy5" secondAttribute="trailing" id="Ia0-tf-Nrt"/>
                 <constraint firstItem="b48-wo-Wcp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="K0B-XH-YBK"/>
-                <constraint firstItem="taO-u7-sy5" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="T9j-6w-5mG"/>
                 <constraint firstItem="b48-wo-Wcp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="VqV-6Q-Lxx"/>
                 <constraint firstItem="Efz-hH-Qnt" firstAttribute="top" secondItem="b48-wo-Wcp" secondAttribute="bottom" id="bgz-6Q-Hci"/>
                 <constraint firstItem="Efz-hH-Qnt" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cIR-wU-fgK"/>

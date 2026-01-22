@@ -19,7 +19,6 @@ class ChatHomeVC: ChildViewController {
     private let kCellIdentifierFriendChatList = String(describing: FriendsChatListTableCell.self)
     private let kCellIdentifierBucketChatList = String(describing: BucketChatListTableCell.self)
     private let kCellIdentifierEventChatList = String(describing: EventChatListTableCell.self)
-    private let kCellIdentifierCMEventChatList = String(describing: EventPromoterChatListTableCell.self)
     private let kCellIdentifierLoading = String(describing: LoadingCell.self)
     private var homeModel: HomeModel?
     private var _chatList: [ChatModel]?
@@ -427,22 +426,6 @@ class ChatHomeVC: ChildViewController {
             }
         }
         
-        if !eventList.isEmpty {
-            eventList.forEach{ event in
-                cellData.append([
-                    kCellIdentifierKey: kCellIdentifierCMEventChatList,
-                    kCellDifferenceIdentifierKey: event.id,
-                    kCellDifferenceContentKey: event.hashValue,
-                    kCellTagKey: event.id,
-                    kCellObjectDataKey: event,
-                    kCellClassKey: EventPromoterChatListTableCell.self,
-                    kCellHeightKey: EventPromoterChatListTableCell.height
-                ])
-            }
-            if cellData.count != .zero {
-                cellSectionData.append([kSectionTitleKey: cellData.isEmpty ? "event_chats".localized() : LANGMANAGER.localizedString(forKey: "event_chat_item", arguments: ["value": "\(cellData.count)"]), kSectionDataKey: cellData, kSectionBgColor: ColorBrand.clear])
-            }
-        }
         DispatchQueue.main.async {
             self._tableView.loadData(cellSectionData)
         }
@@ -538,7 +521,6 @@ class ChatHomeVC: ChildViewController {
                 [kCellIdentifierKey: kCellIdentifierBucketChatList, kCellNibNameKey: kCellIdentifierBucketChatList, kCellClassKey: BucketChatListTableCell.self, kCellHeightKey: BucketChatListTableCell.height],
                 [kCellIdentifierKey: kCellIdentifierLoading, kCellNibNameKey: kCellIdentifierLoading, kCellClassKey: LoadingCell.self, kCellHeightKey: LoadingCell.height],
                 [kCellIdentifierKey: kCellIdentifierEventChatList, kCellNibNameKey: kCellIdentifierEventChatList, kCellClassKey: EventChatListTableCell.self, kCellHeightKey: EventChatListTableCell.height],
-                [kCellIdentifierKey: kCellIdentifierCMEventChatList, kCellNibNameKey: kCellIdentifierCMEventChatList, kCellClassKey: EventPromoterChatListTableCell.self, kCellHeightKey: EventPromoterChatListTableCell.height]
         ]
     }
     
@@ -593,24 +575,6 @@ class ChatHomeVC: ChildViewController {
     }
     
     @IBAction private func _handleChatAddEvent(_ sender: UIButton) {
-        let vc = INIT_CONTROLLER_XIB(ContactShareBottomSheet.self)
-        vc.onShareButtonTapped = { [weak self] selectedContacts in
-            guard let self = self else { return }
-            if let user = selectedContacts.first {
-                self._requestCreateChat(user)
-            }
-        }
-        vc.isMultiSelect = false
-        vc.isFromCreateBucket = true
-        vc.isFromChat = true
-        vc.chatOpenCallBack = { chatModel in
-            let vc = INIT_CONTROLLER_XIB(ChatDetailVC.self)
-            vc.chatModel = chatModel
-            vc.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(vc, animated: true)
-        }
-        vc.modalPresentationStyle = .overFullScreen
-        navigationController?.present(vc, animated: true)
     }
     
     @objc func handleNotification(_ notification: Notification) {
@@ -706,9 +670,6 @@ extension ChatHomeVC: CustomTableViewDelegate {
             } else if let object = cellDict?[kCellObjectDataKey] as? OutingListModel {
                 cell.setupoutingData(object)
             }
-        } else if let cell = cell as? EventPromoterChatListTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? PromoterChatListModel else { return }
-            cell.setupCMChatData(object)
         }
     }
     

@@ -5,7 +5,6 @@ class HistoryVC: ChildViewController {
     
     @IBOutlet private weak var _tableView: CustomTableView!
     private let kLoadingCellIdentifier = String(describing: LoadingCell.self)
-    private let kCellIdentifierActivity = String(describing: MyActivityTableCell.self)
     private let kCellIdentifierTicket = String(describing: TicketPurchaseCell.self)
     private let kCellIdentifierHotel = String(describing: HotelTicketPurchaseCell.self)
     private var _vouchersList: [VouchersListModel] = []
@@ -135,7 +134,6 @@ class HistoryVC: ChildViewController {
     private var _prototype: [[String: Any]]? {
         return [
             [kCellIdentifierKey: kLoadingCellIdentifier, kCellNibNameKey: kLoadingCellIdentifier, kCellClassKey: LoadingCell.self, kCellHeightKey: LoadingCell.height],
-            [kCellIdentifierKey: kCellIdentifierActivity, kCellNibNameKey: kCellIdentifierActivity, kCellClassKey: MyActivityTableCell.self, kCellHeightKey: MyActivityTableCell.height],
             [kCellIdentifierKey: kCellIdentifierTicket, kCellNibNameKey: kCellIdentifierTicket, kCellClassKey: TicketPurchaseCell.self, kCellHeightKey: TicketPurchaseCell.height],
             [kCellIdentifierKey: kCellIdentifierHotel, kCellNibNameKey: kCellIdentifierHotel, kCellClassKey: HotelTicketPurchaseCell.self, kCellHeightKey: HotelTicketPurchaseCell.height],
         ]
@@ -153,10 +151,7 @@ extension HistoryVC: CustomTableViewDelegate {
     }
     
     func setupCell(_ cell: UITableViewCell, cellDict: [String : Any]?, indexPath: IndexPath) {
-        if let cell = cell as? MyActivityTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? VouchersListModel  else { return }
-            cell.setupData(object, true)
-        } else if let cell = cell as? TicketPurchaseCell {
+        if let cell = cell as? TicketPurchaseCell {
             guard let object = cellDict?[kCellObjectDataKey] as? TicketBookingModel, let voucher = cellDict?[kCellTagKey] as? VouchersListModel else { return }
             cell.setupData(object, voucher: voucher, isFromHistory: true)
         }  else if let cell = cell as? HotelTicketPurchaseCell {

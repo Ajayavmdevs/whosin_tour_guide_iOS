@@ -7,7 +7,6 @@ class ChatProfileVC: ChildViewController {
     private let kBGCellIdentifier = String(describing: ChangeChatBgTableCell.self)
     private let kMediaCellIdentifier = String(describing: ProfileMediaTableCell.self)
     private let kBlockCellIdentifier = String(describing: BlockTableCell.self)
-    private let kBucketCellIdentifier = String(describing: BucketListTableCell.self)
     private let kContactCellIdentifier = String(describing: ContactsTableCell.self)
     public var userId: String?
     public var chatModel: ChatModel?
@@ -125,17 +124,7 @@ class ChatProfileVC: ChildViewController {
                     _userList?.append(user)
                 }
             }
-            if bucket.userId == userId || bucket.sharedUser.contains(where: { String in
-                String == userId
-            }){
-                cellData.append([
-                    kCellIdentifierKey: kBucketCellIdentifier,
-                    kCellTagKey: kBucketCellIdentifier,
-                    kCellObjectDataKey: bucket,
-                    kCellClassKey: BucketListTableCell.self,
-                    kCellHeightKey: BucketListTableCell.height
-                ])
-            }
+            
         }
         
         return cellData
@@ -414,7 +403,6 @@ class ChatProfileVC: ChildViewController {
             [kCellIdentifierKey: kBGCellIdentifier, kCellNibNameKey: kBGCellIdentifier, kCellClassKey: ChangeChatBgTableCell.self, kCellHeightKey: ChangeChatBgTableCell.height],
             [kCellIdentifierKey: kMediaCellIdentifier, kCellNibNameKey: kMediaCellIdentifier, kCellClassKey: ProfileMediaTableCell.self, kCellHeightKey: ProfileMediaTableCell.height],
             [kCellIdentifierKey: kBlockCellIdentifier, kCellNibNameKey: kBlockCellIdentifier, kCellClassKey: BlockTableCell.self, kCellHeightKey: BlockTableCell.height],
-            [kCellIdentifierKey: kBucketCellIdentifier, kCellNibNameKey: kBucketCellIdentifier, kCellClassKey: BucketListTableCell.self, kCellHeightKey: BucketListTableCell.height],
             [kCellIdentifierKey: kContactCellIdentifier, kCellNibNameKey: kContactCellIdentifier, kCellClassKey: ContactsTableCell.self, kCellHeightKey: ContactsTableCell.height]]
         
     }
@@ -598,10 +586,7 @@ extension ChatProfileVC: CustomTableViewDelegate, UIScrollViewDelegate, UITableV
             } else if let cell = cell as? BlockTableCell {
                 guard let object = cellDict?[kCellObjectDataKey] as? String else { return }
                 cell.setup(object)
-            } else if let cell = cell as? BucketListTableCell {
-                guard let object = cellDict?[kCellObjectDataKey] as? BucketDetailModel else { return }
-                cell.setupData(object, userModel: _userList ?? [], isFromSheet: true)
-            }
+            } 
         }
     }
     

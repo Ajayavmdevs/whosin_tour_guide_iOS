@@ -2,7 +2,6 @@ import UIKit
 
 class ContactsTableCell: UITableViewCell {
     
-    @IBOutlet private weak var _contactBtnView: ContactButtonView!
     @IBOutlet weak var _sapratorView: UIView!
     @IBOutlet private weak var _bgViewTariling: NSLayoutConstraint!
     @IBOutlet private weak var _bgViewConstraint: NSLayoutConstraint!
@@ -48,14 +47,8 @@ class ContactsTableCell: UITableViewCell {
         _avatarImageView.loadWebImage(model.image, name: model.firstName)
         _btnselect.setImage(isSelected ? UIImage(named: "icon_radio_selected") : UIImage(named: "icon_radio"), for: .normal)
         _btnselect.isHidden = !isInvite
-        _contactBtnView.isHidden = isInvite
-        _contactBtnView.setupData(model: model.detached())
-        if APPSESSION.userDetail?.id == model.id {
-            _btnselect.isHidden = true
-            _contactBtnView.isHidden = true
-        }
+        
         if isSheet {
-            _contactBtnView.isHidden = true
             _btnselect.isHidden = false
             if isInvite {
                 _btnselect.setImage(isSelected ? UIImage(named: "icon_radio_selected") : UIImage(named: "icon_radio"), for: .normal)
@@ -69,7 +62,6 @@ class ContactsTableCell: UITableViewCell {
         _titleLabel.text = model.title
         _subtitleLabel.text = model.descriptions
         _avatarImageView.loadWebImage(model.avatar, name: model.title)
-        _contactBtnView.isHidden = true
         _btnselect.isHidden = false
         _btnselect.setImage(isSelected ? UIImage(named: "icon_selectedGreen") : UIImage(named: "icon_deselcetCode"), for: .normal)
     }
