@@ -7,7 +7,6 @@ class ChatProfileVC: ChildViewController {
     private let kBGCellIdentifier = String(describing: ChangeChatBgTableCell.self)
     private let kMediaCellIdentifier = String(describing: ProfileMediaTableCell.self)
     private let kBlockCellIdentifier = String(describing: BlockTableCell.self)
-    private let kContactCellIdentifier = String(describing: ContactsTableCell.self)
     public var userId: String?
     public var chatModel: ChatModel?
     public var chatType: ChatType = .user
@@ -130,54 +129,6 @@ class ChatProfileVC: ChildViewController {
         return cellData
     }
     
-    private func _fillBucketDetail() -> [[String: Any]] {
-        var cellData = [[String: Any]]()
-        
-        _bucketDetail?.sharedWith.forEach({ contact in
-            cellData.append([
-                kCellIdentifierKey: kContactCellIdentifier,
-                kCellTagKey: contact.id,
-                kCellObjectDataKey: contact,
-                kCellClassKey: ContactsTableCell.self,
-                kCellHeightKey: ContactsTableCell.height
-            ])
-        })
-        
-        return cellData
-    }
-
-    private func _fillEventUsers() -> [[String: Any]] {
-        var cellData = [[String: Any]]()
-        self._invitationList.forEach { guestList in
-            if let user = _userList?.first(where: { $0.id == guestList.userId}) {
-                cellData.append([
-                    kCellIdentifierKey: kContactCellIdentifier,
-                    kCellTagKey: user.id,
-                    kCellObjectDataKey: user,
-                    kCellClassKey: ContactsTableCell.self,
-                    kCellHeightKey: ContactsTableCell.height
-                ])
-            }
-        }
-        return cellData
-    }
-
-    
-    private func _fillOutingDetail() -> [[String: Any]] {
-        var cellData = [[String: Any]]()
-        _outingModel?.invitedUser.forEach({ contact in
-            cellData.append([
-                kCellIdentifierKey: kContactCellIdentifier,
-                kCellTagKey: contact.id,
-                kCellObjectDataKey: contact,
-                kCellClassKey: ContactsTableCell.self,
-                kCellHeightKey: ContactsTableCell.height
-            ])
-        })
-        
-        return cellData
-    }
-    
     private func _loadData(isLoading: Bool = false) {
         var cellSectionData = [[String: Any]]()
         var cellData = [[String: Any]]()
@@ -264,10 +215,7 @@ class ChatProfileVC: ChildViewController {
             }
 
             cellSectionData.append([kSectionTitleKey: kEmptyString, kSectionDataKey: cellData])
-            
-            let bucketDetailDict = _fillBucketDetail()
-            cellSectionData.append([kSectionTitleKey: "members".localized(), kSectionDataKey: bucketDetailDict])
-            
+                        
             cellData.removeAll()
             cellData.append([
                 kCellIdentifierKey: kBlockCellIdentifier,
@@ -325,10 +273,7 @@ class ChatProfileVC: ChildViewController {
             }
 
             cellSectionData.append([kSectionTitleKey: kEmptyString, kSectionDataKey: cellData])
-            
-            let bucketDetailDict = _fillEventUsers() //_fillEventDetail()
-            cellSectionData.append([kSectionTitleKey: "members".localized(), kSectionDataKey: bucketDetailDict])
-            
+                        
             cellData.removeAll()
             cellData.append([
                 kCellIdentifierKey: kBlockCellIdentifier,
@@ -377,9 +322,6 @@ class ChatProfileVC: ChildViewController {
 
             cellSectionData.append([kSectionTitleKey: kEmptyString, kSectionDataKey: cellData])
             
-            let bucketDetailDict = _fillOutingDetail()
-            cellSectionData.append([kSectionTitleKey: "Members", kSectionDataKey: bucketDetailDict])
-            
             cellData.removeAll()
             cellData.append([
                 kCellIdentifierKey: kBlockCellIdentifier,
@@ -402,9 +344,7 @@ class ChatProfileVC: ChildViewController {
 //            [kCellIdentifierKey: kCellIdentifier, kCellNibNameKey: kCellIdentifier, kCellClassKey: ProfileDetailTableCell.self, kCellHeightKey: ProfileDetailTableCell.height],
             [kCellIdentifierKey: kBGCellIdentifier, kCellNibNameKey: kBGCellIdentifier, kCellClassKey: ChangeChatBgTableCell.self, kCellHeightKey: ChangeChatBgTableCell.height],
             [kCellIdentifierKey: kMediaCellIdentifier, kCellNibNameKey: kMediaCellIdentifier, kCellClassKey: ProfileMediaTableCell.self, kCellHeightKey: ProfileMediaTableCell.height],
-            [kCellIdentifierKey: kBlockCellIdentifier, kCellNibNameKey: kBlockCellIdentifier, kCellClassKey: BlockTableCell.self, kCellHeightKey: BlockTableCell.height],
-            [kCellIdentifierKey: kContactCellIdentifier, kCellNibNameKey: kContactCellIdentifier, kCellClassKey: ContactsTableCell.self, kCellHeightKey: ContactsTableCell.height]]
-        
+            [kCellIdentifierKey: kBlockCellIdentifier, kCellNibNameKey: kBlockCellIdentifier, kCellClassKey: BlockTableCell.self, kCellHeightKey: BlockTableCell.height]]
     }
     
     // --------------------------------------

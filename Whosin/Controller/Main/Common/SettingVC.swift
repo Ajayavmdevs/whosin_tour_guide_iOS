@@ -193,9 +193,6 @@ extension SettingVC: CustomTableViewDelegate {
                     self.navigationController?.pushViewController(vc, animated: true)
                 }
                 else if indexPath.row == 1 {
-                    let vc = INIT_CONTROLLER_XIB(BlockListVC.self)
-                    vc.modalPresentationStyle = .overFullScreen
-                    self.navigationController?.pushViewController(vc, animated: true)
                 }
                 else if indexPath.row == 2 {
                     let vc = INIT_CONTROLLER_XIB(ReportedUsersListVC.self)

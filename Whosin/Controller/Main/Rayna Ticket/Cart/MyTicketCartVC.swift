@@ -71,7 +71,7 @@ class MyTicketCartVC: ChildViewController {
         _savingsView.isUserInteractionEnabled = true
         _savingsView.addGestureRecognizer(tapPriceGesture)
         _promoCodeTextField.delegate = self
-        view.hero.id = String(describing: MyCartVC.self)
+        view.hero.id = String(describing: MyTicketCartVC.self)
         view.hero.modifiers = HeroAnimationModifier.stories
         _tableView.setup(
             cellPrototypes: _prototype,
