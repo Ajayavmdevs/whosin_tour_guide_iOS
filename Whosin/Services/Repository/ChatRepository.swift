@@ -2,114 +2,7 @@ import RealmSwift
 import CloudKit
 
 class ChatRepository: Repository {
-    
-    func getAllGroupChatListOffline() ->  MyBucketModel? {
-        let results = realm.objects(MyBucketModel.self)
-        if results.count > 0 {
-            return results.first
-        }
-        return nil
-    }
 
-    func getGroupChatLit(shouldRefresh: Bool = false, callback: @escaping(_ model: MyBucketModel?, _ error: NSError?) -> Void) {
-        
-        if !shouldRefresh {
-            let results = realm.objects(MyBucketModel.self)
-            if results.count > 0 {
-                callback(results.first, nil)
-                NotificationCenter.default.post(name: kMessageCountNotification, object: nil)
-            }
-        }
-        
-        
-        WhosinServices.requestMyBucketList { container, error in
-            guard let data = container?.data else {
-                callback(nil, error)
-                return
-            }
-        
-            DISPATCH_ASYNC_BG { autoreleasepool {
-                try! self.realm.write {
-                    let results = self.realm.objects(MyBucketModel.self)
-                    self.realm.delete(results)
-                    self.realm.add(data, update: .all)
-                }
-                DISPATCH_ASYNC_MAIN {
-                    self.realm.refresh()
-                    let results = self.realm.objects(MyBucketModel.self)
-                    if !results.isEmpty {
-                        callback(results.first, error)
-                        NotificationCenter.default.post(name: kMessageCountNotification, object: nil)
-                    } else {
-                        callback(nil, error)
-                    }
-                }
-            }}
-        }
-    }
-    
-    func getEventChatList(callback: @escaping(_ model: Results<EventChatModel>?, _ error: NSError?) -> Void) {
-    
-        let object = realm.objects(EventChatModel.self)
-        if object.count > 0 {
-            callback(object, nil)
-        }
-        
-        WhosinServices.getEventChatList { container, error in
-        
-            guard let data = container?.data else { return }
-            guard let events = data.data else { return }
-            if !events.isEmpty {
-                DISPATCH_ASYNC_BG { autoreleasepool {
-                    try! self.realm.write {
-                        self.realm.add(events, update: .all)
-                        if let users = data.users {
-                            if !users.isEmpty {
-                                self.realm.add(users, update: .all)
-                            }
-                        }
-                    }
-                    DISPATCH_ASYNC_MAIN {
-                        self.realm.refresh()
-                        let results = self.realm.objects(EventChatModel.self)
-                        callback(results, error)
-                    }
-                }}
-            }
-        }
-        
-    }
-    
-    func getBucketListList(callback: @escaping(_ model: Results<BucketDetailModel>?, _ error: NSError?) -> Void) {
-    
-        let object = realm.objects(BucketDetailModel.self)
-        if object.count > 0 {
-            callback(object, nil)
-        }
-        
-        WhosinServices.getBucketList { container, error in
-            guard let data = container?.data else { return }
-            if !data.buckets.isEmpty {
-                DISPATCH_ASYNC_BG { autoreleasepool {
-                    try! self.realm.write {
-                        self.realm.add(data.buckets, update: .all)
-                        if !data.users.isEmpty {
-                            self.realm.add(data.users, update: .all)
-                        }
-                    }
-                    DISPATCH_ASYNC_MAIN {
-                        self.realm.refresh()
-                        let results = self.realm.objects(BucketDetailModel.self)
-                        callback(results, error)
-                    }
-                }}
-            }else {
-                callback(nil, error)
-            }
-            
-        }
-    }
-        
     func getFriendChatList() -> [ChatModel] {
         return realm.objects(ChatModel.self).toArrayDetached(ofType: ChatModel.self)
     }
@@ -200,60 +93,6 @@ class ChatRepository: Repository {
                 callback(chatModel,msgModel.chatType == ChatType.promoterEvent.rawValue ? .promoterEvent : .user)
             }
         }
-        else if msgModel.chatType == "bucket" {
-            let bucketPredicate = BucketDetailModel.idPredicate(msgModel.chatId)
-            if let object = self.realm.objects(BucketDetailModel.self).filter(bucketPredicate).first {
-                let _tmpChatModel = ChatModel()
-                _tmpChatModel.chatId = object.id
-                _tmpChatModel.title = object.name
-                _tmpChatModel.chatType = "bucket"
-                _tmpChatModel.image = object.coverImage
-                _tmpChatModel.members.append(objectsIn: object.sharedUser)
-                _tmpChatModel.members.append(object.userId)
-                if let userDetail = APPSESSION.userDetail {
-                    if !_tmpChatModel.members.contains(where: { $0 == userDetail.id }) {
-                        _tmpChatModel.members.append(userDetail.id)
-                    }
-                }
-                callback(_tmpChatModel, .bucket)
-            }
-        }
-        else if msgModel.chatType == "event" {
-            let eventPredicate = EventChatModel.idPredicate(msgModel.chatId)
-            if let object = self.realm.objects(EventModel.self).filter(eventPredicate).first {
-                let _tmpChatModel = ChatModel()
-                _tmpChatModel.chatId = object.id
-                _tmpChatModel.chatType = "event"
-                _tmpChatModel.title = object.chatName
-                _tmpChatModel.image = object.image
-                let members = object.invitedUsers.map({ $0.userId })
-                _tmpChatModel.members.append(objectsIn: members)
-                if let userDetail = APPSESSION.userDetail {
-                    if !_tmpChatModel.members.contains(where: { Preferences.isSubAdmin ? $0 == userDetail.promoterId : $0 == userDetail.id }) {
-                        _tmpChatModel.members.append(userDetail.id)
-                    }
-                }
-                callback(_tmpChatModel, .event)
-            }
-        }
-        else if msgModel.chatType == "outing" {
-            let eventPredicate = EventChatModel.idPredicate(msgModel.chatId)
-            if let object = self.realm.objects(OutingListModel.self).filter(eventPredicate).first {
-                let _tmpChatModel = ChatModel()
-                _tmpChatModel.chatId = object.id
-                _tmpChatModel.title = object.chatName
-                _tmpChatModel.chatType = "outing"
-                _tmpChatModel.image = object.venue?.logo ?? kEmptyString
-                _tmpChatModel.members.append(objectsIn: object.members)
-                _tmpChatModel.members.append(object.userId)
-                if let userDetail = APPSESSION.userDetail {
-                    if !_tmpChatModel.members.contains(where: { $0 == userDetail.id }) {
-                        _tmpChatModel.members.append(userDetail.id)
-                    }
-                }
-                callback(_tmpChatModel, .outing)
-            }
-        }
     }
     
     func addMessageIfNotExist(messageData: MessageModel, callback: ((_ model: MessageModel?) -> Void)?) {
@@ -296,15 +135,6 @@ class ChatRepository: Repository {
                     if messageData.chatType == "friend" {
                         let chatModel = ChatModel(msg: messageData.detached())
                         self.realm.add(chatModel, update: .all)
-                    } else if messageData.chatType == "bucket" || messageData.chatType == "event" || messageData.chatType == "outing" {
-                        guard let groupList = self.realm.objects(MyBucketModel.self).first else { return }
-                        if messageData.chatType == "bucket", !(groupList.bucketList.contains(where: { $0.id == messageData.chatId })) {
-                            self.getGroupChatLit { model, error in }
-                        } else if messageData.chatType == "event", !(groupList.events.contains(where: { $0.id == messageData.chatId })) {
-                            self.getGroupChatLit { model, error in }
-                        } else if messageData.chatType == "outing", !(groupList.outings.contains(where: { $0.id == messageData.chatId })) {
-                            self.getGroupChatLit { model, error in }
-                        }
                     }
                 }
             }
@@ -503,32 +333,10 @@ class ChatRepository: Repository {
             let predicate = MessageModel.unReadPredicateNotInIds(chatIds, type)
             return realm.objects(MessageModel.self).filter(predicate).count
 
-        } else if type == "promoter_event" {
+        } else {
             let predicateEvent = ChatModel.chatTypePredicate("promoter_event")
             let promoterChat = realm.objects(MessageModel.self).filter(predicateEvent).toArrayDetached(ofType: MessageModel.self)
             let chatIds = promoterChat.map { $0.chatId }
-            guard !chatIds.isEmpty else { return 0 }
-            let predicate = MessageModel.unReadPredicateIds(chatIds)
-            return realm.objects(MessageModel.self).filter(predicate).count
-
-        } else {
-            guard let groupList = realm.objects(MyBucketModel.self).first else {
-                print("Warning: No MyBucketModel found in Realm")
-                return 0
-            }
-            let chatIds: [String] = {
-                switch type {
-                case "bucket":
-                    return groupList.bucketList.toArrayDetached(ofType: BucketDetailModel.self).map { $0.id }
-                case "event":
-                    return groupList.events.toArrayDetached(ofType: EventModel.self).map { $0.id }
-                case "outing":
-                    return groupList.outings.toArrayDetached(ofType: OutingListModel.self).map { $0.id }
-                default:
-                    print("Warning: Unknown type '\(type)' passed to getUnReadMessagesCountByType")
-                    return []
-                }
-            }()
             guard !chatIds.isEmpty else { return 0 }
             let predicate = MessageModel.unReadPredicateIds(chatIds)
             return realm.objects(MessageModel.self).filter(predicate).count

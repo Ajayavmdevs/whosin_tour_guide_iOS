@@ -61,10 +61,6 @@ class HomeHeaderView: UIView {
             make.leading.trailing.top.bottom.equalToSuperview()
         }
         
-//        _profileImage.isUserInteractionEnabled = true  Enable user interaction
-//        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(imageTapped(_:)))
-//        _profileImage.addGestureRecognizer(tapGesture)
-
         _profileImage.loadWebImage(APPSESSION.userDetail?.image ?? kEmptyString, name: APPSESSION.userDetail?.fullName ?? kEmptyString, backgroundColor: ColorBrand.tabSelectColor)
         self.hero.modifiers = HeroAnimationModifier.stories
         NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateCartCount), name: Notification.Name("addtoCartCount"), object: nil)
@@ -72,8 +68,6 @@ class HomeHeaderView: UIView {
         APPSETTING.oncartChange = {
             self.handleUpdateNotificationCount()
         }
-        let repo = CartRepository()
-        _cartButton.badgeNumber = repo.getCartListCount()
         _notificationIcon.badgeNumber = NOTIFICATION.unreadCount
     }
     
@@ -119,7 +113,6 @@ class HomeHeaderView: UIView {
     }
     
     @objc private func handleUpdateCartCount() {
-        let repo = CartRepository()
         _cartButton.badgeNumber = APPSETTING.ticketCartModel?.items.count ?? 0
     }
     

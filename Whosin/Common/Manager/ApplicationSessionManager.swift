@@ -63,26 +63,6 @@ class ApplicationSessionManager: NSObject {
         return members
     }
     
-    public var promoterProfile: PromoterProfileModel? {
-        if Preferences.promoterProfile.isEmpty {
-            return nil
-        }
-        guard let promoter = Mapper<PromoterProfileModel>().map(JSONString: Preferences.promoterProfile)else {
-            return nil
-        }
-        return promoter
-    }
-    
-    public var CMProfile: PromoterProfileModel? {
-        if Preferences.cmProfile.isEmpty {
-            return nil
-        }
-        guard let members = Mapper<PromoterProfileModel>().map(JSONString: Preferences.cmProfile)else {
-            return nil
-        }
-        return members
-    }
-    
     public var preferences: PrefrencesModel {
         guard let members = Mapper<PrefrencesModel>().map(JSONString: Preferences.preferencesModel)else {
             return self.preferences
@@ -457,7 +437,6 @@ class ApplicationSessionManager: NSObject {
         ChatRepository().resetRealm()
         HomeRepository().resetRealm()
         UserRepository().resetRealm()
-        CartRepository().resetRealm()
         Preferences.clearConnectedData()
         
     }

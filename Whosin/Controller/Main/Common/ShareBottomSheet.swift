@@ -16,11 +16,6 @@ class ShareBottomSheet: BaseViewController {
     public var filteredDataContact: [UserDetailModel] = []
     private var _selectedContacts: [UserDetailModel] = []
     private var contactList: [UserDetailModel] = []
-    public var veneuDetail: VenueDetailModel?
-    public var promoterEvent: PromoterEventsModel?
-    public var offerModel: OffersModel?
-    public var userDetailModel: UserDetailModel?
-    public var yachClubDetail: YachtClubModel?
     public var messageModel: MessageModel?
     public var ticketModel: TicketModel?
     public var isSearching = false
@@ -56,16 +51,7 @@ class ShareBottomSheet: BaseViewController {
         super.viewWillAppear(animated)
         _shareButton.isEnabled = false
         _copylinkBtn.isEnabled = false
-        if isPromoter {
-            if promoterEvent?.type == "private" {
-                contactList = promoterEvent?.invitedUsers.toArrayDetached(ofType: UserDetailModel.self) ?? []
-                _loadData()
-            } else {
-                _requestRingMember()
-            }
-        } else {
-            _requestFollowersList()
-        }
+        _requestFollowersList()
         _requestShareLink(isUser)
     }
     
@@ -92,87 +78,21 @@ class ShareBottomSheet: BaseViewController {
         _searchBar.searchTextField.layer.masksToBounds = true
         _searchBar.searchTextField.textColor = .white
         _searchBar.delegate = self
-        _venueJSON = _jsonStringVenueObject() ?? kEmptyString
-        _userJSON = _jsonStringUserObject() ?? kEmptyString
-        _offerJSON = _jsonStringOfferObject() ?? kEmptyString
-        _clubJSON = _jsonStringClubObject() ?? kEmptyString
         _ticketJOSN = _jsonStringTicketObject() ?? kEmptyString
-        _promoterEventJOSN = _jsonStringPromoterEventObject() ?? kEmptyString
     }
     
     // --------------------------------------
     // MARK: Private method
     // --------------------------------------
     
-    private func _jsonStringVenueObject() -> String? {
-        guard let veneuDetail = veneuDetail else { return kEmptyString}
-        if Utils.stringIsNullOrEmpty(currentStoryId) {
-            let model =  ChatVenueModel(model: veneuDetail)
-            return model.toJSONString()
-        } else {
-            let story = veneuDetail.storie.first(where: { $0.id == currentStoryId})
-            var dict: [String: Any] = ["_id": veneuDetail.id,
-                                       "name": veneuDetail.name,
-                                       "logo": veneuDetail.logo,
-                                       "cover": veneuDetail.cover,
-                                       "address": veneuDetail.address]
-            
-            let storyDict: [String: Any] = ["_id": story?.id ?? kEmptyString,
-                                            "mediaType": story?.mediaType ?? kEmptyString,
-                                            "venueId": story?.venueId ?? kEmptyString,
-                                            "offerId": story?.offerId ?? kEmptyString,
-                                            "contentType": story?.contentType ?? kEmptyString,
-                                            "mediaUrl": story?.mediaUrl ?? kEmptyString,
-                                            "thumbnail": story?.thumbnail ?? kEmptyString,
-                                            "duration": story?.duration ?? kEmptyString,
-                                            "buttonText": story?.buttonText ?? kEmptyString,
-                                            "userId": story?.userId ?? kEmptyString,
-                                            "createdAt": story?.createdAt ?? kEmptyString,
-                                            "expiryDate": story?.expiryDate ?? kEmptyString]
-            
-            dict["stories"] = [storyDict]
-            return dict.toJSONString
-        }
-    }
     
-    private func _jsonStringUserObject() -> String? {
-        guard let userDetailModel = userDetailModel else { return kEmptyString}
-        let model =  ChatUserModel(model: userDetailModel)
-        return model.toJSONString()
-    }
     
     private func _jsonStringTicketObject() -> String? {
         guard let ticket = ticketModel else { return kEmptyString}
         let model =  ChatTicketModel(model: ticket)
         return model.toJSONString()
     }
-    
-    private func _jsonStringOfferObject() -> String? {
-        guard let offerModel = offerModel else { return kEmptyString}
-        guard let veneuDetail = veneuDetail else { return kEmptyString}
-        let venueModel =  ChatVenueModel(model: veneuDetail)
-        let model =  ChatOfferModel(model: offerModel, venueModel: venueModel)
-        return model.toJSONString()
-    }
-    
-    private func _jsonStringClubObject() -> String? {
-        guard let clubModel = yachClubDetail else { return kEmptyString}
-        var dict: [String: Any] = ["_id": clubModel.id,
-                                   "name": clubModel.name,
-                                   "logo": clubModel.logo,
-                                   "cover": clubModel.cover,
-                                   "address": clubModel.address,
-                                   "about": clubModel.about,
-                                   "email": clubModel.email]
-        return dict.toJSONString
-    }
-    
-    private func _jsonStringPromoterEventObject() -> String? {
-        guard let event = promoterEvent else { return kEmptyString }
-        let dict: [String: Any] = event.toEventJSONChat()
-        return dict.toJSONString
-    }
-    
+        
     private var _prototypes: [[String: Any]]? {
         return [ [kCellIdentifierKey: kCellIdentifier, kCellNibNameKey: kCellIdentifier, kCellClassKey: SelectContactTableCell.self, kCellHeightKey: SelectContactTableCell.height] ]
     }
@@ -225,69 +145,9 @@ class ShareBottomSheet: BaseViewController {
         }
     }
     
-    private func _requestRingMember() {
-        showHUD()
-        WhosinServices.getMyRingMemberList { [weak self] container, error in
-            guard let self = self else { return }
-            self.hideHUD(error: error)
-            guard let data = container?.data else { return }
-            self.contactList = data
-            self._loadData()
-        }
-    }
     
     private func _requestShareLink(_ isUser: Bool) {
-        if let user = userDetailModel {
-            Utils.generateDynamicLinksForUser(userDetail: user) { [weak self] message, error in
-                guard let self = self else { return }
-                guard let message = message else { return }
-                if !Utils.stringIsNullOrEmpty(message) {
-                    _shareButton.isEnabled = true
-                    _copylinkBtn.isEnabled = true
-                    self.shareMessage = message
-                }
-            }
-        } else if let offer = offerModel {
-            Utils.generateDynamicLinksForOffer(offer: offer) { [weak self] message, error in
-                guard let self = self else { return }
-                guard let message = message else { return }
-                if !Utils.stringIsNullOrEmpty(message) {
-                    _shareButton.isEnabled = true
-                    _copylinkBtn.isEnabled = true
-                    self.shareMessage = message
-                }
-            }
-        } else if let venue = veneuDetail {
-            Utils.generateDynamicLinks(venueDetailModel: venue) { [weak self] message, error in
-                guard let self = self else { return }
-                guard let message = message else { return }
-                if !Utils.stringIsNullOrEmpty(message) {
-                    _shareButton.isEnabled = true
-                    _copylinkBtn.isEnabled = true
-                    self.shareMessage = message
-                }
-            }
-        } else if let club = yachClubDetail {
-            Utils.generateDynamicLinksForClub(model: club) { [weak self] message, error in
-                guard let self = self else { return }
-                guard let message = message else { return }
-                if !Utils.stringIsNullOrEmpty(message) {
-                    _shareButton.isEnabled = true
-                    _copylinkBtn.isEnabled = true
-                    self.shareMessage = message
-                }
-            }
-        } else if let promoterEvent = promoterEvent {
-            Utils.generateDynamicLinksForPromoterEvent(model: promoterEvent) { [weak self] message, error in
-                guard let self = self else { return }
-                guard let message = message else { return }
-                if !Utils.stringIsNullOrEmpty(message) {
-                    _shareButton.isEnabled = true
-                    _copylinkBtn.isEnabled = true
-                    self.shareMessage = message
-                }
-            }
-        } else if let ticketModel = ticketModel {
+        if let ticketModel = ticketModel {
             Utils.generateDynamicLinksTicket(ticketModel: ticketModel) { [weak self] message, error in
                 guard let self = self else { return }
                 guard let message = message else { return }
@@ -300,51 +160,7 @@ class ShareBottomSheet: BaseViewController {
 
         }
     }
-    
-    private func _sendClubEventHandle() {
-        guard let id = APPSESSION.userDetail?.id else { return }
-        let chatRepository = ChatRepository()
-        if !Utils.stringIsNullOrEmpty(_clubJSON) {
-            _selectedContacts.forEach { user in
-                let chatModel = ChatModel()
-                chatModel.image = user.image
-                chatModel.title = user.fullName
-                chatModel.chatType = "friend"
-                chatModel.members.append(user.id)
-                chatModel.members.append(id)
-                let chatIds = [user.id, id].sorted()
-                chatModel.chatId = chatIds.joined(separator: ",")
-                let msgModel = MessageModel(msg: _clubJSON, chatModel: chatModel, type: MessageType.yachtClub.rawValue)
-                chatRepository.addChatMessage(messageData: msgModel.detached()) {[weak self] error in
-                    SOCKETMANAGER.sendMessage(model: msgModel.detached())
-                    self?.dismiss(animated: true)
-                }
-            }
-        }
-    }
-    
-    private func _sendVenueEventHandle() {
-        guard let id = APPSESSION.userDetail?.id else { return }
-        let chatRepository = ChatRepository()
-        if !Utils.stringIsNullOrEmpty(_venueJSON) {
-            _selectedContacts.forEach { user in
-                let chatModel = ChatModel()
-                chatModel.image = user.image
-                chatModel.title = user.fullName
-                chatModel.chatType = "friend"
-                chatModel.members.append(user.id)
-                chatModel.members.append(id)
-                let chatIds = [user.id, id].sorted()
-                chatModel.chatId = chatIds.joined(separator: ",")
-                let msgModel = MessageModel(msg: _venueJSON, chatModel: chatModel, type: MessageType.venue.rawValue)
-                chatRepository.addChatMessage(messageData: msgModel.detached()) {[weak self] error in
-                    SOCKETMANAGER.sendMessage(model: msgModel.detached())
-                    self?.dismiss(animated: true)
-                }
-            }
-        }
-    }
-    
+            
     private func _sendTicketEventHandle() {
         guard let id = APPSESSION.userDetail?.id else { return }
         let chatRepository = ChatRepository()
@@ -359,50 +175,6 @@ class ShareBottomSheet: BaseViewController {
                 let chatIds = [user.id, id].sorted()
                 chatModel.chatId = chatIds.joined(separator: ",")
                 let msgModel = MessageModel(msg: _ticketJOSN, chatModel: chatModel, type: MessageType.ticket.rawValue)
-                chatRepository.addChatMessage(messageData: msgModel.detached()) {[weak self] error in
-                    SOCKETMANAGER.sendMessage(model: msgModel.detached())
-                    self?.dismiss(animated: true)
-                }
-            }
-        }
-    }
-
-    private func _sendUserEventHandle() {
-        guard let id = APPSESSION.userDetail?.id else { return }
-        let chatRepository = ChatRepository()
-        if !Utils.stringIsNullOrEmpty(_userJSON) {
-            _selectedContacts.forEach { user in
-                let chatModel = ChatModel()
-                chatModel.image = user.image
-                chatModel.title = user.fullName
-                chatModel.chatType = "friend"
-                chatModel.members.append(user.id)
-                chatModel.members.append(id)
-                let chatIds = [user.id, id].sorted()
-                chatModel.chatId = chatIds.joined(separator: ",")
-                let msgModel = MessageModel(msg: _userJSON, chatModel: chatModel, type: MessageType.user.rawValue)
-                chatRepository.addChatMessage(messageData: msgModel.detached()) {[weak self] error in
-                    SOCKETMANAGER.sendMessage(model: msgModel.detached())
-                    self?.dismiss(animated: true)
-                }
-            }
-        }
-    }
-    
-    private func _sendOfferEventHandle() {
-        guard let id = APPSESSION.userDetail?.id else { return }
-        let chatRepository = ChatRepository()
-        if !Utils.stringIsNullOrEmpty(_offerJSON) {
-            _selectedContacts.forEach { user in
-                let chatModel = ChatModel()
-                chatModel.image = user.image
-                chatModel.title = user.fullName
-                chatModel.chatType = "friend"
-                chatModel.members.append(user.id)
-                chatModel.members.append(id)
-                let chatIds = [user.id, id].sorted()
-                chatModel.chatId = chatIds.joined(separator: ",")
-                let msgModel = MessageModel(msg: _offerJSON, chatModel: chatModel, type: MessageType.offer.rawValue)
                 chatRepository.addChatMessage(messageData: msgModel.detached()) {[weak self] error in
                     SOCKETMANAGER.sendMessage(model: msgModel.detached())
                     self?.dismiss(animated: true)
@@ -453,31 +225,7 @@ class ShareBottomSheet: BaseViewController {
             }
         }
     }
-    
-    private func _sendPromoterEventHandle() {
-        guard let id = Preferences.isSubAdmin ? APPSESSION.userDetail?.promoterId : APPSESSION.userDetail?.id else { return }
-        let chatRepository = ChatRepository()
-        if !Utils.stringIsNullOrEmpty(_promoterEventJOSN) {
-            _selectedContacts.forEach { user in
-                let chatModel = ChatModel()
-                chatModel.image = user.image
-                chatModel.title = user.fullName
-                chatModel.chatType = "friend"
-                chatModel.members.append(isComplementary ? user.id : user.userId)
-                chatModel.members.append(id)
-                let chatIds = [(isComplementary ? user.id : user.userId), id].sorted()
-                chatModel.chatId = chatIds.joined(separator: ",")
-                let msgModel = MessageModel(msg: _promoterEventJOSN, chatModel: chatModel, type: MessageType.promoterEvent.rawValue)
-                chatRepository.addChatMessage(messageData: msgModel.detached()) {[weak self] error in
-                    SOCKETMANAGER.sendMessage(model: msgModel.detached())
-                    DISPATCH_ASYNC_MAIN_AFTER(0.1) {
-                        self?.dismiss(animated: true)
-                    }
-                }
-            }
-        }
-    }
-    
+        
     private func toggleBottomSheet(_ isShow: Bool = false) {
         if isShow {
             _sendViewHeight.constant = 90
@@ -521,24 +269,12 @@ class ShareBottomSheet: BaseViewController {
             alert(title: kAppName, message: "select_contact_to_share".localized())
             return
         } else {
-            if isUser {
-                _sendUserEventHandle()
-            } else if isOffer {
-                _sendOfferEventHandle()
-            } else if isForword {
+            if isForword {
                 _sendForwordEventHandle()
-            } else if isYachClub {
-                _sendClubEventHandle()
-            } else if isPromoter || isComplementary {
-                _sendPromoterEventHandle()
             } else if isFromTicket {
                 _sendTicketEventHandle()
             } else {
-                if Utils.stringIsNullOrEmpty(currentStoryId) {
-                    _sendVenueEventHandle()
-                } else {
-                    _sendStoryEventHandle()
-                }
+                _sendStoryEventHandle()
             }
         }
     }

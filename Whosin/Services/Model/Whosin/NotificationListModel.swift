@@ -14,9 +14,6 @@ class NotificationListModel: Mappable, ModelProtocol {
     @objc dynamic var total: Int = 0
     dynamic var notification = List<NotificationModel>()
     dynamic var category = List<CategoryDetailModel>()
-    dynamic var offer = List<OffersModel>()
-    dynamic var venue = List<VenueDetailModel>()
-    dynamic var user = List<UserDetailModel>()
     @objc dynamic var page: Int = 0
     @objc dynamic var count: Int = 0
     
@@ -33,9 +30,6 @@ class NotificationListModel: Mappable, ModelProtocol {
         total <- map["total"]
         notification <- (map["notification"], ListTransform<NotificationModel>())
         category <- ( map["category"], ListTransform<CategoryDetailModel>())
-        offer <- (map["offer"], ListTransform<OffersModel>())
-        venue <- (map["venue"], ListTransform<VenueDetailModel>())
-        user <- (map["user"], ListTransform<UserDetailModel>())
         page <- map["page"]
         count <- map["count"]
         
@@ -76,7 +70,6 @@ class NotificationModel: Object, Mappable, ModelProtocol {
     @objc dynamic var adminStatusOnPlusOne: String = kEmptyString
     private let _dateFormatter = DATEFORMATTER.dateFormatterWith(format: kStanderdDate)
     dynamic var list = List<NotificationModel>()
-    @objc dynamic var event: PromoterEventsModel?
     dynamic var images = List<String>()
     // --------------------------------------
     // MARK: <Mappable>
@@ -107,7 +100,6 @@ class NotificationModel: Object, Mappable, ModelProtocol {
         isPromoter <- map["isPromoter"]
         isRingMember <- map["isRingMember"]
         list <- (map["list"], ListTransform<NotificationModel>())
-        event <- map["event"]
         images <- (map["images"], StringListTransform())
         plusOneStatus <- map["plusOneStatus"]
         subAdminStatus <- map["subAdminStatus"]

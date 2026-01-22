@@ -1374,36 +1374,7 @@ class Utils: NSObject {
             controller.present(activityController, animated: true, completion: nil)
         }
     }
-    
-    class func generateDynamicLinksForPromoterEvent(controller: UIViewController?, model: PromoterEventsModel?) {
-        guard let controller = controller else { return }
-        if let vc = controller as? BaseViewController {
-            vc.showHUD()
-        }
-        guard let event = model else { return }
-        var params: [String: Any] = [:]
-        params["title"] = event.venueType == "venue" ? event.venue?.name : event.customVenue?.name
-        let requirements = event.requirementsAllowed.isEmpty ? "" : "\n\nRequirements:\n • " + event.requirementsAllowed.joined(separator: "\n • ")
-        let benefits = event.benefitsIncluded.isEmpty ? "" : "\n\nBenefits:\n • " + event.benefitsIncluded.joined(separator: "\n • ")
-        params["description"] = event.descriptions
-        params["image"] = event.venueType == "venue" ? event.venue?.cover : event.customVenue?.image
-        params["itemId"] = event.id
-        params["itemType"] = "promoter-event"
-        WhosinServices.createDynamicLink(params: params) {  container, error in
-            if let vc = controller as? BaseViewController {
-                vc.hideHUD()
-            }
-            guard let data = container else { return }
-            let shareMessage = "\(event.venueType == "venue" ? event.venue?.name ?? "" : event.customVenue?.name ?? "") \n \(event.descriptions + requirements + benefits) \n\n \(data.data)"
-            let items: [Any] = [shareMessage]
-            let activityController = UIActivityViewController(activityItems: items, applicationActivities: nil)
-            activityController.setValue(kAppName, forKey: "subject")
-            activityController.popoverPresentationController?.sourceView = controller.view
-            activityController.excludedActivityTypes = [ UIActivity.ActivityType.airDrop, UIActivity.ActivityType.postToTwitter]
-            controller.present(activityController, animated: true, completion: nil)
-        }
-    }
-    
+        
     class func generateDynamicLinks(venueDetailModel: VenueDetailModel?, completion: @escaping (String?, Error?) -> Void) {
         guard let venueModel = venueDetailModel else { return }
         var params: [String: Any] = [:]
@@ -1490,72 +1461,7 @@ class Utils: NSObject {
             completion(shareMessage, nil)
         }
     }
-    
-    class func generateDynamicLinksForOffer(offer: OffersModel, completion: @escaping (String?, Error?) -> Void) {
-        var params: [String: Any] = [:]
-        params["title"] = offer.title
-        params["description"] = offer.descriptions
-        params["image"] = offer.image
-        params["itemId"] = offer.id
-        params["itemType"] = "offer"
-        WhosinServices.createDynamicLink(params: params) {  container, error in
-            
-            guard let data = container else { return }
-            let shareMessage = "\(offer.title) \n\n \(offer.descriptions) \n\n \(data.data)"
-            completion(shareMessage, nil)
-        }
-    }
-    
-    class func generateDynamicLinksForYachtOffer(offer: YachtOfferDetailModel, completion: @escaping (String?, Error?) -> Void) {
-        var params: [String: Any] = [:]
-        params["title"] = offer.title
-        params["description"] = offer.descriptions
-        params["image"] = offer.images.first
-        params["itemId"] = offer.id
-        params["itemType"] = "yacht"
-        WhosinServices.createDynamicLink(params: params) {  container, error in
-            
-            guard let data = container else { return }
-            let shareMessage = "\(offer.title) \n\n \(offer.descriptions) \n\n \(data.data)"
-            completion(shareMessage, nil)
-        }
-    }
-    
-    class func generateDynamicLinksForClub(model: YachtClubModel?, completion: @escaping (String?, Error?) -> Void) {
-        guard let model = model else { return }
-        var params: [String: Any] = [:]
-        params["title"] = model.name
-        params["description"] = model.about.isEmpty ? model.address : model.about
-        params["image"] = model.cover
-        params["itemId"] = model.id
-        params["itemType"] = "yachtClub"
-        WhosinServices.createDynamicLink(params: params) {  container, error in
-            if let error = error {
-                completion(nil, error)
-                return
-            }
-            guard let data = container else { return }
-            let shareMessage = "\(model.name) \n\n \(model.about) \n\n \(data.data)"
-            completion(shareMessage, nil)
-        }
-    }
-    
-    class func generateDynamicLinksForPromoterEvent(model: PromoterEventsModel?, completion: @escaping (String?, Error?) -> Void) {
-        guard let event = model else { return }
-        var params: [String: Any] = [:]
-        params["title"] = event.venueType == "venue" ? event.venue?.name : event.customVenue?.name
-        let requirements = event.requirementsAllowed.isEmpty ? "" : "\n\nRequirements:\n • " + event.requirementsAllowed.joined(separator: "\n • ")
-        let benefits = event.benefitsIncluded.isEmpty ? "" : "\n\nBenefits:\n • " + event.benefitsIncluded.joined(separator: "\n • ")
-        params["description"] = event.descriptions
-        params["image"] = event.venueType == "venue" ? event.venue?.logo : event.customVenue?.image
-        params["itemId"] = event.id
-        params["itemType"] = "promoter-event"
-        WhosinServices.createDynamicLink(params: params) {  container, error in
-            guard let data = container else { return }
-            let shareMessage = "\(event.venueType == "venue" ? event.venue?.name ?? "" : event.customVenue?.name ?? "") \n \(event.descriptions + requirements + benefits) \n\n \(data.data)"
-            completion(shareMessage, nil)
-        }
-    }
+
     
     class func formatDiscountValue(_ value: Float) -> String {
         return "\(Int(round(value)))"
@@ -1995,7 +1901,7 @@ class Utils: NSObject {
         
         if originalPrice > discountedPrice {
             let originalPriceStr = NSAttributedString(
-                string: "\(currency)\(originalPrice.formattedDecimal())",
+                string: "\(currency)\(originalPrice.formattedDecimal()) ",
                 attributes: [
                     .strikethroughStyle: NSUnderlineStyle.single.rawValue,
                     .foregroundColor: UIColor.white.withAlphaComponent(0.8),

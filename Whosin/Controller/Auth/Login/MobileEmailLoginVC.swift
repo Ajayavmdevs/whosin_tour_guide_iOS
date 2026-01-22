@@ -142,20 +142,6 @@ class MobileEmailLoginVC: NavigationBarViewController {
             return
         }
         _requestGetToken()
-//        let phoneNumber = "\(_lblPhoneExt.text ?? kEmptyString) \(_phoneEmailTextField.text ?? kEmptyString)"
-//        if Utils.isValidEmail(_phoneEmailTextField.text) {
-//            let params: [String: Any] = ["phone": _phoneEmailTextField.text!,"platform": "ios"]
-//            _requestPhoneLogin(param: params)
-//        }
-//        else if Utils.isValidNumber(phoneNumber, _selectedCountry?.code ?? _defaultCountrycode) {
-//            if let countryCode = _lblPhoneExt.text?.replacingOccurrences(of: "+", with: "") {
-//                let params: [String: Any] = ["phone": _phoneEmailTextField.text!,"platform": "ios","countryCode": countryCode]
-//                _requestPhoneLogin(param: params)
-//            }
-//        }
-//        else {
-//            alert(title: kAppName, message: "Please enter valid email or phone number")
-//        }
     }
     
     @IBAction private func _handelContrycodeEvent(_ sender: UIControl) {

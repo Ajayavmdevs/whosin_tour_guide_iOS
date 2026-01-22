@@ -6,12 +6,12 @@ public class UrlManager: NSObject {
     
     /// Development server
 //    private var _baseUrl: String = "https://devapi.whosin.me/"
-//    private var _baseUrl: String = "http://40.172.74.243:8443/"
-//    public let kScoketIoUrl: URL = URL(string: "http://64.227.131.3:2096")!
+    private var _baseUrl: String = "http://40.172.74.243:8443/"
+    public let kScoketIoUrl: URL = URL(string: "http://64.227.131.3:2096")!
     
     // Live server
-    private var _baseUrl: String = "https://api.whosin.me/"
-    public let kScoketIoUrl: URL = URL(string: "https://websocket.whosin.me")!
+//    private var _baseUrl: String = "https://api.whosin.me/"
+//    public let kScoketIoUrl: URL = URL(string: "https://websocket.whosin.me")!
     
     // Live AWS server
 //    private var _baseUrl: String = "https://apiv2.whosin.me/"

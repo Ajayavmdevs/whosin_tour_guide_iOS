@@ -27,11 +27,6 @@ class ChatDetailVC: ChildViewController {
     @IBOutlet private weak var _bgImage: UIImageView!
     @IBOutlet private weak var _scrollDownButton: UIButton!
     @IBOutlet private weak var _unReadMsgCountLbl: UILabel!
-    @IBOutlet weak var _eventView: UIView!
-    @IBOutlet weak var _venueName: CustomLabel!
-    @IBOutlet weak var _venueImage: UIImageView!
-    @IBOutlet weak var _viewTicketButton: CustomButton!
-    @IBOutlet weak var _loadingButton: CustomActivityButton!
     
     private let kCoptitorMessageCellIdentifire = String(describing: CompititorMessageCell.self)
     private let kOwnMessageCellIdentifire = String(describing: OwnMessageCell.self)
@@ -65,13 +60,11 @@ class ChatDetailVC: ChildViewController {
     private var _page: Int = 0
     public var chatModel: ChatModel?
     public var chatType: ChatType = .user
-    public var outingmodel: OutingListModel?
     public var isFromPromoter: Bool = false
     public var isPromoter: Bool = false
     public var isComplementry: Bool = false
     public var venueName: String = kEmptyString
     public var venueImage: String = kEmptyString
-    private var cmEventDetail: PromoterEventsModel?
     private let chatRepository = ChatRepository()
     public var _eventChatJSON: String = kEmptyString
     public var ticketChatJSON: String = kEmptyString
@@ -90,8 +83,6 @@ class ChatDetailVC: ChildViewController {
         checkSession()
         DISPATCH_ASYNC_MAIN_AFTER(0.1) {
             self._messageView.addGradientBorderWithColor(cornerRadius: 20, 2, [UIColor.init(hexString: "4865FF").cgColor,UIColor.init(hexString: "F048FF").cgColor])
-            self._eventView.cornerRadius = 15.0
-            self._eventView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         }
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -128,9 +119,6 @@ class ChatDetailVC: ChildViewController {
         } else if isComplementry {
             _textieldView.isHidden = !isPromoter
             _onlyOwnerTxt.isHidden = isPromoter
-            _eventView.isHidden = isPromoter
-            _venueName.text = venueName
-            _venueImage.loadWebImage(venueImage)
         } else {
             _onlyOwnerTxt.isHidden = true
         }
@@ -140,9 +128,6 @@ class ChatDetailVC: ChildViewController {
         _visualEffectView.alpha = 1
         _bottomVisualEffectView.alpha = 1
         
-        if isComplementry {
-            _requestComplementaryEventDetail()
-        }
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         tapGesture.cancelsTouchesInView = false
         _chatTableView.addGestureRecognizer(tapGesture)
@@ -391,30 +376,6 @@ class ChatDetailVC: ChildViewController {
         }
     }
     
-    private func _requestComplementaryEventDetail(_ isLoading: Bool = false) {
-        guard let id = chatModel?.chatId else { return }
-        _venueImage.isHidden = true
-        _venueName.isHidden = true
-        _viewTicketButton.isHidden = true
-        _loadingButton.showActivity()
-        WhosinServices.getComplementaryEventDetail(eventId: id) { [weak self] container, error in
-            guard let self = self else { return }
-            _loadingButton.hideActivity()
-            self.hideHUD(error: error)
-            guard let data = container?.data else { return }
-            self.cmEventDetail = data
-            _venueName.isHidden = false
-            _venueImage.isHidden = false
-            _venueName.text = data.venueType == "venue" ? data.venue?.name : data.customVenue?.name
-            _venueImage.loadWebImage(data.venueType == "venue" ? data.venue?.slogo  ?? kEmptyString : data.customVenue?.image ?? kEmptyString)
-            if data.invite?.promoterStatus == "accepted" && data.invite?.inviteStatus == "in" {
-                _viewTicketButton.isHidden = false
-            } else {
-                _viewTicketButton.isHidden = true
-            }
-        }
-    }
-    
     private func _requestReportUser(userId: String, reason: String, msg: String) {
         showHUD()
         let params: [String: Any] = [
@@ -495,9 +456,6 @@ class ChatDetailVC: ChildViewController {
             if chatType == .user || chatType == .promoterEvent {
                 let userId = _chatModel.detached().members.first(where: { $0 != id})
                 controller.userId = userId
-            }
-            if chatType == .outing {
-                controller._outingModel = self.outingmodel
             }
             controller.chatModel = _chatModel.detached()
             controller.chatType = chatType
@@ -599,12 +557,6 @@ class ChatDetailVC: ChildViewController {
             let indexPath = IndexPath(row: 0, section: 0)
             if self.hasRowAtIndexPath(indexPath: indexPath) { self._chatTableView.scrollToRow(at: indexPath, at: .top, animated: true) }
         }
-    }
-    
-    @IBAction func _handleOpenEventView(sender: UIButton) {
-    }
-    
-    @IBAction func _handleViewTicketEvent(_ sender: UIButton) {        
     }
     
     @IBAction func _handleMenuOptionEvent(_ sender: UIButton) {

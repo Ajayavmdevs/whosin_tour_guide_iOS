@@ -103,29 +103,12 @@ class CustomVenueInfoView: UIView {
         _venueLogoImage.loadWebImage(image, name: name)
     }
     
-    public func setupYachtData(yacht: YachtClubModel) {
-        if Utils.stringIsNullOrEmpty(yacht.address) {
-            _venueAddress.text = yacht.website
-        } else {
-            _venueAddress.text = yacht.address
-        }
-        _venueName.text = yacht.name
-        if yacht.logo.isEmpty && yacht.name.isEmpty {
-            _venueLogoImage.image = nil
-        }
-        _venueLogoImage.loadWebImageWithoutSkeleton(yacht.logo)
-    }
-    
     public func setupTicketData(_ ticket: TicketModel) {
-//        let gesture = UITapGestureRecognizer(target: self, action:  #selector(self._clickToOpenVenue))
-//        _venueClcikView.addGestureRecognizer(gesture)
         ticketId = ticket._id
         _venueName.text = ticket.title
         DISPATCH_ASYNC_BG {
             let image = ticket.images.filter({ !Utils.isVideo($0)}).first ?? ""
-//            let descriptions = Utils.convertHTMLToPlainText(from: ticket.descriptions)
             DISPATCH_ASYNC_MAIN {
-//                self._venueAddress.text = descriptions
                 self._venueLogoImage.loadWebImageWithoutSkeleton(image)
             }
         }
@@ -136,18 +119,6 @@ class CustomVenueInfoView: UIView {
         _venueName.text = kEmptyString
         _venueLogoImage.image = nil
         venueId = kEmptyString
-    }
-
-    public func setupProviderData(venue: ProviderModel) {
-        _venueAddress.text = venue.address
-        _venueName.text = venue.name
-        if venue.logo.isEmpty && venue.name.isEmpty {
-            _venueLogoImage.image = nil
-        } else {
-            _venueLogoImage.loadWebImage(venue.logo, name: venue.name)
-        }
-        venueId = venue.id
-        _showStoryRing()
     }
   
     // --------------------------------------

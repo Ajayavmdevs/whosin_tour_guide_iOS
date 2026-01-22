@@ -55,40 +55,11 @@ class FriendsChatListTableCell: UITableViewCell {
                 _lastMessage.text = "Photo"
             } else if _lastMsg.type == MessageType.audio.rawValue {
                 _lastMessage.text = "🎙️ Audio"
-            } else if _lastMsg.type == MessageType.venue.rawValue {
-                guard let model = Mapper<ChatVenueModel>().map(JSONString: _lastMsg.msg) else { return }
-                _lastMessage.text = _lastMsg.isSent() ? LANGMANAGER.localizedString(forKey: "shared_venue", arguments: ["value": model.name]) : LANGMANAGER.localizedString(forKey: "recived_venue", arguments: ["value": model.name])
             } else if _lastMsg.type == MessageType.story.rawValue {
                 guard let model = Mapper<ChatVenueModel>().map(JSONString: _lastMsg.msg) else { return }
                 _lastMessage.text = _lastMsg.isSent()
                     ? LANGMANAGER.localizedString(forKey: "shared_story", arguments: ["value": model.name])
                     : LANGMANAGER.localizedString(forKey: "recived_story", arguments: ["value": model.name])
-            } else if _lastMsg.type == MessageType.user.rawValue {
-                guard let model = Mapper<ChatUserModel>().map(JSONString: _lastMsg.msg) else { return }
-                _lastMessage.text = _lastMsg.isSent()
-                    ? LANGMANAGER.localizedString(forKey: "shared_profile", arguments: ["value": model.fullName])
-                    : LANGMANAGER.localizedString(forKey: "recived_profile", arguments: ["value": model.fullName])
-            } else if _lastMsg.type == MessageType.offer.rawValue {
-                guard let model = Mapper<OffersModel>().map(JSONString: _lastMsg.msg) else { return }
-                _lastMessage.text = _lastMsg.isSent()
-                    ? LANGMANAGER.localizedString(forKey: "shared_offer", arguments: ["value": model.title])
-                    : LANGMANAGER.localizedString(forKey: "recived_offer", arguments: ["value": model.title])
-            } else if _lastMsg.type == MessageType.yacht.rawValue {
-                guard let model = Mapper<YachtOfferDetailModel>().map(JSONString: _lastMsg.msg) else { return }
-                _lastMessage.text = _lastMsg.isSent()
-                    ? LANGMANAGER.localizedString(forKey: "shared_yacht", arguments: ["value": model.title])
-                    : LANGMANAGER.localizedString(forKey: "recived_yacht", arguments: ["value": model.title])
-            }  else if _lastMsg.type == MessageType.yachtClub.rawValue {
-                guard let model = Mapper<YachtClubModel>().map(JSONString: _lastMsg.msg) else { return }
-                _lastMessage.text = _lastMsg.isSent()
-                    ? LANGMANAGER.localizedString(forKey: "shared_yachtclub", arguments: ["value": model.name])
-                    : LANGMANAGER.localizedString(forKey: "recived_yachtclub", arguments: ["value": model.name])
-            } else if _lastMsg.type == MessageType.promoterEvent.rawValue {
-                guard let model = Mapper<PromoterEventsModel>().map(JSONString: _lastMsg.msg) else { return }
-                let eventName = model.venueType == "venue" ? "venue" : (model.customVenue?.name ?? "")
-                _lastMessage.text = _lastMsg.isSent()
-                    ? LANGMANAGER.localizedString(forKey: "shared_event", arguments: ["value": eventName])
-                    : LANGMANAGER.localizedString(forKey: "recived_event", arguments: ["value": eventName])
             } else if _lastMsg.type == MessageType.ticket.rawValue {
                 guard let model = Mapper<TicketModel>().map(JSONString: _lastMsg.msg) else { return }
                 _lastMessage.text = _lastMsg.isSent()

@@ -27,14 +27,10 @@ class HomeBlockModel: Object, Mappable, ModelProtocol {
     dynamic var yachts = List<String>()
     dynamic var yachtOffer = List<String>()
     dynamic var nearByVenues = List<VenueDetailModel>()
-    dynamic var customVenues = List<CustomVenuesModel>()
-    dynamic var customOffers = List<CustomVenuesModel>()
     dynamic var videos = List<VideosModel>()
     dynamic var offers = List<String>()
     dynamic var ticketCategories = List<String>()
     dynamic var customComponents = List<CustomComponentModel>()
-    dynamic var deals = List<DealsModel>()
-    dynamic var myOutings = List<OutingListModel>()
     dynamic var activities = List<String>()
     dynamic var  events = List<String>()
     dynamic var users = List<UserDetailModel>()
@@ -42,21 +38,11 @@ class HomeBlockModel: Object, Mappable, ModelProtocol {
     @objc dynamic var size: SizeModel?
     @objc dynamic var visibilityStatus: Bool = false
     dynamic var venueList: [VenueDetailModel] = []
-    dynamic var offerList: [OffersModel] = []
     dynamic var ticketCategoryList: [CategoryDetailModel] = []
-    dynamic var activityList: [ActivitiesModel] = []
-    dynamic var eventList: [EventModel] = []
     dynamic var videoList: [VideosModel] = []
-    dynamic var myOutingsList: [OutingListModel] = []
-    dynamic var dealsList: [DealsModel] = []
-    dynamic var customVenuesList: [CustomVenuesModel] = []
-    dynamic var customOffersList: [CustomVenuesModel] = []
     dynamic var membershipList: [MembershipPackageModel] = []
     dynamic var suggestedUsers = List<UserDetailModel>()
     dynamic var suggestedVenue = List<VenueDetailModel>()
-    dynamic var yachtList: [YachtDetailModel] = []
-    dynamic var yachtOfferList: [YachtOfferDetailModel] = []
-    dynamic var promoterEvents = List<PromoterEventsModel>()
     dynamic var tickets = List<String>()
     dynamic var hotels = List<String>()
     dynamic var ticketList: [TicketModel] = []
@@ -104,15 +90,11 @@ class HomeBlockModel: Object, Mappable, ModelProtocol {
         descriptions <- map["description"]
         type <- map["type"]
         nearByVenues <- (map["nearByVenues"], ListTransform<VenueDetailModel>())
-        customVenues <- (map["customVenues"], ListTransform<CustomVenuesModel>())
-        customOffers <- (map["customOffers"], ListTransform<CustomVenuesModel>())
         sliders <- map["sliders"]
         size <- map["size"]
         videos <- (map["videos"], ListTransform<VideosModel>())
-        deals <- (map["deals"], ListTransform<DealsModel>())
         customComponents <- (map["customComponents"], ListTransform<CustomComponentModel>())
         users <- (map["users"], ListTransform<UserDetailModel>())
-        myOutings <- (map["myOuting"], ListTransform<OutingListModel>())
         visibilityStatus <- map["visibilityStatus"]
         activities <- (map["activities"], StringListTransform())
         events <- (map["events"], StringListTransform())
@@ -124,7 +106,6 @@ class HomeBlockModel: Object, Mappable, ModelProtocol {
         membershipPackages <- (map["membershipPackages"], StringListTransform())
         suggestedUsers <- (map["suggestedUsers"], ListTransform<UserDetailModel>())
         suggestedVenue <- (map["suggestedVenues"], ListTransform<VenueDetailModel>())
-        promoterEvents <- (map["promoterEvents"], ListTransform<PromoterEventsModel>())
         tickets <- (map["tickets"], StringListTransform())
         hotels <- (map["hotels"], StringListTransform())
         cities <- (map["cities"], StringListTransform())
@@ -229,7 +210,7 @@ class HomeBlockModel: Object, Mappable, ModelProtocol {
         }
     }
     
-    func isVisibleForSearch(venue: [VenueDetailModel], offer: [OffersModel], activity: [ActivitiesModel], event: [EventModel], suggestedUsers: [UserDetailModel], ticket: [TicketModel]) -> Bool {
+    func isVisibleForSearch(ticket: [TicketModel]) -> Bool {
         switch cellTypeForSearch {
         case .ticket:
             if tickets.isEmpty { return false }

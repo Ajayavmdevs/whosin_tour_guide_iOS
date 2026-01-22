@@ -17,7 +17,6 @@ class StoryModel: Object, Mappable, ModelProtocol {
     @objc dynamic var userId: String = kEmptyString
     @objc dynamic var createdAt: String = kEmptyString
     @objc dynamic var expiryDate:String = kEmptyString
-    dynamic var offerModel: OffersModel?
     dynamic var ticketModel: TicketModel?
 
     // --------------------------------------
@@ -47,7 +46,6 @@ class StoryModel: Object, Mappable, ModelProtocol {
         thumbnail <- map["thumbnail"]
         buttonText <- map["buttonText"]
         duration <- map["duration"]
-        offerModel <- map["offer"]
         userId <- map["userId"]
         expiryDate <- map["expiryDate"]
         createdAt <- map["createdAt"]

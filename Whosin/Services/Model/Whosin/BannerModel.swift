@@ -12,7 +12,6 @@ class BannerModel : Object, Mappable, ModelProtocol {
     @objc dynamic var typeId:String = kEmptyString
     @objc dynamic var buttonText:String = kEmptyString
     @objc dynamic var link:String = kEmptyString
-    @objc dynamic var activity: ActivitiesModel?
     @objc dynamic var activityId: String = kEmptyString
     @objc dynamic var venueId: String = kEmptyString
     @objc dynamic var offerId: String = kEmptyString
@@ -45,7 +44,6 @@ class BannerModel : Object, Mappable, ModelProtocol {
         type <- map["type"]
         typeId <- map["typeId"]
         link <- map["link"]
-        activity <- map["activity"]
         activityId <- map["activityId"]
         venueId <- map["venueId"]
         offerId <- map["offerId"]

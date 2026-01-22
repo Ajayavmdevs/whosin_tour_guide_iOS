@@ -11,7 +11,6 @@ class TimingModel: Object, Mappable, ModelProtocol {
     @objc dynamic var type: String = kEmptyString
     @objc dynamic var startTime: String = kEmptyString
     @objc dynamic var endTime: String = kEmptyString
-    dynamic var slot = List<AvilableDateTimeModel>()
 
     private let _dateFormatter = DATEFORMATTER.dateFormatterWith(format: kFormatDateStandard)
 
@@ -39,7 +38,6 @@ class TimingModel: Object, Mappable, ModelProtocol {
         type <- map["type"]
         startTime <- map["start"]
         endTime <- map["end"]
-        slot <- (map["slot"], ListTransform<AvilableDateTimeModel>())
     }
     
     // --------------------------------------

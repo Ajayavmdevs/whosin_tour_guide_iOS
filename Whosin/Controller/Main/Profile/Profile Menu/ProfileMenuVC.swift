@@ -24,7 +24,6 @@ class ProfileMenuVC: ChildViewController {
     var _privacyList = [[String: Any]]()
     var _logoutList = [[String: Any]]()
     var heroId: String = String(describing: ProfileMenuVC.self)
-    private var subscription: SubscriptionModel?
     
     // --------------------------------------
     // MARK: Life Cycle
@@ -40,7 +39,6 @@ class ProfileMenuVC: ChildViewController {
         _profileImg.addGestureRecognizer(tapGesture)
         NotificationCenter.default.addObserver(self, selector: #selector(handleUserUpdateState(_:)), name: .changeUserUpdateState, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleOpenWebView(_:)), name: kOpenWebViewPackagePayment, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleSubscriptionState(_:)), name: .changeSubscriptionState, object: nil)
     }
     
     @objc func imageTapped(sender: UITapGestureRecognizer) {
@@ -81,12 +79,6 @@ class ProfileMenuVC: ChildViewController {
     }
 
     private func _reloadData() {
-        if APPSETTING.subscription?.userId == APPSESSION.userDetail?.id {
-            if let VoucherName = APPSETTING.subscription?.package?.title {
-                let words = VoucherName.components(separatedBy: " ")
-                let shortName = words.compactMap { $0.first }
-            }
-        }
 
         _userName.text = LANGMANAGER.localizedString(forKey: "greeting_user", arguments: ["value": APPSESSION.userDetail?.firstName ?? ""])
         _followerCount.text = "\(APPSESSION.userDetail?.follower ?? 0)"
@@ -113,23 +105,12 @@ class ProfileMenuVC: ChildViewController {
             emptyDataIconImage: nil,
             emptyDataDescription: nil,
             delegate: self)
-
-        let tap = UITapGestureRecognizer(target: self, action: #selector(openMembershipPackages(_:)))
-        _subscriptionView.addGestureRecognizer(tap)
         _loadData()
     }
     
     // --------------------------------------
     // MARK: Private
     // --------------------------------------
-    
-    @objc private func handleSubscriptionState(_ notification: Notification) {
-        if APPSETTING.subscription?.userId == APPSESSION.userDetail?.id {
-            guard let VoucherName = APPSETTING.subscription?.package?.title else { return }
-            let words = VoucherName.components(separatedBy: " ")
-            let shortName = words.compactMap { $0.first }
-            _loadData()                                                                                                                                                                       }
-    }
     
     @objc private func handleUserUpdateState(_ notification: Notification) {
         APPSESSION.getProfile(isFromMenu: true) { isSuccess, error in }
@@ -150,11 +131,9 @@ class ProfileMenuVC: ChildViewController {
     
     private func _addMenuData() {
         _menuList.append(["title" : "settings".localized(), "icon": "profile_setting"])
+        _menuList.append(["title" : "Bank Details", "icon": "profile_claim"])
         _menuList.append(["title" : "Transaction History", "icon": "profile_claim"])
         _menuList.append(["title" : "wallet".localized(), "icon": "profile_wallet"])
-        if APPSESSION.userDetail?.isMembershipActive == true {
-            _menuList.append(["title" : "my_subscription".localized(), "icon": "icon_member"])
-        }
         _menuList.append(["title" : "invite_a_friend".localized(), "icon": "profile_invite"])
         _menuList.append(["title" : "contact_us".localized(), "icon": "profile_contact"])
         _privacyList.append(["title" : "privacy_policy".localized(), "icon": "profile_privacy"])
@@ -218,7 +197,6 @@ class ProfileMenuVC: ChildViewController {
         return [
             [kCellIdentifierKey: kCellIdentifier, kCellNibNameKey: kCellIdentifier, kCellClassKey: ProfileSettingCell.self, kCellHeightKey: ProfileSettingCell.height],
             [kCellIdentifierKey: kCellIdentifierPrimium, kCellNibNameKey: kCellIdentifierPrimium, kCellClassKey: PrimiumViewCell.self, kCellHeightKey: PrimiumViewCell.height]
-            
         ]
     }
     
@@ -248,9 +226,6 @@ class ProfileMenuVC: ChildViewController {
     
     @IBAction func _handleCloseEvent(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
-    }
-    
-    @objc func openMembershipPackages(_ g: UITapGestureRecognizer) -> Void {
     }
     
     @IBAction private func _handleFollowerListEvent(_ sender: UIButton) {
@@ -288,9 +263,6 @@ extension ProfileMenuVC: CustomTableViewDelegate {
             if indexPath.row == 0 {
                 corners.insert(.topLeft)
                 corners.insert(.topRight)
-                if APPSETTING.subscription != nil {
-                    cell._buttonIcon.badgeNumber = 1
-                }
             }
             let rows = _tableView.numberOfRows(inSection: indexPath.section)
             if rows == indexPath.row + 1 {
@@ -314,33 +286,36 @@ extension ProfileMenuVC: CustomTableViewDelegate {
                 let controller = INIT_CONTROLLER_XIB(SettingVC.self)
                 controller.modalPresentationStyle = .overFullScreen
                 self.navigationController?.pushViewController(controller, animated: true)
+            case 1:
+                let controller = INIT_CONTROLLER_XIB(BankDetailVC.self)
+                controller.modalPresentationStyle = .overFullScreen
+                self.navigationController?.pushViewController(controller, animated: true)
             case 2:
+                let controller = INIT_CONTROLLER_XIB(TransactionHistoryVC.self)
+                controller.modalPresentationStyle = .overFullScreen
+                self.navigationController?.pushViewController(controller, animated: true)
+            case 3:
                 let destinationViewController = MyWalletVC()
                 destinationViewController.isFromProfile = true
                 self.navigationController?.pushViewController(destinationViewController, animated: true)
-            case 3:
-                shareAppLink()
             case 4:
-                if APPSESSION.userDetail?.isMembershipActive == true {
-                    shareAppLink()
-                } else {
-                    let vc = INIT_CONTROLLER_XIB(ContactUsVC.self)
-                    vc.hidesBottomBarWhenPushed = true
-                    self.navigationController?.pushViewController(vc, animated: true)
-                }
+                shareAppLink()
             case 5:
+                let vc = INIT_CONTROLLER_XIB(ContactUsVC.self)
+                vc.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(vc, animated: true)
+            case 6:
                 let vc = INIT_CONTROLLER_XIB(ContactUsVC.self)
                 vc.hidesBottomBarWhenPushed = true
                 self.navigationController?.pushViewController(vc, animated: true)
             default:
                 break
             }
-        
+            
         } else if object == "privacy" {
             switch indexPath.row {
             case 0:
                 let vc = INIT_CONTROLLER_XIB(WebViewController.self)
-                //vc.htmlTxt = APPSETTING.appSetiings?.pages.filter({ $0.title == "Privacy Policy" }).first?.descriptions
                 vc.url = URL(string: "https://whosin.me/privacy-policy/")
                 vc.viewTitle = "privacy_policy".localized()
                 self.navigationController?.pushViewController(vc, animated: true)

@@ -5,7 +5,7 @@ import DifferenceKit
 import SnapKit
 
 class ChatHomeVC: ChildViewController {
-
+    
     @IBOutlet private weak var _headerMenuBgView: UIView!
     @IBOutlet private weak var _confirmationView: GradientView!
     @IBOutlet private weak var _tableView: CustomTableView!
@@ -17,26 +17,13 @@ class ChatHomeVC: ChildViewController {
     private var _selectedIndex: Int = 0
     private let kCellIdentifierStoryView = String(describing: ChatStoryViewCell.self)
     private let kCellIdentifierFriendChatList = String(describing: FriendsChatListTableCell.self)
-    private let kCellIdentifierBucketChatList = String(describing: BucketChatListTableCell.self)
-    private let kCellIdentifierEventChatList = String(describing: EventChatListTableCell.self)
     private let kCellIdentifierLoading = String(describing: LoadingCell.self)
     private var homeModel: HomeModel?
     private var _chatList: [ChatModel]?
-    private var _bucketList: [BucketDetailModel]?
-    private var _eventList: [EventModel]?
-    private var _outingList: [OutingListModel]?
-    private var _eventChatList: [EventChatModel]?
     private var headerView = ChatTableHeaderView()
     private var isSearching = false
     private var filteredChatList: [ChatModel] = []
-    private var filteredBucketList: [BucketDetailModel] = []
-    private var filteredEventList: [EventModel] = []
-    private var filteredOutingList: [OutingListModel] = []
-    private var _cmChatList: [PromoterChatListModel] = []
-    private var _filteredCMChatList: [PromoterChatListModel] = []
-    private var isRingMember: Bool = APPSESSION.userDetail?.isRingMember ?? false
-    private var isPromoter: Bool = APPSESSION.userDetail?.isPromoter ?? false
- 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         _loadingChat()
@@ -53,17 +40,7 @@ class ChatHomeVC: ChildViewController {
         }
         setupUi()
         _loadData()
-        _requestBucketList()
         _requestFollowersList()
-        if isRingMember {
-            _requestCMEventChatList()
-        } else if isPromoter {
-            _requestChatList()
-        }
-        NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: kMessageNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleNotificationCount(_:)), name: kMessageCountNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleReloadFollowingList(_:)), name: Notification.Name("reloadFollowingList"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleUpdateNotification(_:)), name: kUpdateMessageNotification, object: nil)
     }
     
     deinit {
@@ -83,13 +60,7 @@ class ChatHomeVC: ChildViewController {
         hideNavigationBar()
         _deleteView.isHidden = true
         _addChatBtn.isHidden = _selectedIndex != 0
-        _setupHeader()
         _loadData()
-        if isRingMember {
-            _requestCMEventChatList()
-        } else if isPromoter {
-            _requestChatList()
-        }
     }
     
     override func setupUi() {
@@ -113,11 +84,7 @@ class ChatHomeVC: ChildViewController {
         _searchBar.searchTextField.layer.cornerRadius = 18
         _searchBar.searchTextField.layer.masksToBounds = true
         _searchBar.searchTextField.textColor = .white
-
-    }
-    
-    private func _setupHeader() {
-        headerView.setupData(_selectedIndex)
+        
     }
     
     // --------------------------------------
@@ -130,22 +97,9 @@ class ChatHomeVC: ChildViewController {
             guard let self = self else { return }
             self.headerView.hideShowUnreadIndicator(at: 0, isHide: count == 0 )
         }
-        
-        if isRingMember || isPromoter {
-            chatRepo.getAllUnReadMessagesCountForGroup() { [weak self] count in
-                guard let self = self else { return }
-                self.headerView.hideShowUnreadIndicator(at: 2, isHide: count == 0 )
-            }
-
-            chatRepo.getUnReadMessagesTypeCount(type: "promoter_event") { [weak self] count in
-                guard let self = self else { return }
-                self.headerView.hideShowUnreadIndicator(at: 1, isHide: count == 0 )
-            }
-        } else {
-            chatRepo.getAllUnReadMessagesCountForGroup() { [weak self] count in
-                guard let self = self else { return }
-                self.headerView.hideShowUnreadIndicator(at: 1, isHide: count == 0 )
-            }
+        chatRepo.getAllUnReadMessagesCountForGroup() { [weak self] count in
+            guard let self = self else { return }
+            self.headerView.hideShowUnreadIndicator(at: 1, isHide: count == 0 )
         }
     }
     
@@ -174,59 +128,9 @@ class ChatHomeVC: ChildViewController {
         
     }
     
-    private func _requestBucketList() {
-        let chatRepo = ChatRepository()
-        chatRepo.getGroupChatLit { [weak self] container, error in
-            guard let self = self else { return }
-            self._tableView.endRefreshing()
-            self.hideHUD(error: error)
-            guard let data = container else { return }
-            self._bucketList = data.bucketList.toArrayDetached(ofType: BucketDetailModel.self)
-            self._eventList = data.events.toArrayDetached(ofType: EventModel.self)
-            self._outingList = data.outings.toArrayDetached(ofType: OutingListModel.self)
-            if isRingMember || isPromoter {
-                if _selectedIndex == 2 {
-                    self._loadData()
-                }
-            } else {
-                if _selectedIndex == 1 {
-                    self._loadData()
-                }
-            }
-        }
-    }
-    
-    private func _requestCMEventChatList(_ isReload: Bool = false) {
-        if isReload { showHUD() }
-        WhosinServices.complementaryChatList { [weak self] container, error in
-            guard let self = self else { return }
-            self.hideHUD(error: error)
-            self._tableView.endRefreshing()
-            guard let data = container?.data else { return }
-            self._cmChatList = data
-            if _selectedIndex == 1 {
-                self._loadCMChatListData(eventList: data, chatList: _chatList)
-            }
-        }
-    }
-    
-    private func _requestChatList(_ isReload: Bool = false) {
-        if isReload { showHUD() }
-        WhosinServices.chatList() { [weak self] container, error in
-            guard let self = self else { return }
-            self._tableView.endRefreshing()
-            self.hideHUD()
-            guard let data = container?.data else { return }
-            self._cmChatList = data
-            if _selectedIndex == 1 {
-                self._loadCMChatListData(eventList: data, chatList: _chatList)
-            }
-        }
-    }
-     
     private func _requestDeleteChat(chatId: String) {
         WhosinServices.deleteChatById(chatId: chatId) { container, error in
-
+            
         }
     }
     
@@ -250,7 +154,7 @@ class ChatHomeVC: ChildViewController {
         var cellData = [[String: Any]]()
         chat?.forEach{ chat in
             if let userModel = chat.user {
-                if self.isRingMember && userModel.isPromoter || Preferences.blockedUsers.contains(userModel.id) { return }
+                if Preferences.blockedUsers.contains(userModel.id) { return }
                 cellData.append([
                     kCellIdentifierKey: self.kCellIdentifierFriendChatList,
                     kCellTagKey: self.kCellIdentifierFriendChatList,
@@ -265,167 +169,6 @@ class ChatHomeVC: ChildViewController {
         }
         
         cellSectionData.append([kSectionTitleKey: kEmptyString, kSectionDataKey: cellData])
-        DispatchQueue.main.async {
-            self._tableView.loadData(cellSectionData)
-        }
-    }
-    
-    private func _loadGroupChatListData(bucketList: [BucketDetailModel]?, eventList: [EventModel]?, outingList: [OutingListModel]?) {
-        var cellSectionData = [[String: Any]]()
-
-        let chatRepo = ChatRepository()
-        var idsArray = bucketList?.map { $0.id}
-        if let eventIds = eventList?.map({ $0.id}) {
-            idsArray?.append(contentsOf: eventIds)
-        }
-        if let outingIds = outingList?.map({ $0.id}) {
-            idsArray?.append(contentsOf: outingIds)
-        }
-        var messageList: [MessageModel] = []
-        idsArray?.forEach { id in
-            if let lastMsg = chatRepo.getLastMessages(chatId: id) {
-                messageList.append(lastMsg)
-            }
-        }
-
-        let sortedAllChats = messageList.sorted { $0.date > $1.date }
-        var typeList: [String] = ["bucket", "event", "outing"]
-
-        if !sortedAllChats.isEmpty {
-            var tempList: [String] = []
-            sortedAllChats.forEach { message in
-                if !tempList.contains(message.chatType) {
-                    tempList.append(message.chatType)
-                }
-            }
-
-            typeList.forEach { type in
-                if !tempList.contains(type) {
-                    tempList.append(type)
-                }
-            }
-            typeList = tempList
-        }
-
-        typeList.forEach { type in
-            if type == "bucket" {
-                let sortedBucketChats = bucketList?.compactMap { bucket in
-                    bucket.lastMsg = sortedAllChats.first(where: { $0.chatId == bucket.id })
-                    return bucket
-                }
-                let sortedChats = sortedBucketChats?.sorted { $0.lastMsg?.date ?? "0" > $1.lastMsg?.date ?? "0" }
-                
-                if let buckets = sortedChats, !buckets.isEmpty {
-                    var cellData = [[String: Any]]()
-                    buckets.forEach{ bucket in
-                        cellData.append([
-                            kCellIdentifierKey: kCellIdentifierBucketChatList,
-                            kCellDifferenceIdentifierKey: bucket.id,
-                            kCellDifferenceContentKey: bucket.hashValue,
-                            kCellTagKey: bucket.id,
-                            kCellObjectDataKey: bucket,
-                            kCellClassKey: BucketChatListTableCell.self,
-                            kCellHeightKey: BucketChatListTableCell.height
-                        ])
-                    }
-
-                    if cellData.count != .zero {
-                        cellSectionData.append([kSectionTitleKey: cellData.isEmpty ?  "bucket_chats".localized() : LANGMANAGER.localizedString(forKey: "bucket_chat_item", arguments: ["value": "\(cellData.count)"]), kSectionDataKey: cellData, kSectionBgColor: ColorBrand.clear])
-                    }
-                }
-            }
-            else if type == "event" {
-                eventList?.forEach { event in
-                    if !Utils.isDateExpired(dateString: event.eventTime, format: kStanderdDate) {
-                        if let lastMsg = sortedAllChats.first(where: {$0.chatId == event.id}) {
-                            event.lastMsg = lastMsg.detached()
-                        }
-                    }
-                }
-
-                let sortedEventChats = eventList?.sorted { $0.lastMsg?.date ?? "0" > $1.lastMsg?.date ?? "0" }
-                if let events = sortedEventChats, !events.isEmpty {
-                    var cellData = [[String: Any]]()
-                    events.forEach{ event in
-                        if !Utils.isDateExpired(dateString: event.eventTime, format: kStanderdDate) {
-                            cellData.append([
-                                kCellIdentifierKey: kCellIdentifierEventChatList,
-                                kCellDifferenceIdentifierKey: event.id,
-                                kCellDifferenceContentKey: event.hashValue,
-                                kCellTagKey: event.id,
-                                kCellObjectDataKey: event,
-                                kCellClassKey: EventChatListTableCell.self,
-                                kCellHeightKey: EventChatListTableCell.height
-                            ])
-                        } else {
-                            chatRepo.removeChatWithID(id: event.id) { _ in
-                            }
-                        }
-                    }
-                    if cellData.count != .zero {
-                        cellSectionData.append([kSectionTitleKey: cellData.isEmpty ? "event_chats".localized() : LANGMANAGER.localizedString(forKey: "event_chat_item", arguments: ["value": "\(cellData.count)"]), kSectionDataKey: cellData, kSectionBgColor: ColorBrand.clear])
-                    }
-                }
-            }
-            else if type == "outing" {
-                let outingChats = outingList?.compactMap { outing in
-                    outing.lastMsg = sortedAllChats.first(where: { $0.chatId == outing.id })
-                    return outing
-                }
-                
-                let sortedOutingChats = outingChats?.sorted { $0.lastMsg?.date ?? "0" > $1.lastMsg?.date ?? "0" }
-                if let outings = sortedOutingChats, !outings.isEmpty {
-                    var cellData = [[String: Any]]()
-                    outings.forEach{ outing in
-                        cellData.append([
-                            kCellIdentifierKey: kCellIdentifierEventChatList,
-                            kCellDifferenceIdentifierKey: outing.id,
-                            kCellDifferenceContentKey: outing.hashValue,
-                            kCellTagKey: outing.id,
-                            kCellObjectDataKey: outing,
-                            kCellClassKey: EventChatListTableCell.self,
-                            kCellHeightKey: EventChatListTableCell.height
-                        ])
-                    }
-                    if cellData.count != .zero {
-                        cellSectionData.append([kSectionTitleKey: cellData.isEmpty ? "invitations_chats".localized() : LANGMANAGER.localizedString(forKey: "invite_chat_item", arguments: ["value": "\(cellData.count)"]), kSectionDataKey: cellData, kSectionBgColor: ColorBrand.clear])
-                    }
-                }
-            }
-        }
-        DispatchQueue.main.async {
-            self._tableView.loadData(cellSectionData)
-        }
-    }
-    
-    private func _loadCMChatListData(eventList: [PromoterChatListModel], chatList: [ChatModel]?) {
-        var cellSectionData = [[String: Any]]()
-        var cellData = [[String: Any]]()
-        let userRepo = UserRepository()
-        
-        if isRingMember {
-            chatList?.forEach({ chat in
-                if let userModel = chat.user, userModel.isPromoter {
-                    if Preferences.blockedUsers.contains(userModel.id) { return }
-                    cellData.append([
-                        kCellIdentifierKey: self.kCellIdentifierFriendChatList,
-                        kCellTagKey: self.kCellIdentifierFriendChatList,
-                        kCellDifferenceIdentifierKey: chat.id,
-                        kCellDifferenceContentKey: chat.hashValue,
-                        kCellItemsKey: userModel,
-                        kCellObjectDataKey: chat,
-                        kCellClassKey: FriendsChatListTableCell.self,
-                        kCellHeightKey: FriendsChatListTableCell.height
-                    ])
-                }
-            })
-            
-            if cellData.count != .zero {
-                cellSectionData.append([kSectionTitleKey: "promoter".localized(), kSectionDataKey: cellData, kSectionBgColor: ColorBrand.clear])
-                cellData.removeAll()
-            }
-        }
-        
         DispatchQueue.main.async {
             self._tableView.loadData(cellSectionData)
         }
@@ -449,7 +192,7 @@ class ChatHomeVC: ChildViewController {
                             let userId = chat.members.first { $0 != id } ?? kEmptyString
                             if !userId.isEmpty {
                                 if let userModel = userRepo.getUserById(userId: userId), !userModel.fullName.isEmpty {
-                                    if self.isRingMember && userModel.isPromoter || Preferences.blockedUsers.contains(userId) { return }
+                                    if Preferences.blockedUsers.contains(userId) { return }
                                     cellData.append([
                                         kCellIdentifierKey: self.kCellIdentifierFriendChatList,
                                         kCellTagKey: self.kCellIdentifierFriendChatList,
@@ -482,22 +225,7 @@ class ChatHomeVC: ChildViewController {
     
     private func _loadData() {
         self.updateUnreadStatus()
-        if isRingMember || APPSESSION.userDetail?.isPromoter == true {
-            if _selectedIndex == 2 {
-                _loadGroupChatListData(bucketList: _bucketList, eventList: _eventList, outingList: _outingList)
-            } else if _selectedIndex == 1 {
-                _loadChatList()
-                _loadCMChatListData(eventList: _cmChatList, chatList: _chatList)
-            } else {
-                _loadChatList()
-            }
-        } else {
-            if _selectedIndex == 1 {
-                _loadGroupChatListData(bucketList: _bucketList, eventList: _eventList, outingList: _outingList)
-            } else {
-                _loadChatList()
-            }
-        }
+        _loadChatList()
     }
     
     // --------------------------------------
@@ -513,14 +241,12 @@ class ChatHomeVC: ChildViewController {
             APPSETTING.followingList = data
         }
     }
-
+    
     private var _prototype: [[String: Any]]? {
         return [
-                [kCellIdentifierKey: kCellIdentifierStoryView, kCellNibNameKey: kCellIdentifierStoryView, kCellClassKey: ChatStoryViewCell.self, kCellHeightKey: ChatStoryViewCell.height],
-                [kCellIdentifierKey: kCellIdentifierFriendChatList, kCellNibNameKey: kCellIdentifierFriendChatList, kCellClassKey: FriendsChatListTableCell.self, kCellHeightKey: FriendsChatListTableCell.height],
-                [kCellIdentifierKey: kCellIdentifierBucketChatList, kCellNibNameKey: kCellIdentifierBucketChatList, kCellClassKey: BucketChatListTableCell.self, kCellHeightKey: BucketChatListTableCell.height],
-                [kCellIdentifierKey: kCellIdentifierLoading, kCellNibNameKey: kCellIdentifierLoading, kCellClassKey: LoadingCell.self, kCellHeightKey: LoadingCell.height],
-                [kCellIdentifierKey: kCellIdentifierEventChatList, kCellNibNameKey: kCellIdentifierEventChatList, kCellClassKey: EventChatListTableCell.self, kCellHeightKey: EventChatListTableCell.height],
+            [kCellIdentifierKey: kCellIdentifierStoryView, kCellNibNameKey: kCellIdentifierStoryView, kCellClassKey: ChatStoryViewCell.self, kCellHeightKey: ChatStoryViewCell.height],
+            [kCellIdentifierKey: kCellIdentifierFriendChatList, kCellNibNameKey: kCellIdentifierFriendChatList, kCellClassKey: FriendsChatListTableCell.self, kCellHeightKey: FriendsChatListTableCell.height],
+            [kCellIdentifierKey: kCellIdentifierLoading, kCellNibNameKey: kCellIdentifierLoading, kCellClassKey: LoadingCell.self, kCellHeightKey: LoadingCell.height],
         ]
     }
     
@@ -533,8 +259,6 @@ class ChatHomeVC: ChildViewController {
                 DISPATCH_ASYNC_MAIN_AFTER(0.2) {
                     if self._selectedIndex == 0 {
                         self._loadData()
-                    } else {
-                        self._requestBucketList()
                     }
                 }
                 self._deleteView.isHidden = true
@@ -560,8 +284,6 @@ class ChatHomeVC: ChildViewController {
                 if model ?? false {
                     if self._selectedIndex == 0 {
                         self._loadData()
-                    } else {
-                        self._requestBucketList()
                     }
                     self._deleteView.isHidden = true
                     self._confirmationView.isHidden = true
@@ -569,7 +291,7 @@ class ChatHomeVC: ChildViewController {
             }
         }
     }
-            
+    
     @IBAction private func _handleCloseDeleteView(_ sender: UIButton) {
         _confirmationView.isHidden = true
     }
@@ -578,71 +300,16 @@ class ChatHomeVC: ChildViewController {
     }
     
     @objc func handleNotification(_ notification: Notification) {
-        if isRingMember {
-            if _selectedIndex == 1 {
-                _requestCMEventChatList()
-            } else if _selectedIndex == 2 {
-                _requestBucketList()
-            } else {
-                _loadData()
-            }
-        } else if APPSESSION.userDetail?.isPromoter == true {
-            if _selectedIndex == 1 {
-                _requestChatList()
-            } else if _selectedIndex == 2 {
-                _requestBucketList()
-            } else {
-                _loadData()
-            }
-        } else {
-            if _selectedIndex == 1 {
-                _requestBucketList()
-            } else {
-                _loadData()
-            }
-        }
+        _loadData()
     }
     
     @objc func handleUpdateNotification(_ notification: Notification) {
-        if isRingMember {
-            if _selectedIndex == 1 {
-                _requestCMEventChatList()
-            } else if _selectedIndex == 2 {
-                _requestBucketList()
-            } else {
-                if _searchBar.text?.isEmpty == true {
-                    self._loadChatListData(chat: _chatList)
-                } else {
-                    filteredChatList = _chatList?.filter({ $0.user?.fullName.localizedCaseInsensitiveContains(_searchBar.text ?? "") ?? false }) ?? []
-                    self._loadChatListData(chat: filteredChatList)
-                }
-            }
-        } else if APPSESSION.userDetail?.isPromoter == true {
-            if _selectedIndex == 1 {
-                _requestChatList()
-            } else if _selectedIndex == 2 {
-                _requestBucketList()
-            } else {
-                if _searchBar.text?.isEmpty == true {
-                    self._loadChatListData(chat: _chatList)
-                } else {
-                    filteredChatList = _chatList?.filter({ $0.user?.fullName.localizedCaseInsensitiveContains(_searchBar.text ?? "") ?? false }) ?? []
-                    self._loadChatListData(chat: filteredChatList)
-                }
-            }
+        if _searchBar.text?.isEmpty == true {
+            self._loadChatListData(chat: _chatList)
         } else {
-            if _selectedIndex == 1 {
-                _requestBucketList()
-            } else {
-                if _searchBar.text?.isEmpty == true {
-                    self._loadChatListData(chat: _chatList)
-                } else {
-                    filteredChatList = _chatList?.filter({ $0.user?.fullName.localizedCaseInsensitiveContains(_searchBar.text ?? "") ?? false }) ?? []
-                    self._loadChatListData(chat: filteredChatList)
-                }
-            }
+            filteredChatList = _chatList?.filter({ $0.user?.fullName.localizedCaseInsensitiveContains(_searchBar.text ?? "") ?? false }) ?? []
+            self._loadChatListData(chat: filteredChatList)
         }
-
     }
     
     @objc func handleNotificationCount(_ notification: Notification) {
@@ -661,20 +328,11 @@ extension ChatHomeVC: CustomTableViewDelegate {
         if let cell = cell as? FriendsChatListTableCell {
             guard let object = cellDict?[kCellObjectDataKey] as? ChatModel, let user = cellDict?[kCellItemsKey] as? UserDetailModel else { return }
             cell.setupChatData(object, user: user)
-        } else if let cell = cell as? BucketChatListTableCell {
-            guard let object = cellDict?[kCellObjectDataKey] as? BucketDetailModel else { return }
-            cell.setupData(object)
-        } else if let cell = cell as? EventChatListTableCell {
-            if let object = cellDict?[kCellObjectDataKey] as? EventModel {
-                cell.setupData(object)
-            } else if let object = cellDict?[kCellObjectDataKey] as? OutingListModel {
-                cell.setupoutingData(object)
-            }
         }
     }
     
     func didSelectTableCell(_ cell: UITableViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
-
+        
         if let _tmpChatModel = cellDict?[kCellObjectDataKey] as? ChatModel {
             guard let userDetail = APPSESSION.userDetail else { return }
             let id = Preferences.isSubAdmin ? userDetail.promoterId : userDetail.id
@@ -683,82 +341,6 @@ extension ChatHomeVC: CustomTableViewDelegate {
             _tmpChatModel.title = userModel?.fullName ?? kEmptyString
             _tmpChatModel.image = userModel?.image ?? kEmptyString
             _openChat(_tmpChatModel, chatType: .user)
-        } else if let object = cellDict?[kCellObjectDataKey] as? BucketDetailModel {
-            let _tmpChatModel = ChatModel()
-            _tmpChatModel.chatId = object.id
-            _tmpChatModel.chatType = "bucket"
-            _tmpChatModel.title = object.name
-            _tmpChatModel.image = object.coverImage
-            let sharedUser = object.sharedWith.map({ $0.id })
-            _tmpChatModel.members.append(objectsIn: sharedUser)
-            if !_tmpChatModel.members.contains(where: {$0 == object.userId}) {
-                _tmpChatModel.members.append(object.userId)
-            }
-            if let userDetail = APPSESSION.userDetail {
-                if !_tmpChatModel.members.contains(where: { $0 == userDetail.id }) {
-                    _tmpChatModel.members.append(userDetail.id)
-                }
-            }
-            _openChat(_tmpChatModel, chatType: .bucket)
-        } else if let object = cellDict?[kCellObjectDataKey] as? EventModel {
-            let _tmpChatModel = ChatModel()
-            _tmpChatModel.chatId = object.id
-            _tmpChatModel.chatType = "event"
-            _tmpChatModel.title = object.chatName
-            _tmpChatModel.image = object.image
-            let members = object.invitedUsers.map({ $0.userId })
-            _tmpChatModel.members.append(objectsIn: members)
-            if let userDetail = APPSESSION.userDetail {
-                if !_tmpChatModel.members.contains(where: { $0 == userDetail.id }) {
-                    _tmpChatModel.members.append(userDetail.id)
-                }
-            }
-            _openChat(_tmpChatModel, chatType: .event)
-        } else if let object = cellDict?[kCellObjectDataKey] as? OutingListModel {
-            let _tmpChatModel = ChatModel()
-            _tmpChatModel.chatId = object.id
-            _tmpChatModel.chatType = "outing"
-            _tmpChatModel.title = object.chatName
-            _tmpChatModel.image = object.venue?.cover ?? kEmptyString
-            let users = object.invitedUser.map({ $0.id })
-            _tmpChatModel.members.append(objectsIn: users)
-            if !_tmpChatModel.members.contains(where: {$0 == object.userId}) {
-                _tmpChatModel.members.append(object.userId)
-            }
-            if let userDetail = APPSESSION.userDetail {
-                if !_tmpChatModel.members.contains(where: { $0 == userDetail.id }) {
-                    _tmpChatModel.members.append(userDetail.id)
-                }
-            }
-            _openChat(_tmpChatModel, chatType: .outing, outing: object)
-        } else if let object = cellDict?[kCellObjectDataKey] as? PromoterChatListModel {
-            let chatModel = ChatModel()
-            chatModel.image = object.owner?.image ?? kEmptyString
-            chatModel.title = object.owner?.fullName ?? kEmptyString
-            chatModel.chatId = object.id
-            chatModel.chatType = ChatType.promoterEvent.rawValue
-            let members = object.inUsers.map({ $0.userId })
-            chatModel.members.append(objectsIn: members)
-            if let userDetail = object.owner {
-                if !chatModel.members.contains(where: { $0 == userDetail.id }) {
-                    chatModel.members.append(userDetail.id)
-                }
-            }
-            DISPATCH_ASYNC_MAIN_AFTER(0.01) {
-                let vc = INIT_CONTROLLER_XIB(ChatDetailVC.self)
-                vc.chatModel = chatModel
-                vc.isComplementry = APPSESSION.userDetail?.isRingMember ?? false
-                vc.isPromoter = APPSESSION.userDetail?.isPromoter ?? false
-                vc.venueName = object.venueName
-                vc.venueImage = object.venueImage
-                if let navController = self.navigationController {
-                    vc.hidesBottomBarWhenPushed = true
-                    navController.pushViewController(vc, animated: true)
-                } else {
-                    vc.modalPresentationStyle =  .overFullScreen
-                    self.present(vc, animated: true, completion: nil)
-                }
-            }
         }
     }
     
@@ -789,19 +371,13 @@ extension ChatHomeVC: CustomTableViewDelegate {
         DISPATCH_ASYNC_MAIN_AFTER(0.3) {
             self._loadData()
             self._tableView.endRefreshing()
-            if APPSESSION.userDetail?.isPromoter == true {
-                self._requestChatList()
-            } else if self.isRingMember {
-                self._requestCMEventChatList()
-            }
         }
     }
     
-    func _openChat(_ chatModel: ChatModel, chatType: ChatType = .user, outing: OutingListModel? = nil) {
+    func _openChat(_ chatModel: ChatModel, chatType: ChatType = .user) {
         let vc = INIT_CONTROLLER_XIB(ChatDetailVC.self)
         vc.chatModel = chatModel
         vc.chatType = chatType
-        vc.outingmodel = outing
         if let navController = self.navigationController {
             vc.hidesBottomBarWhenPushed = true
             navController.pushViewController(vc, animated: true)
@@ -829,43 +405,11 @@ extension ChatHomeVC: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty {
             isSearching = false
-            if isPromoter || isRingMember {
-                if _selectedIndex == 1 {
-                    _loadCMChatListData(eventList: _cmChatList, chatList: _chatList)
-                } else if _selectedIndex == 2 {
-                    _loadGroupChatListData(bucketList: _bucketList, eventList: _eventList, outingList: _outingList)
-                } else {
-                    _loadChatListData(chat: _chatList)
-                }
-            } else {
-                if _selectedIndex == 1 {
-                    _loadGroupChatListData(bucketList: _bucketList, eventList: _eventList, outingList: _outingList)
-                } else {
-                    _loadChatListData(chat: _chatList)
-                }
-            }
+            _loadChatListData(chat: _chatList)
         } else {
             isSearching = true
-            if _selectedIndex == 1 {
-                if isRingMember || isPromoter {
-                    _filteredCMChatList = _cmChatList.filter({ $0.venueName.localizedCaseInsensitiveContains(searchText) })
-                    filteredChatList = _chatList?.filter({ ($0.user?.fullName.localizedCaseInsensitiveContains(searchText) ?? false) && $0.user?.isPromoter == true }) ?? []
-                    _loadCMChatListData(eventList: _filteredCMChatList, chatList: filteredChatList)
-                } else {
-                    filteredBucketList = _bucketList?.filter({ $0.name.localizedCaseInsensitiveContains(searchText) }) ?? []
-                    filteredEventList = _eventList?.filter({ $0.title.localizedCaseInsensitiveContains(searchText) }) ?? []
-                    filteredOutingList = _outingList?.filter({ $0.title.localizedCaseInsensitiveContains(searchText) }) ?? []
-                    _loadGroupChatListData(bucketList: filteredBucketList, eventList: filteredEventList, outingList: filteredOutingList)
-                }
-            } else if _selectedIndex == 2 {
-                filteredBucketList = _bucketList?.filter({ $0.name.localizedCaseInsensitiveContains(searchText) }) ?? []
-                filteredEventList = _eventList?.filter({ $0.title.localizedCaseInsensitiveContains(searchText) }) ?? []
-                filteredOutingList = _outingList?.filter({ $0.title.localizedCaseInsensitiveContains(searchText) }) ?? []
-                _loadGroupChatListData(bucketList: filteredBucketList, eventList: filteredEventList, outingList: filteredOutingList)
-            } else {
-                filteredChatList = _chatList?.filter({ $0.user?.fullName.localizedCaseInsensitiveContains(searchText) ?? false }) ?? []
-                _loadChatListData(chat: filteredChatList)
-            }
+            filteredChatList = _chatList?.filter({ $0.user?.fullName.localizedCaseInsensitiveContains(searchText) ?? false }) ?? []
+            _loadChatListData(chat: filteredChatList)
         }
     }
     

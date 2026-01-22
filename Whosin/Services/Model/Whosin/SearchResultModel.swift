@@ -5,11 +5,6 @@ class SearchResultModel: Mappable, ModelProtocol {
     
     
     @objc dynamic var type: String = kEmptyString
-    dynamic var venues : [VenueDetailModel]?
-    dynamic var users : [UserDetailModel]?
-    dynamic var offers: [OffersModel]?
-    dynamic var events: [EventModel]?
-    dynamic var activities: [ActivitiesModel]?
     dynamic var tickets: [TicketModel]?
     
     // --------------------------------------
@@ -23,11 +18,6 @@ class SearchResultModel: Mappable, ModelProtocol {
     func mapping(map: Map) {
         
         type <- map["type"]
-        venues <- map["venues"]
-        users <- map["users"]
-        offers <- map["offers"]
-        events <- map["events"]
-        activities <- map["activity"]
         tickets <- map["ticket"]
     }
     

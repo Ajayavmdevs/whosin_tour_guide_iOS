@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,9 +14,6 @@
         </array>
         <array key="SFUIText-Regular.ttf">
             <string>SFUIText-Regular</string>
-        </array>
-        <array key="SFUIText-Semibold.ttf">
-            <string>SFUIText-Semibold</string>
         </array>
     </customFonts>
     <objects>
@@ -29,9 +26,7 @@
                 <outlet property="_bottomVisualEffectView" destination="pwh-P9-a5O" id="XJj-M6-aKN"/>
                 <outlet property="_chatTableView" destination="JnR-jx-l86" id="9ZW-u3-PC5"/>
                 <outlet property="_chatUserNameLbl" destination="cZZ-r8-80Q" id="by7-u9-Wj3"/>
-                <outlet property="_eventView" destination="m79-Pc-L5D" id="ofo-IZ-L8A"/>
                 <outlet property="_headerView" destination="wKk-AJ-INz" id="vwj-ls-ekg"/>
-                <outlet property="_loadingButton" destination="O2h-zK-RQ6" id="Sux-ar-mec"/>
                 <outlet property="_menuBtn" destination="qbd-J3-HoJ" id="HJ1-dX-Jx7"/>
                 <outlet property="_messageTextView" destination="e3i-HW-vjI" id="kDh-3S-K2g"/>
                 <outlet property="_messageView" destination="Why-9P-64T" id="C6u-t6-4ry"/>
@@ -43,9 +38,6 @@
                 <outlet property="_statuslbl" destination="qoh-lu-svQ" id="pqE-6d-dJo"/>
                 <outlet property="_textieldView" destination="Wea-be-XlW" id="fTL-i0-x5f"/>
                 <outlet property="_unReadMsgCountLbl" destination="nt1-Fw-WB1" id="2tO-j6-qSx"/>
-                <outlet property="_venueImage" destination="0vg-x0-hhY" id="pfZ-za-ktJ"/>
-                <outlet property="_venueName" destination="neo-xS-M0y" id="tAA-1V-ANB"/>
-                <outlet property="_viewTicketButton" destination="tbz-bF-iou" id="jwi-uo-Nrb"/>
                 <outlet property="_visualEffectView" destination="0KG-W4-BZQ" id="qNA-od-Swx"/>
                 <outlet property="_voiceChatButton" destination="XjU-Ch-sRw" id="B9V-EG-0mC"/>
                 <outlet property="bottomConatraint" destination="Min-Tf-89l" id="qeh-wd-E2h"/>
@@ -406,84 +398,6 @@
                         <constraint firstAttribute="bottom" secondItem="1mu-j2-Yhu" secondAttribute="bottom" id="nps-OX-d40"/>
                     </constraints>
                 </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m79-Pc-L5D">
-                    <rect key="frame" x="0.0" y="157" width="414" height="60"/>
-                    <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0vg-x0-hhY">
-                            <rect key="frame" x="15" y="8" width="44" height="44"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="44" id="Pkt-dw-8Ax"/>
-                                <constraint firstAttribute="height" constant="44" id="tvu-hR-R5n"/>
-                            </constraints>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <real key="value" value="10"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="neo-xS-M0y" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
-                            <rect key="frame" x="74" y="30" width="205" height="0.0"/>
-                            <fontDescription key="fontDescription" name="SFUIText-Semibold" family="SF UI Text" pointSize="16"/>
-                            <color key="textColor" name="white"/>
-                            <nil key="highlightedColor"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
-                                    <integer key="value" value="3"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                    <real key="value" value="16"/>
-                                </userDefinedRuntimeAttribute>
-                            </userDefinedRuntimeAttributes>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O2h-zK-RQ6" customClass="CustomActivityButton" customModule="Whosin" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <connections>
-                                <action selector="_handleOpenEventViewWithSender:" destination="-1" eventType="touchUpInside" id="ncm-y4-MXw"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbz-bF-iou" customClass="CustomButton" customModule="Whosin" customModuleProvider="target">
-                            <rect key="frame" x="289" y="17" width="110" height="26"/>
-                            <color key="backgroundColor" name="brandPink"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="110" id="3MO-rU-Wyo"/>
-                                <constraint firstAttribute="height" constant="26" id="Ih1-QN-QuJ"/>
-                            </constraints>
-                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                            <state key="normal" title="View Ticket"/>
-                            <userDefinedRuntimeAttributes>
-                                <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
-                                    <integer key="value" value="2"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
-                                    <real key="value" value="14"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                    <real key="value" value="13"/>
-                                </userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="string" keyPath="localizedText" value="view_ticket"/>
-                            </userDefinedRuntimeAttributes>
-                            <connections>
-                                <action selector="_handleViewTicketEvent:" destination="-1" eventType="touchUpInside" id="LAg-VK-IwO"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" red="0.15686274509803921" green="0.15686274509803921" blue="0.15686274509803921" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstItem="0vg-x0-hhY" firstAttribute="leading" secondItem="m79-Pc-L5D" secondAttribute="leading" constant="15" id="5B7-sR-37b"/>
-                        <constraint firstAttribute="trailing" secondItem="tbz-bF-iou" secondAttribute="trailing" constant="15" id="8JM-L1-PiE"/>
-                        <constraint firstItem="tbz-bF-iou" firstAttribute="leading" secondItem="neo-xS-M0y" secondAttribute="trailing" constant="10" id="8kS-Tz-hzH"/>
-                        <constraint firstItem="tbz-bF-iou" firstAttribute="centerY" secondItem="0vg-x0-hhY" secondAttribute="centerY" id="DEr-eV-QqU"/>
-                        <constraint firstAttribute="trailing" secondItem="O2h-zK-RQ6" secondAttribute="trailing" id="Dq3-jb-QYs"/>
-                        <constraint firstItem="neo-xS-M0y" firstAttribute="leading" secondItem="0vg-x0-hhY" secondAttribute="trailing" constant="15" id="IMp-j1-PuD"/>
-                        <constraint firstAttribute="bottom" secondItem="O2h-zK-RQ6" secondAttribute="bottom" id="MOb-fK-rbC"/>
-                        <constraint firstItem="0vg-x0-hhY" firstAttribute="centerY" secondItem="m79-Pc-L5D" secondAttribute="centerY" id="cpy-Yw-wvF"/>
-                        <constraint firstAttribute="height" constant="60" id="d56-Ak-K45"/>
-                        <constraint firstItem="O2h-zK-RQ6" firstAttribute="leading" secondItem="m79-Pc-L5D" secondAttribute="leading" id="fhc-h4-ExL"/>
-                        <constraint firstItem="O2h-zK-RQ6" firstAttribute="top" secondItem="m79-Pc-L5D" secondAttribute="top" id="jrw-JZ-h5K"/>
-                        <constraint firstItem="neo-xS-M0y" firstAttribute="centerY" secondItem="0vg-x0-hhY" secondAttribute="centerY" id="wcY-Oj-qt2"/>
-                    </constraints>
-                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="brandAppBgColor"/>
@@ -492,14 +406,11 @@
                 <constraint firstItem="VTY-rS-Ltd" firstAttribute="top" secondItem="wKk-AJ-INz" secondAttribute="bottom" id="C6o-e5-72W"/>
                 <constraint firstItem="wKk-AJ-INz" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="DBb-5d-EHr"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VTY-rS-Ltd" secondAttribute="trailing" id="E1S-g7-1yZ"/>
-                <constraint firstItem="m79-Pc-L5D" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="E6Z-Py-DCg"/>
                 <constraint firstAttribute="bottom" secondItem="VTY-rS-Ltd" secondAttribute="bottom" id="Min-Tf-89l"/>
                 <constraint firstItem="wKk-AJ-INz" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="OD8-Px-l39"/>
-                <constraint firstItem="m79-Pc-L5D" firstAttribute="top" secondItem="wKk-AJ-INz" secondAttribute="bottom" id="YXw-qF-6Ct"/>
                 <constraint firstAttribute="bottom" secondItem="VuM-Rx-95H" secondAttribute="bottom" id="Zgu-zi-IPb"/>
                 <constraint firstItem="VTY-rS-Ltd" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="c4l-Ew-QC5"/>
                 <constraint firstItem="VuM-Rx-95H" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="fl5-Oi-mqB"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="m79-Pc-L5D" secondAttribute="trailing" id="iWX-Gz-oV8"/>
                 <constraint firstItem="wKk-AJ-INz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="ktO-ix-VYy"/>
                 <constraint firstItem="VuM-Rx-95H" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nXi-M3-dVP"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="1mu-j2-Yhu" secondAttribute="top" constant="4" id="y8t-VR-Wnb"/>
@@ -523,9 +434,6 @@
         </namedColor>
         <namedColor name="brandDarkGray">
             <color red="0.6940000057220459" green="0.6940000057220459" blue="0.6940000057220459" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="brandPink">
-            <color red="0.90200001001358032" green="0.0" blue="0.49399998784065247" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="buyNowColor">
             <color red="0.86274509803921573" green="0.23529411764705882" blue="0.19215686274509805" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

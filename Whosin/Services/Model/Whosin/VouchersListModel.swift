@@ -16,13 +16,7 @@ class VouchersListModel: Object, Mappable, ModelProtocol {
     @objc dynamic var price: Int = 0
     @objc dynamic var qty: Int = 0
     @objc dynamic var createdAt: String = kEmptyString
-    @objc dynamic var vouchar: VoucharsModel? = nil
     @objc dynamic var venue: VenueDetailModel? = nil
-    @objc dynamic var offer: OffersModel? = nil
-    @objc dynamic var deal: DealsModel? = nil
-    @objc dynamic var event:EventModel? = nil
-    @objc dynamic var activity: ActivitiesModel? = nil
-    @objc dynamic var activityDetail: ActivityDetailModel? = nil
     @objc dynamic var type: String = kEmptyString
     @objc dynamic var dealId: String = kEmptyString
     @objc dynamic var voucherId: String = kEmptyString
@@ -69,13 +63,7 @@ class VouchersListModel: Object, Mappable, ModelProtocol {
         price <- map["price"]
         qty <- map["qty"]
         createdAt <- map["createdAt"]
-        vouchar <- map["vouchar"]
         venue <- map["venue"]
-        offer <- map["offer"]
-        deal <- map["deal"]
-        event <- map["event"]
-        activityDetail <- map["activityDetail"]
-        activity <- map["activity"]
         type <- map["type"]
         dealId <- map["dealId"]
         voucherId <- map["voucherId"]
@@ -101,45 +89,6 @@ class VouchersListModel: Object, Mappable, ModelProtocol {
     public var _createdAt: Date {
         return Utils.stringToDate(createdAt, format: kStanderdDate) ?? Date()
     }
-
-    func isValid() -> Bool {
-        return true
-    }
-}
-
-class ActivityDetailModel: Object, Mappable, ModelProtocol {
-    
-    @objc dynamic var id: String = kEmptyString
-    @objc dynamic var activityType: String = kEmptyString
-    @objc dynamic var date: String = kEmptyString
-    @objc dynamic var time: String = kEmptyString
-
-    // --------------------------------------
-    // MARK: Class
-    // --------------------------------------
-
-    override class func primaryKey() -> String? {
-        "id"
-    }
-
-    // --------------------------------------
-    // MARK: <Mappable>
-    // --------------------------------------
-
-    required convenience init?(map: Map) {
-        self.init()
-    }
-    
-    func mapping(map: Map) {
-        id <- map["_id"]
-        activityType <- map["activityType"]
-        date <- map["date"]
-        time <- map["time"]
-    }
-    
-    // --------------------------------------
-    // MARK: <ModelProtocol>
-    // --------------------------------------
 
     func isValid() -> Bool {
         return true

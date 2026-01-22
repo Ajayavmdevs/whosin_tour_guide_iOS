@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFUIText-Bold.ttf">
+            <string>SFUIText-Bold</string>
+        </array>
+        <array key="SFUIText-Medium.ttf">
+            <string>SFUIText-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="BankDetailVC" customModule="Whosin" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kpz-O6-0aW">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="168"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L9E-fb-WFu">
+                            <rect key="frame" x="0.0" y="118" width="393" height="50"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kgh-3X-Kzv">
+                                    <rect key="frame" x="5" y="0.0" width="50" height="50"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="50" id="ehI-Sc-Hud"/>
+                                        <constraint firstAttribute="height" constant="50" id="lnj-te-Okm"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" name="SFUIText-Medium" family="SF UI Text" pointSize="20"/>
+                                    <color key="tintColor" name="white"/>
+                                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                    <state key="normal" image="icon_backArrow">
+                                        <color key="titleColor" name="BrandLightGray"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="_handleBackEvent:" destination="-1" eventType="touchUpInside" id="TQd-8C-5N9"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bank Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3g-GT-5fC" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                    <rect key="frame" x="55" y="11.999999999999998" width="338" height="26.333333333333329"/>
+                                    <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="22"/>
+                                    <color key="textColor" name="white"/>
+                                    <nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fontStyle">
+                                            <integer key="value" value="3"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                            <real key="value" value="24"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </label>
+                            </subviews>
+                            <viewLayoutGuide key="safeArea" id="dSE-77-0Z3"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="dSE-77-0Z3" firstAttribute="trailing" secondItem="d3g-GT-5fC" secondAttribute="trailing" id="AF0-Q9-wQ2"/>
+                                <constraint firstAttribute="height" constant="50" id="Nsd-j8-5k7"/>
+                                <constraint firstItem="d3g-GT-5fC" firstAttribute="leading" secondItem="Kgh-3X-Kzv" secondAttribute="trailing" id="Q4v-33-XoZ"/>
+                                <constraint firstItem="Kgh-3X-Kzv" firstAttribute="centerY" secondItem="L9E-fb-WFu" secondAttribute="centerY" id="j9l-JO-3Gi"/>
+                                <constraint firstItem="Kgh-3X-Kzv" firstAttribute="leading" secondItem="dSE-77-0Z3" secondAttribute="leading" constant="5" id="q0m-Xc-lMs"/>
+                                <constraint firstItem="d3g-GT-5fC" firstAttribute="centerY" secondItem="Kgh-3X-Kzv" secondAttribute="centerY" id="yrT-mV-IuL"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="brandBottomSheetHeaderColor"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="L9E-fb-WFu" secondAttribute="bottom" id="64w-Rg-E92"/>
+                        <constraint firstItem="L9E-fb-WFu" firstAttribute="leading" secondItem="Kpz-O6-0aW" secondAttribute="leading" id="oZx-Qa-hpk"/>
+                        <constraint firstAttribute="trailing" secondItem="L9E-fb-WFu" secondAttribute="trailing" id="tU3-K3-H2q"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="brandAppBgColor"/>
+            <constraints>
+                <constraint firstItem="L9E-fb-WFu" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="98B-5j-F77"/>
+                <constraint firstItem="Kpz-O6-0aW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Jmh-Wg-ANQ"/>
+                <constraint firstItem="Kpz-O6-0aW" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="O2Q-lj-zz1"/>
+                <constraint firstItem="Kpz-O6-0aW" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="syB-at-fNK"/>
+            </constraints>
+            <point key="canvasLocation" x="140" y="116"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_backArrow" width="19" height="15"/>
+        <namedColor name="BrandLightGray">
+            <color red="0.57999998331069946" green="0.58799999952316284" blue="0.6470000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandAppBgColor">
+            <color red="0.059000000357627869" green="0.071000002324581146" blue="0.11400000005960464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="brandBottomSheetHeaderColor">
+            <color red="0.11400000005960464" green="0.1289999932050705" blue="0.14499999582767487" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

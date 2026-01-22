@@ -21,9 +21,6 @@ class AdListModel: Mappable, ModelProtocol {
     @objc dynamic var typeId: String = kEmptyString
     @objc dynamic var video: String = kEmptyString
     @objc dynamic var venue: VenueDetailModel?
-    @objc dynamic var activity: ActivitiesModel?
-    @objc dynamic var event: EventModel?
-    @objc dynamic var offer: OffersModel?
     
     // --------------------------------------
     // MARK: <Mappable>
@@ -50,9 +47,6 @@ class AdListModel: Mappable, ModelProtocol {
         status <- map["status"]
         createdAt <- map["createdAt"]
         venue <- map["venue"]
-        activity <- map["activity"]
-        event <- map["event"]
-        offer <- map["offer"]
         descriptions <- map["description"]
         typeId <- map["typeId"]
         video <- map["video"]

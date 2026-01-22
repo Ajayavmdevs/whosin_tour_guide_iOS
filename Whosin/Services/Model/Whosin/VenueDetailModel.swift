@@ -19,7 +19,6 @@ class VenueDetailModel: Object, Mappable, ModelProtocol,Differentiable, Identifi
     @objc dynamic var website: String = kEmptyString
     @objc dynamic var bookingUrl: String = kEmptyString
     @objc dynamic var menuUrl: String = kEmptyString
-    @objc dynamic var business: BusinessModel?
     dynamic var galleries: [String] = []
     @objc dynamic var dressCode: String = kEmptyString
     @objc dynamic var distance: Double = 0.0
@@ -34,9 +33,6 @@ class VenueDetailModel: Object, Mappable, ModelProtocol,Differentiable, Identifi
     @objc dynamic var isAllowRatting: Bool = false
     @objc dynamic var avgRatings: Double = 0.0
     dynamic var currentUserRating: CurrentUserRatingModel?
-    dynamic var specialOffers = List<SpecialOffersModel>()
-    dynamic var deals = List<DealsModel>()
-//    dynamic var story: StoryModel?
     dynamic var storie = List<StoryModel>()
     dynamic var users = List<UserModel>()
     @objc dynamic var lat: Double = 0.0
@@ -79,7 +75,6 @@ class VenueDetailModel: Object, Mappable, ModelProtocol,Differentiable, Identifi
         website <- map["website"]
         bookingUrl <- map["booking_url"]
         menuUrl <- map["menu_url"]
-        business <- map["business"]
         galleries <- map["galleries"]
         dressCode <- map["dress_code"]
         address <- map["address"]
@@ -95,10 +90,7 @@ class VenueDetailModel: Object, Mappable, ModelProtocol,Differentiable, Identifi
         isFollowing <- map["isFollowing"]
         isAllowReview <- map["isAllowReview"]
         isAllowRatting <- map["isAllowRatting"]
-        specialOffers <- (map["specialOffers"],ListTransform<SpecialOffersModel>())
-        deals <- (map["deals"], ListTransform<DealsModel>())
         currentUserRating <- map["currentUserReview"]
-//        story <- map["story"]
         storie <- (map["stories"], ListTransform<StoryModel>())
         users <- (map["users"], ListTransform<UserModel>())
         lat <- map["lat"]

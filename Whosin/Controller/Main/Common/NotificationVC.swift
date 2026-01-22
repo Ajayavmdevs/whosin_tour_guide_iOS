@@ -2,11 +2,6 @@ import UIKit
 
 class NotificationVC: ChildViewController {
     
-    @IBOutlet weak var _deleteBtn: CustomButton!
-    @IBOutlet weak var _promoterView: CustomNotificationHeaderView!
-    @IBOutlet weak var _promoterTypeHeaderView: UIView!
-    @IBOutlet weak var _headerMainBgView: UIView!
-    @IBOutlet private weak var _headerBgView: UIView!
     @IBOutlet private weak var _tableView: CustomNoKeyboardTableView!
     @IBOutlet weak var _visualEffectView: UIVisualEffectView!
     private let kCellIdentifier = String(describing: NotificationTableCell.self)
@@ -16,16 +11,7 @@ class NotificationVC: ChildViewController {
     private var footerView: LoadingFooterView?
     private var _page : Int = 1
     private var isPaginating = false
-    private var _selectedIndex: Int = 0 {
-        didSet {
-            _promoterTypeHeaderView.isHidden = APPSESSION.userDetail?.isPromoter == true && _selectedIndex == 1 ? false : true
-        }
-    }
-    private var _selectedType: String = "users"
-    private var _userNotifications: [NotificationModel] = []
     private var _eventNotification: NotificationListModel?
-    private var _promoterUserNotifications: NotificationListModel?
-    private var headerView = ChatTableHeaderView()
     private var isLoadingNotification: Bool = false
     private var refreshControl = UIRefreshControl()
 
@@ -37,53 +23,15 @@ class NotificationVC: ChildViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         _page = 1
-        setUpheaderViews()
         setupUi()
         _requestNotificationData()
-        _requestPendingFollowRequest()
         showHUD()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
-    private func setUpheaderViews() {
-        _promoterTypeHeaderView.isHidden = true
-        let headerView = ChatTableHeaderView(frame: _headerBgView.frame.standardized)
-        headerView.delegate = self
-        if APPSESSION.userDetail?.isPromoter == true {
-            headerView.setupTabLabels(["normal".localized(), "promoter".localized()])
-            _requestUserNoftification()
-            _requestEventNoftification()
-        } else  if APPSESSION.userDetail?.isRingMember == true {
-            headerView.setupTabLabels(["normal".localized(), "complimentary".localized()])
-            _requestSocialUserNoftification()
-        } else {
-            _headerMainBgView.isHidden = true
-        }
-        self.headerView = headerView
-        _headerBgView.addSubview(self.headerView)
-        headerView.translatesAutoresizingMaskIntoConstraints = false
-        self.headerView.snp.makeConstraints { make in
-            make.edges.equalTo(_headerBgView)
-        }
         
-        let promoterHeaderView = CustomNotificationHeaderView(frame: _promoterView.frame.standardized)
-        promoterHeaderView.isNotification = true
-        promoterHeaderView.delegate = self
-        promoterHeaderView.setupData(selectedType: _selectedType)
-        self._promoterView = promoterHeaderView
-        _promoterTypeHeaderView.addSubview(self._promoterView)
-        promoterHeaderView.translatesAutoresizingMaskIntoConstraints = false
-        self._promoterView.snp.makeConstraints { make in
-            make.leading.equalTo(_promoterTypeHeaderView)
-            make.trailing.equalTo(_promoterTypeHeaderView)
-            make.height.equalTo(40)
-        }
-        _setupHeader()
-    }
-    
     override func setupUi() {
         _tableView.setup(
             cellPrototypes: _prototype,
@@ -103,31 +51,11 @@ class NotificationVC: ChildViewController {
         refreshControl.addTarget(self, action: #selector(refreshData(_:)), for: .valueChanged)
         refreshControl.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
         _tableView.refreshControl = refreshControl
-        NotificationCenter.default.addObserver(self, selector: #selector(handleReloadMyEvent(_:)), name: .reloadMyEventsNotifier, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleReloadMyEvent(_:)), name: .changereloadNotificationUpdateState, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleReloadMyEvent(_:)), name: .reloadUsersNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleShowAlert(_:)), name: .showAlertForUpgradeProfile, object: nil)
-        _setupHeader()
     }
     
     // --------------------------------------
     // MARK: Service
     // --------------------------------------
-    
-    private func _requestPendingFollowRequest() {
-        
-        _tableView.startRefreshing()
-        WhosinServices.followRequestList { [weak self]container, error in
-            guard let self = self else { return }
-            self.refreshControl.endRefreshing()
-            self.showError(error)
-            guard let data = container?.data else { return }
-            APPSETTING.pendingRequestList = data
-            if !data.isEmpty, data.count > 0 {
-                _loadData()
-            }
-        }
-    }
     
     private func _requestNotificationData() {
         _tableView.startRefreshing()
@@ -140,62 +68,11 @@ class NotificationVC: ChildViewController {
             if self.isPaginating {
                 self.isPaginating = false
                 self._notificationData?.notification.append(objectsIn: data.notification)
-                self._notificationData?.user.append(objectsIn: data.user)
                 self._notificationData?.category.append(objectsIn: data.category)
-                self._notificationData?.offer.append(objectsIn: data.offer)
-                self._notificationData?.venue.append(objectsIn: data.venue)
             } else {
                 self._notificationData = data
             }
             self._loadData()
-        }
-    }
-    
-    private func _requestSocialUserNoftification(_ isReload: Bool = false) {
-        isLoadingNotification = true
-        _tableView.startRefreshing()
-        WhosinServices.complementaryUserNotification { [weak self] container, error in
-            guard let self = self else { return }
-            self.refreshControl.endRefreshing()
-            self.showError(error)
-            self.isLoadingNotification = false
-            guard let data = container?.data else { return}
-            self._userNotifications = data.notification.toArrayDetached(ofType: NotificationModel.self)
-            if isReload || _selectedIndex == 1 {
-                _loadData()
-            }
-        }
-    }
-    
-    private func _requestUserNoftification(_ isReload: Bool = false) {
-        isLoadingNotification = true
-        _tableView.startRefreshing()
-        WhosinServices.promoterUserNotification() { [weak self] container, error in
-            guard let self = self else { return }
-            self.refreshControl.endRefreshing()
-            self.showError(error)
-            self.isLoadingNotification = false
-            guard let data = container?.data else { return }
-            self._promoterUserNotifications = data
-            if isReload || _selectedIndex == 1 {
-                _loadData()
-            }
-        }
-    }
-    
-    private func _requestEventNoftification(_ isReload: Bool = false) {
-        isLoadingNotification = true
-        _tableView.startRefreshing()
-        WhosinServices.promoterEventNotification() { [weak self] container, error in
-            guard let self = self else { return }
-            self.refreshControl.endRefreshing()
-            self.showError(error)
-            self.isLoadingNotification = false
-            guard let data = container?.data else { return }
-            self._eventNotification = data
-            if isReload || _selectedIndex == 1 {
-                _loadData()
-            }
         }
     }
 
@@ -206,80 +83,15 @@ class NotificationVC: ChildViewController {
     private func _loadData() {
         var cellSectionData = [[String: Any]]()
         var cellData = [[String: Any]]()
-        if APPSESSION.userDetail?.isPromoter == true, _selectedIndex == 1 {
-            _deleteBtn.isHidden = true
-            if isLoadingNotification {
-                cellData.append([
-                    kCellIdentifierKey: kCellIdentifierLoading,
-                    kCellTagKey: kCellIdentifierLoading,
-                    kCellObjectDataKey: true,
-                    kCellClassKey: LoadingCell.self,
-                    kCellHeightKey: LoadingCell.height
-                ])
-            } else {
-                if _selectedType == "users" {
-                    if _promoterUserNotifications?.notification.isEmpty == true || _promoterUserNotifications?.notification == nil {
-                        cellData.append([
-                            kCellIdentifierKey: kEmptyCellIdentifier,
-                            kCellTagKey: kEmptyCellIdentifier,
-                            kCellObjectDataKey: ["title" : "empty_user_requests".localized(), "icon": "empty_notification"],
-                            kCellClassKey: EmptyDataCell.self,
-                            kCellHeightKey: EmptyDataCell.height
-                        ])
-                    } else {
-
-                    }
-                } else {
-                    if _eventNotification?.notification.isEmpty == true || _eventNotification?.notification == nil {
-                        cellData.append([
-                            kCellIdentifierKey: kEmptyCellIdentifier,
-                            kCellTagKey: kEmptyCellIdentifier,
-                            kCellObjectDataKey: ["title" : "empty_event_requests".localized(), "icon": "empty_notification"],
-                            kCellClassKey: EmptyDataCell.self,
-                            kCellHeightKey: EmptyDataCell.height
-                        ])
-                    }
-                }
-            }
-        }
-        else if APPSESSION.userDetail?.isRingMember == true, _selectedIndex == 1 {
-            _deleteBtn.isHidden = true
-            if isLoadingNotification {
-                cellData.append([
-                    kCellIdentifierKey: kCellIdentifierLoading,
-                    kCellTagKey: kCellIdentifierLoading,
-                    kCellObjectDataKey: true,
-                    kCellClassKey: LoadingCell.self,
-                    kCellHeightKey: LoadingCell.height
-                ])
-            } else {
-                if _userNotifications.isEmpty {
-                    cellData.append([
-                        kCellIdentifierKey: kEmptyCellIdentifier,
-                        kCellTagKey: kEmptyCellIdentifier,
-                        kCellObjectDataKey: ["title" : "empty_notifications".localized(), "icon": "empty_notification"],
-                        kCellClassKey: EmptyDataCell.self,
-                        kCellHeightKey: EmptyDataCell.height
-                    ])
-                }
-            }
-        }
-        else {
-            _deleteBtn.isHidden = _notificationData?.notification.isEmpty == true
-            _notificationData?.notification.sort { $0.updatedAt > $1.updatedAt }
-            
-
-            
-            _notificationData?.notification.forEach { notification in
-                    cellData.append([
-                        kCellIdentifierKey: kCellIdentifier,
-                        kCellTagKey: kCellIdentifier,
-                        kCellObjectDataKey: notification,
-                        kCellClassKey: NotificationTableCell.self,
-                        kCellHeightKey: NotificationTableCell.height
-                    ])
-                }
-            
+        _notificationData?.notification.sort { $0.updatedAt > $1.updatedAt }
+        _notificationData?.notification.forEach { notification in
+            cellData.append([
+                kCellIdentifierKey: kCellIdentifier,
+                kCellTagKey: kCellIdentifier,
+                kCellObjectDataKey: notification,
+                kCellClassKey: NotificationTableCell.self,
+                kCellHeightKey: NotificationTableCell.height
+            ])
         }
         cellSectionData.append([kSectionTitleKey: kEmptyString, kSectionDataKey: cellData])
         _tableView.loadData(cellSectionData)
@@ -293,14 +105,6 @@ class NotificationVC: ChildViewController {
         ]
     }
     
-    private func _setupHeader() {
-        headerView.setupData(_selectedIndex)
-        _promoterView.setupData(selectedType: _selectedType)
-        if APPSESSION.userDetail?.isPromoter == true, _selectedIndex == 1 {
-            _promoterTypeHeaderView.isHidden = false
-        }
-    }
-    
     private func fetchData(completion: @escaping () -> Void) {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
             completion()
@@ -310,25 +114,7 @@ class NotificationVC: ChildViewController {
     @objc private func refreshData(_ sender: Any) {
         fetchData {
             DispatchQueue.main.async {
-                if APPSESSION.userDetail?.isPromoter == true {
-                    if self._selectedIndex == 0 {
-                        self._requestPendingFollowRequest()
-                        self._requestNotificationData()
-                    } else {
-                        self._requestUserNoftification()
-                        self._requestEventNoftification()
-                    }
-                } else  if APPSESSION.userDetail?.isRingMember == true {
-                    if self._selectedIndex == 0 {
-                        self._requestPendingFollowRequest()
-                        self._requestNotificationData()
-                    } else {
-                        self._requestSocialUserNoftification()
-                    }
-                } else {
                     self._requestNotificationData()
-                    self._requestPendingFollowRequest()
-                }
             }
         }
     }
@@ -362,34 +148,6 @@ class NotificationVC: ChildViewController {
     private func _deleteNotificationEvent(id: String, index: IndexPath) {
         confirmAlert(message: "delete_notification_confirmation".localized(),okHandler: { okAction in
             self._requestDeleteNotification([id], index: index)
-        }, noHandler:  { action in
-        })
-    }
-    
-    
-    @objc func handleReloadMyEvent(_ notification: Notification) {
-        if APPSESSION.userDetail?.isPromoter == true {
-            _requestUserNoftification(true)
-            _requestEventNoftification(true)
-        } else {
-            _requestSocialUserNoftification(true)
-        }
-    }
-    
-    @objc func handleShowAlert(_ notification: Notification) {
-        let message = notification.userInfo?["type"] as? String ?? "complimentary"
-        let vc = INIT_CONTROLLER_XIB(RestartAppPopupVC.self)
-        vc._msg = message
-        vc.modalPresentationStyle = .overFullScreen
-        vc.modalTransitionStyle = .crossDissolve
-        self.present(vc, animated: true)
-    }
-    
-    @IBAction func _handleDeleteAllNotifications(_ sender: CustomButton) {
-        guard let ids = _notificationData?.notification.map({ $0.id }).map({ $0 }) else { return }
-        let idArray = Array(ids)
-        confirmAlert(message: "delete_all_notifications_confirmation".localized(),okHandler: { okAction in
-            self._requestDeleteNotification(idArray)
         }, noHandler:  { action in
         })
     }
@@ -508,22 +266,3 @@ extension NotificationVC: CustomNoKeyboardTableViewDelegate {
         }
     }
     
-
-
-extension NotificationVC: ChatTableHeaderViewDelegate {
-    
-    func didSelectTab(at index: Int) {
-        _selectedIndex = index
-        _setupHeader()
-        setupUi()
-        _loadData()
-    }
-    
-}
-
-extension NotificationVC: NotificationHeaderViewDelegate {
-    func didSelectType(_ type: String) {
-        _selectedType = type
-        _loadData()
-    }
-}

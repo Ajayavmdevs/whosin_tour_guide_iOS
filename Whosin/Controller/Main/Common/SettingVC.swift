@@ -156,9 +156,6 @@ extension SettingVC: CustomTableViewDelegate {
             if indexPath.row == 0 {
                 corners.insert(.topLeft)
                 corners.insert(.topRight)
-                if APPSETTING.subscription != nil {
-                    cell._buttonIcon.badgeNumber = 1
-                }
             }
             
             let rows = _tableView.numberOfRows(inSection: indexPath.section)

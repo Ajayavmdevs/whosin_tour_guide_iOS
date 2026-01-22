@@ -18,7 +18,6 @@ class DateTimePickerVC: BaseViewController {
     var selectedDate: Date? = nil
     var selectedTimeSlot: String = kEmptyString
     var date: Date? = nil
-    var offerModel: OffersModel?
     var venueModel: VenueDetailModel?
     var startDate: Date? = nil
     var endDate: Date? = nil
@@ -77,13 +76,7 @@ class DateTimePickerVC: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let _offerModel = offerModel {
-            let days = _offerModel._days.split(separator: ",")
-            _validDayList.removeAll()
-            days.forEach { day in
-                _validDayList.append(String(day))
-            }
-        } else if let _venueModel = venueModel {
+        if let _venueModel = venueModel {
             _validDayList = _venueModel.timing.toArrayDetached(ofType: TimingModel.self).map{ $0.day }
             print("Valid days : \(_validDayList)")
         } else {
@@ -122,13 +115,7 @@ class DateTimePickerVC: BaseViewController {
         if let start = startDate {
             _startingDate = start
         }
-        if let offer = offerModel {
-            var startTime = Utils.stringToDate(offer.startTime, format: kStanderdDate)
-            let endTime = Utils.stringToDate(offer.endTime, format: kStanderdDate)
-            if Date() > startTime ?? Date() { startTime = Date() }
-            if let startDate = startTime { _startingDate = startDate }
-            if let endDate = endTime { _endingDate = endDate }
-        } else if let _venueModel = venueModel {
+        if let _venueModel = venueModel {
             _startingDate = Date()
             if let endDate = Utils.getYearDate(startDate: Date()) {
                 _endingDate = endDate
@@ -319,19 +306,7 @@ extension DateTimePickerVC: FSCalendarDelegate, FSCalendarDataSource, FSCalendar
         if TimeZone.current.isDaylightSavingTime(for: date) {
             dateSelected = dateSelected.addingTimeInterval(TimeInterval(3600))
         }
-        if let _offerModel = offerModel {
-            let startDateStr = Utils.dateToString(dateSelected, format: kFormatDate)
-            guard let startDate = Utils.timeOnlyCalender(_offerModel.startDate) else {return}
-            guard let endDate = Utils.timeOnlyCalender(_offerModel.endDate) else { return }
-            guard let adjustEndDate = Utils.adjustEndTime(startDate: startDate, endTime: endDate) else { return }
-            _timePeriodList.removeAll()
-            let slots = generateTimeSlots(startDate: startDate, endDate: adjustEndDate, timeSlotInMinutes: 90, selectedDate: startDateStr)
-            _timePeriodList.append(contentsOf: slots)
-            DISPATCH_ASYNC_MAIN_AFTER(0.1) {
-                self._loadTimeData()
-            }
-            _updateDate(date: date)
-        } else if let _venueModel = venueModel {
+        if let _venueModel = venueModel {
             let startDateStr = Utils.dateToString(dateSelected, format: kFormatDate)
             let selectedSlot = _venueModel.timing.toArrayDetached(ofType: TimingModel.self).first(where: {$0.day.lowercased() == dateSelected.day.lowercased()})
             let startDateTimeStr = startDateStr + " \(selectedSlot?.openingTime ?? kEmptyString)"

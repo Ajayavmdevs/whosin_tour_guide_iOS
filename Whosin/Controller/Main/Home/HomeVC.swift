@@ -192,14 +192,6 @@ class HomeVC: NavigationBarViewController {
             self._tableView.endRefreshing()
             if let homeData = container {
                 self.homeModel = homeData
-                APPSETTING.venueModel = container?.venues.toArray(ofType: VenueDetailModel.self)
-                APPSETTING.offers = container?.offers.toArray(ofType: OffersModel.self)
-                APPSETTING.activities = container?.activities.toArray(ofType: ActivitiesModel.self)
-                APPSETTING.events = container?.events.toArray(ofType: EventModel.self)
-                APPSETTING.users = container?.users.toArray(ofType: UserDetailModel.self)
-                APPSETTING.membershipPackage = container?.membershipPackages.toArrayDetached(ofType: MembershipPackageModel.self)
-                APPSETTING.yachtModel = container?.yachts.toArrayDetached(ofType: YachtDetailModel.self)
-                APPSETTING.yachtOfferModel = container?.yachtOffers.toArrayDetached(ofType: YachtOfferDetailModel.self)
                 APPSETTING.categories = container?.categories.toArrayDetached(ofType: CategoryDetailModel.self)
                 APPSETTING.ticketCategories = container?.ticketCategories.toArrayDetached(ofType: CategoryDetailModel.self)
                 APPSETTING.ticketList = container?.tickets.toArrayDetached(ofType: TicketModel.self)

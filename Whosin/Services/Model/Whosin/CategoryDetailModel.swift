@@ -12,7 +12,6 @@ class CategoryDetailModel: Object, Mappable, ModelProtocol {
     @objc dynamic var image: String = kEmptyString
     @objc dynamic var bigImage: String = kEmptyString
     dynamic var bannersModel = List<BannerModel>()
-    dynamic var dealsModel = List<DealsModel>()
     @objc dynamic var offers: Int = 0
     
     // --------------------------------------
@@ -40,7 +39,6 @@ class CategoryDetailModel: Object, Mappable, ModelProtocol {
         image <- map["image"]
         bigImage <- map["bigImage"]
         bannersModel <- (map["banners"], ListTransform<BannerModel>())
-        dealsModel <- (map["deals"], ListTransform<DealsModel>())
         offers <- map["offers"]
     }
     

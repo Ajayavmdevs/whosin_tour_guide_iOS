@@ -61,17 +61,6 @@ class CustomEventGalleryView: UIView {
         }
     }
     
-    public func setupData(_ model: PromoterEventsModel) {
-        _eventGallery = model.eventGallery.toArray(ofType: String.self)
-        if _eventGallery.isEmpty {
-            let coverImage = model.venueType == "venue" ? model.image.isEmpty ? model.venue?.cover ?? kEmptyString : model.image : model.customVenue?.image ?? kEmptyString
-            _eventGallery.append(coverImage)
-        }
-        _pageControl.isHidden = _eventGallery.count <= 1
-        _collecitonView.reloadData()
-        _setup()
-    }
-    
     public func setupData(_ model: [String]) {
         _eventGallery = model
         _pageControl.isHidden = _eventGallery.count <= 1

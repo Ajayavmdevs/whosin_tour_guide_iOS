@@ -10,11 +10,6 @@ let PAYMENTMANAGER = PaymentManager.shared
 // MARK: Purchase type enum
 enum PurchaseType {
     case raynaTour
-    case package
-    case membership
-    case penalty
-    case paidPass
-    case deal
     case cart
 }
 
@@ -146,19 +141,8 @@ class PaymentManager: NSObject {
         switch apiType {
         case .raynaTour:
             bookingAPI = WhosinServices.raynaTourBooking
-        case .penalty:
-            bookingAPI = WhosinServices.penaltyPaymentCreate
-        case .package:
-            bookingAPI = WhosinServices.stripePaymentIntent
-        case .membership:
-            bookingAPI = WhosinServices.requestPurchaseMembership
-        case .paidPass:
-            bookingAPI = WhosinServices.paidPassPaymentCreate
-        case .deal:
-            bookingAPI = WhosinServices.stripePaymentIntent
         case .cart:
             bookingAPI = WhosinServices.checkOutCart
-            
         }
         
         // MARK: Calling booking API
@@ -184,9 +168,6 @@ class PaymentManager: NSObject {
                 return
             }
             LOGMANAGER.logTicketEvent(.checkout, id: BOOKINGMANAGER.ticketModel?._id ?? "", name: BOOKINGMANAGER.ticketModel?.title ?? "")
-            if (apiType == .deal || apiType == .package) && container?.message == "Vip User Order Successfully Created!" {
-                completion(.success)
-            }
             if paymentMethod == .tabby {
                 self.startTabbyCheckOut(data: data, completion: completion)
             } else {

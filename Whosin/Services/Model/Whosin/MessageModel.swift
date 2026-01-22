@@ -74,11 +74,7 @@ class MessageModel: Object, Mappable, ModelProtocol, Differentiable, Identifiabl
         if chatModel.chatType == ChatType.promoterEvent.rawValue {
             self.authorName = chatModel.title
             self.authorImage = chatModel.image
-        } else {
-            let promoter = APPSESSION.promoterProfile
-            self.authorName = Preferences.isSubAdmin ? promoter?.profile?.fullName ?? kEmptyString : userDetail.fullName
-            self.authorImage = Preferences.isSubAdmin ? promoter?.profile?.image ?? kEmptyString :userDetail.image
-        }
+        } 
         if let data = replyTo {
             self.replyTo = data
         }

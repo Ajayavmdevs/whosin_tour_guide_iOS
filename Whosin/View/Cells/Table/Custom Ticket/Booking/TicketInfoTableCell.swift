@@ -84,7 +84,6 @@ class TicketInfoTableCell: UITableViewCell {
             _cancellationPolicyBtn.isEnabled = option.optionDetail?.isRefundable == true
             _cancellationPolicyBtn.setTitle(option.optionDetail?.isRefundable == true ? "cancellation_policy".localized() : "non_refundable".localized())
             _cancellationPolicyBtn.backgroundColor = option.optionDetail?.isRefundable == true ? ColorBrand.amberColor.withAlphaComponent(0.8) : UIColor(hexString: "#E32A62")
-            
             let time = Utils.stringToDate(option.startTime, format: "HH:mm:ss")
             _tourTime.attributedText = Utils.setAtributedTitleText(title: "start_time".localized(), subtitle: Utils.dateToString(time, format: "HH:mm"), titleFont: titleFont, subtitleFont: subtitleFont)
             _duration.attributedText = Utils.setAtributedTitleText(title: "duration".localized(), subtitle: option.optionDetail?.duration ?? kEmptyString, titleFont: titleFont, subtitleFont: subtitleFont)
@@ -96,7 +95,7 @@ class TicketInfoTableCell: UITableViewCell {
             _infantCount.text = LANGMANAGER.localizedString(forKey: "infant_count", arguments: ["value1": "\(data.infant)","value2": data.infantTitle])
             _promoCodeStack.isHidden = true
             _moreInfoBtn.isHidden = false
-            _locationStack.isHidden = false
+            _locationStack.isHidden = Utils.stringIsNullOrEmpty(BOOKINGMANAGER.ticketModel?.city)
             _transferStack.isHidden = false
             _pricePerTripText.isHidden = true
             let adultPrice = option.withoutDiscountAdultPrice.formatted() * Double(data.adult)
@@ -245,7 +244,7 @@ class TicketInfoTableCell: UITableViewCell {
             _infantCount.text = LANGMANAGER.localizedString(forKey: "infant_count", arguments: ["value1": "\(data.infant)", "value2": data.infantTitle])
             _promoCodeStack.isHidden = true
             _moreInfoBtn.isHidden = false
-            _locationStack.isHidden = false
+            _locationStack.isHidden = Utils.stringIsNullOrEmpty(BOOKINGMANAGER.ticketModel?.city)
             _transferStack.isHidden = true
             _pricePerTripText.isHidden = false
             _city.text = BOOKINGMANAGER.ticketModel?.city ?? kEmptyString
@@ -295,7 +294,7 @@ class TicketInfoTableCell: UITableViewCell {
             _infantCount.text = LANGMANAGER.localizedString(forKey: "infant_count", arguments: ["value1": "\(data.infant)", "value2": data.infantTitle])
             _promoCodeStack.isHidden = true
             _moreInfoBtn.isHidden = false
-            _locationStack.isHidden = false
+            _locationStack.isHidden = Utils.stringIsNullOrEmpty(BOOKINGMANAGER.ticketModel?.city)
             _transferStack.isHidden = true
             _pricePerTripText.isHidden = false
             _city.text = BOOKINGMANAGER.ticketModel?.city ?? kEmptyString

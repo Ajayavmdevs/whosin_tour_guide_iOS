@@ -91,16 +91,16 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="tYs-h1-uLC">
-                                    <rect key="frame" x="121" y="45" width="230.5" height="40"/>
+                                    <rect key="frame" x="121" y="45" width="0.0" height="0.0"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uqY-te-zRg">
-                                            <rect key="frame" x="0.0" y="0.0" width="106.5" height="40"/>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uqY-te-zRg">
+                                            <rect key="frame" x="0.0" y="-1" width="0.0" height="40"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="Ppo-hV-vmc">
-                                                    <rect key="frame" x="0.0" y="0.0" width="106.5" height="40"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Followers" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeE-ab-cot">
-                                                            <rect key="frame" x="0.0" y="0.0" width="106.5" height="18"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="18"/>
                                                             <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                                             <color key="textColor" name="BrandLightGray"/>
                                                             <nil key="highlightedColor"/>
@@ -109,7 +109,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yi6-i5-Ys2">
-                                                            <rect key="frame" x="0.0" y="23" width="106.5" height="17"/>
+                                                            <rect key="frame" x="0.0" y="23" width="0.0" height="17"/>
                                                             <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                                             <color key="textColor" name="BrandLightGray"/>
                                                             <nil key="highlightedColor"/>
@@ -117,7 +117,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RlY-M4-eJG">
-                                                    <rect key="frame" x="0.0" y="0.0" width="106.5" height="40"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="40"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <connections>
                                                         <action selector="_handleFollowerListEvent:" destination="-1" eventType="touchUpInside" id="uv8-dc-UQY"/>
@@ -137,22 +137,22 @@
                                                 <constraint firstAttribute="trailing" secondItem="Ppo-hV-vmc" secondAttribute="trailing" id="rRh-4x-bNM"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m7r-HC-GxF">
-                                            <rect key="frame" x="113.5" y="1" width="1" height="38"/>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m7r-HC-GxF">
+                                            <rect key="frame" x="0.0" y="0.0" width="1" height="38"/>
                                             <color key="backgroundColor" name="BrandLightGray"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="1" id="TuP-1R-fec"/>
                                                 <constraint firstAttribute="height" constant="38" id="rzZ-Zx-4yZ"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xnw-0y-vZr">
-                                            <rect key="frame" x="121.5" y="0.0" width="109" height="40"/>
+                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xnw-0y-vZr">
+                                            <rect key="frame" x="0.0" y="-1" width="0.0" height="40"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="oAg-sR-i29">
-                                                    <rect key="frame" x="0.0" y="0.0" width="109" height="40"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="40"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Following" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7P-Sr-Kxb">
-                                                            <rect key="frame" x="0.0" y="0.0" width="109" height="18"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="18"/>
                                                             <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                                             <color key="textColor" name="BrandLightGray"/>
                                                             <nil key="highlightedColor"/>
@@ -161,7 +161,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XVZ-AS-w9w">
-                                                            <rect key="frame" x="0.0" y="23" width="109" height="17"/>
+                                                            <rect key="frame" x="0.0" y="23" width="0.0" height="17"/>
                                                             <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
                                                             <color key="textColor" name="BrandLightGray"/>
                                                             <nil key="highlightedColor"/>
@@ -169,7 +169,7 @@
                                                     </subviews>
                                                 </stackView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OpF-MQ-VKC">
-                                                    <rect key="frame" x="0.0" y="0.0" width="109" height="40"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="0.0" height="40"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <connections>
                                                         <action selector="_handleFollowingListEvent:" destination="-1" eventType="touchUpInside" id="uKl-Hb-KLc"/>

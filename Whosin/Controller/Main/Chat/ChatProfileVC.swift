@@ -3,7 +3,6 @@ import UIKit
 class ChatProfileVC: ChildViewController {
     
     @IBOutlet private weak var _tableView: CustomTableView!
-//    private let kCellIdentifier = String(describing: ProfileDetailTableCell.self)
     private let kBGCellIdentifier = String(describing: ChangeChatBgTableCell.self)
     private let kMediaCellIdentifier = String(describing: ProfileMediaTableCell.self)
     private let kBlockCellIdentifier = String(describing: BlockTableCell.self)
@@ -11,15 +10,9 @@ class ChatProfileVC: ChildViewController {
     public var chatModel: ChatModel?
     public var chatType: ChatType = .user
     private var userModel: UserDetailModel?
-    private var _bucketList: [BucketDetailModel]?
     private var _userList: [UserDetailModel]? = []
-    private var _bucketDetail: BucketDetailModel?
-    private var _eventModel: EventModel?
-    public var _outingModel: OutingListModel?
     private var _mediaCount: Int = 0
     private var footerView: LoadingFooterView?
-    // Event releted variables
-    private var _invitationList: [InvitationModel] = []
     private var _page : Int = 1
     // --------------------------------------
     // MARK: Life Cycle
@@ -36,50 +29,12 @@ class ChatProfileVC: ChildViewController {
                     self.userModel = userModel.detached()
                     self._loadData()
                     _requestUserProfile()
-                    _requestBucketList()
                 } else {
                     _tableView.isHidden = true
                     _requestUserProfile(isShowHud: true)
-                    _requestBucketList()
                 }
             } else {
                 _requestUserProfile(isShowHud: true)
-                _requestBucketList()
-            }
-        } 
-        else if let allChatModel = chatRepo.getAllGroupChatListOffline() {
-            if chatType == .event {
-                if let event = allChatModel.events.first(where: { $0.id == self.chatModel?.chatId ?? kEmptyString }) {
-                    isRequesting = true
-                    _eventModel = event
-                    _loadEventData()
-                    _requestEventDetails()
-                    _eventGuestListData()
-                } else {
-                    _requestEventDetails(isShowHud: true)
-                    _eventGuestListData()
-                }
-            } else if chatType == .outing {
-                _mediaCount = chatRepo.getMediaMessagesCount(chatId: _outingModel?.id ?? kEmptyString)
-                _loadOutingData()
-            } else if chatType == .bucket {
-                if let bucket = allChatModel.bucketList.first(where: { $0.id == self.chatModel?.chatId ?? kEmptyString }) {
-                    self._bucketDetail = bucket
-                    self._loadBucketData()
-                    _requestBucketDetails()
-                } else {
-                    _requestBucketDetails(isShowHud: true)
-                }
-            }
-        } else {
-            if chatType == .event {
-                _requestEventDetails(isShowHud: true)
-                _eventGuestListData()
-            } else if chatType == .outing {
-                _mediaCount = chatRepo.getMediaMessagesCount(chatId: _outingModel?.id ?? kEmptyString)
-                _loadOutingData()
-            } else {
-                _requestBucketDetails(isShowHud: true)
             }
         }
 
@@ -109,25 +64,6 @@ class ChatProfileVC: ChildViewController {
     // --------------------------------------
     // MARK: Private
     // --------------------------------------
-    
-    private func _fillBucketList() -> [[String: Any]] {
-        var cellData = [[String: Any]]()
-        let userRepo = UserRepository()
-        _bucketList?.forEach{ bucket in
-            _userList?.removeAll()
-            if let user = userRepo.getUserById(userId: bucket.userId) {
-                _userList?.append(user)
-            }
-            bucket.sharedUser.forEach {  userId in
-                if let user = userRepo.getUserById(userId: userId) {
-                    _userList?.append(user)
-                }
-            }
-            
-        }
-        
-        return cellData
-    }
     
     private func _loadData(isLoading: Bool = false) {
         var cellSectionData = [[String: Any]]()
@@ -159,10 +95,7 @@ class ChatProfileVC: ChildViewController {
             }
 
             cellSectionData.append([kSectionTitleKey: kEmptyString, kSectionDataKey: cellData])
-            let bucketListDict = _fillBucketList()
-            if !bucketListDict.isEmpty {
-                cellSectionData.append([kSectionTitleKey: "bucketlist_in_common".localized(), kSectionDataKey: bucketListDict])
-            }
+
             cellData.removeAll()
             cellData.append([
                 kCellIdentifierKey: kBlockCellIdentifier,
@@ -184,161 +117,7 @@ class ChatProfileVC: ChildViewController {
         }
         _tableView.loadData(cellSectionData)
     }
-    
-    private func _loadBucketData(isLoading: Bool = false) {
-        var cellSectionData = [[String: Any]]()
-        var cellData = [[String: Any]]()
-        if let bucketDetail = _bucketDetail {
-//            cellData.append([
-//                kCellIdentifierKey: kCellIdentifier,
-//                kCellTagKey: kCellIdentifier,
-//                kCellObjectDataKey: bucketDetail,
-//                kCellClassKey: ProfileDetailTableCell.self,
-//                kCellHeightKey: ProfileDetailTableCell.height
-//            ])
-            
-            cellData.append([
-                kCellIdentifierKey: kBGCellIdentifier,
-                kCellTagKey: kBGCellIdentifier,
-                kCellObjectDataKey: chatModel?.chatId ?? kEmptyString,
-                kCellClassKey: ChangeChatBgTableCell.self,
-                kCellHeightKey: ChangeChatBgTableCell.height
-            ])
-            if _mediaCount > 0 {
-                cellData.append([
-                    kCellIdentifierKey: kMediaCellIdentifier,
-                    kCellTagKey: kMediaCellIdentifier,
-                    kCellObjectDataKey: chatModel?.chatId ?? kEmptyString,
-                    kCellClassKey: ProfileMediaTableCell.self,
-                    kCellHeightKey: ProfileMediaTableCell.height
-                ])
-            }
-
-            cellSectionData.append([kSectionTitleKey: kEmptyString, kSectionDataKey: cellData])
-                        
-            cellData.removeAll()
-            cellData.append([
-                kCellIdentifierKey: kBlockCellIdentifier,
-                kCellTagKey: kBlockCellIdentifier,
-                kCellObjectDataKey: "clear_chat".localized(),
-                kCellButtonTitleKey: "Clear",
-                kCellClassKey: BlockTableCell.self,
-                kCellHeightKey: BlockTableCell.height
-            ])
-            
-            cellData.append([
-                kCellIdentifierKey: kBlockCellIdentifier,
-                kCellTagKey: kBlockCellIdentifier,
-                kCellObjectDataKey: "exit_group".localized(),
-                kCellButtonTitleKey: "Exit",
-                kCellClassKey: BlockTableCell.self,
-                kCellHeightKey: BlockTableCell.height
-            ])
-            cellSectionData.append([kSectionTitleKey: " ", kSectionDataKey: cellData])
-            
-        }
         
-        _tableView.loadData(cellSectionData)
-    }
-    
-    private func _loadEventData(isLoading: Bool = false) {
-        var cellSectionData = [[String: Any]]()
-        var cellData = [[String: Any]]()
-        if let _eventModel = _eventModel {
-//            cellData.append([
-//                kCellIdentifierKey: kCellIdentifier,
-//                kCellTagKey: kCellIdentifier,
-//                kCellObjectDataKey: _eventModel,
-//                kCellClassKey: ProfileDetailTableCell.self,
-//                kCellHeightKey: ProfileDetailTableCell.height
-//            ])
-            if _eventModel.admins.contains(APPSESSION.userDetail?.id ?? kEmptyString) {
-                cellData.append([
-                    kCellIdentifierKey: kBGCellIdentifier,
-                    kCellTagKey: kBGCellIdentifier,
-                    kCellObjectDataKey: chatModel?.chatId ?? kEmptyString,
-                    kCellClassKey: ChangeChatBgTableCell.self,
-                    kCellHeightKey: ChangeChatBgTableCell.height
-                ])
-            }
-            
-            if _mediaCount > 0 {
-                cellData.append([
-                    kCellIdentifierKey: kMediaCellIdentifier,
-                    kCellTagKey: kMediaCellIdentifier,
-                    kCellObjectDataKey: chatModel?.chatId ?? kEmptyString,
-                    kCellClassKey: ProfileMediaTableCell.self,
-                    kCellHeightKey: ProfileMediaTableCell.height
-                ])
-            }
-
-            cellSectionData.append([kSectionTitleKey: kEmptyString, kSectionDataKey: cellData])
-                        
-            cellData.removeAll()
-            cellData.append([
-                kCellIdentifierKey: kBlockCellIdentifier,
-                kCellTagKey: kBlockCellIdentifier,
-                kCellObjectDataKey: "clear_chat".localized(),
-                kCellButtonTitleKey: "Clear",
-                kCellClassKey: BlockTableCell.self,
-                kCellHeightKey: BlockTableCell.height
-            ])
-            
-            cellSectionData.append([kSectionTitleKey: "", kSectionDataKey: cellData])
-            
-        }
-        
-        _tableView.loadData(cellSectionData)
-    }
-    
-    private func _loadOutingData(isLoading: Bool = false) {
-        var cellSectionData = [[String: Any]]()
-        var cellData = [[String: Any]]()
-        if let _outingModel = _outingModel {
-//            cellData.append([
-//                kCellIdentifierKey: kCellIdentifier,
-//                kCellTagKey: kCellIdentifier,
-//                kCellObjectDataKey: _outingModel,
-//                kCellClassKey: ProfileDetailTableCell.self,
-//                kCellHeightKey: ProfileDetailTableCell.height
-//            ])
-            
-            cellData.append([
-                kCellIdentifierKey: kBGCellIdentifier,
-                kCellTagKey: kBGCellIdentifier,
-                kCellObjectDataKey: _outingModel.id,
-                kCellClassKey: ChangeChatBgTableCell.self,
-                kCellHeightKey: ChangeChatBgTableCell.height
-            ])
-            if _mediaCount > 0 {
-                cellData.append([
-                    kCellIdentifierKey: kMediaCellIdentifier,
-                    kCellTagKey: kMediaCellIdentifier,
-                    kCellObjectDataKey: _outingModel.id,
-                    kCellClassKey: ProfileMediaTableCell.self,
-                    kCellHeightKey: ProfileMediaTableCell.height
-                ])
-            }
-
-            cellSectionData.append([kSectionTitleKey: kEmptyString, kSectionDataKey: cellData])
-            
-            cellData.removeAll()
-            cellData.append([
-                kCellIdentifierKey: kBlockCellIdentifier,
-                kCellTagKey: kBlockCellIdentifier,
-                kCellObjectDataKey: "clear_chat".localized(),
-                kCellButtonTitleKey: "Clear",
-                kCellClassKey: BlockTableCell.self,
-                kCellHeightKey: BlockTableCell.height
-            ])
-            
-            cellSectionData.append([kSectionTitleKey: "", kSectionDataKey: cellData])
-            
-        }
-        
-        _tableView.loadData(cellSectionData)
-    }
-    
     private var _prototype: [[String: Any]]? {
         return [
 //            [kCellIdentifierKey: kCellIdentifier, kCellNibNameKey: kCellIdentifier, kCellClassKey: ProfileDetailTableCell.self, kCellHeightKey: ProfileDetailTableCell.height],
@@ -421,79 +200,6 @@ class ChatProfileVC: ChildViewController {
             self.dismiss(animated: true)
         }
     }
-    
-    private func _requestExitChat() {
-        guard let bucketId = _bucketDetail?.id else { return }
-        WhosinServices.exitFromBucket(id: bucketId ) { [weak self] container, error in
-            guard let self = self else { return }
-            self.view.makeToast(container?.message)
-            if let viewController = self.navigationController?.viewControllers.first {
-                self.navigationController?.popToViewController(viewController, animated: true)
-            }
-        }
-    }
-    
-    private func _requestBucketList() {
-        let chatRepo = ChatRepository()
-        chatRepo.getBucketListList { [weak self] model, error in
-            guard let self = self else { return }
-            guard let _buckets = model?.toArrayDetached(ofType: BucketDetailModel.self) else {
-                self._loadData()
-                return
-            }
-            self._bucketList = _buckets
-            DISPATCH_ASYNC_MAIN {
-                self._loadData()
-            }
-        }
-    }
-    
-    private func _requestBucketDetails(isShowHud: Bool = false) {
-        guard let _bucketId = chatModel?.chatId else { return }
-        if isShowHud { showHUD() }
-        WhosinServices.getBucketDetail(bucketId: _bucketId) { [weak self] container, error in
-            guard let self = self else { return }
-            self.hideHUD(error: error)
-            guard let data = container?.data else { return }
-            self._bucketDetail = data
-            self._loadBucketData()
-        }
-    }
-
-    private func _requestEventDetails(isShowHud: Bool = false) {
-        guard let _eventId = chatModel?.chatId else { return }
-        if isShowHud { showHUD() }
-        self.isRequesting = true
-        WhosinServices.getEventDetail(eventId: _eventId) { [weak self] container, error in
-            guard let self = self else { return }
-            self.hideHUD(error: error)
-            guard let data = container?.data else { return }
-            self._eventModel = data.event
-            self._loadEventData()
-        }
-    }
-
-    private func _eventGuestListData() {
-
-        guard let _eventId = chatModel?.chatId else { return }
-        self.isRequesting = true
-        WhosinServices.getEventGuestList(eventId: _eventId, inviteStatus: "", page: _page) { [weak self] container, error in
-            guard let self = self else { return }
-            self.footerView?.stopAnimating()
-            self.hideHUD(error: error)
-            guard let data = container?.data else { return }
-            if self._invitationList.isEmpty {
-                self._invitationList = data.invitation.toArrayDetached(ofType: InvitationModel.self)
-                self._userList = data.user.toArrayDetached(ofType: UserDetailModel.self)
-            } else {
-                self._invitationList.append(contentsOf: data.invitation.toArrayDetached(ofType: InvitationModel.self))
-                self._userList?.append(contentsOf:data.user.toArrayDetached(ofType: UserDetailModel.self))
-            }
-
-            self._loadEventData()
-            self.isRequesting = false
-        }
-    }
 
     // --------------------------------------
     // MARK: Event
@@ -542,12 +248,6 @@ extension ChatProfileVC: CustomTableViewDelegate, UIScrollViewDelegate, UITableV
                     _optionsBottomSheet()
                 } else if action == "Report" {
                     _optionsBottomSheet()
-                } else if action == "Exit" {
-                    alert(title: kAppName, message: "exit_the_chat".localized(), okActionTitle: "yes".localized()) { UIAlertAction in
-                        self._requestExitChat()
-                    } cancelHandler: { UIAlertAction in
-                        self.dismiss(animated: true)
-                    }
                 } else if action == "Clear" {
                     if let chatID = chatModel?.chatId {
                         _requestClearChat(chatId: chatID)
@@ -602,13 +302,5 @@ extension ChatProfileVC: CustomTableViewDelegate, UIScrollViewDelegate, UITableV
         }
         self.presentAsPanModal(controller: vc)
 
-    }
-
-    private func performPagination() {
-        if !isRequesting, (_invitationList.count) % 30 == 0 {
-            _page += 1
-            footerView?.startAnimating()
-            _eventGuestListData()
-        }
     }
 }

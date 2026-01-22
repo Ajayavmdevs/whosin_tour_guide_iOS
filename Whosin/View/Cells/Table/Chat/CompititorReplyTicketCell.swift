@@ -200,14 +200,7 @@ class CompititorReplyTicketCell: UITableViewCell {
         isPlayingBeforeSkipping = audioPlayer.playing
     }
 
-    @IBAction func _handleEventDetail(_ sender: Any) {
-//        guard let model = Mapper<PromoterEventsModel>().map(JSONString: messageModel?.replyTo?.data ?? "") else { return }
-//        let vc = INIT_CONTROLLER_XIB(PromoterEventDetailVC.self)
-//        vc.isComplementary = APPSESSION.userDetail?.isRingMember ?? true
-//        vc.id = model.eventId
-//        vc.hidesBottomBarWhenPushed = true
-//        parentBaseController?.navigationController?.pushViewController(vc, animated: true)
-        
+    @IBAction func _handleEventDetail(_ sender: Any) {        
         guard let model = Mapper<TicketModel>().map(JSONString: messageModel?.replyTo?.data ?? "") else { return }
         let vc = INIT_CONTROLLER_XIB(CustomTicketDetailVC.self)
         vc.ticketID = model._id

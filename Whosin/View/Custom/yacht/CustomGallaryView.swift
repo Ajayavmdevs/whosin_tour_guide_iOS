@@ -20,8 +20,6 @@ class CustomGallaryView: UIView {
     @IBOutlet weak var _imageSliderView: UIView!
     private let kCellIdentifier = String(describing: ImageViewCell.self)
     private var _gallaryArray: [String] = []
-    private var offerModel: YachtOfferDetailModel?
-    private var yachModel: YachtDetailModel?
     var currentPage = 0
     var timer: Timer?
     private var isAutoScroll: Bool = false

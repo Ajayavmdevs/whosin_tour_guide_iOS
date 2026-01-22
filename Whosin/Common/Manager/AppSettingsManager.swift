@@ -19,21 +19,12 @@ class AppSettingsManager: NSObject {
     var feature: [CommonSettingsModel] = []
     var themes: [CommonSettingsModel] = []
     var membershipPackage: [MembershipPackageModel]?
-    var subscription: SubscriptionModel?
-    var activityTypes: [ActivityTypeModel] = []
     var userModel: UserDetailModel?
     var venueModel: [VenueDetailModel]?
-    var offers: [OffersModel]?
-    var activities: [ActivitiesModel]?
-    var events: [EventModel]?
     var users: [UserDetailModel]?
     var followingList: [UserDetailModel]?
     var pendingRequestList: [UserDetailModel] = []
-    var subscriptionPromo: SubscriptionModel?
     var loginRequests: [LoginApprovalModel] = []
-    var yachtModel: [YachtDetailModel]?
-    var yachtOfferModel: [YachtOfferDetailModel]?
-    var InEventsList: [PromoterEventsModel] = []
     var categories: [CategoryDetailModel]?
     var ticketCategories: [CategoryDetailModel]?
     var ticketList: [TicketModel]?
@@ -82,14 +73,9 @@ class AppSettingsManager: NSObject {
             self.feature = data.feature
             self.themes = data.themes
             self.membershipPackage = data.membershipPackage
-            self.activityTypes = data.activityType
             self.currencies = data.currencies
             self.languages = data.languages
-            let activityAll = ActivityTypeModel()
-            activityAll.id = kEmptyString
-            activityAll.title = "All"
             self.loginRequests = data.loginRequests
-            self.activityTypes.insert(activityAll, at: 0)
             if callback != nil {
                 callback?(true)
             }
@@ -126,43 +112,12 @@ class AppSettingsManager: NSObject {
         }
     }
     
-//    private func _requestSubscriptionDetail() {
-//        WhosinServices.subscriptionDetail { [weak self] container, error in
-//            guard let self = self else { return }
-//            guard let data = container?.data else { return }
-////            self.subscription = data
-//            NotificationCenter.default.post(name: .changeSubscriptionState, object: nil)
-//        }
-//    }
-//    
-//    private func _requestPromotionalPackageDetails() {
-//        WhosinServices.getCustomSubscriptions { [weak self] container, error in
-//            guard let self = self else { return }
-//            guard let data = container?.data else { return }
-//            self.subscriptionPromo = data
-//        }
-//    }
-    
     private func _requestSubscriptionDetail(completion: @escaping () -> Void) {
         WhosinServices.subscriptionDetail { [weak self] container, error in
             defer { completion() }
-
             guard self != nil else { return }
             guard (container?.data) != nil else { return }
-
-            // self.subscription = data
             NotificationCenter.default.post(name: .changeSubscriptionState, object: nil)
-        }
-    }
-
-    private func _requestPromotionalPackageDetails(completion: @escaping () -> Void) {
-        WhosinServices.getCustomSubscriptions { [weak self] container, error in
-            defer { completion() }
-
-            guard let self = self else { return }
-            guard let data = container?.data else { return }
-
-            self.subscriptionPromo = data
         }
     }
 
@@ -223,22 +178,13 @@ class AppSettingsManager: NSObject {
     // --------------------------------------
     // MARK: Public
     // --------------------------------------
-    
-//    func configureSubscrition() {
-//        _requestSubscriptionDetail()
-//        _requestPromotionalPackageDetails()
-//    }
+
     
     func configureSubscrition() {
         let group = DispatchGroup()
 
         group.enter()
         _requestSubscriptionDetail {
-            group.leave()
-        }
-
-        group.enter()
-        _requestPromotionalPackageDetails {
             group.leave()
         }
 

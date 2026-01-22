@@ -21,7 +21,6 @@ class UserModel: Object, Mappable, ModelProtocol, Identifiable {
     @objc dynamic var userDetail: UserDetailModel?
     @objc dynamic var lat: Double = 0.0
     @objc dynamic var lng: Double = 0.0
-    @objc dynamic var invitation: InvitationModel?
     @objc dynamic var email: String = kEmptyString
     @objc dynamic var countryCode: String = kEmptyString
     @objc dynamic var status: String = kEmptyString
@@ -68,7 +67,6 @@ class UserModel: Object, Mappable, ModelProtocol, Identifiable {
         follow <- map["follow"]
         lat <- map["lat"]
         lng <- map["lng"]
-        invitation <- map["invitation"]
         phone <- map["phone"]
         email <- map["email"]
         status <- map["status"]
@@ -130,7 +128,6 @@ class UserDetailModel: Object, Mappable, ModelProtocol, Differentiable, Identifi
     @objc dynamic var invitedBy: UserModel?
     @objc dynamic var inviteStatus: String = kEmptyString
     @objc dynamic var inviteId: String = kEmptyString
-    @objc dynamic var invitation: InvitationModel?
     @objc dynamic var isVip: Bool = false
     @objc dynamic var token: String = kEmptyString
     @objc dynamic var isProfilePrivate: Bool = false
@@ -226,7 +223,6 @@ class UserDetailModel: Object, Mappable, ModelProtocol, Differentiable, Identifi
         inviteStatus <- map["inviteStatus"]
         inviteId <- map["inviteId"]
         invitedBy <- map["invitedBy"]
-        invitation <- map["invitation"]
         isVip <- map["isVip"]
         mutualFriends <- (map["mutualFriends"], UserDetailListTransform())
         token <- map["token"]

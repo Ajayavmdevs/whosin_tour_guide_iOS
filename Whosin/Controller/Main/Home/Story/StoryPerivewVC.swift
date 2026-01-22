@@ -360,24 +360,7 @@ class StoryPerivewVC: ChildViewController {
         self._ticketContainerView.isHidden = true
         self._shareButtonView.isHidden = false
         self._gradientView.isHidden = true
-        if story.contentType == "offer" {
-            if !story.offerId.isEmpty {
-                story.offerModel = APPSETTING.offers?.first(where: {$0.id == story.offerId})
-                if story.offerModel != nil {
-                    UIView.animate(withDuration: 0.05) {
-                        self._venueId = story.offerModel?.venueId ?? ""
-                        self.view.hero.id = self._venueId+"_open_detail_from_story_view"
-                        self.view.hero.modifiers = HeroAnimationModifier.stories
-                        self._offerDetailView.isHidden = false
-                        self._offerTitle.text = story.offerModel?.title
-                        self._offerSubTitle.text = story.offerModel?.descriptions
-                        self._offerCoverImag.loadWebImage(story.offerModel?.image ?? "")
-                        self._offersTime.text = story.offerModel?.timeSloat
-                        self._offerDateAndDay.text = "\(Utils.dateToString(story.offerModel?.startDate, format: kFormatDateLocal)) - \(Utils.dateToString(story.offerModel?.endDate, format: kFormatDateLocal)), \(story.offerModel?.days ?? "")"
-                    }
-                }
-            }
-        } else if story.contentType == "ticket" {
+        if story.contentType == "ticket" {
             if !story.ticketId.isEmpty {
                 story.ticketModel = APPSETTING.ticketList?.first(where: {$0._id == story.ticketId})
                 if story.ticketModel != nil {
@@ -496,7 +479,6 @@ class StoryPerivewVC: ChildViewController {
     
     @IBAction func _handleStroyShareEvent(_ sender: UIButton) {
         let presentedViewController = INIT_CONTROLLER_XIB(ShareBottomSheet.self)
-        presentedViewController.veneuDetail = items[pageIndex]
         presentedViewController.currentStoryId = currentStoryId
         presentedViewController.modalPresentationStyle = .overFullScreen
         self.present(presentedViewController, animated: true)

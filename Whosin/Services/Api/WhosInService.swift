@@ -14,7 +14,7 @@ private let kGetAuthPendingRequest = "user/auth/request"
 private let kGetTokenEndPoint = "user/get-token"
 private let kGoogleSigninEndPoint = "user/login/google"
 private let kLinkedEmailPhoneEndPoint = "user/user/link/email-phone"
-private let kLoginNewEndPoint = "user/login-new"
+private let kLoginNewEndPoint = "user/tour-guide/signup"
 private let kLogoutEndpoint = "user/logout"
 private let kOtpSendEndPoint = "user/send/otp"
 private let kPhoneSigninEndPoint = "user/login"
@@ -228,8 +228,6 @@ private let kEventListPlusOneEndPoint = "promoter/event/plus-one/list"
 private let kEventPlusOneInviteEndPoint = "promoter/event/plus-one/invite"
 private let kPaidPassByEventId = "promoter/paid-pass-by-eventId"
 private let kPaidPassEndPoint = "promoter/paid-pass/list"
-private let kPaidPassPaymentCreateEndPoint = "promoter/payment/create"
-private let kPenaltyPaymentCreateEndPoint = "promoter/payment/create"
 private let kPlusOneEventDetail = "promoter/event/detail/plus-one"
 private let kPlusOneInOutEndPoint = "promoter/event/plus-one/invite-status"
 private let kPlusOneInviteEndPoint = "promoter/plus-one/invite/user"
@@ -599,7 +597,6 @@ class WhosinServices: BaseApiService {
         let request = POST_UPLOAD_FILE(url, parameters: params)
         _service?.multipartRequest(request, model: ContainerModel<ImageModel>.self, callback: callback)
     }
-
     
     public class func getUserProfile(userId: String, callback: ObjectResult<ContainerModel<UserDetailModel>>? = nil) {
         let url = URLMANAGER.baseUrl(endPoint: kUserProfileEndPoint)
@@ -722,18 +719,6 @@ class WhosinServices: BaseApiService {
         _ = _service?.request(request, model: ContainerModel<UserDetailModel>.self, callback: callback)
     }
     
-    public class func getPromoterProfiel(_ promoterId:String = kEmptyString,callback: ObjectResult<ContainerModel<PromoterProfileModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kPromoterProfielEndPoint)
-        if promoterId.isEmpty {
-            let request = GET(url)
-            _ = _service?.request(request, model: ContainerModel<PromoterProfileModel>.self, callback: callback)
-        } else {
-            let request = GET(url + "/\(promoterId)")
-            _ = _service?.request(request, model: ContainerModel<PromoterProfileModel>.self, callback: callback)
-        }
-        
-    }
-    
     public class func createCircle(params: [String:Any],callback: ObjectResult<ContainerModel<BaseModel>>? = nil) {
         let url = URLMANAGER.baseUrl(endPoint: kCreateCircleEndPoint)
         let request = POST(url, parameters: params)
@@ -751,25 +736,7 @@ class WhosinServices: BaseApiService {
         let request = POST(url, parameters: nil)
         _ = _service?.request(request, model: ContainerListModel<VenueDetailModel>.self, callback: callback)
     }
-    
-    public class func getMyEventsList(page: Int, search: String = kEmptyString, sortBy: String = kEmptyString, callback: ObjectResult<ContainerListModel<PromoterEventsModel>>? = nil) -> DataRequest? {
-        let url = URLMANAGER.baseUrl(endPoint: kMyEventEndPoint)
-        let request = POST(url, parameters: ["page": page, "limit": 10, "search": search, "sortBy": sortBy])
-        return _service?.request(request, model: ContainerListModel<PromoterEventsModel>.self, callback: callback)
-    }
-    
-    public class func getMyEventsListNew(page: Int, search: String = kEmptyString, sortBy: String = kEmptyString, callback: ObjectResult<ContainerModel<PromoterEventBaseModel>>? = nil) -> DataRequest? {
-        let url = URLMANAGER.baseUrl(endPoint: kMyEventEndPointNew)
-        let request = POST(url, parameters: ["page": page, "limit": 10, "search": search, "sortBy": sortBy])
-        return _service?.request(request, model: ContainerModel<PromoterEventBaseModel>.self, callback: callback)
-    }
-    
-    public class func getEventsHistory(page: Int, search: String = kEmptyString, callback: ObjectResult<ContainerListModel<PromoterEventsModel>>? = nil) -> DataRequest? {
-        let url = URLMANAGER.baseUrl(endPoint: kPromoterEventhistoryEndPoint)
-        let request = POST(url, parameters: ["page": page, "limit": 10, "search": search])
-        return _service?.request(request, model: ContainerListModel<PromoterEventsModel>.self, callback: callback)
-    }
-    
+            
     public class func getMyRingMemberList(callback: ObjectResult<ContainerListModel<UserDetailModel>>? = nil) {
         let url = URLMANAGER.baseUrl(endPoint: kGetMyRingMemberEndPoint)
         let request = POST(url, parameters: nil)
@@ -807,13 +774,6 @@ class WhosinServices: BaseApiService {
         let url = URLMANAGER.baseUrl(endPoint: kMyEventCancelEndPoint)
         let request = POST(url, parameters: param)
         _ = _service?.request(request, model: ContainerModel<BaseModel>.self, callback: callback)
-    }
-    
-    public class func getMyEventDetail(id: String, callback: ObjectResult<ContainerModel<PromoterEventsModel>>? = nil) {
-        let param: [String: Any] = ["id" : id]
-        let url = URLMANAGER.baseUrl(endPoint: kPromoterEventDetailEndPoint)
-        let request = POST(url, parameters: param)
-        _ = _service?.request(request, model: ContainerModel<PromoterEventsModel>.self, callback: callback)
     }
     
     public class func removeVenue(id: String, callback: ObjectResult<ContainerModel<UserDetailModel>>? = nil) {
@@ -906,19 +866,6 @@ class WhosinServices: BaseApiService {
         _ = _service?.request(request, model: ContainerModel<BaseModel>.self, callback: callback)
     }
     
-    public class func chatList(callback: ObjectResult<ContainerListModel<PromoterChatListModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kPromoterChatListEndPoint)
-        let request = POST(url, parameters: nil)
-        _ = _service?.request(request, model: ContainerListModel<PromoterChatListModel>.self, callback: callback)
-    }
-    
-    public class func getPromoterChatMessages(chatId: String, callback: ObjectResult<ContainerModel<PromoterChatMessagesModel>>? = nil) {
-        let params: [String : Any] = ["chatId" : chatId]
-        let url = URLMANAGER.baseUrl(endPoint: kGetPromoterChatMessageEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerModel<PromoterChatMessagesModel>.self, callback: callback)
-    }
-    
     public class func promoterEventInviteStatus(inviteId: String,inviteStatus: String,callback: ObjectResult<ContainerModel<BaseModel>>? = nil) {
         let param: [String: Any] = ["inviteId" : inviteId, "promoterStatus" : inviteStatus]
         let url = URLMANAGER.baseUrl(endPoint: kInviteStatusRejectEndPoint)
@@ -939,41 +886,7 @@ class WhosinServices: BaseApiService {
         let request = POST(url, parameters: param)
         _ = _service?.request(request, model: ContainerModel<BaseModel>.self, callback: callback)
     }
-    
-    public class func promoterInEventsList(callback: ObjectResult<ContainerListModel<PromoterEventsModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kInEventsListEndPoint)
-        let request = POST(url, parameters: nil)
-        _ = _service?.request(request, model: ContainerListModel<PromoterEventsModel>.self, callback: callback)
-    }
-    
-    public class func eventHideShow(eventId: String,isHidden: Bool, callback: ObjectResult<ContainerModel<PromoterEventsModel>>? = nil) {
-        let param: [String: Any] = ["eventId" : eventId, "isHidden": isHidden]
-        let url = URLMANAGER.baseUrl(endPoint: kEventHideShowEndPoint)
-        let request = POST(url, parameters: param)
-        _ = _service?.request(request, model: ContainerModel<PromoterEventsModel>.self, callback: callback)
-    }
-    
-    public class func promoterEventInviteList(eventId: String, page: Int, callback: ObjectResult<ContainerModel<PromoterEventsModel>>? = nil) {
-        let param: [String: Any] = ["eventId" : eventId, "page": page, "limit" : 50]
-        let url = URLMANAGER.baseUrl(endPoint: kPromoterEventInviteListEndPoint)
-        let request = POST(url, parameters: param)
-        _ = _service?.request(request, model: ContainerModel<PromoterEventsModel>.self, callback: callback)
-    }
-    
-    public class func promoterEventInviteListNew(eventId: String, page: Int, callback: ObjectResult<ContainerModel<InviteListModel>>? = nil) {
-        let param: [String: Any] = ["eventId" : eventId, "page": page, "limit" : 50]
-        let url = URLMANAGER.baseUrl(endPoint: kPromoterEventInviteListNewEndPoint)
-        let request = POST(url, parameters: param)
-        _ = _service?.request(request, model: ContainerModel<InviteListModel>.self, callback: callback)
-    }
-    
-    public class func promoterEventInviteUsers(eventId: String, callback: ObjectResult<ContainerModel<PromoterInvitedUserModel>>? = nil) {
-        let param: [String: Any] = ["eventId" : eventId]
-        let url = URLMANAGER.baseUrl(endPoint: kPromoterEventInviteUsersEndPoint)
-        let request = POST(url, parameters: param)
-        _ = _service?.request(request, model: ContainerModel<PromoterInvitedUserModel>.self, callback: callback)
-    }
-    
+                
     // --------------------------------------
     // MARK: Sub-Admin EndPoint
     // --------------------------------------
@@ -1008,33 +921,7 @@ class WhosinServices: BaseApiService {
     // --------------------------------------
     // MARK: Complimentary Profile Service
     // --------------------------------------
-    
-    public class func getComplementaryProfile(callback: ObjectResult<ContainerModel<PromoterProfileModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kComplementaryProfileEndPoint)
-        let request = GET(url)
-        _ = _service?.request(request, model: ContainerModel<PromoterProfileModel>.self, callback: callback)
-    }
-    
-    public class func getComplementaryPublicProfile(_ id: String, callback: ObjectResult<ContainerModel<PromoterProfileModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kComplementryPublicEndPoint + id)
-        let request = GET(url)
-        _ = _service?.request(request, model: ContainerModel<PromoterProfileModel>.self, callback: callback)
-    }
-    
-    public class func getEventList(callback: ObjectResult<ContainerListModel<PromoterEventsModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kComplementaryEventListEndPoint)
-        let params = ["latitude": APPSETTING.latitude , "longitude": APPSETTING.longitude ]
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerListModel<PromoterEventsModel>.self, callback: callback)
-    }
-    
-    public class func getComplementaryEventDetail(eventId: String, callback: ObjectResult<ContainerModel<PromoterEventsModel>>? = nil) {
-        let param: [String: Any] = ["eventId": eventId]
-        let url = URLMANAGER.baseUrl(endPoint: kComplementaryEventDetailEndPoint)
-        let request = POST(url, parameters: param)
-        _ = _service?.request(request, model: ContainerModel<PromoterEventsModel>.self, callback: callback)
-    }
-    
+                
     public class func complementaryUserNotification(callback: ObjectResult<ContainerModel<NotificationListModel>>? = nil) {
         let url = URLMANAGER.baseUrl(endPoint: kComplementryUserNotificationEndPoint)
         let request = POST(url, parameters: nil)
@@ -1047,25 +934,6 @@ class WhosinServices: BaseApiService {
         _ = _service?.request(request, model: ContainerModel<NotificationListModel>.self, callback: callback)
     }
     
-    public class func complementaryChatList(callback: ObjectResult<ContainerListModel<PromoterChatListModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kComplementaryChatListEndPoint)
-        let request = POST(url, parameters: nil)
-        _ = _service?.request(request, model: ContainerListModel<PromoterChatListModel>.self, callback: callback)
-    }
-    
-    public class func confirmedEventList(callback: ObjectResult<ContainerListModel<PromoterEventsModel>>? = nil) {
-        let params = ["latitude": APPSETTING.latitude , "longitude": APPSETTING.longitude ]
-        let url = URLMANAGER.baseUrl(endPoint: kCMConfirmedEventListEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerListModel<PromoterEventsModel>.self, callback: callback)
-    }
-    
-    public class func CMEventHistory(page: Int, callback: ObjectResult<ContainerListModel<PromoterEventsModel>>? = nil) {
-        let params: [String: Any] =  ["latitude": APPSETTING.latitude , "longitude": APPSETTING.longitude, "page": page, "limit": 10 ]
-        let url = URLMANAGER.baseUrl(endPoint: kCMEventHistoryEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerListModel<PromoterEventsModel>.self, callback: callback)
-    }
     
     // --------------------------------------
     // MARK: Home Service
@@ -1078,20 +946,6 @@ class WhosinServices: BaseApiService {
         _ = _service?.request(request, model: ContainerModel<HomeModel>.self,shouldRefresh: shouldRefresh, callback: callback)
     }
     
-    public class func getDealsById(id: String, type: String, callback: ObjectResult<ContainerListModel<DealsModel>>? = nil) {
-        var params: [String:Any] = [:]
-        if type == "venue" { params["venueId"] = id } else { params["categoryId"] = id }
-        let url = URLMANAGER.baseUrl(endPoint: kDealsAndPackagesEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerListModel<DealsModel>.self, callback: callback)
-    }
-    
-    public class func getDealsList(callback: ObjectResult<ContainerListModel<DealsModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kDealsAndPackagesEndPoint)
-        let request = POST(url, parameters: nil)
-        _ = _service?.request(request, model: ContainerListModel<DealsModel>.self, callback: callback)
-    }
-
     // --------------------------------------
     // MARK: Search Service
     // --------------------------------------
@@ -1110,33 +964,6 @@ class WhosinServices: BaseApiService {
         _ = _service?.request(request, model: ContainerListModel<UserDetailModel>.self, callback: callback)
     }
     
-    public class func offerSearch(search: String, page: Int, callback: ObjectResult<ContainerListModel<OffersModel>>? = nil) {
-        let params: [String: Any] = ["search" : search, "page": page, "limit": 20]
-        let url = URLMANAGER.baseUrlV2(endPoint: kOfferSearchEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerListModel<OffersModel>.self, callback: callback)
-    }
-    
-    public class func eventSearch(search: String, page: Int, callback: ObjectResult<ContainerListModel<EventModel>>? = nil) {
-        let params: [String: Any] = ["search" : search, "page": page, "limit": 20]
-        let url = URLMANAGER.baseUrl(endPoint: kEventSearchEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerListModel<EventModel>.self, callback: callback)
-    }
-    
-    public class func activitySearch(search: String, page: Int, callback: ObjectResult<ContainerListModel<ActivitiesModel>>? = nil) {
-        let params: [String: Any] = ["search" : search, "page": page, "limit": 20]
-        let url = URLMANAGER.baseUrl(endPoint: kActivitySearchEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerListModel<ActivitiesModel>.self, callback: callback)
-    }
-
-    public class func venueRecommended(callback: ObjectResult<ContainerListModel<RecommendedModel>>? = nil) {
-        let url = URLMANAGER.baseUrlV2(endPoint: kVenueRecommendedEndPoint)
-        let request = POST(url,parameters: nil)
-        _ = _service?.request(request, model: ContainerListModel<RecommendedModel>.self, shouldRefresh: false, callback: callback)
-    }
-    
     public class func searchRecommended(callback: ObjectResult<ContainerModel<HomeModel>>? = nil) {
         let _: [String: Any] = ["Latitude":  APPSETTING.latitude,
                                      "Longitude": APPSETTING.longitude]
@@ -1145,13 +972,6 @@ class WhosinServices: BaseApiService {
         _ = _service?.request(request, model: ContainerModel<HomeModel>.self, shouldRefresh: false, callback: callback)
     }
 
-    
-    public class func getOfferDetail(offerId: String, callback: ObjectResult<ContainerModel<OffersModel>>? = nil) {
-        let params: [String: Any] = ["offerId" : offerId]
-        let url = URLMANAGER.baseUrlV2(endPoint: kOfferDetailByIdEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerModel<OffersModel>.self, callback: callback)
-    }
     
     // --------------------------------------
     // MARK: Venue Service
@@ -1166,12 +986,6 @@ class WhosinServices: BaseApiService {
         _ = _service?.request(request, model: ContainerModel<VenueDetailModel>.self, callback: callback)
     }
     
-    public class func getVenueOffers(venueId: String, day: String, page: Int, callback: ObjectResult<ContainerListModel<OffersModel>>? = nil) {
-        let params: [String: Any] = ["venueId" : venueId, "day": day, "page": page, "limit": 20 ]
-        let url = URLMANAGER.baseUrlV2(endPoint: kVenueOffersEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerListModel<OffersModel>.self, callback: callback)
-    }
 
     public class func venueFollows(id: String, callback: ObjectResult<ContainerModel<BaseModel>>? = nil) {
         let params: [String: Any] = ["followId" : id]
@@ -1188,12 +1002,6 @@ class WhosinServices: BaseApiService {
         _ = _service?.request(request, model: ContainerModel<BaseModel>.self, callback: callback)
     }
     
-    public class func getOffersByIds(ids: [String], callback: ObjectResult<ContainerListModel<OffersModel>>? = nil) {
-        let params: [String: Any] = ["ids" : ids]
-        let url = URLMANAGER.baseUrl(endPoint: kOfferListByIdsEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerListModel<OffersModel>.self, callback: callback)
-    }
     
     public class func getSuggestedVenueDetail(venueId: String, callback: ObjectResult<ContainerListModel<VenueDetailModel>>? = nil) {
         var params: [String: Any] = ["lat":  APPSETTING.latitude,
@@ -1219,40 +1027,7 @@ class WhosinServices: BaseApiService {
         let request = POST(url, parameters: params)
         _ = _service?.request(request, model: ContainerModel<PromoBaseModel>.self, callback: callback)
     }
-
-    // --------------------------------------
-    // MARK: Yachht Service
-    // --------------------------------------
     
-    public class func getyachtDetail(yachtId: String, callback: ObjectResult<ContainerModel<YachtDetailModel>>? = nil) {
-        let params: [String: Any] = ["yachtId" : yachtId]
-        let url = URLMANAGER.baseUrl(endPoint: kYachtDetailEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerModel<YachtDetailModel>.self, callback: callback)
-    }
-    
-    public class func getyachtOfferDetail(offerId: String, callback: ObjectResult<ContainerModel<YachtOfferDetailModel>>? = nil) {
-        let params: [String: Any] = ["offerId" : offerId]
-        let url = URLMANAGER.baseUrl(endPoint: kYachOfferDetailEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerModel<YachtOfferDetailModel>.self, callback: callback)
-    }
-    
-    public class func getyachtClubDetail(yachtClubId: String, callback: ObjectResult<ContainerModel<YachtClubModel>>? = nil) {
-        let params: [String: Any] = ["yachtClubId" : yachtClubId]
-        let url = URLMANAGER.baseUrl(endPoint: kYachtClubDetailEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerModel<YachtClubModel>.self, callback: callback)
-    }
-
-    public class func getPackageTimeSlot(packageId: String, callback: ObjectResult<ContainerModel<YachtClubModel>>? = nil) {
-        let params: [String: Any] = ["packageId" : packageId]
-        let url = URLMANAGER.baseUrl(endPoint: kYachTimeSlotsEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerModel<YachtClubModel>.self, callback: callback)
-    }
-
-
     // --------------------------------------
     // MARK: Category Service
     // --------------------------------------
@@ -1263,50 +1038,11 @@ class WhosinServices: BaseApiService {
         let request = POST(url,parameters: params)
         _ = _service?.request(request, model: ContainerModel<CategoryDetailModel>.self, shouldRefresh: false, callback: callback)
     }
-
-    public class func getCategoryOffers(categoryId: String, day: String, page: Int, callback: ObjectResult<ContainerListModel<OffersModel>>? = nil) {
-        let params: [String: Any] = ["categoryId" : categoryId, "day": day, "page": page, "limit": 30 ]
-        let url = URLMANAGER.baseUrl(endPoint: kVenueOffersEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerListModel<OffersModel>.self, shouldRefresh: false, callback: callback)
-    }
     
-    // --------------------------------------
-    // MARK: Deals Service
-    // --------------------------------------
-    
-    public class func getDealsDetail(dealsId: String, callback: ObjectResult<ContainerModel<DealsModel>>? = nil) {
-        let params: [String: Any] = ["dealId" : dealsId]
-        let url = URLMANAGER.baseUrl(endPoint: kDealsDetailEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerModel<DealsModel>.self, callback: callback)
-    }
-
     // --------------------------------------
     // MARK: Event Organization Service
     // --------------------------------------
-
-    public class func getOrganizationDetail(orgId: String, callback: ObjectResult<ContainerModel<OrganizaitionDetailModel>>? = nil) {
-        let params: [String: Any] = ["org_id" : orgId]
-        let url = URLMANAGER.baseUrl(endPoint: kEventOrganizationEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerModel<OrganizaitionDetailModel>.self, callback: callback)
-    }
-    
-    public class func followEventOrg(id: String, callback: ObjectResult<ContainerModel<BaseModel>>? = nil) {
-        let params: [String: Any] = ["org_id" : id]
-        let url = URLMANAGER.baseUrl(endPoint: kEventOrganizationFollowEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerModel<BaseModel>.self, callback: callback)
-    }
-    
-    public class func getEventDetail(eventId: String, callback: ObjectResult<ContainerModel<EventDetailModel>>? = nil) {
-        let params: [String: Any] = ["eventId" : eventId]
-        let url = URLMANAGER.baseUrl(endPoint: kEventDetailEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerModel<EventDetailModel>.self, callback: callback)
-    }
-    
+        
     public class func updateEventInviteStatus(eventId: String, inviteStatus: String, callback: ObjectResult<ContainerModel<BaseModel>>? = nil) {
         let params: [String:Any] = ["eventId": eventId, "inviteStatus": inviteStatus]
         let url = URLMANAGER.baseUrl(endPoint: kEventInviteStatusEndPoint)
@@ -1327,21 +1063,7 @@ class WhosinServices: BaseApiService {
         let request = POST(url, parameters:params)
         _ = _service?.request(request, model: BaseModel.self, callback: callback)
     }
-    
-    public class func getEventGuestList(eventId: String, inviteStatus: String, page: Int, callback: ObjectResult<ContainerModel<EventGuestListModel>>? = nil) {
-        let params: [String: Any] = ["eventId" : eventId, "inviteStatus": inviteStatus, "limit": 30, "page": page]
-        let url = URLMANAGER.baseUrl(endPoint: kEventGuestListEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerModel<EventGuestListModel>.self, callback: callback)
-    }
         
-    public class func getEventhighlightsList(eventId: String, callback: ObjectResult<ContainerModel<HighlightsListModel>>? = nil) {
-        let params: [String: Any] = ["eventId" : eventId]
-        let url = URLMANAGER.baseUrl(endPoint: kHighlightsListEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerModel<HighlightsListModel>.self, callback: callback)
-    }
-    
     public class func addEventHighlights(eventId: String, msg: String, callback: ObjectResult<ContainerModel<BaseModel>>? = nil) {
         let params: [String: Any] = ["eventId" : eventId, "msg": msg]
         let url = URLMANAGER.baseUrl(endPoint: kHighlightsEndPoint)
@@ -1349,12 +1071,6 @@ class WhosinServices: BaseApiService {
         _ = _service?.request(request, model: ContainerModel<BaseModel>.self, callback: callback)
     }
     
-    public class func requestMyEvent(callback: ObjectResult<ContainerListModel<EventModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kMyEventEndPoint)
-        let request = POST(url,parameters: nil)
-        _ = _service?.request(request, model: ContainerListModel<EventModel>.self, callback: callback)
-    }
-
     // --------------------------------------
     // MARK: NearBy Service
     // --------------------------------------
@@ -1364,14 +1080,6 @@ class WhosinServices: BaseApiService {
         let url = URLMANAGER.baseUrl(endPoint: kNearByInviteCreateEndPoint)
         let request = POST(url, parameters: params)
         _ = _service?.request(request, model: BaseModel.self, callback: callback)
-    }
-
-    public class func nearByEvents(distance: Int, callback:ObjectResult<ContainerModel<CommanModel<EventModel, UserDetailModel>>>? = nil) {
-        //APPSETTING.currentLocation?.coordinate.latitude
-        let params: [String: Any] = ["distance": distance, "lat": "33.53105252471245", "lng": "36.05016582031248"]
-        let url = URLMANAGER.baseUrl(endPoint: kEventNearByEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerModel<CommanModel<EventModel, UserDetailModel>>.self, callback: callback)
     }
 
     // --------------------------------------
@@ -1468,11 +1176,6 @@ class WhosinServices: BaseApiService {
         _ = _service?.request(request, model: ContainerListModel<VouchersListModel>.self, callback: callback)
     }
     
-    public class func getCustomSubscriptions(callback: ObjectResult<ContainerModel<SubscriptionModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kSubscriptionCustomEndPoint)
-        let request = GET(url)
-        _ = _service?.request(request, model: ContainerModel<SubscriptionModel>.self, callback: callback)
-    }
         
     public class func sendPackageGifts(type: String, friendId: String, packageId: String, dealId: String, activityId: String,eventId: String, date: String, time: String, qty: Int, giftMessage: String, callback: ObjectResult<BaseModel>? = nil){
         let url = URLMANAGER.baseUrlV2(endPoint: kSendGiftEndPoint)
@@ -1544,76 +1247,6 @@ class WhosinServices: BaseApiService {
         let request = POST(url, parameters: params)
         _ = _service?.request(request, model: ContainerModel<UserDetailModel>.self, callback: callback)
     }
-
-    // --------------------------------------
-    // MARK: Bucket Service
-    // --------------------------------------
-    
-    public class func createBucket(name: String, userIds: String, image: String, callback: ObjectResult<ContainerModel<BucketDetailModel>>? = nil) {
-        var params: [String: Any] = [:]
-        params["image"] = image
-        params["name"] = name
-        params["userIds"] = userIds
-        
-        let url = URLMANAGER.baseUrl(endPoint: kCreateBucketEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerModel<BucketDetailModel>.self, callback: callback)
-    }
-    
-    public class func updateBucket(id: String,name: String = kEmptyString, userIds: String = kEmptyString, image: String = kEmptyString, callback: ObjectResult<ContainerModel<BaseModel>>? = nil) {
-        var params: [String: Any] = [:]
-        params["id"] = id
-
-        if !Utils.stringIsNullOrEmpty(image) {
-            params["image"] = image
-        }
-        if !Utils.stringIsNullOrEmpty(name) {
-            params["name"] = name
-        }
-        if !Utils.stringIsNullOrEmpty(userIds) {
-            params["userIds"] = userIds
-        }
-        let url = URLMANAGER.baseUrl(endPoint: kUpdateBucketEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerModel<BaseModel>.self, callback: callback)
-    }
-    
-    public class func getBucketList(callback: ObjectResult<ContainerModel<BucketListModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kBucketListEndPoint)
-        let request = GET(url)
-        _ = _service?.request(request, model: ContainerModel<BucketListModel>.self, callback: callback)
-    }
-    
-    public class func requestMyBucketList(callback: ObjectResult<ContainerModel<MyBucketModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kMyBucketListEndPoint)
-        let request = GET(url)
-        _ = _service?.request(request, model: ContainerModel<MyBucketModel>.self, callback: callback)
-    }
-
-    public class func getBucketDetail(bucketId: String, callback: ObjectResult<ContainerModel<BucketDetailModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kBucketDetailEndPoint)
-        let request = GET(url + "\(bucketId)")
-        _ = _service?.request(request, model: ContainerModel<BucketDetailModel>.self, callback: callback)
-    }
-
-    public class func addRemoveBucketList(params: [String: Any], callback: ObjectResult<ContainerModel<BaseModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kUpdateItemBucketEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerModel<BaseModel>.self, callback: callback)
-    }
-    
-    public class func removeBucket(bucketId: String, callback: ObjectResult<BaseModel>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kBucketDetailEndPoint)
-        let request = DELETE(url + "\(bucketId)")
-        _ = _service?.request(request, model: ContainerModel<BaseModel>.self, callback: callback)
-    }
-    
-    public class func addToShareBucket(bucketId: String, userIds: String, callback: ObjectResult<ContainerModel<BucketListModel>>? = nil) {
-        let params: [String:Any] = ["userIds": userIds, "bucketId": bucketId]
-        let url = URLMANAGER.baseUrl(endPoint: kUpdateShareBucketAddEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerModel<BucketListModel>.self, callback: callback)
-    }
     
     public class func removeShareBucket(bucketId: String, userId: String, callback: ObjectResult<ContainerModel<BaseModel>>? = nil) {
         let params: [String:Any] = ["userId": userId, "bucketId": bucketId]
@@ -1621,56 +1254,12 @@ class WhosinServices: BaseApiService {
         let request = POST(url, parameters: params)
         _ = _service?.request(request, model: ContainerModel<BaseModel>.self, callback: callback)
     }
-
-    public class func addGalaryImageBucket(bucketId: String, image: String, callback: ObjectResult<ContainerModel<BucketDetailModel>>? = nil) {
-        var params: [String: Any] = [:]
-        params["image"] = image
-        params["id"] = bucketId
-        let url = URLMANAGER.baseUrl(endPoint: kAddImageinGalaryEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerModel<BucketDetailModel>.self, callback: callback)
-    }
-    
-    public class func removeGalaryImageBucket(bucketId: String, image: String, callback: ObjectResult<ContainerModel<BucketDetailModel>>? = nil) {
-        var params: [String: Any] = [:]
-        params["bucketId"] = bucketId
-        params["image"] = image
-        let url = URLMANAGER.baseUrl(endPoint: kRemoveImageFromGalaryEndPoint)
-        let request = DELETE(url, params)
-        _ = _service?.multipartRequest(request, model: ContainerModel<BucketDetailModel>.self, callback: callback)
-    }
-    
-    public class func getDealsForBucket(callback: ObjectResult<ContainerListModel<DealsModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kBucketDealsEndPoint)
-        let request = GET(url)
-        _ = _service?.request(request, model: ContainerListModel<DealsModel>.self, callback: callback)
-    }
-    
-    public class func exitFromBucket(id: String, callback: ObjectResult<ContainerModel<BaseModel>>? = nil) {
-        let params: [String:Any] = ["id": id]
-        let url = URLMANAGER.baseUrl(endPoint: kBucketExitEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerModel<BaseModel>.self, callback: callback)
-    }
-    
+        
     public class func changeOwnerOfBucket(id: String, ownerId: String, callback: ObjectResult<ContainerModel<BaseModel>>? = nil) {
         let params: [String:Any] = ["id": id, "ownerId": ownerId]
         let url = URLMANAGER.baseUrl(endPoint: kBucketChangeOwnerEndPoint)
         let request = POST(url, parameters: params)
         _ = _service?.request(request, model: ContainerModel<BaseModel>.self, callback: callback)
-    }
-
-    
-    public class func requestEventHistory(callback: ObjectResult<ContainerListModel<EventModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kEventHistoryEndPoint)
-        let request = POST(url,parameters: nil)
-        _ = _service?.request(request, model: ContainerListModel<EventModel>.self, callback: callback)
-    }
-    
-    public class func requestUpcomingEvent(callback: ObjectResult<ContainerListModel<EventModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kEventUpcomingEndPoint)
-        let request = POST(url,parameters: nil)
-        _ = _service?.request(request, model: ContainerListModel<EventModel>.self, callback: callback)
     }
 
     // --------------------------------------
@@ -1681,35 +1270,6 @@ class WhosinServices: BaseApiService {
         let url = URLMANAGER.baseUrl(endPoint: kActivityBannerListEndPoint)
         let request = GET(url)
         _ = _service?.request(request, model: ContainerListModel<BannerModel>.self, callback: callback)
-    }
-
-    public class func activityList(type: String, page: Int ,callback: ObjectResult<ContainerListModel<ActivitiesModel>>? = nil) {
-        var url = URLMANAGER.baseUrl(endPoint: kActivityListEndPoint)
-        if !type.isEmpty {
-            url = url + "?type=\(type)&limit=10&page=\(page)"
-        } else {
-            url = url + "?limit=10&page=\(page)"
-        }
-        let request = GET(url)
-        _ = _service?.request(request, model: ContainerListModel<ActivitiesModel>.self, callback: callback)
-    }
-    
-    public class func getActivityDetail(activityId: String, callback: ObjectResult<ContainerModel<ActivitiesModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kActivityDetailEndPoint)
-        let request = GET(url + "?activityId=\(activityId)")
-        _ = _service?.request(request, model: ContainerModel<ActivitiesModel>.self, callback: callback)
-    }
-
-    public class func activityFatchDates(activityId: String ,callback: ObjectResult<ContainerListModel<AvilableDateTimeModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kActivityDateEndPoint)
-        let request = GET(url + "?activityId=\(activityId)")
-        _ = _service?.request(request, model: ContainerListModel<AvilableDateTimeModel>.self, callback: callback)
-    }
-
-    public class func activityFatchSlots(activityId: String, date:String ,callback: ObjectResult<ContainerListModel<AvilableDateTimeModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kActivitySlotsEndPoint)
-        let request = GET(url + "?activityId=\(activityId)&date=\(date)")
-        _ = _service?.request(request, model: ContainerListModel<AvilableDateTimeModel>.self, callback: callback)
     }
         
     // --------------------------------------
@@ -1800,13 +1360,7 @@ class WhosinServices: BaseApiService {
         let request = POST(url, parameters: params)
         _ = _service?.request(request, model: ContainerModel<ChatModel>.self, callback: callback)
     }
-    
-    public class func getEventChatList(callback: ObjectResult<ContainerModel<CommanModel<EventChatModel, UserDetailModel>>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kChatEventEndPoint)
-        let request = GET(url)
-        _ = _service?.request(request, model: ContainerModel<CommanModel<EventChatModel, UserDetailModel>>.self, callback: callback)
-    }
-    
+        
     public class func uploadFile(fileUrl: URL, callback: ObjectResult<ContainerStringModel>? = nil) {
         let url = URLMANAGER.baseUrl(endPoint: kChatUploadFileEndPoint)
         var params: [String: Any] = [:]
@@ -1827,20 +1381,7 @@ class WhosinServices: BaseApiService {
     // --------------------------------------
     // MARK: Shoutout Service
     // --------------------------------------
-    
-    public class func getShoutoutList(callback: ObjectResult<ContainerListModel<ShoutoutListModel>>? = nil) {
-        let url = URLMANAGER.baseUrlV2(endPoint: kShoutoutListEndPoint)
-        let request = POST(url, parameters: nil)
-        _ = _service?.request(request, model: ContainerListModel<ShoutoutListModel>.self, callback: callback)
-    }
-    
-    public class func addShoutout(venueId: String, userIds: [String], time: Int, title: String, caption: String, callback: ObjectResult<BaseModel>? = nil) {
-        let params: [String: Any] = ["venueId": venueId, "userIds": userIds, "time": time, "title": title, "caption": caption]
-        let url = URLMANAGER.baseUrl(endPoint: kAddShoutoutEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: BaseModel.self, callback: callback)
-    }
-    
+        
     public class func changeVisibility(isVisible: Bool, callback: ObjectResult<ContainerModel<BaseModel>>? = nil) {
         let params: [String: Any] = ["isVisible": isVisible]
         let url = URLMANAGER.baseUrlV2(endPoint: kVisibilityEndPoint)
@@ -1876,18 +1417,6 @@ class WhosinServices: BaseApiService {
     // MARK: Claim History Service
     // --------------------------------------
     
-    public class func claimHistory(callback: ObjectResult<ContainerListModel<ClaimHistoryModel>>? = nil) {
-        let url = URLMANAGER.baseUrlV2(endPoint: kClaimHistoryEndPoint)
-        let request = POST(url, parameters: nil)
-        _ = _service?.request(request, model: ContainerListModel<ClaimHistoryModel>.self, callback: callback)
-    }
-    
-    public class func claimOffer(params: [String: Any], callback: ObjectResult<ContainerModel<ClaimProcessModel>>? = nil) {
-        let url = URLMANAGER.baseUrlV2(endPoint: kClaimOfferEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerModel<ClaimProcessModel>.self, callback: callback)
-    }
-
     public class func requestHistory(callback: ObjectResult<ContainerListModel<VouchersListModel>>? = nil) {
         let url = URLMANAGER.baseUrlV2(endPoint: korderHistoryEndPoint)
         let request = POST(url, parameters: nil)
@@ -1945,17 +1474,7 @@ class WhosinServices: BaseApiService {
         let request = POST(url, parameters: params)
         return _service?.request(request, model: ContainerListModel<SearchResultModel>.self, callback: callback)
     }
-    
-    public class func explore(dateBefore: String, limit: Int, id: [String], search: String, callback: ObjectResult<ContainerListModel<ExploreModel>>? = nil) -> DataRequest? {
-        let url = URLMANAGER.baseUrl(endPoint: kExploreEndPoint)
-        var params: [String: Any] = ["dateBefore": dateBefore, "limit": limit, "query": id, "lat": APPSETTING.latitude, "long": APPSETTING.longitude]
-        if !Utils.stringIsNullOrEmpty(search) {
-            params["search"] = search
-        }
-        let request = POST(url, parameters: params)
-        return _service?.request(request, model: ContainerListModel<ExploreModel>.self, callback: callback)
-    }
-    
+        
     public class func newExplore(shouldRefresh: Bool = false ,callback: ObjectResult<ContainerModel<HomeModel>>? = nil) {
         let url = URLMANAGER.baseUrlV2(endPoint: kNewExploreEndpoint)
         let request = POST(url, parameters: nil)
@@ -2032,45 +1551,12 @@ class WhosinServices: BaseApiService {
     // MARK: Outing Service
     // --------------------------------------
 
-    public class func requestOutingList(callback: ObjectResult<ContainerListModel<OutingListModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kOutingListEndPoint)
-        let request = POST(url, parameters: nil)
-        _ = _service?.request(request, model: ContainerListModel<OutingListModel>.self, callback: callback)
-    }
-
-    public class func requestUpdateOuting(params: [String: Any], callback: ObjectResult<ContainerModel<OutingListModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kUpdateOutingEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerModel<OutingListModel>.self, callback: callback)
-    }
-
     public class func requestCreateOuting(params: [String: Any], callback: ObjectResult<ContainerModel<BaseModel>>? = nil) {
         let url = URLMANAGER.baseUrl(endPoint: kOutingEndPoint)
         let request = POST(url, parameters: params)
         _ = _service?.request(request, model: ContainerModel<BaseModel>.self, callback: callback)
     }
     
-    public class func changeOutingOwner(newOwnerId: String, outingId: String, callback: ObjectResult<ContainerModel<OutingListModel>>? = nil) {
-        let params: [String: Any] = ["newOwnerId": newOwnerId, "outingId": outingId]
-        let url = URLMANAGER.baseUrl(endPoint: kOutingOwnerChangeEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerModel<OutingListModel>.self, callback: callback)
-    }
-    
-    public class func requestDeleteOuting( outingId: String, callback: ObjectResult<ContainerModel<OutingListModel>>? = nil) {
-        let params: [String: Any] = ["outingId": outingId]
-        let url = URLMANAGER.baseUrl(endPoint: kOutingOwnerDeleteEndPoint)
-        let request = DELETE(url, params)
-        _ = _service?.request(request, model: ContainerModel<OutingListModel>.self, callback: callback)
-    }
-    
-    public class func getOutingDetail(outingId: String, callback: ObjectResult<ContainerModel<OutingListModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kOutingDetailEndPoint)
-        let request = GET(url + "\(outingId)")
-        _ = _service?.request(request, model: ContainerModel<OutingListModel>.self, callback: callback)
-    }
-
-
     // --------------------------------------
     // MARK: WhoIsIn Contact
     // --------------------------------------
@@ -2100,49 +1586,6 @@ class WhosinServices: BaseApiService {
         let params: [String: Any] = ["reply":reply,"conctactUsId": conctactUsId]
         let request = POST(url, parameters: params)
         _ = _service?.request(request, model: ContainerModel<RepliesModel>.self, callback: callback)
-    }
-    
-    // --------------------------------------
-    // MARK: Feed Contact
-    // --------------------------------------
-
-    public class func getFeedList(page: Int, limit: Int, callback: ObjectResult<ContainerListModel<UserFeedModel>>? = nil) {
-        let params: [String: Any] = ["page":page, "limit": limit]
-        let url = URLMANAGER.baseUrlV2(endPoint: kFeedListEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerListModel<UserFeedModel>.self, shouldRefresh: true, callback: callback)
-    }
-    
-    public class func getFreindFeedList(page: Int, limit: Int, friendId: String, callback: ObjectResult<ContainerListModel<UserFeedModel>>? = nil) {
-        let params: [String: Any] = ["page":page, "limit": limit, "friendId": friendId]
-        let url = URLMANAGER.baseUrlV2(endPoint: kFriendFeedListEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerListModel<UserFeedModel>.self, shouldRefresh: true, callback: callback)
-    }
-    
-    public class func addRecommendation(id: String, type: String, callback: ObjectResult<ContainerModel<BaseModel>>? = nil) {
-        let params: [String: Any] = ["id": id, "type": type]
-        let url = URLMANAGER.baseUrl(endPoint: kAddRecommendedEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerModel<BaseModel>.self, callback: callback)
-    }
-
-    // --------------------------------------
-    // MARK: Brunch Contact
-    // --------------------------------------
-
-    public class func getBrunchList(venueId: String, day: String, callback: ObjectResult<ContainerListModel<OffersModel>>? = nil) {
-        let params: [String: Any] = ["venueId":venueId, "day": day]
-        let url = URLMANAGER.baseUrlV2(endPoint: kClaimBrunchListEndPoint)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerListModel<OffersModel>.self, callback: callback)
-    }
-
-    public class func getBrunchBySpecialOffer(specialOfferId: String, callback: ObjectResult<ContainerModel<SpecialOffersModel>>? = nil) {
-        let params: [String: Any] = ["specialOfferId": specialOfferId]
-        let url = URLMANAGER.baseUrlV2(endPoint: kBruunchBySpecialOffer)
-        let request = POST(url, parameters: params)
-        _ = _service?.request(request, model: ContainerModel<SpecialOffersModel>.self, callback: callback)
     }
 
     // --------------------------------------
@@ -2324,13 +1767,7 @@ class WhosinServices: BaseApiService {
         let request = POST(url, parameters: params)
         _ = _service?.request(request, model: BaseModel.self, callback: callback)
     }
-    
-    public class func eventPlusOneList(callback: ObjectResult<ContainerListModel<PromoterEventsModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kEventListPlusOneEndPoint)
-        let request = POST(url, parameters: nil)
-        _ = _service?.request(request, model: ContainerListModel<PromoterEventsModel>.self, callback: callback)
-    }
-    
+        
     public class func updatePlusOneInviteStatus(inviteId: String,inviteStatus: String,callback: ObjectResult<ContainerModel<BaseModel>>? = nil) {
         let param: [String: Any] = ["inviteId" : inviteId, "status" : inviteStatus]
         let url = URLMANAGER.baseUrl(endPoint: kPlusOneInOutEndPoint)
@@ -2344,23 +1781,7 @@ class WhosinServices: BaseApiService {
         let request = POST(url, parameters: param)
         _ = _service?.request(request, model: ContainerModel<BaseModel>.self, callback: callback)
     }
-    
-
-    public class func getPlusOneEventDetail(eventId: String, callback: ObjectResult<ContainerModel<PromoterEventsModel>>? = nil) {
-        let param: [String: Any] = ["eventId": eventId]
-        let url = URLMANAGER.baseUrl(endPoint: kPlusOneEventDetail)
-        let request = POST(url, parameters: param)
-        _ = _service?.request(request, model: ContainerModel<PromoterEventsModel>.self, callback: callback)
-    }
-     
-    public class func closeEventSpot(eventId: String, callback: ObjectResult<ContainerModel<PromoterEventsModel>>? = nil) {
-        let param: [String: Any] = ["eventId": eventId]
-        let url = URLMANAGER.baseUrl(endPoint: kPromoterCloseEventSpotEndPoint)
-        let request = POST(url, parameters: param)
-        _ = _service?.request(request, model: ContainerModel<PromoterEventsModel>.self, callback: callback)
-
-    }
-    
+        
     public class func getCustomCategory(callback: ObjectResult<ContainerStringListModel>? = nil) {
         let url = URLMANAGER.baseUrl(endPoint: kCustomCategoryEndPoint)
         let request = GET(url)
@@ -2395,31 +1816,7 @@ class WhosinServices: BaseApiService {
         let request = POST(url, parameters: param)
         _ = _service?.request(request, model: ContainerListModel<UserDetailModel>.self, callback: callback)
     }
-    
-    public class func penaltyPaymentCreate(params: [String: Any], callback: ObjectResult<ContainerModel<PaymentCredentialModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kPenaltyPaymentCreateEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerModel<PaymentCredentialModel>.self, callback: callback)
-    }
-    
-    public class func purchasePaidPass(callback: ObjectResult<ContainerListModel<PaidPassModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kPaidPassEndPoint)
-        let request = POST(url, parameters: ["type": "event"])
-        _ = _service?.request(request, model: ContainerListModel<PaidPassModel>.self, callback: callback)
-    }
-    
-    public class func paidPassByEventId(eventId: String, callback: ObjectResult<ContainerModel<PaidPassModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kPaidPassByEventId)
-        let request = POST(url, parameters: ["eventId": eventId])
-        _ = _service?.request(request, model: ContainerModel<PaidPassModel>.self, callback: callback)
-    }
-    
-    public class func paidPassPaymentCreate(params: [String: Any], callback: ObjectResult<ContainerModel<PaymentCredentialModel>>? = nil) {
-        let url = URLMANAGER.baseUrl(endPoint: kPaidPassPaymentCreateEndPoint)
-        let request = POST(url,parameters: params)
-        _ = _service?.request(request, model: ContainerModel<PaymentCredentialModel>.self, callback: callback)
-    }
-    
+                
     // --------------------------------------
     // MARK: Ads, banners and notification services
     // --------------------------------------
@@ -2438,7 +1835,6 @@ class WhosinServices: BaseApiService {
         _ = _service?.request(request, model: ContainerModel<IANListModel>.self, callback: callback)
     }
     
-
     public class func promotionalBanner(callback: ObjectResult<ContainerModel<PromotionalBannerModel>>? = nil) {
         let url = URLMANAGER.baseUrl(endPoint: kPromotionalBannerEndPoint)
         let request = POST(url, parameters: nil)

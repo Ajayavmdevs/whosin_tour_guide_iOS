@@ -202,7 +202,7 @@ class NewSearchVC: NavigationBarViewController {
         }
 
         model.homeblocksModel.forEach { data in
-            if !data.isVisibleForSearch(venue: model.venues.toArrayDetached(ofType: VenueDetailModel.self), offer: model.offers.toArrayDetached(ofType: OffersModel.self), activity: model.activities.toArrayDetached(ofType: ActivitiesModel.self), event: model.events.toArrayDetached(ofType: EventModel.self), suggestedUsers: data.suggestedUsers.toArrayDetached(ofType: UserDetailModel.self), ticket: model.tickets.toArrayDetached(ofType: TicketModel.self)) { return }
+            if !data.isVisibleForSearch(ticket: model.tickets.toArrayDetached(ofType: TicketModel.self)) { return }
             cellData.append([
                 kCellIdentifierKey: data.cellTypeForSearch.identifier,
                 kCellTagKey: data.id,
