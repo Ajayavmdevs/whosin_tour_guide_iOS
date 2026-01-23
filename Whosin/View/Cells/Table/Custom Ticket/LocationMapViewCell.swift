@@ -4,6 +4,7 @@ class LocationMapViewCell: UITableViewCell {
 
     @IBOutlet weak var _mapImage: UIImageView!
     @IBOutlet weak var _addressText: UILabel!
+    @IBOutlet weak var _mapView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,7 +24,12 @@ class LocationMapViewCell: UITableViewCell {
 
     public func setupData(lat: Double, long: Double, address: String) {
         _addressText.text = address
-        _mapImage.loadWebImage(Utils.getStaticMapURL(latitude: lat, longitude: long))
+        if lat == 0 && long == 0 {
+            _mapView.isHidden = true
+        } else {
+            _mapView.isHidden = false
+            _mapImage.loadWebImage(Utils.getStaticMapURL(latitude: lat, longitude: long))
+        }
     }
     
 }

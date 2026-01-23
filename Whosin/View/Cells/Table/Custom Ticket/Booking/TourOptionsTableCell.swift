@@ -6,6 +6,7 @@ import DropDown
 class TourOptionsTableCell: UITableViewCell {
 
     @IBOutlet weak var _noteText: CustomLabel!
+    @IBOutlet weak var _optionTitle: CustomLabel!
     @IBOutlet weak var _tourImage: UIImageView!
     @IBOutlet weak var _discountView: UIView!
     @IBOutlet weak var _discountText: CustomLabel!
@@ -18,6 +19,7 @@ class TourOptionsTableCell: UITableViewCell {
     @IBOutlet private weak var _selectedTime: UILabel!
     @IBOutlet private weak var _optionsView: UIView!
     @IBOutlet private weak var _mainView: UIView!
+    @IBOutlet private weak var _collapsView: UIView!
     @IBOutlet private weak var _customBadgeView: CustomBadgeView!
     @IBOutlet private weak var _customAdultView: CustomAdultsView!
     @IBOutlet weak var _customAddOnView: CustomAddOnOptionsView!
@@ -222,16 +224,18 @@ class TourOptionsTableCell: UITableViewCell {
         let imageTap = UITapGestureRecognizer(target: self, action: #selector(openImagePreview))
         _tourImage.addGestureRecognizer(imageTap)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(labelTapped))
-        _tourDesc.isUserInteractionEnabled = true
-        _tourDesc.addGestureRecognizer(tapGesture)
-        _tourDesc.delegate = self
-        _tourDesc.shouldCollapse = false
-        _tourDesc.shouldExpand = false
-        _tourDesc.numberOfLines = 1
-        _tourDesc.ellipsis = NSAttributedString(string: "....")
-        _tourDesc.collapsedAttributedLink = NSAttributedString(string: "more".localized(), attributes: [NSAttributedString.Key.foregroundColor: ColorBrand.brandPink])
-        _tourDesc.setLessLinkWith(lessLink: "see_less".localized(), attributes: [NSAttributedString.Key.foregroundColor: ColorBrand.brandPink], position: .left)
+//        _tourDesc.isUserInteractionEnabled = true
+//        _tourDesc.addGestureRecognizer(tapGesture)
+//        _tourDesc.delegate = self
+//        _tourDesc.shouldCollapse = false
+//        _tourDesc.shouldExpand = false
+//        _tourDesc.numberOfLines = 1
+//        _tourDesc.ellipsis = NSAttributedString(string: "....")
+//        _tourDesc.collapsedAttributedLink = NSAttributedString(string: "more".localized(), attributes: [NSAttributedString.Key.foregroundColor: ColorBrand.brandPink])
+//        _tourDesc.setLessLinkWith(lessLink: "see_less".localized(), attributes: [NSAttributedString.Key.foregroundColor: ColorBrand.brandPink], position: .left)
         disableSelectEffect()
+        layoutIfNeeded()
+        layoutMarginsDidChange()
     }
     
     // --------------------------------------
@@ -293,6 +297,11 @@ class TourOptionsTableCell: UITableViewCell {
     // MARK: Public
     // --------------------------------------
     
+    public func setExpanded(_ expanded: Bool) {
+        _mainView.isHidden = !expanded
+        _collapsView.isHidden = expanded
+    }
+
     public func setupData(_ options: [TourOptionsModel], isSelected: Bool, discount: Int = 0, isCart: Bool = false) {
         _type = "rayna"
         guard let data = options.first else { return }
@@ -336,7 +345,8 @@ class TourOptionsTableCell: UITableViewCell {
 
         
         _tourTitle.text = _selectedTourOptionModel!.optionDetail?.optionName
-        _tourDesc.text = _selectedTourOptionModel!.optionDetail?.optionDescription
+        _optionTitle.text = _selectedTourOptionModel!.optionDetail?.optionName
+//        _tourDesc.text = _selectedTourOptionModel!.optionDetail?.optionDescription
         _customAdultView.setupData(BOOKINGMANAGER.ticketModel, _selectedTourOptionModel)
         
         let originalPrice: Double = _selectedTourOptionModel?.withoutDiscountAmount.formatted() ?? 0.0
@@ -346,14 +356,16 @@ class TourOptionsTableCell: UITableViewCell {
             self._customBadgeView.setupWithoutDecimalData(originalPrice: originalPrice, discountedPrice: discountPrice, isNoDiscount: !self._selectedTourOptionModel!.hasDiscount)
         }
         _mainView.layer.borderWidth = isSelected ? 1 : 0.5
+        _collapsView.layer.borderWidth = isSelected ? 1 : 0.5
         _mainView.layer.borderColor = isSelected ? ColorBrand.tabSelectColor.cgColor : ColorBrand.brandGray.cgColor
+        _collapsView.layer.borderColor = isSelected ? ColorBrand.tabSelectColor.cgColor : ColorBrand.brandGray.cgColor
         
         if let model = BOOKINGMANAGER.bookingModel.tourDetails.first(where: { $0.optionId == "\(_selectedTourOptionModel?.tourOptionId ?? 0)" }) {
             if Utils.stringIsNullOrEmpty(model.tourDate) {
                 _selectedDate.text = "date_time_placeHolder".localized()
                 _SelectDateStackView.isHidden = false
                 _timeView.isHidden = true
-                _dateView.borderColor = ColorBrand.brandGray
+                _dateView.borderColor = ColorBrand.tabUnselect
             } else {
                 if !Utils.stringIsNullOrEmpty(model.timeSlot) {
                     _timeView.isHidden = false
@@ -380,13 +392,13 @@ class TourOptionsTableCell: UITableViewCell {
             _selectedDate.text = "date_time_placeHolder".localized()
             _SelectDateStackView.isHidden = false
             _timeView.isHidden = true
-            _dateView.borderColor = ColorBrand.brandGray
+            _dateView.borderColor = ColorBrand.tabUnselect
         }
 
         _selectedTransferType.text = _selectedTourOptionModel?.transferName
         
-        self._discountView.isHidden = (BOOKINGMANAGER.ticketModel?.discount ?? 0) <= 0
-        self._discountText.text = "\(BOOKINGMANAGER.ticketModel?.discount ?? 0) %"
+        self._discountView.isHidden = (_selectedTourOptionModel?.discount ?? 0) <= 0
+        self._discountText.attributedText = _selectedTourOptionModel?.discountText
         self.isRefundable = data.optionDetail?.isRefundable == true
         _cancellationPolicy.setTitle(data.optionDetail?.isRefundable == true ? "cancellation_policy".localized() : "non_refundable".localized())
         _cancellationPolicy.backgroundColor = data.optionDetail?.isRefundable == true ? ColorBrand.amberColor.withAlphaComponent(0.8) : UIColor(hexString: "#E32A62")
@@ -430,7 +442,8 @@ class TourOptionsTableCell: UITableViewCell {
 
         
         _tourTitle.text = options.title
-        _tourDesc.text = options.descriptions
+        _optionTitle.text = options.title
+//        _tourDesc.text = options.descriptions
         _customAdultView.setupData(BOOKINGMANAGER.ticketModel, _selectedTourOptionModel)
         let addOnOptions = _selectedTourOptionModel?.addonOptions.toArrayDetached(ofType: TourOptionsModel.self) ?? []
         if let selected = BOOKINGMANAGER.bookingModel.tourDetails.first(where: { $0.optionId == options._id }) {
@@ -448,14 +461,16 @@ class TourOptionsTableCell: UITableViewCell {
         }
         
         _mainView.layer.borderWidth = isSelected ? 1 : 0.5
+        _collapsView.layer.borderWidth = isSelected ? 1 : 0.5
         _mainView.layer.borderColor = isSelected ? ColorBrand.tabSelectColor.cgColor : ColorBrand.brandGray.cgColor
+        _collapsView.layer.borderColor = isSelected ? ColorBrand.tabSelectColor.cgColor : ColorBrand.brandGray.cgColor
         
         if let model = BOOKINGMANAGER.bookingModel.tourDetails.first(where: { $0.optionId == options._id }) {
             if Utils.stringIsNullOrEmpty(model.tourDate) {
                 _selectedDate.text = "date_time_placeHolder".localized()
                 _SelectDateStackView.isHidden = false
                 _timeView.isHidden = true
-                _dateView.borderColor = ColorBrand.brandGray
+                _dateView.borderColor = ColorBrand.tabUnselect
             } else {
                 if options.availabilityType == "regular" {
                     if !Utils.stringIsNullOrEmpty(model.startTime) {
@@ -493,11 +508,11 @@ class TourOptionsTableCell: UITableViewCell {
             _selectedDate.text = "date_time_placeHolder".localized()
             _SelectDateStackView.isHidden = false
             _timeView.isHidden = true
-            _dateView.borderColor = ColorBrand.brandGray
+            _dateView.borderColor = ColorBrand.tabUnselect
         }
         
-        self._discountView.isHidden = (BOOKINGMANAGER.ticketModel?.discount ?? 0) <= 0
-        self._discountText.text = "\(BOOKINGMANAGER.ticketModel?.discount ?? 0) %"
+        self._discountView.isHidden = (options.discount) <= 0
+        self._discountText.attributedText = options.discountText
         self.isRefundable = options.isRefundable == true
 
         _cancellationPolicy.setTitle(options.isRefundable == true ? "cancellation_policy".localized() : "non_refundable".localized())
@@ -554,7 +569,8 @@ class TourOptionsTableCell: UITableViewCell {
         _tourOptionImage = images.first ?? ""
 
         _tourTitle.text = options.name
-        _tourDesc.text = Utils.convertHTMLToPlainText(from: options.descriptionText)
+        _optionTitle.text = options.name
+//        _tourDesc.text = Utils.convertHTMLToPlainText(from: options.descriptionText)
         _customAdultView.setupData(BOOKINGMANAGER.ticketModel, options)
 
         let originalPrice: Double = options.pricingPeriods.first?.pricePerAdult ?? 0
@@ -565,14 +581,16 @@ class TourOptionsTableCell: UITableViewCell {
         }
         
         _mainView.layer.borderWidth = isSelected ? 1 : 0.5
+        _collapsView.layer.borderWidth = isSelected ? 1 : 0.5
         _mainView.layer.borderColor = isSelected ? (ColorBrand.tabSelectColor).cgColor : (ColorBrand.brandGray).cgColor
+        _collapsView.layer.borderColor = isSelected ? (ColorBrand.tabSelectColor).cgColor : (ColorBrand.brandGray).cgColor
         
         if let model = BOOKINGMANAGER.bookingModel.tourDetails.first(where: { $0.optionId == "\(options.id)" }) {
             if Utils.stringIsNullOrEmpty(model.tourDate) {
                 _selectedDate.text = "date_time_placeHolder".localized()
                 _SelectDateStackView.isHidden = false
                 _timeView.isHidden = true
-                _dateView.borderColor = ColorBrand.brandGray
+                _dateView.borderColor = ColorBrand.tabUnselect
             } else {
                 if !Utils.stringIsNullOrEmpty(model.timeSlot) {
                     _timeView.isHidden = false
@@ -600,11 +618,11 @@ class TourOptionsTableCell: UITableViewCell {
             _selectedDate.text = "date_time_placeHolder".localized()
             _SelectDateStackView.isHidden = false
             _timeView.isHidden = true
-            _dateView.borderColor = ColorBrand.brandGray
+            _dateView.borderColor = ColorBrand.tabUnselect
         }
         
-        self._discountView.isHidden = (BOOKINGMANAGER.ticketModel?.discount ?? 0) <= 0
-        self._discountText.text = "\(BOOKINGMANAGER.ticketModel?.discount ?? 0) %"
+        self._discountView.isHidden = (options.discount) <= 0
+        self._discountText.attributedText = options.discountText
         self.isRefundable = BOOKINGMANAGER.ticketModel?.isFreeCancellation == true
         _cancellationPolicy.setTitle(BOOKINGMANAGER.ticketModel?.isFreeCancellation == true ? "cancellation_policy".localized() : "non_refundable".localized())
         _cancellationPolicy.backgroundColor = BOOKINGMANAGER.ticketModel?.isFreeCancellation == true ? ColorBrand.amberColor.withAlphaComponent(0.8) : UIColor(hexString: "#E32A62")
@@ -656,7 +674,8 @@ class TourOptionsTableCell: UITableViewCell {
 
         
         _tourTitle.text = options.displayName
-        _tourDesc.text = options.optionDescription
+        _optionTitle.text = options.displayName
+//        _tourDesc.text = options.optionDescription
         _customAdultView.setupData(BOOKINGMANAGER.ticketModel, _selectedTourOptionModel)
 
         let originalPrice: Double = options.adultPrice
@@ -666,14 +685,16 @@ class TourOptionsTableCell: UITableViewCell {
             self._customBadgeView.setupWithoutDecimalData(originalPrice: originalPrice, discountedPrice: discountPrice, isNoDiscount: options.hasDiscount)
         }
         _mainView.layer.borderWidth = isSelected ? 1 : 0.5
+        _collapsView.layer.borderWidth = isSelected ? 1 : 0.5
         _mainView.layer.borderColor = isSelected ? ColorBrand.tabSelectColor.cgColor : ColorBrand.brandGray.cgColor
+        _collapsView.layer.borderColor = isSelected ? ColorBrand.tabSelectColor.cgColor : ColorBrand.brandGray.cgColor
         
         if let model = BOOKINGMANAGER.bookingModel.tourDetails.first(where: { $0.optionId == options.optionId }) {
             if Utils.stringIsNullOrEmpty(model.tourDate) {
                 _selectedDate.text = "date_time_placeHolder".localized()
                 _SelectDateStackView.isHidden = false
                 _timeView.isHidden = true
-                _dateView.borderColor = ColorBrand.brandGray
+                _dateView.borderColor = ColorBrand.tabUnselect
             } else {
                 if options.availabilityType == "regular" {
                     if !Utils.stringIsNullOrEmpty(model.startTime) {
@@ -712,11 +733,11 @@ class TourOptionsTableCell: UITableViewCell {
             _selectedDate.text = "date_time_placeHolder".localized()
             _SelectDateStackView.isHidden = false
             _timeView.isHidden = true
-            _dateView.borderColor = ColorBrand.brandGray
+            _dateView.borderColor = ColorBrand.tabUnselect
         }
         
-        self._discountView.isHidden = (BOOKINGMANAGER.ticketModel?.discount ?? 0) <= 0
-        self._discountText.text = "\(BOOKINGMANAGER.ticketModel?.discount ?? 0) %"
+        self._discountView.isHidden = (options.discount ?? 0) <= 0
+        self._discountText.attributedText = options.discountText
         self.isRefundable = options.isRefundable == true
 
         _cancellationPolicy.setTitle(options.isRefundable == true ? "cancellation_policy".localized() : "non_refundable".localized())
@@ -751,7 +772,7 @@ class TourOptionsTableCell: UITableViewCell {
                 _selectedDate.text = "date_time_placeHolder".localized()
                 _SelectDateStackView.isHidden = false
                 _timeView.isHidden = true
-                _dateView.borderColor = ColorBrand.brandGray
+                _dateView.borderColor = ColorBrand.tabUnselect
             } else {
                 if !Utils.stringIsNullOrEmpty(model.timeSlot) {
                     _timeView.isHidden = false
@@ -778,31 +799,8 @@ class TourOptionsTableCell: UITableViewCell {
             _selectedDate.text = "date_time_placeHolder".localized()
             _SelectDateStackView.isHidden = false
             _timeView.isHidden = true
-            _dateView.borderColor = ColorBrand.brandGray
+            _dateView.borderColor = ColorBrand.tabUnselect
         }
-//        if let model = BOOKINGMANAGER.bookingModel.tourDetails.first(where: { $0.optionId == "\(options.id)" }) {
-//            _selectedBigBusOptionModel = options
-//            adult = model.adult
-//            child = model.child
-//            infant = model.infant
-//            _selectedTime.text = model.timeSlot
-//            let slot = TravelDeskAvailibility()
-//            slot.startTime = Int(model.startTime) ?? 0
-//            slot.endTime = Int(model.endTime) ?? 0
-//            slot.timeSlotId = Int(model.timeSlotId) ?? 0
-//            _pickupText.text = model.pickup
-//            _selectedPickup = options.pickupPoints.first(where: { $0.name == model.pickup })
-//            _selectedTravel?.availability = slot
-//            if let option = _selectedBigBusOptionModel {
-//                BOOKINGMANAGER.addOption(option, adult: adult, child: child, infant: infant, date: model.tourDate, timeSlot: self._selectedBigbus, optionDetail: BOOKINGMANAGER.bookingModel.tourDetails.first(where: { $0.optionId == option.id }), pickup: _selectedPickup)
-//            }
-//        }
-//        else {
-//            adult = 0
-//            child = 0
-//            infant = 0
-//            _selectedTravekDeskOptionModel = nil
-//        }
         
         if _selectedTravekDeskOptionModel == nil {
             _selectedBigBusOptionModel = options
@@ -830,7 +828,7 @@ class TourOptionsTableCell: UITableViewCell {
         _tourOptionImage = images
 
         _tourTitle.text = options.title
-        _tourDesc.text = options.shortDescription
+        _optionTitle.text = options.title
         _customAdultView.setupData(BOOKINGMANAGER.ticketModel, options, slot: self._selectedBigbus)
 
         let originalPrice: Int = options.units.first?.pricingFrom.first?.original ?? 0
@@ -840,12 +838,14 @@ class TourOptionsTableCell: UITableViewCell {
             self._customBadgeView.setupWithoutDecimalData(originalPrice: Double(originalPrice), discountedPrice: Double(discountPrice), isNoDiscount: false)
         }
         _mainView.layer.borderWidth = isSelected ? 1 : 0.5
+        _collapsView.layer.borderWidth = isSelected ? 1 : 0.5
         _mainView.layer.borderColor = isSelected ? (ColorBrand.tabSelectColor).cgColor : (ColorBrand.brandGray).cgColor
+        _collapsView.layer.borderColor = isSelected ? (ColorBrand.tabSelectColor).cgColor : (ColorBrand.brandGray).cgColor
         
 
         
-        self._discountView.isHidden = (BOOKINGMANAGER.ticketModel?.discount ?? 0) <= 0
-        self._discountText.text = "\(BOOKINGMANAGER.ticketModel?.discount ?? 0) %"
+        self._discountView.isHidden = (options.discount) <= 0
+        self._discountText.attributedText = options.discountText
         self.isRefundable = BOOKINGMANAGER.ticketModel?.isFreeCancellation == true
         _cancellationPolicy.setTitle(BOOKINGMANAGER.ticketModel?.isFreeCancellation == true ? "cancellation_policy" : "non_refundable".localized())
         _cancellationPolicy.backgroundColor = BOOKINGMANAGER.ticketModel?.isFreeCancellation == true ? ColorBrand.amberColor.withAlphaComponent(0.8) : UIColor(hexString: "#E32A62")

@@ -134,8 +134,10 @@ class TourOptionModel: Object, Mappable, ModelProtocol {
     @objc dynamic var isExternal: Bool = false
     @objc dynamic var maxNumOfPeople: Int = 0
     @objc dynamic var minNumOfPeople: Int = 0
+    @objc dynamic var discount: Int = 0
     @objc dynamic var minimumAdvancedPayment: Int = 0
     @objc dynamic var name: String = kEmptyString
+    @objc dynamic var discountType: String = kEmptyString
     @objc dynamic var notes: String = kEmptyString
     @objc dynamic var unit: String = ""
     @objc dynamic var numberOfHours: Int = 0
@@ -164,9 +166,11 @@ class TourOptionModel: Object, Mappable, ModelProtocol {
         title <- map["title"]
         notes <- map["notes"]
         unit <- map["unit"]
+        discountType <- map["discountType"]
         shortDescription <- map["shortDescription"]
         heroImage <- (map["heroImage"], ListTransform<TourHeroImageModel>())
         infantAge <- map["infantAge"]
+        discount <- map["discount"]
         infantsAllowed <- map["infantsAllowed"]
         isAppendTransactionFeeB2b <- map["isAppendTransactionFeeB2b"]
         isDirectCollection <- map["isDirectCollection"]
@@ -186,6 +190,18 @@ class TourOptionModel: Object, Mappable, ModelProtocol {
         adultDesc <- map["adult_description"]
              childDesc <- map["child_description"]
              infantDesc <- map["infant_description"]
+    }
+    
+    var discountText: NSAttributedString {
+        guard discount > 0 else { return NSAttributedString(string: "") }
+
+        if discountType.lowercased() == "flat" {
+            return "\(Utils.getCurrentCurrencySymbol())\(discount) OFF".withCurrencyFont(18, true)
+        } else {
+            return NSAttributedString(
+                string: "\(discount)% OFF"
+            )
+        }
     }
 
     func isValid() -> Bool { true }

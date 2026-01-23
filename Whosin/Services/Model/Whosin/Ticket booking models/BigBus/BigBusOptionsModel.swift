@@ -180,7 +180,9 @@ class BigBusOptionsModel: Object, Mappable, ModelProtocol {
     @objc dynamic var availabilityLocalDateStart: String = kEmptyString
     @objc dynamic var availabilityLocalDateEnd: String = kEmptyString
     @objc dynamic var cancellationCutoff: String = kEmptyString
+    @objc dynamic var discountType: String = kEmptyString
     @objc dynamic var cancellationCutoffAmount: Int = 0
+    @objc dynamic var discount: Int = 0
     @objc dynamic var cancellationCutoffUnit: String = kEmptyString
     @objc dynamic var availabilityCutoff: String = kEmptyString
     @objc dynamic var availabilityCutoffAmount: Int = 0
@@ -221,6 +223,8 @@ class BigBusOptionsModel: Object, Mappable, ModelProtocol {
         defaultOption <- map["default"]
         internalName <- map["internalName"]
         reference <- map["reference"]
+        discountType <- map["discountType"]
+        discount <- map["discount"]
         tags <- (map["tags"], StringListTransform())
         availabilityLocalStartTimes <- (map["availabilityLocalStartTimes"], StringListTransform())
         availabilityLocalDateStart <- map["availabilityLocalDateStart"]
@@ -257,6 +261,18 @@ class BigBusOptionsModel: Object, Mappable, ModelProtocol {
         adultDesc <- map["adult_description"]
         childDesc <- map["child_description"]
         infantDesc <- map["infant_description"]
+    }
+    
+    var discountText: NSAttributedString {
+        guard discount > 0 else { return NSAttributedString(string: "") }
+
+        if discountType.lowercased() == "flat" {
+            return "\(Utils.getCurrentCurrencySymbol())\(discount) OFF".withCurrencyFont(18, true)
+        } else {
+            return NSAttributedString(
+                string: "\(discount)% OFF"
+            )
+        }
     }
     
     func isValid() -> Bool {

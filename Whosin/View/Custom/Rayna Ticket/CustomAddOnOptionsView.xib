@@ -17,17 +17,17 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="378" height="101"/>
+            <rect key="frame" x="0.0" y="0.0" width="378" height="117"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K0b-kF-nty">
-                    <rect key="frame" x="0.0" y="0.0" width="378" height="101"/>
+                    <rect key="frame" x="0.0" y="0.0" width="378" height="117"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Rh2-is-0rQ">
-                            <rect key="frame" x="0.0" y="0.0" width="378" height="40"/>
+                            <rect key="frame" x="0.0" y="0.0" width="378" height="51"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customize your ticket" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Egg-6O-VaN" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
-                                    <rect key="frame" x="10" y="0.0" width="358" height="24"/>
+                                    <rect key="frame" x="10" y="10" width="358" height="24"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="24" id="UaH-ya-dI7"/>
                                     </constraints>
@@ -46,22 +46,21 @@
                             </subviews>
                             <color key="backgroundColor" name="clear"/>
                             <constraints>
-                                <constraint firstItem="Egg-6O-VaN" firstAttribute="top" secondItem="Rh2-is-0rQ" secondAttribute="top" constant="8" id="1cy-UB-DIi"/>
+                                <constraint firstItem="Egg-6O-VaN" firstAttribute="top" secondItem="Rh2-is-0rQ" secondAttribute="top" constant="10" id="1cy-UB-DIi"/>
                                 <constraint firstItem="Egg-6O-VaN" firstAttribute="centerX" secondItem="Rh2-is-0rQ" secondAttribute="centerX" id="Wef-3z-X8E"/>
-                                <constraint firstItem="Egg-6O-VaN" firstAttribute="top" secondItem="Rh2-is-0rQ" secondAttribute="top" id="bLQ-GP-iWS"/>
                                 <constraint firstItem="Egg-6O-VaN" firstAttribute="leading" secondItem="Rh2-is-0rQ" secondAttribute="leading" constant="10" id="fK3-fG-BdZ"/>
                                 <constraint firstAttribute="bottom" secondItem="Egg-6O-VaN" secondAttribute="bottom" constant="5" id="h6E-ZI-PdJ"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j0P-yt-b6I">
-                            <rect key="frame" x="0.0" y="40" width="378" height="1"/>
+                            <rect key="frame" x="8" y="51" width="362" height="1"/>
                             <color key="backgroundColor" name="brandGray"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="je9-k6-Kze"/>
                             </constraints>
                         </view>
-                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="H3s-C0-YGT" customClass="CustomNoKeyboardCollectionView" customModule="Whosin" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="41" width="378" height="60"/>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="H3s-C0-YGT" customClass="CustomNoKeyboardCollectionView" customModule="Whosin" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="57" width="378" height="60"/>
                             <color key="backgroundColor" name="clear"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="60" id="Kgl-MD-Q3S"/>
@@ -78,13 +77,13 @@
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="Rh2-is-0rQ" secondAttribute="trailing" id="GFX-Xq-37W"/>
                         <constraint firstItem="Rh2-is-0rQ" firstAttribute="leading" secondItem="K0b-kF-nty" secondAttribute="leading" id="JzI-bt-JbX"/>
-                        <constraint firstItem="j0P-yt-b6I" firstAttribute="leading" secondItem="K0b-kF-nty" secondAttribute="leading" id="VjQ-9O-VuG"/>
+                        <constraint firstItem="j0P-yt-b6I" firstAttribute="leading" secondItem="K0b-kF-nty" secondAttribute="leading" constant="8" id="VjQ-9O-VuG"/>
                         <constraint firstAttribute="trailing" secondItem="H3s-C0-YGT" secondAttribute="trailing" id="bAf-44-ZnI"/>
-                        <constraint firstAttribute="trailing" secondItem="j0P-yt-b6I" secondAttribute="trailing" id="cje-bp-cyF"/>
+                        <constraint firstAttribute="trailing" secondItem="j0P-yt-b6I" secondAttribute="trailing" constant="8" id="cje-bp-cyF"/>
                         <constraint firstItem="j0P-yt-b6I" firstAttribute="top" secondItem="Rh2-is-0rQ" secondAttribute="bottom" id="jv4-R1-0ZQ"/>
                         <constraint firstAttribute="bottom" secondItem="H3s-C0-YGT" secondAttribute="bottom" id="pvh-U5-0Z0"/>
                         <constraint firstItem="Rh2-is-0rQ" firstAttribute="top" secondItem="K0b-kF-nty" secondAttribute="top" id="qKe-ff-owc"/>
-                        <constraint firstItem="H3s-C0-YGT" firstAttribute="top" secondItem="j0P-yt-b6I" secondAttribute="bottom" id="skn-HZ-iaY"/>
+                        <constraint firstItem="H3s-C0-YGT" firstAttribute="top" secondItem="j0P-yt-b6I" secondAttribute="bottom" constant="5" id="skn-HZ-iaY"/>
                         <constraint firstItem="H3s-C0-YGT" firstAttribute="leading" secondItem="K0b-kF-nty" secondAttribute="leading" id="t0Z-vn-aLg"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
@@ -110,7 +109,7 @@
                     <color key="value" name="brandGray"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
-            <point key="canvasLocation" x="-86.956521739130437" y="-161.71875"/>
+            <point key="canvasLocation" x="-86.956521739130437" y="-167.07589285714286"/>
         </view>
     </objects>
     <resources>

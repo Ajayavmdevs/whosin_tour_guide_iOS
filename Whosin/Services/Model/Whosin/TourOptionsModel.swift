@@ -21,6 +21,7 @@ class TourOptionsModel: Object, Mappable, ModelProtocol {
     @objc dynamic var _id: String = kEmptyString
     @objc dynamic var availabilityTime: String = kEmptyString
     @objc dynamic var availabilityType: String = kEmptyString
+    @objc dynamic var discountType: String = kEmptyString
     @objc dynamic var adultPrice: Double = 0.0
     @objc dynamic var withoutDiscountAdultPrice: Double = 0.0
     @objc dynamic var adultPriceRayna: Double = 0.0
@@ -76,6 +77,7 @@ class TourOptionsModel: Object, Mappable, ModelProtocol {
     @objc dynamic var cutOffhrs: Int = 0
     @objc dynamic var minimumPax: Int = 0
     @objc dynamic var order: Int = 0
+    @objc dynamic var discount: Int = 0
     @objc dynamic var pointRemark: String = kEmptyString
     @objc dynamic var address: String = kEmptyString
     @objc dynamic var adultAge: String = kEmptyString
@@ -151,6 +153,7 @@ class TourOptionsModel: Object, Mappable, ModelProtocol {
         title <- map["title"]
         unit <- map["unit"]
         notes <- map["notes"]
+        discountType <- map["discountType"]
         descriptions <- map["description"]
         optionDescription <- map["optionDescription"]
         sortDescription <- map["sortDescription"]
@@ -166,6 +169,7 @@ class TourOptionsModel: Object, Mappable, ModelProtocol {
         infantPrice <- map["infantPrice"]
         transferOptions <- map["transferOptions"]
         isHourly <- map["isHourly"]
+        discount <- map["discount"]
         withoutDiscountAdultPrice <- map["withoutDiscountAdultPrice"]
         withoutDiscountChildPrice <- map["withoutDiscountChildPrice"]
         withoutDiscountInfantPrice <- map["withoutDiscountInfantPrice"]
@@ -271,6 +275,19 @@ class TourOptionsModel: Object, Mappable, ModelProtocol {
 
 
     }
+    
+    var discountText: NSAttributedString {
+        guard discount > 0 else { return NSAttributedString(string: "") }
+
+        if discountType.lowercased() == "flat" {
+            return "\(Utils.getCurrentCurrencySymbol())\(discount) OFF".withCurrencyFont(18, true)
+        } else {
+            return NSAttributedString(
+                string: "\(discount)% OFF"
+            )
+        }
+    }
+
     
     var hasDiscount: Bool {
         return withoutDiscountAmount > finalAmount

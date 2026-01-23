@@ -28,6 +28,8 @@ final class SelectTourOptionsBottomSheet: ChildViewController {
     private var _juniperOptionModel: [ServiceModel] = []
     private var _jpHotelModel: JPHotelAvailibilityModel?
     
+    private var _expandedIndexPaths: Set<IndexPath> = [IndexPath(row: 0, section: 0)]
+    
     public var ticketModel: TicketModel?
     public var params: [String: Any] = [:]
     
@@ -886,6 +888,10 @@ extension SelectTourOptionsBottomSheet: CustomNoKeyboardTableViewDelegate {
     
     func setupCell(_ cell: UITableViewCell, cellDict: [String : Any]?, indexPath: IndexPath) {
         if let cell = cell as? TourOptionsTableCell {
+            // Apply expanded state: Index 0 is expanded by default (handled by _expandedIndexPaths init), others collapsed.
+            let isExpanded = _expandedIndexPaths.contains(indexPath)
+            cell.setExpanded(isExpanded)
+            
             if let object = cellDict?[kCellObjectDataKey] as? [TourOptionsModel] {
                 cell.setupData(object, isSelected: false, discount: ticketModel?.discount ?? 0)
                 cell.callback = { [weak self] in
@@ -912,6 +918,20 @@ extension SelectTourOptionsBottomSheet: CustomNoKeyboardTableViewDelegate {
         } else if let cell = cell as? LoadingCell {
             cell.setupUi()
         }
+    }
+    
+    func didSelectTableCell(_ cell: UITableViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
+        if _expandedIndexPaths.contains(indexPath) {
+            _expandedIndexPaths.remove(indexPath)
+        } else {
+            _expandedIndexPaths.insert(indexPath)
+        }
+        
+        _tableView.beginUpdates()
+        if let cell = cell as? TourOptionsTableCell {
+            cell.setExpanded(_expandedIndexPaths.contains(indexPath))
+        }
+        _tableView.endUpdates()
     }
     
 }

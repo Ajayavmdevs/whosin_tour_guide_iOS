@@ -19,19 +19,6 @@ class AddOnOptionCollectionCell: UICollectionViewCell {
     // --------------------------------------
     
     class func height(for data: TourOptionsModel, selectedOption: TourOptionDetailModel?, width: CGFloat) -> CGFloat {
-        let titleFont = FontBrand.SFmediumFont(size: 14)
-        let descFont = FontBrand.SFregularFont(size: 12)
-        
-        let horizontalPadding: CGFloat = 34
-        let availableWidth = max(0, width - horizontalPadding)
-        
-        let titleText = data.title
-        let descText = data.sortDescription
-        
-        let titleHeight = titleText.heightOfString(usingFont: titleFont, constrainedToWidth: availableWidth)
-        let measuredDescHeight = Utils.stringIsNullOrEmpty(descText) ? 0 : (descText.heightOfString(usingFont: descFont, constrainedToWidth: availableWidth))
-        let maxDescHeight = descFont.lineHeight * 3
-        
         var extraHeight: CGFloat = 0
         
         if let addon = getAddonDetail(from: selectedOption, for: data) {
@@ -62,7 +49,7 @@ class AddOnOptionCollectionCell: UICollectionViewCell {
             }
         }
         
-        let total = 105 + extraHeight
+        let total = 102 + extraHeight
         return ceil(max(total, 50))
     }
     
@@ -99,7 +86,7 @@ class AddOnOptionCollectionCell: UICollectionViewCell {
             extraHeight = 0.5 + 8 + contentHeight + 8
         }
         
-        let total = 105 + extraHeight
+        let total = 102 + extraHeight
         return ceil(max(total, 50))
     }
     
@@ -132,7 +119,7 @@ class AddOnOptionCollectionCell: UICollectionViewCell {
             extraHeight = 0.5 + 8 + contentHeight + 8
         }
         
-        let total = 105 + extraHeight
+        let total = 102 + extraHeight
         return ceil(max(total, 50))
     }
 

@@ -36,20 +36,20 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="469" height="226"/>
+            <rect key="frame" x="0.0" y="0.0" width="469" height="192"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K0b-kF-nty">
-                    <rect key="frame" x="0.0" y="0.0" width="469" height="226"/>
+                    <rect key="frame" x="0.0" y="0.0" width="469" height="192"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="HU8-Gj-67D">
-                            <rect key="frame" x="1.5" y="1.5" width="466" height="223"/>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="HU8-Gj-67D">
+                            <rect key="frame" x="1.5" y="1.5" width="466" height="189"/>
                             <subviews>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mFy-Aw-bEy">
-                                    <rect key="frame" x="0.0" y="0.0" width="466" height="73"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="466" height="60.5"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="cJb-Si-K75">
-                                            <rect key="frame" x="10" y="12" width="98.5" height="104"/>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="cJb-Si-K75">
+                                            <rect key="frame" x="10" y="12" width="98.5" height="88"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="hpl-hD-LvM">
                                                     <rect key="frame" x="0.0" y="0.0" width="98.5" height="50"/>
@@ -85,8 +85,8 @@
                                                         </label>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5m-KH-iCL" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="52" width="50" height="50"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="        " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R5m-KH-iCL" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="51" width="32" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -99,8 +99,8 @@
                                                         </userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Zk-Sz-FpM" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="104" width="0.0" height="0.0"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="       " lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Zk-Sz-FpM" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="70" width="28" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -130,7 +130,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dEQ-e4-aPa">
-                                            <rect key="frame" x="0.0" y="0.0" width="366" height="73"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="366" height="60.5"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Xrd-2g-juO">
@@ -220,7 +220,7 @@
                                             <color key="value" name="brandGray"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                            <real key="value" value="0.5"/>
+                                            <real key="value" value="1"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                             <real key="value" value="8"/>
@@ -228,7 +228,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="09B-kh-OIS">
-                                    <rect key="frame" x="0.0" y="76" width="466" height="71.5"/>
+                                    <rect key="frame" x="0.0" y="65.5" width="466" height="59.5"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="qkv-xq-TzK">
                                             <rect key="frame" x="10" y="12" width="112.5" height="104"/>
@@ -312,7 +312,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hAe-rB-uAB">
-                                            <rect key="frame" x="0.0" y="0.0" width="377.5" height="71.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="377.5" height="59.5"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="te1-Ao-jbh">
@@ -402,7 +402,7 @@
                                             <color key="value" name="brandGray"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                            <real key="value" value="0.5"/>
+                                            <real key="value" value="1"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                             <real key="value" value="8"/>
@@ -410,7 +410,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7kj-k9-rOr">
-                                    <rect key="frame" x="0.0" y="150.5" width="466" height="72.5"/>
+                                    <rect key="frame" x="0.0" y="130" width="466" height="59"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="NcJ-Hk-DfM">
                                             <rect key="frame" x="10" y="12" width="102" height="66"/>
@@ -494,7 +494,7 @@
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G4z-Da-59V">
-                                            <rect key="frame" x="0.0" y="0.0" width="377.5" height="72.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="377.5" height="59"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         </button>
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="mHO-jS-mhH">
@@ -581,10 +581,10 @@
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                            <color key="value" name="brandGray"/>
+                                            <color key="value" name="tabUnselect"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                            <real key="value" value="0.5"/>
+                                            <real key="value" value="1"/>
                                         </userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                             <real key="value" value="8"/>
@@ -596,10 +596,11 @@
                     </subviews>
                     <color key="backgroundColor" name="clear"/>
                     <constraints>
-                        <constraint firstItem="HU8-Gj-67D" firstAttribute="top" secondItem="K0b-kF-nty" secondAttribute="top" constant="1.5" id="0AF-Ld-a3K"/>
+                        <constraint firstItem="HU8-Gj-67D" firstAttribute="top" relation="greaterThanOrEqual" secondItem="K0b-kF-nty" secondAttribute="top" constant="1.5" id="0AF-Ld-a3K"/>
                         <constraint firstItem="HU8-Gj-67D" firstAttribute="leading" secondItem="K0b-kF-nty" secondAttribute="leading" constant="1.5" id="7SX-k3-5yM"/>
+                        <constraint firstItem="HU8-Gj-67D" firstAttribute="centerY" secondItem="K0b-kF-nty" secondAttribute="centerY" id="GV5-4R-5IM"/>
                         <constraint firstAttribute="trailing" secondItem="HU8-Gj-67D" secondAttribute="trailing" constant="1.5" id="PgN-Ke-t0R"/>
-                        <constraint firstAttribute="bottom" secondItem="HU8-Gj-67D" secondAttribute="bottom" constant="1.5" id="hbe-F7-WWb"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="HU8-Gj-67D" secondAttribute="bottom" constant="1.5" id="hbe-F7-WWb"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -616,7 +617,7 @@
                 <constraint firstAttribute="bottom" secondItem="K0b-kF-nty" secondAttribute="bottom" id="mM4-JJ-6O2"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="-21.014492753623191" y="-135.9375"/>
+            <point key="canvasLocation" x="-21.014492753623191" y="-124.55357142857142"/>
         </view>
     </objects>
     <resources>
@@ -628,6 +629,9 @@
         </namedColor>
         <namedColor name="paigerBgColor">
             <color red="0.098039215686274508" green="0.098039215686274508" blue="0.098039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="tabUnselect">
+            <color red="0.49799999594688416" green="0.49799999594688416" blue="0.49799999594688416" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -31,6 +31,8 @@ class CustomAddOnOptionsView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        layoutIfNeeded()
+        layoutMarginsDidChange()
     }
     
     // --------------------------------------
@@ -86,7 +88,7 @@ class CustomAddOnOptionsView: UIView {
             spacing = layout.minimumLineSpacing
         }
         let totalSpacing = model.count > 1 ? spacing * CGFloat(model.count - 1) : 0
-        _collectionViewHieghtConstraint.constant = height + totalSpacing
+        _collectionViewHieghtConstraint.constant = height + 8
         expandedHeight = height + totalSpacing
         
         DispatchQueue.main.async {
@@ -203,6 +205,7 @@ extension CustomAddOnOptionsView: CustomNoKeyboardCollectionViewDelegate {
         }
         return CGSize(width: collectionView.frame.width, height: AddOnOptionCollectionCell.height)
     }
+    
     
     func didSelectCell(_ cell: UICollectionViewCell, sectionTitle: String?, cellDict: [String : Any]?, indexPath: IndexPath) {
         guard let object = cellDict?[kCellObjectDataKey] as? TourOptionsModel else { return }

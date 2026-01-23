@@ -101,6 +101,7 @@ class CustomAdultsView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        layoutIfNeeded()
     }
     
     private func updateTotal() {
