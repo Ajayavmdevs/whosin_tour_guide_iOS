@@ -291,6 +291,7 @@ class TicketPreviewVC: ChildViewController {
     private func _checkoutEvent() {
         let priceCalculation = BOOKINGMANAGER.calculateTourTotals(promo: promoBaseModel)
         BOOKINGMANAGER.bookingModel.amount = Utils.convertToAED(price: priceCalculation.priceWithPromo).roundedValue()  //priceCalculation.priceWithPromo.formatted()
+        BOOKINGMANAGER.bookingModel.sourcePlatform = "iOS"
         BOOKINGMANAGER.bookingModel.totalAmount = Utils.convertToAED(price: priceCalculation.totalAmount).roundedValue()
         BOOKINGMANAGER.bookingModel.discount = priceCalculation.discountPrice.formatted()
         BOOKINGMANAGER.bookingModel.customTicketId = BOOKINGMANAGER.ticketModel?._id ?? ""
@@ -371,6 +372,7 @@ class TicketPreviewVC: ChildViewController {
     @IBAction func _handleAddToCartEvent(_ sender: UIButton) {
         let priceCalculation = BOOKINGMANAGER.calculateTourTotals(promo: promoBaseModel)
         BOOKINGMANAGER.bookingModel.amount = Utils.convertToAED(price: priceCalculation.priceWithPromo).roundedValue()
+        BOOKINGMANAGER.bookingModel.sourcePlatform = "iOS"
         BOOKINGMANAGER.bookingModel.totalAmount = Utils.convertToAED(price: priceCalculation.totalAmount).roundedValue()
         BOOKINGMANAGER.bookingModel.discount = priceCalculation.discountPrice.formatted()
         BOOKINGMANAGER.bookingModel.customTicketId = BOOKINGMANAGER.ticketModel?._id ?? ""

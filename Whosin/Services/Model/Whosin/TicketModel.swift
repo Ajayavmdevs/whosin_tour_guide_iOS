@@ -56,6 +56,7 @@ class TicketModel: Object, Mappable, ModelProtocol, Identifiable {
     @objc dynamic var vatPercentage: Double = 0
     @objc dynamic var maximumPax: String = "0"
     @objc dynamic var minimumPax: String = "0"
+    @objc dynamic var customMessage: String = kEmptyString
     @objc dynamic var currentUserReview: TicketReviewModel?
     dynamic var reviews = List<TicketReviewModel>()
     dynamic var users = List<UserModel>()
@@ -107,6 +108,7 @@ class TicketModel: Object, Mappable, ModelProtocol, Identifiable {
         isFreeCancellation <- map["isFreeCancellation"]
         title <- map["title"]
         code <- map["code"]
+        customMessage <- map["customMessage"]
         startingAmount <- map["startingAmount"]
         images <- (map["images"], StringListTransform())
         categoryIds <- (map["categoryIds"], StringListTransform())

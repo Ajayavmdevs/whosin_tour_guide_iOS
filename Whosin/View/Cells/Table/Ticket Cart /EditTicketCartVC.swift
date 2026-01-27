@@ -609,6 +609,7 @@ class EditTicketCartVC: ChildViewController {
                     guard isValidate else { return }
                     let priceCalculation = BOOKINGMANAGER.calculateTourTotals(promo: nil)
                     BOOKINGMANAGER.bookingModel.amount = priceCalculation.priceWithPromo.formatted()
+                    BOOKINGMANAGER.bookingModel.sourcePlatform = "iOS"
                     BOOKINGMANAGER.bookingModel.totalAmount = priceCalculation.totalAmount.formatted()
                     BOOKINGMANAGER.bookingModel.discount = priceCalculation.discountPrice.formatted()
                     BOOKINGMANAGER.bookingModel.customTicketId = BOOKINGMANAGER.ticketModel?._id ?? ""
@@ -632,6 +633,7 @@ class EditTicketCartVC: ChildViewController {
                     guard isValidate else { return }
                     let priceCalculation = BOOKINGMANAGER.calculateTourTotals(promo: nil)
                     BOOKINGMANAGER.bookingModel.amount = priceCalculation.priceWithPromo.formatted()
+                    BOOKINGMANAGER.bookingModel.sourcePlatform = "iOS"
                     BOOKINGMANAGER.bookingModel.totalAmount = priceCalculation.totalAmount.formatted()
                     BOOKINGMANAGER.bookingModel.discount = priceCalculation.discountPrice.formatted()
                     BOOKINGMANAGER.bookingModel.customTicketId = BOOKINGMANAGER.ticketModel?._id ?? ""
@@ -655,6 +657,7 @@ class EditTicketCartVC: ChildViewController {
                     guard isValidate else { return }
                     let priceCalculation = BOOKINGMANAGER.calculateTourTotals(promo: nil)
                     BOOKINGMANAGER.bookingModel.amount = priceCalculation.priceWithPromo.formatted()
+                    BOOKINGMANAGER.bookingModel.sourcePlatform = "iOS"
                     BOOKINGMANAGER.bookingModel.totalAmount = priceCalculation.totalAmount.formatted()
                     BOOKINGMANAGER.bookingModel.discount = priceCalculation.discountPrice.formatted()
                     BOOKINGMANAGER.bookingModel.customTicketId = BOOKINGMANAGER.ticketModel?._id ?? ""
@@ -690,6 +693,7 @@ class EditTicketCartVC: ChildViewController {
                     guard isValidate else { return }
                     let priceCalculation = BOOKINGMANAGER.calculateTourTotals(promo: nil)
                     BOOKINGMANAGER.bookingModel.amount = priceCalculation.priceWithPromo.formatted()
+                    BOOKINGMANAGER.bookingModel.sourcePlatform = "iOS"
                     BOOKINGMANAGER.bookingModel.totalAmount = priceCalculation.totalAmount.formatted()
                     BOOKINGMANAGER.bookingModel.discount = priceCalculation.discountPrice.formatted()
                     BOOKINGMANAGER.bookingModel.customTicketId = BOOKINGMANAGER.ticketModel?._id ?? ""
@@ -709,6 +713,7 @@ class EditTicketCartVC: ChildViewController {
         } else if ticketModel?.bookingType == "big-bus" || ticketModel?.bookingType == "hero-balloon" {
             let priceCalculation = BOOKINGMANAGER.calculateTourTotals(promo: nil)
             BOOKINGMANAGER.bookingModel.amount = priceCalculation.priceWithPromo.formatted()
+            BOOKINGMANAGER.bookingModel.sourcePlatform = "iOS"
             BOOKINGMANAGER.bookingModel.totalAmount = priceCalculation.totalAmount.formatted()
             BOOKINGMANAGER.bookingModel.discount = priceCalculation.discountPrice.formatted()
             BOOKINGMANAGER.bookingModel.customTicketId = BOOKINGMANAGER.ticketModel?._id ?? ""

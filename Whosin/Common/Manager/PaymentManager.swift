@@ -283,7 +283,7 @@ class PaymentManager: NSObject {
                                countryCode: String = "AE") -> PKPaymentRequest {
         
         let request = PKPaymentRequest()
-        request.merchantIdentifier = "merchant.ngenius.com.whosin.me"
+        request.merchantIdentifier = "merchant.ngenius.com.whosin.business"
         request.supportedNetworks = [.visa, .masterCard, .amex]
         request.merchantCapabilities = .capability3DS
         request.requiredBillingContactFields = [.postalAddress, .name]
@@ -343,7 +343,7 @@ class PaymentManager: NSObject {
         var configuration = PaymentSheet.Configuration()
         configuration.merchantDisplayName = "Whosin, Inc."
         configuration.allowsDelayedPaymentMethods = true
-        configuration.applePay = .init(merchantId: "merchant.com.whosin.me", merchantCountryCode: "AE")
+        configuration.applePay = .init(merchantId: "merchant.com.whosin.business", merchantCountryCode: "AE")
         
         let paymentSheet = PaymentSheet(paymentIntentClientSecret: data.clientSecret, configuration: configuration)
         

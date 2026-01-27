@@ -28,6 +28,7 @@
                 <outlet property="_closeBtn" destination="HYq-xd-e9m" id="bKa-iM-NY3"/>
                 <outlet property="_followerCount" destination="Yi6-i5-Ys2" id="ToN-Gh-J5I"/>
                 <outlet property="_followingCount" destination="XVZ-AS-w9w" id="TCi-P4-1Fn"/>
+                <outlet property="_heightConstraint" destination="Itq-fP-TJ6" id="5M5-5D-h2x"/>
                 <outlet property="_premiumeView" destination="bbq-dN-iR4" id="SqM-Y1-GYZ"/>
                 <outlet property="_profileImg" destination="CUr-cF-pk2" id="dOF-pI-t1b"/>
                 <outlet property="_profileImgBgView" destination="Xwb-sf-8ZM" id="Ndm-f4-9Bx"/>

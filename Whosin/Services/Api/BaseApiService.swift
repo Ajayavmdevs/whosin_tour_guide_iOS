@@ -148,9 +148,9 @@ class BaseApiService: NSObject {
                 }
             }
             return nil
-        } else if request.url.contains(kCategoryDetailEndPoint) || request.url.contains(kVenueOffersEndPoint) {
+        } else if request.url.contains(kCategoryDetailEndPoint){
             if let userId = request.parameters?["categoryId"] as? String {
-                if request.url.contains(kCategoryDetailEndPoint) || (request.url.contains(kVenueOffersEndPoint) && request.parameters?["page"] as? Int == 1 && request.parameters?["day"] as? String == "all") {
+                if request.url.contains(kCategoryDetailEndPoint) {
                     if PINCache.shared.containsObject(forKey: "\(request.url!) \(userId)") {
                         let cachedResult = PINCache.shared.object(forKey: "\(request.url!) \(userId)")
                         return RestResponse.build(cachedResult, allHeaderFields: request.headers)
@@ -178,7 +178,7 @@ class BaseApiService: NSObject {
                     } else {
                         PINCache.shared.setObject(response.result, forKey: request.url!)
                     }
-                } else if request.url.contains(kCategoryDetailEndPoint) || (request.url.contains(kVenueOffersEndPoint) && request.parameters?["page"] as? Int == 1 && request.parameters?["day"] as? String == "all") {
+                } else if request.url.contains(kCategoryDetailEndPoint) {
                     if let userId = request.parameters?["categoryId"] as? String {
                         PINCache.shared.setObject(response.result, forKey: "\(request.url!) \(userId)")
                     } else {

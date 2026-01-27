@@ -323,6 +323,7 @@ class HotelBookingPreviewVC: ChildViewController {
         HOTELBOOKINGMANAGER.bookingModel.currency = "aed"
         HOTELBOOKINGMANAGER.bookingModel.totalAmount = priceCalculation.priceWithPromo
         HOTELBOOKINGMANAGER.bookingModel.amount = priceCalculation.priceWithPromo
+        BOOKINGMANAGER.bookingModel.sourcePlatform = "iOS"
         let promoCode = _promoCodeTextField.text ?? ""
         HOTELBOOKINGMANAGER.bookingModel.promoCode = promoCode
         var jsonDict = HOTELBOOKINGMANAGER.bookingModel.toJSON()
@@ -358,6 +359,7 @@ class HotelBookingPreviewVC: ChildViewController {
     @IBAction func _handleAddToCartEvent(_ sender: UIButton) {
         let priceCalculation = BOOKINGMANAGER.calculateTourTotals(promo: promoBaseModel)
         BOOKINGMANAGER.bookingModel.amount = Utils.convertToAED(price: priceCalculation.priceWithPromo).roundedValue()
+        BOOKINGMANAGER.bookingModel.sourcePlatform = "iOS"
         BOOKINGMANAGER.bookingModel.totalAmount = Utils.convertToAED(price: priceCalculation.totalAmount).roundedValue()
         BOOKINGMANAGER.bookingModel.discount = priceCalculation.discountPrice.formatted()
         BOOKINGMANAGER.bookingModel.customTicketId = BOOKINGMANAGER.ticketModel?._id ?? ""

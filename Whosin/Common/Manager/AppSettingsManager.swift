@@ -97,21 +97,6 @@ class AppSettingsManager: NSObject {
         }
     }
     
-    func _getSubAdmins() {
-        WhosinServices.mySubAdmins { [weak self] container, error in
-            guard let self = self else { return }
-            guard let data = container?.data else { return }
-            self.subAdmins = data
-        }
-    }
-    
-    private func _requestMyGroup() {
-        WhosinServices.myPlusOneList { [weak self] container, error in
-            guard let self = self else { return }
-            guard let data = container?.data else { return }
-        }
-    }
-    
     private func _requestSubscriptionDetail(completion: @escaping () -> Void) {
         WhosinServices.subscriptionDetail { [weak self] container, error in
             defer { completion() }
@@ -127,14 +112,6 @@ class AppSettingsManager: NSObject {
             guard let self = self else { return }
             guard let data = container?.data else { return }
             self.userModel = data
-        }
-    }
-    
-    private func _requestMyVenueList() {
-        WhosinServices.getMyVenuesList { [weak self] container, error in
-            guard let self = self else { return }
-            guard let data = container?.data else { return }
-            self.myVenueList = data
         }
     }
     
@@ -197,9 +174,6 @@ class AppSettingsManager: NSObject {
         DispatchQueue.global(qos: .background).async {
             self._requestAppSetting()
             self._getProfile()
-            self._requestMyVenueList()
-            self._requestMyGroup()
-            self._getSubAdmins()
             self._getReportList()
             self._getBlockList()
         }

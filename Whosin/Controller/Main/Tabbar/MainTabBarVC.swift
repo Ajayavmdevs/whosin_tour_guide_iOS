@@ -1,6 +1,7 @@
 import UIKit
 import Contacts
 import Device
+import AppTrackingTransparency
 
 class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
         
@@ -26,7 +27,6 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
         BrandManager.setDefaultTabTheam()
         if Utils.stringIsNullOrEmpty(Preferences.lastMsgSynced) { SOCKETMANAGER.syncUnReceivedMsg() }
         _setupController()
-        NotificationCenter.default.addObserver(self, selector: #selector(_handleBadgeEvent(_:)), name: .updateWhoIsInBadge, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handelOpenSuccessVC(_:)), name: .openPurchaseSuccessCard, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handelOpenReviewVC(_:)), name: .openTicketReview, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handelOpenReportSuccessVC(_:)), name: .openReportSuccessCard, object: nil)
@@ -34,10 +34,6 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
         NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: kMessageNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: kUpdateMessageNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(appDidBecomeActive), name: UIApplication.didBecomeActiveNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(_handleBadgeEvent), name: .readUpdatesState, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(openProfileVC), name: .switchToPersonalProfile, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(openPromoterProfileVC), name: .switchToPromoterProfile, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(openComplementaryProfileVC), name: .switchToComplementaryProfile, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleUserUpdateState(_:)), name: .changeUserProfileTypeUpdateState, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleNotification(_:)), name: kMessageCountNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(handleShowAlert(_:)), name: .showAlertForUpgradeProfile, object: nil)
@@ -47,6 +43,7 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
                 self.handleOpenDetailByType(model)
             }
         }
+        requestTrackingPermission()
     }
     
     deinit {
@@ -64,6 +61,27 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
         NotificationCenter.default.removeObserver(self, name: .revokeSubAdminAccess, object: nil)
     }
     
+    func requestTrackingPermission() {
+        if #available(iOS 14, *) {
+            ATTrackingManager.requestTrackingAuthorization { status in
+                DispatchQueue.main.async {
+                    switch status {
+                    case .authorized:
+                        print("Tracking authorized")
+                    case .denied:
+                        print("Tracking denied")
+                    case .restricted:
+                        print("Tracking restricted")
+                    case .notDetermined:
+                        print("Tracking not determined")
+                    @unknown default:
+                        break
+                    }
+                }
+            }
+        }
+    }
+    
     func checkPushNotificationPermission() {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             switch settings.authorizationStatus {
@@ -71,42 +89,19 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
                 self._requestPushNotificationPermission()
             case .authorized:
                 NOTIFICATION.sync()
-//                self._requestContactList()
-                
             default:
                 print("")
-//                self._requestContactList()
             }
         }
     }
     
     private func _requestPushNotificationPermission() {
-//        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { _, _ in
             NOTIFICATION.sync()
-//            self._requestContactList()
-//        }
-    }
-    
-    private func _requestContactList() {
-        let authorizationStatus = CNContactStore.authorizationStatus(for: .contacts)
-        switch authorizationStatus {
-        case .notDetermined:
-            WHOSINCONTACT.sync()
-        default:
-           print("Contact permission not available")
-        }
-    }
-    
-    private func _syncContacts() {
-//        if !WHOSINCONTACT.didSync {
-//            WHOSINCONTACT.syncContactApi()
-//        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         updateChatMessageCount()
-        updateUnreadStatus()
         APPSETTING._requestAppSetting { data in
             if APPSETTING.loginRequests.isEmpty { return }
             if let approvalModel = APPSETTING.loginRequests.first {
@@ -213,114 +208,13 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
     
     private func updateChatMessageCount() {
         guard controllers.count > 1 else { return }
-//        ChatRepository().getAllUnReadMessagesCount(callback: { count in
-//            DispatchQueue.main.async {
-//                if count > 0 {
-//                    self.controllers[1].tabBarItem.badgeValue = "\(count)"
-//                } else {
-//                    self.controllers[1].tabBarItem.badgeValue = nil
-//                }
-//            }
-//        })
     }
-    
-    private func updateUnreadStatus() {
-//        guard let model = APPSESSION.getUpdateModel else { return }
-//        if model.wallet {
-//            controllers[3].tabBarItem.badgeValue = nil
-//        } else {
-//            controllers[3].tabBarItem.badgeValue = nil
-//        }
-//        if model.bucket || model.event || model.outing {
-//            updateBadgeView(isHidden: false)
-//        } else {
-//            updateBadgeView(isHidden: true)
-//        }
-    }
-    
+        
     // --------------------------------------
     // MARK: Event
     // --------------------------------------
     
-    func showMiniPlayer(with gallery: [AdListModel]) {
-//        guard let selectedVC = self.selectedViewController else { return }
-//        if let nav = selectedVC as? UINavigationController, nav.viewControllers.count != 1 { return }
-//        guard selectedVC.presentedViewController == nil else { return }
-//        guard !tabBar.isHidden else { return }
-//
-//        if customMiniView != nil || containerView != nil {
-//            containerView?.isHidden = false
-//            customMiniView?.isHidden = false
-//            customMiniView?.resumeVideos()
-//            return
-//        }
-//
-//        let height: CGFloat = 150
-//        let width: CGFloat = 220
-//        let margin: CGFloat = 5
-//
-//        let container = UIView()
-//        container.layer.cornerRadius = 8
-//        container.clipsToBounds = true
-//        container.backgroundColor = .clear
-//        container.translatesAutoresizingMaskIntoConstraints = false
-//
-//        let miniView = MiniVideoView()
-//        miniView.frame = CGRect(x: 0, y: 0, width: width, height: height)
-//
-//        miniView.onClose = { [weak self] model in
-//            guard let self = self else { return }
-//            Utils.addLog(screen: "ad_close", object: model)
-//            self.customMiniView?.wasMiniPlayerManuallyClosed = true
-//            APPSESSION.didCloseMiniPlayer = true
-//
-//            DISPATCH_ASYNC_MAIN {
-//                self.hideMiniPlayer(shouldRemove: true)
-//            }
-//        }
-//
-//        miniView.onClick = { [weak self] model in
-//            self?.hideMiniPlayer()
-//        }
-//
-//        if !gallery.isEmpty {
-//            miniView.setupData(gallery)
-//        }
-//
-//        container.addSubview(miniView)
-//
-//        guard let window = APP.window else { return }
-//        window.addSubview(container)
-//
-//        let tabBarHeight = self.tabBar.frame.height
-//        NSLayoutConstraint.activate([
-//            container.widthAnchor.constraint(equalToConstant: width),
-//            container.heightAnchor.constraint(equalToConstant: height),
-//            container.trailingAnchor.constraint(equalTo: window.trailingAnchor, constant: -margin),
-//            container.bottomAnchor.constraint(equalTo: window.bottomAnchor, constant: -(tabBarHeight + margin))
-//        ])
-//
-//        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture(_:)))
-//        container.addGestureRecognizer(panGesture)
-//
-//        self.containerView = container
-//        self.customMiniView = miniView
-    }
-    
-    func hideMiniPlayer(shouldRemove: Bool = false) {
-//        if shouldRemove {
-//            customMiniView?.pauseVideos()
-//            customMiniView?.removeFromSuperview()
-//            containerView?.removeFromSuperview()
-//            customMiniView = nil
-//            containerView = nil
-//        } else {
-//            customMiniView?.pauseVideos()
-//            customMiniView?.isHidden = true
-//            containerView?.isHidden = true
-//        }
-    }
-    
+        
     @objc private func handlePanGesture(_ gesture: UIPanGestureRecognizer) {
         guard let container = containerView else { return }
         let translation = gesture.translation(in: view)
@@ -404,26 +298,6 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
         }
     }
     
-    @objc func openProfileVC() {
-        Preferences.profileType = ProfileType.profile
-        DISPATCH_ASYNC_MAIN_AFTER(0.3) {
-            self.onRaisedButton(UIButton())
-        }
-    }
-
-    @objc func openPromoterProfileVC() {
-        Preferences.profileType = ProfileType.promoterProfile
-        DISPATCH_ASYNC_MAIN_AFTER(0.3) {
-            self.onRaisedButton(UIButton())
-        }
-    }
-    
-    @objc func openComplementaryProfileVC() {
-        Preferences.profileType = ProfileType.complementaryProfile
-        DISPATCH_ASYNC_MAIN_AFTER(0.3) {
-            self.onRaisedButton(UIButton())
-        }
-    }
     
     @objc private func handleUserUpdateState(_ notification: Notification) {
         APPSESSION.getProfile { isSuccess, error in }
@@ -490,10 +364,6 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
                 self.present(navigationController, animated: true)
             }
         }
-    }
-    
-    @objc private func _handleBadgeEvent(_ sender: Notification) {
-        updateUnreadStatus()
     }
     
     @objc func handleNotification(_ notification: Notification) {
@@ -605,7 +475,6 @@ class MainTabBarVC: RaisedTabBarController, UITabBarControllerDelegate {
 extension MainTabBarVC: UINavigationControllerDelegate {
     func navigationController(_ navigationController: UINavigationController, willShow viewController: UIViewController, animated: Bool) {
         if navigationController.viewControllers.first != viewController {
-            hideMiniPlayer()
         }
     }
 

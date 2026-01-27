@@ -4,7 +4,7 @@ let SEARCHSUGGESTION = SearchSuggestionStore.shared
 final class SearchSuggestionStore {
     static let shared = SearchSuggestionStore()
 
-    private let baseKey = "com.whosin.me.searchSuggestion"
+    private let baseKey = "com.whosin.business.searchSuggestion"
 
     private init() {}
 

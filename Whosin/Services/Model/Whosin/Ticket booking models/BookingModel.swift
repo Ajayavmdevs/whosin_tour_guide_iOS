@@ -23,6 +23,7 @@ class BookingModel:Object, Mappable, ModelProtocol {
     @objc dynamic var amount: Double = 0.0
     @objc dynamic var totalAmount: Double = 0.0
     @objc dynamic var paymentMethod: String = ""
+    @objc dynamic var sourcePlatform: String = "iOS"
     @objc dynamic var bookingType: String = "rayna"
     @objc dynamic var cartId: String = ""
     @objc dynamic var _id: String = ""
@@ -47,6 +48,7 @@ class BookingModel:Object, Mappable, ModelProtocol {
         tourDetails <- map["TourDetails"]
         currency <- map["currency"]
         customTicketId <- map["customTicketId"]
+        sourcePlatform <- map["sourcePlatform"]
         discount <- map["discount"]
         promoCode <- map["promoCode"]
         amount <- map["amount"]

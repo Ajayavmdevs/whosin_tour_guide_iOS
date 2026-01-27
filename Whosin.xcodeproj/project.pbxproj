@@ -215,6 +215,7 @@
 		D00DE1472A9F575100F64FC1 /* SearchHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00DE1462A9F575100F64FC1 /* SearchHistoryModel.swift */; };
 		D00DE14A2A9F596500F64FC1 /* SearchHistoryTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00DE1482A9F596500F64FC1 /* SearchHistoryTableCell.swift */; };
 		D00DE14B2A9F596500F64FC1 /* SearchHistoryTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00DE1492A9F596500F64FC1 /* SearchHistoryTableCell.xib */; };
+		D00E1A102F2898A300E7F0BB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D00E1A0F2F2898A300E7F0BB /* GoogleService-Info.plist */; };
 		D00EE5712D8950C6009D4C6B /* LocationMapViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00EE56F2D8950C6009D4C6B /* LocationMapViewCell.swift */; };
 		D00EE5722D8950C6009D4C6B /* LocationMapViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D00EE5702D8950C6009D4C6B /* LocationMapViewCell.xib */; };
 		D00EE5792D89953A009D4C6B /* CustomTicketGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00EE5772D89953A009D4C6B /* CustomTicketGalleryView.swift */; };
@@ -273,6 +274,9 @@
 		D0154AF12A668AC2003E033A /* AudioPlayerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0154AEE2A668AC2003E033A /* AudioPlayerManager.swift */; };
 		D0154AF22A668AC2003E033A /* AudioManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0154AEF2A668AC2003E033A /* AudioManager.swift */; };
 		D01879D52E857112006E1B45 /* HotelBookingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01879D42E857112006E1B45 /* HotelBookingModels.swift */; };
+		D01E5EBB2F2737370015A97D /* TransactionHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E5EB92F2737370015A97D /* TransactionHistoryCell.swift */; };
+		D01E5EBC2F2737370015A97D /* TransactionHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D01E5EBA2F2737370015A97D /* TransactionHistoryCell.xib */; };
+		D01E5EDB2F273B1E0015A97D /* TransactionHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01E5EBD2F2739070015A97D /* TransactionHistoryModel.swift */; };
 		D01ED2AF2E86C4FA00D5130A /* RoomsCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D01ED2AE2E86C4FA00D5130A /* RoomsCollectionCell.xib */; };
 		D01ED2B02E86C4FA00D5130A /* RoomsCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D01ED2AD2E86C4FA00D5130A /* RoomsCollectionCell.swift */; };
 		D021A8ED2E68611E0080586F /* LanguageFileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D021A8EC2E6861180080586F /* LanguageFileModel.swift */; };
@@ -608,7 +612,6 @@
 		D0AFA3CB2E87F88800473E17 /* JPBookingRulesData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AFA3CA2E87F88600473E17 /* JPBookingRulesData.swift */; };
 		D0AFA3CE2E880FD900473E17 /* HotelGuestTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0AFA3CD2E880FD900473E17 /* HotelGuestTableCell.xib */; };
 		D0AFA3CF2E880FD900473E17 /* HotelGuestTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0AFA3CC2E880FD900473E17 /* HotelGuestTableCell.swift */; };
-		D0B07E1029ED063400A45378 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = D0B07E0F29ED063400A45378 /* GoogleService-Info.plist */; };
 		D0B07E1529ED1BF600A45378 /* HomeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B07E1329ED1BF600A45378 /* HomeRepository.swift */; };
 		D0B07E1729ED1C2A00A45378 /* StoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B07E1629ED1C2A00A45378 /* StoryModel.swift */; };
 		D0B07E1B29ED1ED800A45378 /* HomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0B07E1A29ED1ED800A45378 /* HomeModel.swift */; };
@@ -756,6 +759,7 @@
 		D0EB431B2DF14FFC0018F972 /* CustomTicketTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EB43192DF14FFC0018F972 /* CustomTicketTagsView.swift */; };
 		D0EB431C2DF14FFC0018F972 /* CustomTicketTagsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0EB431A2DF14FFC0018F972 /* CustomTicketTagsView.xib */; };
 		D0EB67D32A3D880D00C8D255 /* GalaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EB67D22A3D880D00C8D255 /* GalaryModel.swift */; };
+		D0EF8BF82F27909A00C3FD9C /* BankModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0EF8BF72F27909600C3FD9C /* BankModel.swift */; };
 		D0F32ECB2F0E607A009BDF72 /* AddOptionSelectPaxSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0F32ECA2F0E607A009BDF72 /* AddOptionSelectPaxSheet.xib */; };
 		D0F32ECC2F0E607A009BDF72 /* AddOptionSelectPaxSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F32EC92F0E607A009BDF72 /* AddOptionSelectPaxSheet.swift */; };
 		D0F5FE8B2E03CB3E00715CB2 /* MoreInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0F5FE8A2E03CB3800715CB2 /* MoreInfoModel.swift */; };
@@ -1011,6 +1015,7 @@
 		D00DE1462A9F575100F64FC1 /* SearchHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryModel.swift; sourceTree = "<group>"; };
 		D00DE1482A9F596500F64FC1 /* SearchHistoryTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryTableCell.swift; sourceTree = "<group>"; };
 		D00DE1492A9F596500F64FC1 /* SearchHistoryTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchHistoryTableCell.xib; sourceTree = "<group>"; };
+		D00E1A0F2F2898A300E7F0BB /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D00EE56F2D8950C6009D4C6B /* LocationMapViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationMapViewCell.swift; sourceTree = "<group>"; };
 		D00EE5702D8950C6009D4C6B /* LocationMapViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationMapViewCell.xib; sourceTree = "<group>"; };
 		D00EE5772D89953A009D4C6B /* CustomTicketGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTicketGalleryView.swift; sourceTree = "<group>"; };
@@ -1069,6 +1074,9 @@
 		D0154AEE2A668AC2003E033A /* AudioPlayerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerManager.swift; sourceTree = "<group>"; };
 		D0154AEF2A668AC2003E033A /* AudioManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioManager.swift; sourceTree = "<group>"; };
 		D01879D42E857112006E1B45 /* HotelBookingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelBookingModels.swift; sourceTree = "<group>"; };
+		D01E5EB92F2737370015A97D /* TransactionHistoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryCell.swift; sourceTree = "<group>"; };
+		D01E5EBA2F2737370015A97D /* TransactionHistoryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionHistoryCell.xib; sourceTree = "<group>"; };
+		D01E5EBD2F2739070015A97D /* TransactionHistoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionHistoryModel.swift; sourceTree = "<group>"; };
 		D01ED2AD2E86C4FA00D5130A /* RoomsCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomsCollectionCell.swift; sourceTree = "<group>"; };
 		D01ED2AE2E86C4FA00D5130A /* RoomsCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RoomsCollectionCell.xib; sourceTree = "<group>"; };
 		D021A8EC2E6861180080586F /* LanguageFileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageFileModel.swift; sourceTree = "<group>"; };
@@ -1408,7 +1416,6 @@
 		D0AFA3CA2E87F88600473E17 /* JPBookingRulesData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JPBookingRulesData.swift; sourceTree = "<group>"; };
 		D0AFA3CC2E880FD900473E17 /* HotelGuestTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotelGuestTableCell.swift; sourceTree = "<group>"; };
 		D0AFA3CD2E880FD900473E17 /* HotelGuestTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotelGuestTableCell.xib; sourceTree = "<group>"; };
-		D0B07E0F29ED063400A45378 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		D0B07E1129ED17BE00A45378 /* Whosin.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Whosin.entitlements; sourceTree = "<group>"; };
 		D0B07E1329ED1BF600A45378 /* HomeRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeRepository.swift; sourceTree = "<group>"; };
 		D0B07E1629ED1C2A00A45378 /* StoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryModel.swift; sourceTree = "<group>"; };
@@ -1554,6 +1561,7 @@
 		D0EB43192DF14FFC0018F972 /* CustomTicketTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTicketTagsView.swift; sourceTree = "<group>"; };
 		D0EB431A2DF14FFC0018F972 /* CustomTicketTagsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTicketTagsView.xib; sourceTree = "<group>"; };
 		D0EB67D22A3D880D00C8D255 /* GalaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalaryModel.swift; sourceTree = "<group>"; };
+		D0EF8BF72F27909600C3FD9C /* BankModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BankModel.swift; sourceTree = "<group>"; };
 		D0F32EC92F0E607A009BDF72 /* AddOptionSelectPaxSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOptionSelectPaxSheet.swift; sourceTree = "<group>"; };
 		D0F32ECA2F0E607A009BDF72 /* AddOptionSelectPaxSheet.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddOptionSelectPaxSheet.xib; sourceTree = "<group>"; };
 		D0F5FE8A2E03CB3800715CB2 /* MoreInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreInfoModel.swift; sourceTree = "<group>"; };
@@ -1882,6 +1890,8 @@
 				D024DE872AE0E3FB0033A8BE /* PrimiumViewCell.xib */,
 				A47863282DE5876A00B00882 /* MyReviewsTableViewCell.swift */,
 				A47863292DE5876A00B00882 /* MyReviewsTableViewCell.xib */,
+				D01E5EB92F2737370015A97D /* TransactionHistoryCell.swift */,
+				D01E5EBA2F2737370015A97D /* TransactionHistoryCell.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -2308,7 +2318,6 @@
 				A9E6DA852B5FC67600BDC712 /* successAnim.gif */,
 				3B308F7B2AEBE2B6003B134B /* logo-animation.gif */,
 				A9EA8B2C2B30788C009A260D /* img_like_animation.gif */,
-				D0B07E0F29ED063400A45378 /* GoogleService-Info.plist */,
 				D064F6C429E902330072433E /* AppDelegate.swift */,
 				D064F7F429E91C320072433E /* Font */,
 				D064F6D229E902340072433E /* Info.plist */,
@@ -2319,6 +2328,7 @@
 				D064F7CC29E9097A0072433E /* Images.xcassets */,
 				D02E66A52CC7CD1A00E197A9 /* ticket_anim.json */,
 				D02E66A12CC7BFC900E197A9 /* eventSuccess_icon.json */,
+				D00E1A0F2F2898A300E7F0BB /* GoogleService-Info.plist */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -2529,6 +2539,8 @@
 		D064F74D29E9075E0072433E /* Whosin */ = {
 			isa = PBXGroup;
 			children = (
+				D0EF8BF72F27909600C3FD9C /* BankModel.swift */,
+				D01E5EBD2F2739070015A97D /* TransactionHistoryModel.swift */,
 				D0DEF3662EF2B56700389CC1 /* ContactUsModel.swift */,
 				D0DEF3642EF2B39100389CC1 /* CTAModel.swift */,
 				A470CD102E0A6CA4003AA4DE /* PromotionalBannerModel.swift */,
@@ -3400,7 +3412,6 @@
 				D0154AB42A66755D003E033A /* record_error.wav in Resources */,
 				D092AEAD2D1047170073F6CB /* CustomAlertVC.xib in Resources */,
 				A9DE1B7E2BD7BF1900C98AA2 /* CustomCollapsibleView.xib in Resources */,
-				D0B07E1029ED063400A45378 /* GoogleService-Info.plist in Resources */,
 				D07B49752E49C58800CDFCB7 /* LanguageTableViewCell.xib in Resources */,
 				D05094272D8AC93C00AF0896 /* ExploreBannerCollectionCell.xib in Resources */,
 				D0154AD22A66772C003E033A /* CompititorAudioChatCell.xib in Resources */,
@@ -3620,6 +3631,7 @@
 				D0AFA3C02E87BC1800473E17 /* HotelRoomsOptionCell.xib in Resources */,
 				D05373592C53680A00038FB0 /* ImageCropperViewController.xib in Resources */,
 				031AA0F22DA56AA800B3133B /* OptionsAmountTableCell.xib in Resources */,
+				D00E1A102F2898A300E7F0BB /* GoogleService-Info.plist in Resources */,
 				D0455CFB29EFFF7900FAEDEB /* AccountCreatedBottomSheet.xib in Resources */,
 				A1A290AA2BAC3BB800C9E14E /* SFUIText-Regular.ttf in Resources */,
 				D05031B72DA516D600D0015B /* TicketWalletDetailVC.xib in Resources */,
@@ -3647,6 +3659,7 @@
 				D007C21F2E13F909005F9713 /* MyTicketCartVC.xib in Resources */,
 				D0EB431C2DF14FFC0018F972 /* CustomTicketTagsView.xib in Resources */,
 				D0B3470F29EFCC3300CA38A2 /* Montserrat-ExtraBoldItalic.ttf in Resources */,
+				D01E5EBC2F2737370015A97D /* TransactionHistoryCell.xib in Resources */,
 				D08062BE2D6C8FB100D662EE /* OverViewTableCell.xib in Resources */,
 				D064F7CB29E909700072433E /* Icons.xcassets in Resources */,
 				A9EA8B2D2B30788D009A260D /* img_like_animation.gif in Resources */,
@@ -3927,6 +3940,7 @@
 				D08062C32D6C9D9B00D662EE /* CustomTicketRatingTableCell.swift in Sources */,
 				D047163C2CA6C50B00074E1D /* CountDownView.swift in Sources */,
 				D026B43029E95AF200AEBD72 /* MobileLoginVC.swift in Sources */,
+				D01E5EBB2F2737370015A97D /* TransactionHistoryCell.swift in Sources */,
 				D064F74729E907590072433E /* ContainerModel.swift in Sources */,
 				033B8CB82D96A60A000A2D26 /* NewExploreFilterBottomSheet.swift in Sources */,
 				D07CAB4229EE49050056AE4F /* SettingsModel.swift in Sources */,
@@ -4064,6 +4078,7 @@
 				D064F6FD29E906210072433E /* UIView+Inspectable.swift in Sources */,
 				D064F77E29E908560072433E /* SectionDifference.swift in Sources */,
 				D09013422E0D185C00A58E2F /* TravelDeskTourModel.swift in Sources */,
+				D0EF8BF82F27909A00C3FD9C /* BankModel.swift in Sources */,
 				D064F72929E906BA0072433E /* BaseApiService.swift in Sources */,
 				1854C8992D030F500049D908 /* RestartAppPopupVC.swift in Sources */,
 				D0673DAA2D0D98E0004931D4 /* ParticipantDetailVC.swift in Sources */,
@@ -4089,6 +4104,7 @@
 				A950E0702B57AF0E00E78FA5 /* StatusBarViewController.swift in Sources */,
 				D0D187B429FA869400B8D2D8 /* VenueDetailModel.swift in Sources */,
 				D0D863802D0B12220019E14D /* TicketModel.swift in Sources */,
+				D01E5EDB2F273B1E0015A97D /* TransactionHistoryModel.swift in Sources */,
 				D0D5A8872E8A9EED00FBE442 /* HotelGuestDetailCell.swift in Sources */,
 				D0154AE32A667764003E033A /* ChatRepository.swift in Sources */,
 				D0154AC62A6676F8003E033A /* ChatDetailVC.swift in Sources */,
@@ -4383,7 +4399,7 @@
 				ENABLE_DEBUG_DYLIB = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Whosin/Resources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Whos’In Tour Guide";
+				INFOPLIST_KEY_CFBundleDisplayName = "WHOS’IN Business";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Scan the qr code inside stripe payment gateway & Capture user avatar and image in chat";
 				INFOPLIST_KEY_NSContactsUsageDescription = "“WHOS’IN” Would Like to Access Your Contacts\n\nTo help you discover and connect with friends who are already using the app, we request access to your device’s contact list.\n\nWhat We Collect:\nIf you allow access, your contact list (names, phone numbers, and email addresses) will be collected and uploaded to our secure servers.\n\nWhy We Collect It:\nWe use this information to identify which of your contacts are already registered on our platform, so we can show you mutual connections and enhance your social experience.\n\nHow It’s Used:\n\nOnly contacts already using the app will be shown to you.\n\nContacts not on our platform will not be stored or retained.\n\nWe do not share your contacts with any third parties.\n\nWe do not use this data for advertising or marketing purposes.\n\nYour Privacy:\nYou can revoke contact access at any time from your device settings. For more details, please refer to our Privacy Policy.\n\nBy tapping \"Allow Access\", you consent to the collection, uploading, and use of your contact list as described above.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "To show the nearby venues.";
@@ -4403,7 +4419,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.whosin.me;
+				PRODUCT_BUNDLE_IDENTIFIER = com.whosin.business;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_STYLE = "non-global";
@@ -4434,7 +4450,7 @@
 				ENABLE_DEBUG_DYLIB = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Whosin/Resources/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Whos’In Tour Guide";
+				INFOPLIST_KEY_CFBundleDisplayName = "WHOS’IN Business";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Scan the qr code inside stripe payment gateway & Capture user avatar and image in chat";
 				INFOPLIST_KEY_NSContactsUsageDescription = "“WHOS’IN” Would Like to Access Your Contacts\n\nTo help you discover and connect with friends who are already using the app, we request access to your device’s contact list.\n\nWhat We Collect:\nIf you allow access, your contact list (names, phone numbers, and email addresses) will be collected and uploaded to our secure servers.\n\nWhy We Collect It:\nWe use this information to identify which of your contacts are already registered on our platform, so we can show you mutual connections and enhance your social experience.\n\nHow It’s Used:\n\nOnly contacts already using the app will be shown to you.\n\nContacts not on our platform will not be stored or retained.\n\nWe do not share your contacts with any third parties.\n\nWe do not use this data for advertising or marketing purposes.\n\nYour Privacy:\nYou can revoke contact access at any time from your device settings. For more details, please refer to our Privacy Policy.\n\nBy tapping \"Allow Access\", you consent to the collection, uploading, and use of your contact list as described above.";
 				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "To show the nearby venues.";
@@ -4454,7 +4470,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1;
-				PRODUCT_BUNDLE_IDENTIFIER = com.whosin.me;
+				PRODUCT_BUNDLE_IDENTIFIER = com.whosin.business;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				STRIP_STYLE = "non-global";
@@ -4489,7 +4505,7 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 2.6;
-				PRODUCT_BUNDLE_IDENTIFIER = com.whosin.me.OneSignalNotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.whosin.business.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -4524,7 +4540,7 @@
 				);
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MARKETING_VERSION = 2.6;
-				PRODUCT_BUNDLE_IDENTIFIER = com.whosin.me.OneSignalNotificationServiceExtension;
+				PRODUCT_BUNDLE_IDENTIFIER = com.whosin.business.OneSignalNotificationServiceExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;

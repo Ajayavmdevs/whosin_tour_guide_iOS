@@ -334,13 +334,15 @@ class CustomTicketDetailVC: ChildViewController {
                 ])
             }
             
-            cellData.append([
-                kCellIdentifierKey: kCellIdentifireLocation,
-                kCellTagKey: _address,
-                kCellObjectDataKey: model,
-                kCellClassKey: LocationMapViewCell.self,
-                kCellHeightKey: LocationMapViewCell.height
-            ])
+            if !Utils.stringIsNullOrEmpty(_address) || !Utils.stringIsNullOrEmpty(model.customMessage){
+                cellData.append([
+                    kCellIdentifierKey: kCellIdentifireLocation,
+                    kCellTagKey: Utils.stringIsNullOrEmpty(_address) ? model.customMessage : _address,
+                    kCellObjectDataKey: model,
+                    kCellClassKey: LocationMapViewCell.self,
+                    kCellHeightKey: LocationMapViewCell.height
+                ])
+            }
             
 
         }

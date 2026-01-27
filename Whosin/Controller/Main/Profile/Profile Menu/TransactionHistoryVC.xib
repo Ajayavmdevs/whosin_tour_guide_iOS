@@ -15,10 +15,14 @@
         <array key="SFUIText-Medium.ttf">
             <string>SFUIText-Medium</string>
         </array>
+        <array key="SFUIText-Regular.ttf">
+            <string>SFUIText-Regular</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TransactionHistoryVC" customModule="Whosin" customModuleProvider="target">
             <connections>
+                <outlet property="_tableView" destination="Tab-Vie-001" id="Con-Tab-Vie"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -50,7 +54,7 @@
                                     </connections>
                                 </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Transaction History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vcn-fd-DdP" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
-                                    <rect key="frame" x="55" y="11.999999999999998" width="338" height="26.333333333333329"/>
+                                    <rect key="frame" x="55" y="11.999999999999998" width="258" height="26.333333333333329"/>
                                     <fontDescription key="fontDescription" name="SFUIText-Bold" family="SF UI Text" pointSize="22"/>
                                     <color key="textColor" name="white"/>
                                     <nil key="highlightedColor"/>
@@ -63,15 +67,54 @@
                                         </userDefinedRuntimeAttribute>
                                     </userDefinedRuntimeAttributes>
                                 </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Box-Fil">
+                                    <rect key="frame" x="323" y="10" width="60" height="30"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lbl-Fil">
+                                            <rect key="frame" x="0.0" y="5.6666666666666572" width="19" height="19"/>
+                                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="16"/>
+                                            <color key="textColor" name="BrandLightGray"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="chevron.down" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="Img-Arr">
+                                            <rect key="frame" x="24" y="10.333333333333332" width="15" height="10"/>
+                                            <color key="tintColor" name="BrandLightGray"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20" id="Arr-Hei"/>
+                                                <constraint firstAttribute="width" constant="15" id="Arr-Wid"/>
+                                            </constraints>
+                                        </imageView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Btn-Fil">
+                                            <rect key="frame" x="0.0" y="0.0" width="60" height="30"/>
+                                            <state key="normal" title="Button"/>
+                                            <buttonConfiguration key="configuration" style="plain" title=" "/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="Img-Arr" firstAttribute="centerY" secondItem="Box-Fil" secondAttribute="centerY" id="Arr-Cen"/>
+                                        <constraint firstAttribute="bottom" secondItem="Btn-Fil" secondAttribute="bottom" id="Btn-Bot"/>
+                                        <constraint firstItem="Btn-Fil" firstAttribute="leading" secondItem="Box-Fil" secondAttribute="leading" id="Btn-Led"/>
+                                        <constraint firstItem="Btn-Fil" firstAttribute="top" secondItem="Box-Fil" secondAttribute="top" id="Btn-Top"/>
+                                        <constraint firstAttribute="trailing" secondItem="Btn-Fil" secondAttribute="trailing" id="Btn-Trl"/>
+                                        <constraint firstAttribute="height" constant="30" id="Fil-Hei"/>
+                                        <constraint firstAttribute="width" constant="60" id="Fil-Wid"/>
+                                        <constraint firstItem="Img-Arr" firstAttribute="leading" secondItem="Lbl-Fil" secondAttribute="trailing" constant="5" id="Img-Led"/>
+                                        <constraint firstItem="Lbl-Fil" firstAttribute="centerY" secondItem="Box-Fil" secondAttribute="centerY" id="Lbl-Cen"/>
+                                        <constraint firstItem="Lbl-Fil" firstAttribute="leading" secondItem="Box-Fil" secondAttribute="leading" id="Lbl-Led"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <viewLayoutGuide key="safeArea" id="rGs-xR-efJ"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="Vcn-fd-DdP" firstAttribute="leading" secondItem="wx8-i3-e4q" secondAttribute="trailing" id="2ph-dS-04w"/>
+                                <constraint firstItem="Box-Fil" firstAttribute="centerY" secondItem="Ild-Qh-2lT" secondAttribute="centerY" id="Box-Fil-Cen"/>
+                                <constraint firstItem="Box-Fil" firstAttribute="leading" secondItem="Vcn-fd-DdP" secondAttribute="trailing" constant="10" id="Box-Fil-Led"/>
+                                <constraint firstAttribute="trailing" secondItem="Box-Fil" secondAttribute="trailing" constant="10" id="Box-Fil-Trl"/>
                                 <constraint firstItem="wx8-i3-e4q" firstAttribute="centerY" secondItem="Ild-Qh-2lT" secondAttribute="centerY" id="DPf-X0-zT5"/>
                                 <constraint firstItem="wx8-i3-e4q" firstAttribute="leading" secondItem="rGs-xR-efJ" secondAttribute="leading" constant="5" id="XNj-f5-aht"/>
                                 <constraint firstItem="Vcn-fd-DdP" firstAttribute="centerY" secondItem="wx8-i3-e4q" secondAttribute="centerY" id="gl7-hy-oyi"/>
-                                <constraint firstItem="rGs-xR-efJ" firstAttribute="trailing" secondItem="Vcn-fd-DdP" secondAttribute="trailing" id="tou-HD-aMI"/>
                                 <constraint firstAttribute="height" constant="50" id="yYc-Rm-fnM"/>
                             </constraints>
                         </view>
@@ -83,6 +126,10 @@
                         <constraint firstAttribute="trailing" secondItem="Ild-Qh-2lT" secondAttribute="trailing" id="cSl-Xr-Pr4"/>
                     </constraints>
                 </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Tab-Vie-001" customClass="CustomNoKeyboardTableView" customModule="Whosin" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="168" width="393" height="616"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="brandAppBgColor"/>
@@ -90,12 +137,17 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="top" secondItem="Ild-Qh-2lT" secondAttribute="top" id="00W-yU-eQj"/>
                 <constraint firstItem="md3-Ga-KXI" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="6Y7-zG-4Vx"/>
                 <constraint firstItem="md3-Ga-KXI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Pv5-rj-XUV"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Tab-Vie-001" secondAttribute="bottom" id="Tab-Bot"/>
+                <constraint firstItem="Tab-Vie-001" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Tab-Led"/>
+                <constraint firstItem="Tab-Vie-001" firstAttribute="top" secondItem="md3-Ga-KXI" secondAttribute="bottom" id="Tab-Top"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="Tab-Vie-001" secondAttribute="trailing" id="Tab-Trl"/>
                 <constraint firstItem="md3-Ga-KXI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="hgX-4i-NuD"/>
             </constraints>
             <point key="canvasLocation" x="140" y="116"/>
         </view>
     </objects>
     <resources>
+        <image name="chevron.down" catalog="system" width="128" height="70"/>
         <image name="icon_backArrow" width="19" height="15"/>
         <namedColor name="BrandLightGray">
             <color red="0.57999998331069946" green="0.58799999952316284" blue="0.6470000147819519" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

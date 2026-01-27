@@ -226,8 +226,8 @@ class NotificationManager: NSObject {
                 _ = link.absoluteString
                 guard let window = APP.window, APPSESSION.didLogin  else { return }
                 if let navController = window.rootViewController as? UINavigationController,
-                   let tabBarController = navController.viewControllers.first as? MainTabBarVC,
-                   tabBarController.selectedIndex == 4 {
+                   let tabBarController = navController.viewControllers.first as? MainTabBarVC {
+                    tabBarController.selectedIndex = 4
                     return
                 }
                 let controller = INIT_CONTROLLER_XIB(MainTabBarVC.self)
@@ -325,8 +325,8 @@ class NotificationManager: NSObject {
         
         guard let window = APP.window, APPSESSION.didLogin  else { return }
         if let navController = window.rootViewController as? UINavigationController,
-           let tabBarController = navController.viewControllers.first as? MainTabBarVC,
-           tabBarController.selectedIndex == 2 {
+           let tabBarController = navController.viewControllers.first as? MainTabBarVC {
+            tabBarController.selectedIndex = 2
             return
         }
         let controller = INIT_CONTROLLER_XIB(MainTabBarVC.self)
@@ -341,8 +341,8 @@ class NotificationManager: NSObject {
         TabLaunchConfig.walletDefaultPageIndex = index
         guard let window = APP.window, APPSESSION.didLogin  else { return }
         if let navController = window.rootViewController as? UINavigationController,
-           let tabBarController = navController.viewControllers.first as? MainTabBarVC,
-           tabBarController.selectedIndex == 4 {
+           let tabBarController = navController.viewControllers.first as? MainTabBarVC {
+            tabBarController.selectedIndex = 4
             return
         }
         let controller = INIT_CONTROLLER_XIB(MainTabBarVC.self)

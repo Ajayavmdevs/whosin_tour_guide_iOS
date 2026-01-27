@@ -17,6 +17,7 @@ class ProfileMenuVC: ChildViewController {
     @IBOutlet private weak var _tableView: CustomTableView!
     @IBOutlet private weak var _progressBar: GradientProgressBar!
     @IBOutlet private weak var _subscriptionView: GradientView!
+    @IBOutlet private weak var _heightConstraint: NSLayoutConstraint!
     
     private let kCellIdentifier = String(describing: ProfileSettingCell.self)
     private let kCellIdentifierPrimium = String(describing: PrimiumViewCell.self)
@@ -148,7 +149,8 @@ class ProfileMenuVC: ChildViewController {
         var cellSectionData = [[String: Any]]()
         var cellData = [[String: Any]]()
         var id = 0
-        
+
+        // Settings
         _menuList.forEach { menuList in
             cellData.append([
                 kCellIdentifierKey: kCellIdentifier,
@@ -160,10 +162,10 @@ class ProfileMenuVC: ChildViewController {
             ])
             id += 1
         }
-        
         cellSectionData.append([kSectionTitleKey: kEmptyString, kSectionDataKey: cellData])
         cellData.removeAll()
-        
+
+        // Privacy
         _privacyList.forEach { privacy in
             cellData.append([
                 kCellIdentifierKey: kCellIdentifier,
@@ -174,24 +176,33 @@ class ProfileMenuVC: ChildViewController {
                 kCellHeightKey: ProfileSettingCell.height
             ])
         }
-        
         cellSectionData.append([kSectionTitleKey: "\n", kSectionDataKey: cellData])
         cellData.removeAll()
-        
-        _logoutList.forEach { privacy in
+
+        // Logout
+        _logoutList.forEach { logout in
             cellData.append([
                 kCellIdentifierKey: kCellIdentifier,
                 kCellTagKey: kCellIdentifier,
-                kCellObjectDataKey: privacy,
+                kCellObjectDataKey: logout,
                 kCellTitleKey: "logout",
                 kCellClassKey: ProfileSettingCell.self,
                 kCellHeightKey: ProfileSettingCell.height
             ])
         }
-        
         cellSectionData.append([kSectionTitleKey: "\n", kSectionDataKey: cellData])
+
+        // ✅ TOTAL HEIGHT
+        let totalRows =
+            _menuList.count +
+            _privacyList.count +
+            _logoutList.count
+
+        _heightConstraint.constant = CGFloat(totalRows) * 70
+
         _tableView.loadData(cellSectionData)
     }
+
     
     private var _prototype: [[String: Any]]? {
         return [

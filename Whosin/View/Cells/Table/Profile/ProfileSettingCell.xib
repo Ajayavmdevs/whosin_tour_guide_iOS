@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -57,10 +57,10 @@
                         </userDefinedRuntimeAttributes>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="MvU-Vy-CoO">
-                        <rect key="frame" x="360" y="20.5" width="22" height="31"/>
+                        <rect key="frame" x="360" y="22" width="22" height="28"/>
                         <subviews>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="djM-Te-tAx" customClass="CustomLabel" customModule="Whosin" customModuleProvider="target">
-                                <rect key="frame" x="-40" y="0.0" width="40" height="31"/>
+                                <rect key="frame" x="-40" y="0.0" width="40" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="EhQ-pe-sdo"/>
                                 </constraints>
@@ -77,7 +77,7 @@
                                 </userDefinedRuntimeAttributes>
                             </label>
                             <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Ccz-ee-ngb">
-                                <rect key="frame" x="-50" y="0.0" width="52" height="31"/>
+                                <rect key="frame" x="-50" y="0.0" width="52" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="q5p-q5-unz"/>
                                 </constraints>
@@ -86,10 +86,11 @@
                                 </connections>
                             </switch>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oAr-YA-4Kt">
-                                <rect key="frame" x="0.0" y="0.0" width="22" height="31"/>
+                                <rect key="frame" x="0.0" y="0.0" width="22" height="28"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="22" id="DfL-gp-YEX"/>
                                 </constraints>
+                                <color key="tintColor" name="white"/>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                 <state key="normal" image="icon_rightNext"/>
                             </button>

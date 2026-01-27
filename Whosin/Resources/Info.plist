@@ -13,7 +13,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.965402678086-217lin9e3pldsit740r2plqbscce57ee</string>
+				<string>com.googleusercontent.apps.965402678086-85ad3288djvabd9ab3jrd382se6ip0et</string>
 			</array>
 		</dict>
 		<dict>
@@ -34,13 +34,13 @@
 		</dict>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>ngenius.com.whosin.me</string>
+			<string>ngenius.com.whosin.business</string>
 		</dict>
 	</array>
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
 	<key>GIDClientID</key>
-	<string>965402678086-217lin9e3pldsit740r2plqbscce57ee.apps.googleusercontent.com</string>
+	<string>965402678086-85ad3288djvabd9ab3jrd382se6ip0et.apps.googleusercontent.com</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>whosInApp</string>
@@ -59,7 +59,7 @@
 		<string>instagram</string>
 		<string>waze</string>
 		<string>ngenius</string>
-        <string>whatsapp</string>
+		<string>whatsapp</string>
 	</array>
 	<key>NSAppTransportSecurity</key>
 	<dict>
@@ -111,6 +111,6 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
 	<key>com.apple.developer.pass-type-identifiers</key>
-	<string>pass.com.whosin.me</string>
+	<string>pass.com.whosin.business</string>
 </dict>
 </plist>

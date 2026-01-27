@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Firebase & Push Notification
         // ===============================
         
-        FirebaseApp.configure()
+        _configureFirebaseSafely()
         ONESIGNALMANAGER.setup(launchOptions: launchOptions)
 
 
@@ -110,6 +110,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         
         return true
+    }
+    
+    private func _configureFirebaseSafely() {
+        guard let filePath = Bundle.main.path(forResource: "GoogleService-Info", ofType: "plist") else {
+            print("Firebase configuration skipped: GoogleService-Info.plist not found")
+            return
+        }
+        guard let options = FirebaseOptions(contentsOfFile: filePath) else {
+            print("Firebase configuration skipped: Invalid options from GoogleService-Info.plist")
+            return
+        }
+        let mainBundleId = Bundle.main.bundleIdentifier ?? ""
+        if options.bundleID == mainBundleId {
+            FirebaseApp.configure(options: options)
+            print("Firebase configured for bundle id: \(mainBundleId)")
+        } else {
+            print("Firebase configuration skipped: bundle id mismatch. GoogleService bundleID=\(options.bundleID), app bundleID=\(mainBundleId)")
+        }
     }
     
 //    private func _syncContacts() {
@@ -218,8 +236,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     private func resetBadgeCount() {
         UIApplication.shared.applicationIconBadgeNumber = 0
-        UserDefaults(suiteName: "group.com.whosin.me.onesignal")?.set(0, forKey: "badgeCount")
-        UserDefaults(suiteName: "group.com.whosin.me.onesignal")?.synchronize()
+        UserDefaults(suiteName: "group.com.whosin.business.onesignal")?.set(0, forKey: "badgeCount")
+        UserDefaults(suiteName: "group.com.whosin.business.onesignal")?.synchronize()
         print("Badge count reset to 0")
     }
 
@@ -334,4 +352,3 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 //        }
 //    }
 }
-

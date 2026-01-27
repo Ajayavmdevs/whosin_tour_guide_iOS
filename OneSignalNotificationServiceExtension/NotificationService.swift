@@ -6,7 +6,7 @@ class NotificationService: UNNotificationServiceExtension {
 
 //    var contentHandler: ((UNNotificationContent) -> Void)?
     var bestAttemptContent: UNMutableNotificationContent?
-    let defaults = UserDefaults(suiteName: "group.com.whosin.me.onesignal")
+    let defaults = UserDefaults(suiteName: "group.com.whosin.business.onesignal")
     
     var contentHandler: ((UNNotificationContent) -> Void)?
     var receivedRequest: UNNotificationRequest!

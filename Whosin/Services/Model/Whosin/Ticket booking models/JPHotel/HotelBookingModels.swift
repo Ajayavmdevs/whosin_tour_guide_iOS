@@ -11,6 +11,7 @@ class JPHotelBookingModel: Object, Mappable, ModelProtocol {
     @objc dynamic var customTicketId: String = kEmptyString
     @objc dynamic var comment: String = kEmptyString
     @objc dynamic var bookingCode: String = kEmptyString
+    @objc dynamic var sourcePlatform: String = kEmptyString
     @objc dynamic var paymentMethod: String = kEmptyString
     @objc dynamic var bookingType: String = "juniper-hotel"
     @objc dynamic var promoCode: String = "juniper-hotel"
@@ -29,10 +30,11 @@ class JPHotelBookingModel: Object, Mappable, ModelProtocol {
         currency            <- map["currency"]
         customTicketId      <- map["customTicketId"]
         comment             <- map["comment"]
+        sourcePlatform      <- map["sourcePlatform"]
         bookingCode         <- map["bookingCode"]
         paymentMethod       <- map["paymentMethod"]
         bookingType         <- map["bookingType"]
-        promoCode         <- map["promoCode"]
+        promoCode           <- map["promoCode"]
         tourDetails         <- (map["TourDetails"], ListTransform<JPTourDetailModel>())
         passengers          <- (map["passengers"], ListTransform<JPPassengerModel>())
         priceRange          <- map["priceRange"]
